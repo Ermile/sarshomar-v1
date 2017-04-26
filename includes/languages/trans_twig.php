@@ -388,6 +388,105 @@ private function transtext()
 	echo T_("If you have any questions, our contact and support center is always ready to help.");// Line 88
 	echo T_("Get in touch");                                                          // Line 89
 
+	//-------------------------------content\template\static\benefits\easy-access.html
+	echo T_("Easy access");                                                           // Line 3
+	echo T_("Easy access to Sarshomar");                                              // Line 6
+	echo T_("Without Disturbance");                                                   // Line 13
+
+	//----------------------content\template\static\benefits\essay-type-questions.html
+	echo T_("Essay-type Questions");                                                  // Line 3
+	echo T_("Ask essay-type questions and receive valid and complete answers.");      // Line 17
+	echo T_("Receiving Answers to Essay-type Questions");                             // Line 22
+	echo T_("In addition to ordinary multiple questions, and in order to have complete relation with addressees, there is the possibility of adding essay-type questions and receiving the related answers from addressees.");// Line 17
+	echo T_("For instance, such a feature has a special usage in scientific foundations for administering examinations and in organizations and business centers for receiving opinions and suggestions.");// Line 19
+	echo T_("Observing Graphic Results according to the Statistical Population");     // Line 22
+	echo T_("Language Localization");                                                 // Line 23
+
+	//---------------------------content\template\static\benefits\graphic-results.html
+	echo T_("Graphic Results");                                                       // Line 3
+	echo T_("Graphs are powerful means that might not take more than a few minutes to study; however, they can provide you with a large amount of complicated information in a simple and effective way.");// Line 17
+	echo T_("Polls' charts and tables, based on separate statistical populations of the respondents as well as their key factors, are available in Sarshomar.");// Line 19
+	echo T_("These key factors include gender, age range, marital status, academic degree, educational status and residence.");// Line 19
+	echo T_("Results Output");                                                        // Line 13
+
+	//----------------------------------content\template\static\benefits\guest-fa.html
+	echo T_("Try Before Registering");                                                // Line 26
+	echo T_("Unlike all other websites and services you have ever seen, you do not have to register in Sarshomar.");// Line 17
+	echo T_("I want to experience Sarshomar!");                                       // Line 30
+	echo T_("Please enter shown numbers here");                                       // Line 34
+	echo T_("submit");                                                                // Line 25
+	echo T_("Question Charts");                                                       // Line 24
+	echo T_("Multimedia Questions");                                                  // Line 23
+	echo T_("Using the option Try Before Registering, you can be our guest user and investigate Sarshomar without being required to register. In case, you find us the best, you can proceed to register.");// Line 19
+	echo T_("When you are a guest user, you have all Sarshomar's qualities at your service to investigate.");// Line 21
+	echo T_("You can save your question or questionnaire as well as answer Sarshomar's questions.");// Line 21
+	echo T_("Your activities and participation, when you are a guest, will be saved and kept safe by us for a while; however, to share the question or to make the results received from you effective in opinion polls, you are required to register.");// Line 21
+	echo T_("The reason behind not sharing the questions and not putting into effect the received results from users while they are guest users is to prevent creating unreal results and sharing improper questions.");// Line 21
+	echo T_("After registration and user account confirmation, your will still have access to your saved participation. Furthermore, to appreciate your presence confirmation, Sarshomar will award you a bonus in your user account for taking that valuable measure.");// Line 25
+	echo T_("Upon completing your registration, you will both receive a registration gift and, based on the activities done, Sarshomar's other allocated gifts and bonuses.");// Line 25
+
+	//-------------------------------------content\template\static\benefits\guest.html
+
+	//--------------------------------------content\template\static\benefits\home.html
+	echo T_("Sarshomar's features");                                                  // Line 3
+	echo T_("Features of Sarshomar");                                                 // Line 6
+	echo T_("Service Provision via Social Networks");                                 // Line 23
+	echo T_("Determining the Target Statistical Population");                         // Line 13
+	echo T_("Results Personalization");                                               // Line 13
+
+	//----------------------------content\template\static\benefits\knowledge-base.html
+	echo T_("Knowledge base");                                                        // Line 3
+	echo T_("Knowledge base of Sarshomar");                                           // Line 6
+
+	//---------------------content\template\static\benefits\language-localization.html
+	echo T_("Sarshomar does its best to provide you with an ideal impression.");      // Line 17
+	echo T_("To that end, we are improving our service to support more and more languages so that you will be able to use our service via your own language.");// Line 17
+	echo T_("In case you are interested to help us to localize more languages, please contact Sarshomar.");// Line 18
+
+	//----------------------content\template\static\benefits\multimedia-questions.html
+	echo T_("One of Sarshomar's most attractive features is employing multimedia content within questions.");// Line 17
+	echo T_("For instance, you can play a 60-second short movie on the environment and, then, ask the addressees their descriptive opinion on it.");// Line 17
+
+	//---------------------------content\template\static\benefits\question-charts.html
+	echo T_("A question chart links a question to another.");                         // Line 17
+	echo T_("To do so, you can specify the desired options to create the link when defining the question.");// Line 17
+	echo T_("For example, as for the questions related to Bloodletting, you can only ask those users who have chosen the positive option for using Iranian traditional medicine.");// Line 19
+	echo T_("In contrast, if your question regards why not to use traditional medicine, you can ask those who have chosen the corresponding negative option.");// Line 19
+	echo T_("Accordingly, by means of the feature of question charts and use of Sarshomar's comprehensive knowledge, you purposefully direct your question or message towards your desired addressees.");// Line 21
+
+	//----------------------------content\template\static\benefits\results-output.html
+	echo T_("In case there is a need to the polls' findings, you will be able to receive a variety of outputs from the results.");// Line 17
+	echo T_("The results will be given to you separately and along with details so that you will be able to use the data in computational softwares.");// Line 17
+
+	//-------------------content\template\static\benefits\results-personalization.html
+	echo T_("All of Sarshomar's contents and questions are publically available and usable for all.");// Line 17
+	echo T_("In order to protect the privacy of the questions, Sarshomar has considered two features that you can use based on your need.");// Line 17
+	echo T_("The first feature is the capability of assigning a code to the polls."); // Line 19
+	echo T_("In this way, only those who have the given password can observe and answer the question.");// Line 19
+	echo T_("The second feature is the capability of hiding the results of the questions.");// Line 21
+	echo T_("In this way, while answering the questions is possible for all, the results will be personal and displayed only for the user who has asked the question.");// Line 21
+
+	//---------------------------content\template\static\benefits\social-networks.html
+	echo T_("One of the best and paramount characteristics of Sarshomar is to provide services via social networks.");// Line 17
+	echo T_("Sarshomar's services, regarding the presentable features in any social network, are accessible integratively.");// Line 17
+	echo T_("One of the objectives of Sarshomar's service provision via social networks is easy access. Besides, you do not have to install any software on your device, which readily makes Sarshomar's services accessible to you.");// Line 19
+
+	//-------------content\template\static\benefits\target-statistical-population.html
+	echo T_("Another outstanding feature presented by Sarshomar is determining the target statistical population.");// Line 17
+	echo T_("To do so, you can present your question or advertisement based on your goal and exact needs, and receive the feedbacks from that determined target without any concerns and as soon as possible.");// Line 17
+	echo T_("For instance, you can target your question at below 25 married men who hold bachelor or master degree and are employed.");// Line 19
+	echo T_("Just imagine that, in Sarshomar, you can purposefully send your advertisements only to single women with the age range of 18 to 30.");// Line 19
+
+	//--------------------------content\template\static\benefits\valid-population.html
+	echo T_("Valid population");                                                      // Line 3
+	echo T_("Sarshomar's valid population");                                          // Line 6
+
+	//-----------------------content\template\static\benefits\without-disturbance.html
+	echo T_("Sarshomar is opposed to annoying advertisements, striving to create a desirable feeling in you while you are using this service.");// Line 17
+	echo T_("Set as default, all the messages in Sarshomar are inactive and you are completely in charge of managing them.");// Line 17
+	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 19
+	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 19
+
 	//------------------------------------------content\template\static\changelog.html
 	echo T_("Sarshomar's change log");                                                // Line 3
 	echo T_("We were born to do Best!");                                              // Line 71
@@ -414,105 +513,6 @@ private function transtext()
 	echo T_("We, in Sarshomar, consider respecting the environment as an inseparable responsibility for ourselves, and to reach that end, we reengineered polling procedure with a new attitude.");// Line 24
 	echo T_("One of our goals in redesigning the procedures is to minimize the need for paper when receiving your opinions.");// Line 24
 	echo T_("Therefore, we invite you to use Sarshomar for its paper-saving purposes to save plants and have a beautiful earth.");// Line 24
-
-	//-------------------------------content\template\static\features\easy-access.html
-	echo T_("Easy access");                                                           // Line 3
-	echo T_("Easy access to Sarshomar");                                              // Line 6
-	echo T_("Without Disturbance");                                                   // Line 13
-
-	//----------------------content\template\static\features\essay-type-questions.html
-	echo T_("Essay-type Questions");                                                  // Line 3
-	echo T_("Ask essay-type questions and receive valid and complete answers.");      // Line 17
-	echo T_("Receiving Answers to Essay-type Questions");                             // Line 22
-	echo T_("In addition to ordinary multiple questions, and in order to have complete relation with addressees, there is the possibility of adding essay-type questions and receiving the related answers from addressees.");// Line 17
-	echo T_("For instance, such a feature has a special usage in scientific foundations for administering examinations and in organizations and business centers for receiving opinions and suggestions.");// Line 19
-	echo T_("Observing Graphic Results according to the Statistical Population");     // Line 22
-	echo T_("Language Localization");                                                 // Line 23
-
-	//---------------------------content\template\static\features\graphic-results.html
-	echo T_("Graphic Results");                                                       // Line 3
-	echo T_("Graphs are powerful means that might not take more than a few minutes to study; however, they can provide you with a large amount of complicated information in a simple and effective way.");// Line 17
-	echo T_("Polls' charts and tables, based on separate statistical populations of the respondents as well as their key factors, are available in Sarshomar.");// Line 19
-	echo T_("These key factors include gender, age range, marital status, academic degree, educational status and residence.");// Line 19
-	echo T_("Results Output");                                                        // Line 13
-
-	//----------------------------------content\template\static\features\guest-fa.html
-	echo T_("Try Before Registering");                                                // Line 26
-	echo T_("Unlike all other websites and services you have ever seen, you do not have to register in Sarshomar.");// Line 17
-	echo T_("I want to experience Sarshomar!");                                       // Line 30
-	echo T_("Please enter shown numbers here");                                       // Line 34
-	echo T_("submit");                                                                // Line 25
-	echo T_("Question Charts");                                                       // Line 24
-	echo T_("Multimedia Questions");                                                  // Line 23
-	echo T_("Using the option Try Before Registering, you can be our guest user and investigate Sarshomar without being required to register. In case, you find us the best, you can proceed to register.");// Line 19
-	echo T_("When you are a guest user, you have all Sarshomar's qualities at your service to investigate.");// Line 21
-	echo T_("You can save your question or questionnaire as well as answer Sarshomar's questions.");// Line 21
-	echo T_("Your activities and participation, when you are a guest, will be saved and kept safe by us for a while; however, to share the question or to make the results received from you effective in opinion polls, you are required to register.");// Line 21
-	echo T_("The reason behind not sharing the questions and not putting into effect the received results from users while they are guest users is to prevent creating unreal results and sharing improper questions.");// Line 21
-	echo T_("After registration and user account confirmation, your will still have access to your saved participation. Furthermore, to appreciate your presence confirmation, Sarshomar will award you a bonus in your user account for taking that valuable measure.");// Line 25
-	echo T_("Upon completing your registration, you will both receive a registration gift and, based on the activities done, Sarshomar's other allocated gifts and bonuses.");// Line 25
-
-	//-------------------------------------content\template\static\features\guest.html
-
-	//--------------------------------------content\template\static\features\home.html
-	echo T_("Sarshomar's features");                                                  // Line 3
-	echo T_("Features of Sarshomar");                                                 // Line 6
-	echo T_("Service Provision via Social Networks");                                 // Line 23
-	echo T_("Determining the Target Statistical Population");                         // Line 13
-	echo T_("Results Personalization");                                               // Line 13
-
-	//----------------------------content\template\static\features\knowledge-base.html
-	echo T_("Knowledge base");                                                        // Line 3
-	echo T_("Knowledge base of Sarshomar");                                           // Line 6
-
-	//---------------------content\template\static\features\language-localization.html
-	echo T_("Sarshomar does its best to provide you with an ideal impression.");      // Line 17
-	echo T_("To that end, we are improving our service to support more and more languages so that you will be able to use our service via your own language.");// Line 17
-	echo T_("In case you are interested to help us to localize more languages, please contact Sarshomar.");// Line 18
-
-	//----------------------content\template\static\features\multimedia-questions.html
-	echo T_("One of Sarshomar's most attractive features is employing multimedia content within questions.");// Line 17
-	echo T_("For instance, you can play a 60-second short movie on the environment and, then, ask the addressees their descriptive opinion on it.");// Line 17
-
-	//---------------------------content\template\static\features\question-charts.html
-	echo T_("A question chart links a question to another.");                         // Line 17
-	echo T_("To do so, you can specify the desired options to create the link when defining the question.");// Line 17
-	echo T_("For example, as for the questions related to Bloodletting, you can only ask those users who have chosen the positive option for using Iranian traditional medicine.");// Line 19
-	echo T_("In contrast, if your question regards why not to use traditional medicine, you can ask those who have chosen the corresponding negative option.");// Line 19
-	echo T_("Accordingly, by means of the feature of question charts and use of Sarshomar's comprehensive knowledge, you purposefully direct your question or message towards your desired addressees.");// Line 21
-
-	//----------------------------content\template\static\features\results-output.html
-	echo T_("In case there is a need to the polls' findings, you will be able to receive a variety of outputs from the results.");// Line 17
-	echo T_("The results will be given to you separately and along with details so that you will be able to use the data in computational softwares.");// Line 17
-
-	//-------------------content\template\static\features\results-personalization.html
-	echo T_("All of Sarshomar's contents and questions are publically available and usable for all.");// Line 17
-	echo T_("In order to protect the privacy of the questions, Sarshomar has considered two features that you can use based on your need.");// Line 17
-	echo T_("The first feature is the capability of assigning a code to the polls."); // Line 19
-	echo T_("In this way, only those who have the given password can observe and answer the question.");// Line 19
-	echo T_("The second feature is the capability of hiding the results of the questions.");// Line 21
-	echo T_("In this way, while answering the questions is possible for all, the results will be personal and displayed only for the user who has asked the question.");// Line 21
-
-	//---------------------------content\template\static\features\social-networks.html
-	echo T_("One of the best and paramount characteristics of Sarshomar is to provide services via social networks.");// Line 17
-	echo T_("Sarshomar's services, regarding the presentable features in any social network, are accessible integratively.");// Line 17
-	echo T_("One of the objectives of Sarshomar's service provision via social networks is easy access. Besides, you do not have to install any software on your device, which readily makes Sarshomar's services accessible to you.");// Line 19
-
-	//-------------content\template\static\features\target-statistical-population.html
-	echo T_("Another outstanding feature presented by Sarshomar is determining the target statistical population.");// Line 17
-	echo T_("To do so, you can present your question or advertisement based on your goal and exact needs, and receive the feedbacks from that determined target without any concerns and as soon as possible.");// Line 17
-	echo T_("For instance, you can target your question at below 25 married men who hold bachelor or master degree and are employed.");// Line 19
-	echo T_("Just imagine that, in Sarshomar, you can purposefully send your advertisements only to single women with the age range of 18 to 30.");// Line 19
-
-	//--------------------------content\template\static\features\valid-population.html
-	echo T_("Valid population");                                                      // Line 3
-	echo T_("Sarshomar's valid population");                                          // Line 6
-
-	//-----------------------content\template\static\features\without-disturbance.html
-	echo T_("Sarshomar is opposed to annoying advertisements, striving to create a desirable feeling in you while you are using this service.");// Line 17
-	echo T_("Set as default, all the messages in Sarshomar are inactive and you are completely in charge of managing them.");// Line 17
-	echo T_("As such, Sarshomar never initiates communication, sending messages to you only after receiving your request.");// Line 19
-	echo T_("Of course, customizing data reception is possible for you and you can activate it if you are willing to.");// Line 19
 
 	//--------------------------------------------content\template\static\gift-fa.html
 	echo T_("Sarshomar's gift");                                                      // Line 3
