@@ -295,7 +295,7 @@
   </div>
  </div>
 
- {%if poll.count_vote == 0%}
+ {%if poll.result.summary.total == 0%}
  <div class="in small isDataNotExist"><div class="msg info">{%trans "There is no data to draw chart!"%}</div></div>
  {%endif%}
  {{block('chart')}}
@@ -392,7 +392,7 @@
 {%block poll_count%}
  <div class="title">{%trans "People voted to this poll"%}</div>
  <div class="content">
-  <span>{{poll.count_vote|number_format|fitNumber}}</span>
+  <span>{{poll.result.summary.total|number_format|fitNumber}}</span>
  </div>
 {%endblock%}
 
@@ -703,7 +703,7 @@
 <div class='poll-panel unselectable'>
 
  <div class='poll-answered'>
-  <div class='poll-answered-count'>{{poll.count_vote|number_format|fitNumber}}</div>
+  <div class='poll-answered-count'>{{poll.result.summary.total|number_format|fitNumber}}</div>
   <div class="poll-answered-label">
    <span>{%trans "People Voted"%}</span>
    <span class='poll-answered-you{%if poll.my_answer%}{%else%} hide{%endif%}'>+ {%trans "You"%}</span>
