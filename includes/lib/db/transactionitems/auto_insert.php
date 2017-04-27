@@ -2,30 +2,55 @@
 namespace lib\db\transactionitems;
 trait auto_insert
 {
+	/**
+	 * the transaction items array
+	 *
+	 * hint of transactionitems id
+	 *
+	 * id =  id unit destination (to) . id unit origin (from) . [transaction type code] . [operation code | by sort]
+	 * transaction type code =
+	 * {
+	 * 		real		: 1,
+	 * 		gift		: 2,
+	 * 		prize		: 3,
+	 * 		transfer	: 4,
+	 * }
+	 *
+	 * operation code =
+	 * {
+	 * 		charge		: 01,
+	 * 		change		: 02,
+	 * 		answer		: 03,
+	 * 		remove		: 04,
+	 * 		...
+	 * }
+	 *
+	 *
+	 * @var        array
+	 */
 	private static $AUTO_INSERT =
 	[
-		'charge:real'                       => ['id' => null, 'unit_id' => 1, 'type' => 'real',		'caller' => 'charge:real', 'title' => 'charge for test', 'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'yes', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
+		// for test
+		'charge:real'                       => ['id' => 1010, 'unit_id' => 1, 'type' => 'real', 	'caller' => 'charge:real', 'title' => 'charge for test', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'yes','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
 
-		'remove:answer:poll:sarshomar'      => ['id' => null, 'unit_id' => 1, 'type' => 'real',		'caller' => 'remove:answer:poll:sarshomar', 'title' => 'remove answer of public poll', 'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'yes', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'remove:answer:poll:toman'          => ['id' => null, 'unit_id' => 2, 'type' => 'real',		'caller' => 'remove:answer:poll:toman', 'title' => 'remove answer of public poll', 'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'remove:answer:poll:dollar'         => ['id' => null, 'unit_id' => 3, 'type' => 'real',		'caller' => 'remove:answer:poll:dollar', 'title' => 'remove answer of public poll', 'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'real:answer:poll:sarshomar'        => ['id' => 1013, 'unit_id' => 1, 'type' => 'real', 	'caller' => 'real:answer:poll:sarshomar', 'title' => 'answer to public poll', 'minus' => null,'plus' => '2','autoverify' => 'yes','forcechange' => 'yes','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'real:answer:custom:poll:sarshomar' => ['id' => 1017, 'unit_id' => 1, 'type' => 'real', 	'caller' => 'real:answer:custom:poll:sarshomar', 'title' => 'answer to sarshomar custom poll', 'minus' => null,'plus' => '2','autoverify' => 'yes','forcechange' => 'yes','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'remove:answer:poll:sarshomar'      => ['id' => 1016, 'unit_id' => 1, 'type' => 'real', 	'caller' => 'remove:answer:poll:sarshomar', 'title' => 'remove answer of public poll', 'minus' => null,'plus' => null,'autoverify' => 'yes','forcechange' => 'yes','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
 
-		'real:charge:toman'                 => ['id' => null, 'unit_id' => 2, 'type' => 'real',		'caller' => 'real:charge:toman', 'title' => 'real charge toman', 'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'real:charge:dollar'                => ['id' => null, 'unit_id' => 3, 'type' => 'real',		'caller' => 'real:charge:dollar', 'title' => 'real charge $',  'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'gift:signup'                       => ['id' => 1024, 'unit_id' => 1, 'type' => 'gift', 	'caller' => 'gift:signup', 'title' => 'charge on signup', 'minus' => null,'plus' => '1000','autoverify' => 'no','forcechange' => 'yes','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'gift:profile:complete'             => ['id' => 1025, 'unit_id' => 1, 'type' => 'gift', 	'caller' => 'gift:profile:complete', 'title' => 'charge on complete profile', 'minus' => null,'plus' => '1000','autoverify' => 'yes','forcechange' => 'yes','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
 
-		'real:answer:poll:sarshomar'        => ['id' => null, 'unit_id' => 1, 'type' => 'real',		'caller' => 'real:answer:poll:sarshomar', 'title' => 'answer to public poll', 'minus' => null, 'plus' => 2,'autoverify' => 'yes', 'forcechange' => 'yes', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'real:answer:poll:toman'            => ['id' => null, 'unit_id' => 2, 'type' => 'real',		'caller' => 'real:answer:poll:toman', 'title' => 'answer to public poll', 'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'real:answer:poll:dollar'           => ['id' => null, 'unit_id' => 3, 'type' => 'real',		'caller' => 'real:answer:poll:dollar', 'title' => 'answer to public poll', 'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'real:charge:toman'                 => ['id' => 2011, 'unit_id' => 2, 'type' => 'real', 	'caller' => 'real:charge:toman', 'title' => 'real charge toman', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'real:answer:poll:toman'            => ['id' => 2013, 'unit_id' => 2, 'type' => 'real', 	'caller' => 'real:answer:poll:toman', 'title' => 'answer to public poll', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'remove:answer:poll:toman'          => ['id' => 2016, 'unit_id' => 2, 'type' => 'real', 	'caller' => 'remove:answer:poll:toman', 'title' => 'remove answer of public poll', 'minus' => null,'plus' => null,'autoverify' => 'yes','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'change:sarshomar:toman'            => ['id' => 2112, 'unit_id' => 2, 'type' => 'real', 	'caller' => 'change:sarshomar:toman', 'title' => 'change sarshomar to toman', 'minus' => null,'plus' => null,'autoverify' => 'yes','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'change:dollar:toman'               => ['id' => 2312, 'unit_id' => 2, 'type' => 'real', 	'caller' => 'change:dollar:toman', 'title' => 'dollar to toman', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
 
-		'real:answer:custom:poll:sarshomar' => ['id' => null, 'unit_id' => 1, 'type' => 'real',		'caller' => 'real:answer:custom:poll:sarshomar', 'title' => 'answer to sarshomar custom poll', 'minus' => null, 'plus' => 2,'autoverify' => 'yes', 'forcechange' => 'yes', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-
-		'gift:signup'                       => ['id' => null, 'unit_id' => 1, 'type' => 'gift',		'caller' => 'gift:signup', 'title' => 'charge on signup', 'minus' => null, 'plus' => 1000,'autoverify' => 'no', 'forcechange' => 'yes', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'gift:profile:complete'             => ['id' => null, 'unit_id' => 1, 'type' => 'gift',		'caller' => 'gift:profile:complete', 'title' => 'charge on complete profile', 'minus' => null, 'plus' => 1000,'autoverify' => 'yes', 'forcechange' => 'yes', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-
-		'change:sarshomar:toman'            => ['id' => null, 'unit_id' => 2, 'type' => 'real',		'caller' => 'change:sarshomar:toman', 'title' => 'change sarshomar to toman', 'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'change:dollar:toman'               => ['id' => null, 'unit_id' => 2, 'type' => 'real',		'caller' => 'change:dollar:toman', 'title' => 'dollar to toman', 'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'change:sarshomar:dollar'           => ['id' => null, 'unit_id' => 3, 'type' => 'real',		'caller' => 'change:sarshomar:dollar', 'title' => 'change sarshomar to $',  'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
-		'change:toman:dollar'               => ['id' => null, 'unit_id' => 3, 'type' => 'real',		'caller' => 'change:toman:dollar', 'title' => 'toman to dollar', 'minus' => null, 'plus' => null, 'autoverify' => 'no', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'real:charge:dollar'                => ['id' => 3011, 'unit_id' => 3, 'type' => 'real', 	'caller' => 'real:charge:dollar', 'title' => 'real charge $', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'real:answer:poll:dollar'           => ['id' => 3013, 'unit_id' => 3, 'type' => 'real', 	'caller' => 'real:answer:poll:dollar', 'title' => 'answer to public poll', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'remove:answer:poll:dollar'         => ['id' => 3016, 'unit_id' => 3, 'type' => 'real', 	'caller' => 'remove:answer:poll:dollar', 'title' => 'remove answer of public poll', 'minus' => null,'plus' => null,'autoverify' => 'yes','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'change:sarshomar:dollar'           => ['id' => 3112, 'unit_id' => 3, 'type' => 'real', 	'caller' => 'change:sarshomar:dollar', 'title' => 'change sarshomar to $', 'minus' => null,'plus' => null,'autoverify' => 'yes','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
+		'change:toman:dollar'               => ['id' => 3212, 'unit_id' => 3, 'type' => 'real', 	'caller' => 'change:toman:dollar', 'title' => 'toman to dollar', 'minus' => null,'plus' => null,'autoverify' => 'no','forcechange' => 'no','desc' => null,'meta' => null,'status' => 'enable','count' => 0, 'enddate' => null, 'date_modified' => null,],
 
 		'real:change:minus:sarshomar'       => ['id' => null, 'unit_id' => 1, 'type' => 'real',		'caller' => 'real:change:minus:sarshomar', 'title' => 'minus sarshomar real for change', 'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],
 		'real:change:plus:sarshomar'        => ['id' => null, 'unit_id' => 1, 'type' => 'real',		'caller' => 'real:change:plus:sarshomar', 'title' => 'plus sarshomar real for change', 'minus' => null, 'plus' => null, 'autoverify' => 'yes', 'forcechange' => 'no', 'desc' => null, 'meta' => null, 'status' => 'enable', 'count' => 0, 'enddate' => null, 'date_modified' => null,],

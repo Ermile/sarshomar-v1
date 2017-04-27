@@ -2707,6 +2707,11 @@ function prepareQuestionData()
 		myQuestion.options.sms_text = $('#sms-text').val();
 	}
 
+	// get poll members
+	if($('#poll-class').val())
+	{
+		myQuestion.options.class = $('#poll-class').val();
+	}
 	// data of publish page
 	// category
 	if($('#cat0').attr('data-val'))

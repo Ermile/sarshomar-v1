@@ -77,8 +77,9 @@ class controller extends \content\main\controller
 
 		/**
 		 * generate captcha code
+		 * features/guest
 		 */
-		if($site_url == 'features/guest')
+		if($site_url == 'benefits/guest')
 		{
 			if(!$this->login())
 			{

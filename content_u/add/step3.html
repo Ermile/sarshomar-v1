@@ -86,6 +86,14 @@
    <button class='btn'>{%if poll.options.prize.unit%}{%set myPrizeUnit = poll.options.prize.unit %}{%trans myPrizeUnit %}{%else%}{{myUnit}}{%endif%}</button>
   </div>
 
+  {% if perm.sarshomar_knowledge.admin %}
+  <div class='element no-pad'>
+   <label class='title large' for='poll-class'>{%trans "Class"%}</label>
+   <div class='element-in'>
+    <input class='input' type='text' id='poll-class' placeholder='{%trans "The poll class"%}' value='{{poll.options.class}}'>
+   </div>
+  </div>
+  {%endif%}
   <div class='checkbox'>
    <input type='checkbox' name='hide_result' id='hide_result' {%if poll.options.hide_result%} checked="checked" {%endif%}>
    <label for='hide_result'></label>

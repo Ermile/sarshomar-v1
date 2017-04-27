@@ -97,6 +97,39 @@ trait order
 			return false;
 		}
 
+		if(!$_user_id)
+		{
+			return false;
+		}
+		// the user has filter
+		$user_has_filter = 'FALSE';
+
+		$user_filter = \lib\db::get(
+		"
+			SELECT DISTINCT term_id AS `term_id`
+			FROM
+				termusages
+			WHERE
+				termusages.termusage_id = $_user_id AND
+				(
+					termusages.termusage_foreign = 'profile' OR
+					termusages.termusage_foreign = 'user_profile'
+				) AND
+				termusages.termusage_status  = 'enable'
+		", 'term_id');
+
+		if(is_array($user_filter) && !empty($user_filter))
+		{
+			$count_user_filter = count($user_filter);
+			$user_filter       = implode(',', $user_filter);
+			$user_has_filter = "TRUE";
+		}
+		else
+		{
+			$count_user_filter = 0;
+			$user_filter       = "NULL";
+		}
+
 		$language = \lib\define::get_language();
 
 		$public_fields = self::$fields;
@@ -155,41 +188,27 @@ trait order
 			)
 			-- Check post filter
 			AND
+			(
 				CASE
 					-- If this poll has not filter  return true
 					WHEN posts.post_hasfilter = 0 THEN TRUE
-				ELSE
-					posts.id IN
+					WHEN posts.post_hasfilter = 1 AND $user_has_filter = FALSE THEN FALSE
+					ELSE
 					(
-						CONCAT_WS(',',
-							-- if this post have not eny filter return posts.id to load it
-							(IF((SELECT	COUNT(*) FROM termusages WHERE
-										termusages.termusage_id = posts.id AND
-										termusages.termusage_foreign = 'filter'
-								) = 0 , posts.id , 0 )),(
-							IF((
-									SELECT GROUP_CONCAT(termusages.term_id SEPARATOR ' AND ')
-									FROM termusages
-									INNER JOIN terms ON termusages.term_id = terms.id
-									WHERE
-										termusages.termusage_id      = posts.id AND
-										termusages.termusage_foreign = 'filter' AND
-										termusages.termusage_status  = 'enable' AND
-										terms.term_type              = 'sarshomar'
-								) IN (
-									SELECT term_id FROM termusages
-									WHERE
-										termusages.termusage_id      = $_user_id AND
-										termusages.termusage_foreign = 'profile' AND
-										termusages.termusage_status  = 'enable'
-								),
-								posts.id, 0
-								)
-							)
-						)
+						SELECT termusages.term_id AS `filter_of_post`
+						FROM termusages
+						WHERE
+						termusages.term_id IN ($user_filter) AND
+						termusages.termusage_id      = posts.id AND
+						termusages.termusage_foreign = 'filter' AND
+						termusages.termusage_status  = 'enable'
+						GROUP BY filter_of_post
+						HAVING COUNT(DISTINCT filter_of_post) = $count_user_filter
 					)
 				END
-			ORDER BY posts.post_rank DESC, posts.id ASC
+			)
+			-- ORDER BY posts.post_rank DESC, posts.id ASC
+			ORDER BY posts.id ASC
 			LIMIT 1
 			-- ASK QUERY --
 			-- polls::get_last()

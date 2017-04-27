@@ -33,11 +33,11 @@ trait access
 
 		];
 
-		// if(defined('Tld') && Tld === 'dev')
-		// {
-		// 	$default_args['time']  = 60 * 60 * 24 * 365; // 1 year
-		// 	$default_args['count'] = 3 * 100; // 300 times
-		// }
+		if(defined('Tld') && Tld === 'dev')
+		{
+			$default_args['time']  = 60 * 60 * 24 * 365; // 1 year
+			$default_args['count'] = 3 * 100; // 300 times
+		}
 
 		$_args = array_merge($default_args, $_args);
 

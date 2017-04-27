@@ -100,6 +100,14 @@ trait get_options
 				}
 			}
 
+			if(isset($value['option_key']) && preg_match("/^class$/", $value['option_key']))
+			{
+				if(isset($value['option_value']) && $value['option_value'])
+				{
+					$_poll_data['options']['class'] = $value['option_value'];
+				}
+			}
+
 			if(isset($value['option_key']) && preg_match("/^sms_text$/", $value['option_key']))
 			{
 

@@ -27,7 +27,7 @@ class controller extends \content_u\main\controller
 		// try sarshomar
 		if(\lib\utility::get("inspection") == "inestimable" && !$this->login())
 		{
-			$this->redirector($this->url("base"). "/features/guest")->redirect();
+			$this->redirector($this->url("base"). "/benefits/guest")->redirect();
 			return ;
 		}
 

@@ -40,6 +40,33 @@ trait options
 			}
 		}
 
+		// save poll class
+		if(self::isset_args('options','class'))
+		{
+			if(self::$args['options']['class'])
+			{
+				if(mb_strlen(self::$args['options']['class']) > 500)
+				{
+					debug::error(T_("You must set less than 500 character on options.class"), 'class', 'arguments');
+					return false;
+				}
+
+				self::save_options('class', self::$args['options']['class']);
+			}
+			else
+			{
+				self::save_options('class', false);
+			}
+		}
+		else
+		{
+			if(self::$method == 'put')
+			{
+				self::save_options('class', false);
+			}
+		}
+
+
 		// save send sms text
 		if(self::isset_args('options','sms_text'))
 		{
