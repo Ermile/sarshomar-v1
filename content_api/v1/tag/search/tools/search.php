@@ -41,7 +41,28 @@ trait search
 					$meta['order'] = "DESC";
 				}
 
+				if(substr($search, 0,1) === ':')
+				{
+					if(isset($meta['order']))
+					{
+						if($meta['order'] === 'DESC')
+						{
+							$meta['order'] = 'ASC';
+						}
+						else
+						{
+							$meta['order'] = "DESC";
+						}
+					}
+					else
+					{
+						$meta['order'] = "DESC";
+					}
+					$search = str_replace(':', '', $search);
+				}
+
 				$meta['end_limit'] = 10;
+
 				if(utility::request("parent"))
 				{
 					if(utility\shortURL::is(utility::request("parent")))
