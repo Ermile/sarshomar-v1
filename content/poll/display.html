@@ -24,7 +24,7 @@
   </div>
   <div class="in large{%if login%}{%else%} guest{%endif%}" id="result">
    {{block('poll_chart')}}
-   {%if login%}{{block('poll_table')}}{%endif%}
+   {{block('poll_table')}}
   </div>
   <div class="box">
    <h2 class="special-heading">{%trans "Description"%}</h2>
