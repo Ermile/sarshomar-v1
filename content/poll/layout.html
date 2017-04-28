@@ -322,23 +322,30 @@
  <div class="myTable center">
   <div class="f th">
    <div class="c8">{%trans "Item"%}</div>
-   <div class="c ">{%trans "Vote"%}</div>
+   <div class="c">{%trans "Vote"%}</div>
    <div class="c">{%trans "Ratio"%}</div>
   </div>
 
+{%set optTotal = 0%}
+{%set optTotalRatio = 0%}
 {%for key, optRow in poll.result.answers%}
   <div class="f">
    <div class="c8">{{optRow.title}}</div>
    <div class="c">{{optRow.value |fitNumber}}</div>
-
 {%set optRatio%}
 {%if poll.result.summary.total%}
-{{((optRow.value * 100) / poll.result.summary.total) | round(1, 'floor')}}%
+{{((optRow.value * 100) / poll.result.summary.total) | round(1, 'floor')}}
 {%else%}-{%endif%}
 {%endset%}
-   <div class="c">{{ optRatio |fitNumber}}</div>
+{%set optTotal = optTotal + optRow.value%}
+   <div class="c">{{ optRatio |fitNumber}}%</div>
   </div>
 {%endfor%}
+  <div class="f tf">
+   <div class="c8">{%trans "Total"%}</div>
+   <div class="c">{{optTotal |fitNumber}}</div>
+   <div class="c"></div>
+  </div>
  </div>
 {%endblock%}
 
@@ -392,7 +399,7 @@
 {%block poll_count%}
  <div class="title">{%trans "People voted to this poll"%}</div>
  <div class="content">
-  <span>{{poll.result.summary.total|number_format|fitNumber}}</span>
+  <span>{{ (poll.result.summary.total+1) |number_format|fitNumber}}</span>
  </div>
 {%endblock%}
 
@@ -703,7 +710,7 @@
 <div class='poll-panel unselectable'>
 
  <div class='poll-answered'>
-  <a class='poll-answered-count' href='{{url.full}}#result'>{{poll.result.summary.total|number_format|fitNumber}}</a>
+  <a class='poll-answered-count' href='{{url.full}}#result'>{{ (poll.result.summary.total+1) |number_format|fitNumber}}</a>
   <div class="poll-answered-label">
    <span>{%trans "People Voted"%}</span>
    <span class='poll-answered-you{%if poll.my_answer%}{%else%} hide{%endif%}'>+ {%trans "You"%}</span>

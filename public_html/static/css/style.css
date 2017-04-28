@@ -1278,16 +1278,16 @@ body.rtl .poll-panel{right:16px;left:auto}
 
 
 /* poll result */
-.poll-container #result{margin-bottom:5em;position:relative;border:1px solid #d8d8d8}
-.poll-container #result.guest{margin-top:4rem}
-.poll-container #result .menu{margin-top:-18px}
-.poll-container #result .tabs li{min-width:50px}
+#result{margin-bottom:5em;position:relative;border:1px solid #d8d8d8}
+#result.guest{margin-top:4rem}
+#result .menu{margin-top:-18px}
+#result .tabs li{min-width:50px}
 /*#poll-extra,#comments-box{margin-bottom:100px}*/
 
-.poll-container #result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
-.poll-container #result .opt-media-box{padding:0 18px 0 50px;margin-bottom:2em}
-.rtl .poll-container #result .opt-media-box{padding:0 50px 0 18px}
-.poll-container #result .opt-media-box .c img{width:90%;max-height:200px;display:block;margin:0 auto;}
+#result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
+#result .opt-media-box{padding:0 18px 0 50px;margin-bottom:2em}
+.rtl #result .opt-media-box{padding:0 50px 0 18px}
+#result .opt-media-box .c img{width:90%;max-height:200px;display:block;margin:0 auto;}
 
 /*for homepage*/
 .homepage .opt-media-box{padding:0 18px}
