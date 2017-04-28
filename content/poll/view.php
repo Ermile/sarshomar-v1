@@ -180,8 +180,26 @@ class view extends \mvc\view
 
 		if(isset($poll['result']['answers']))
 		{
-			$myChart = $poll['result']['answers'];
-			$this->data->poll_total_stats = json_encode($myChart, JSON_UNESCAPED_UNICODE);
+			$myAnswerData = $poll['result']['answers'];
+			// create table of results
+			$this->data->poll_table = $myAnswerData;
+			$this->data->poll_table = array_column($myAnswerData, 'value', 'title');
+			arsort($this->data->poll_table);
+			// calc total
+			$total = array_sum($this->data->poll_table);
+			foreach ($this->data->poll_table as $key => $value)
+			{
+				$ratio = round(($value * 100) / $total, 1);
+				$this->data->poll_table[$key] =
+				[
+					'title' => $key,
+					'value' => $value,
+					'ratio' => $ratio,
+				];
+
+			}
+
+			$this->data->poll_total_stats = json_encode($myAnswerData, JSON_UNESCAPED_UNICODE);
 		}
 
 
