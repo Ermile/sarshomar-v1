@@ -1388,6 +1388,10 @@ function homepageTop(_option)
 	_option.graphs[0].showBalloon = false;
 	_option.graphs[0].showAllValueLabels = true;
 	var voteText = $('.map-container .chart').attr('data-trans');
+	if(voteText === undefined)
+	{
+		voteText = '';
+	}
 
 	// show all data on hover of column
 	_option.chartCursor =
