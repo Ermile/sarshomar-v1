@@ -703,7 +703,7 @@
 <div class='poll-panel unselectable'>
 
  <div class='poll-answered'>
-  <div class='poll-answered-count'>{{poll.result.summary.total|number_format|fitNumber}}</div>
+  <a class='poll-answered-count' href='{{url.full}}#result'>{{poll.result.summary.total|number_format|fitNumber}}</a>
   <div class="poll-answered-label">
    <span>{%trans "People Voted"%}</span>
    <span class='poll-answered-you{%if poll.my_answer%}{%else%} hide{%endif%}'>+ {%trans "You"%}</span>

@@ -22,7 +22,7 @@
    {{block('poll_skip')}}
    {{block('poll_actions')}}
   </div>
-  <div class="in large{%if login%}{%else%} guest{%endif%}" id="poll-result">
+  <div class="in large{%if login%}{%else%} guest{%endif%}" id="result">
    {{block('poll_chart')}}
    {%if login%}{{block('poll_table')}}{%endif%}
   </div>
