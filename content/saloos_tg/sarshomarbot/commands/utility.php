@@ -455,7 +455,7 @@ END;
 
 			if($_type == 'now_detail')
 			{
-				$value = number_format(\lib\utility\human::number($value));
+				$value = \lib\utility\human::number(number_format($value));
 				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>". $value ."</strong>";
 			}
 		}
@@ -466,8 +466,8 @@ END;
 			$port_text[] = "";
 		}
 
-		$total        = number_format(\lib\utility\human::number($total));
-		$total_active = number_format(\lib\utility\human::number($total_active));
+		$total        = \lib\utility\human::number(number_format($total));
+		$total_active = \lib\utility\human::number(number_format($total_active));
 
 		$port_text[] = "👥 ". T_("Total") . " <strong>" . $total. "</strong>";
 		$port_text[] = "🙋‍♂". T_("Active") . " <strong>" . $total_active. "</strong>";
