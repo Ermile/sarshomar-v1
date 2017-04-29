@@ -456,7 +456,7 @@ END;
 			if($_type == 'now_detail')
 			{
 				$value = \lib\utility\human::number(number_format($value));
-				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>". $value ."</strong>";
+				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . " <code>". $value ."</code>";
 			}
 		}
 		$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
@@ -469,8 +469,8 @@ END;
 		$total        = \lib\utility\human::number(number_format($total));
 		$total_active = \lib\utility\human::number(number_format($total_active));
 
-		$port_text[] = "👥 ". T_("Total") . " <strong>" . $total. "</strong>";
-		$port_text[] = "🙋‍♂". T_("Active") . " <strong>" . $total_active. "</strong>";
+		$port_text[] = "👥 ". T_("Total") . " <code>" . $total. "</code>";
+		$port_text[] = "🙋‍♂". T_("Active") . " <code>" . $total_active. "</code>";
 		$port_text[] = "\n🕰 " . $my_date . " #" . T_($_type);
 		return utility::nubmer_language(join("\n", $port_text));
 	}
