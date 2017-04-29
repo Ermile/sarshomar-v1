@@ -189,6 +189,11 @@ class view extends \mvc\view
 			$total = array_sum($this->data->poll_table);
 			foreach ($this->data->poll_table as $key => $value)
 			{
+				if(!$total)
+				{
+					$total = 1;
+				}
+
 				$ratio = round(($value * 100) / $total, 1);
 				$this->data->poll_table[$key] =
 				[
@@ -196,7 +201,6 @@ class view extends \mvc\view
 					'value' => $value,
 					'ratio' => $ratio,
 				];
-
 			}
 
 			$this->data->poll_total_stats = json_encode($myAnswerData, JSON_UNESCAPED_UNICODE);
