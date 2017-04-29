@@ -90,7 +90,7 @@
 
 {%block poll_options%}
  {%if poll.answers%}
- <ul class="poll-options{%if login%}{%if answer_lock%} locked{%endif%}{%else%} guest{%endif%}"
+ <ul class="poll-options{%if login%}{%if answer_lock%} locked{%endif%}{%else%} guest{%endif%}{%if poll.options.class == 'iran-provinces'%} f{%endif%}"
   data-answer-type="{{poll_type}}"
   data-type="{%if poll.options.multi%}multi{%endif%}"
   {%if min%}data-multi-min="{{min}}"{%endif%}
@@ -101,7 +101,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-    <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
+    <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if poll.options.class == "iran-provinces"%} c6 s12{%endif%}'>
      <label for="check_other">
       <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
       <div class="option-content">
@@ -116,7 +116,7 @@
 
     {%else%}
 
-     <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
+     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if poll.options.class == "iran-provinces"%} c6 s12{%endif%}'>
       <label for="check_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
@@ -133,7 +133,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-     <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
+     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if poll.options.class == "iran-provinces"%} c6 s12{%endif%}'>
       <label for="radio_other">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">
@@ -148,7 +148,7 @@
 
     {%else%}
 
-     <li {% if poll.my_answer[value.key] %}class='selected'{% endif %}>
+     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if poll.options.class == "iran-provinces"%} c6 s12{%endif%}'>
       <label for="radio_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
