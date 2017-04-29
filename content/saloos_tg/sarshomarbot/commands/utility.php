@@ -443,7 +443,14 @@ END;
 		$port_text = [];
 		$port_text[] = "<strong>" . T_("Sarshomar society; now") . "</strong>\n";
 		$total = 0;
-		foreach ($ports as $key => $value) {
+		$total_active = 0;
+
+		foreach ($ports as $key => $value)
+		{
+			if($key !== 'site_guest' && $key !== 'telegram_guest')
+			{
+				$total_active += $value;
+			}
 			if($_type == 'now_detail')
 			{
 				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>$value</strong>";
@@ -457,7 +464,7 @@ END;
 				$port_text[] = "";
 			}
 		$port_text[] = "👥 ". T_("Total") . " <strong>" . $total. "</strong>";
-		$port_text[] = "🙋‍♂". T_("Active") . " <strong>" . \saloos::lib_static('db')->users()::get_count('all'). "</strong>";
+		$port_text[] = "🙋‍♂". T_("Active") . " <strong>" . $total_active. "</strong>";
 		$port_text[] = "\n🕰 " . $my_date . " #" . T_($_type);
 		return utility::nubmer_language(join("\n", $port_text));
 	}
