@@ -453,16 +453,20 @@ END;
 			}
 			if($_type == 'now_detail')
 			{
-				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>$value</strong>";
+				$port_text[] = ucfirst(T_(str_replace("_", " ", $key))) . ": <strong>". \lib\utility\human::number($value) ."</strong>";
 			}
 			$total += $value;
 		}
 		$date_now = new \DateTime("now", new \DateTimeZone('Asia/Tehran') );
 		$my_date = \lib\utility::date('Y-m-d H:i:s', $date_now, 'current');
 		if($_type == 'now_detail')
-			{
-				$port_text[] = "";
-			}
+		{
+			$port_text[] = "";
+		}
+
+		$total        = \lib\utility\human::number($total);
+		$total_active = \lib\utility\human::number($total_active);
+
 		$port_text[] = "👥 ". T_("Total") . " <strong>" . $total. "</strong>";
 		$port_text[] = "🙋‍♂". T_("Active") . " <strong>" . $total_active. "</strong>";
 		$port_text[] = "\n🕰 " . $my_date . " #" . T_($_type);
