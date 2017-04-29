@@ -61,13 +61,13 @@
     {%use "content_u/add/step2.html"%}
      {{block('filter_public')}}
 
-      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='private' {% if poll.privacy == 'private' %}{%else%}data-response-hide{%endif%} data-response-effect='slide'>
+      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='private' data-response-effect='slide'>
       <div class="in msg info">برای جمع‌آوری نظرات در سوالات خصوصی، انتشار و به اشتراک گذاری سوال را خودتان باید انجام دهید.</div>
      {{block('feature_poll_password')}}
      </div>
 
      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='public' {% if poll.privacy == 'public' %}{%else%}data-response-hide{%endif%} data-response-effect='slide'>
-     <div class="in msg info">سوالات عمومی به دلیل انتشار در وب‌سایت نیاز به بررسی دارند. لطفا تنها در صورت نیاز سوال را به صورت عمومی ثبت کنید.</div>
+     <div class="in msg warning">سوالات عمومی به دلیل انتشار در وب‌سایت نیاز به بررسی دارند. لطفا تنها در صورت نیاز سوال را به صورت عمومی ثبت کنید.</div>
      {{block('filter_person_count')}}
       <div class="span12">
         <div id='filter-conditions'>
