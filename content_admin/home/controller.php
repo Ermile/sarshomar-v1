@@ -13,7 +13,7 @@ class controller extends \content_admin\main\controller
 
 		if(!$this->access('admin'))
 		{
-			// \lib\error::access(T_("Access denied"));
+			\lib\error::access(T_("Access denied"));
 		}
 
 		if(\lib\utility::get('refresh_all_chart') == 'refresh_all_chart')
