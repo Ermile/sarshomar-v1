@@ -25,7 +25,7 @@ class controller extends \mvc\controller
 		else
 		{
 			// check permission
-			$this->access('admin', 'admin', 'admin', 'block');
+			// $this->access('admin', 'admin', 'admin', 'block');
 		}
 
 	}

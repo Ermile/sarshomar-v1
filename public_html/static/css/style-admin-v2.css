@@ -558,7 +558,7 @@ header #profile nav a:hover{background-color:#36525f;color:#fff}
 .sidebar div[data-icon='app']::before{background-image:url(../images/admin/app.svg)}
 .sidebar div[data-icon='form']::before{background-image:url(../images/admin/form.svg)}
 .sidebar div[data-icon='calendar']::before{background-image:url(../images/admin/calendar.svg)}
-.card.chart [id*="chartdiv"]{width:100%;direction:ltr}
+.card.chart2 [id*="chartdiv"]{width:100%;direction:ltr}
 
 #chartdiv1{height:300px}
 #chartdiv2{height:281px}
@@ -574,7 +574,7 @@ header #profile nav a:hover{background-color:#36525f;color:#fff}
 .card .card-desc{font-weight:700;margin-top:1em;padding:1em;padding:1em .5em 0;color:#555;border-top:1px solid #efefef}
 .rtl .card .card-desc{text-align:right}
 .card h3{margin:0;cursor:default;}
-.card.chart h3:before,.card.list h3:before{content:"";width:25px;height:25px;display:inline-block;background-size:contain;background-repeat:no-repeat;background-image:url(../images/admin/chart.svg);vertical-align:middle;margin:0 0.5em}
+.card.chart2 h3:before,.card.list h3:before{content:"";width:25px;height:25px;display:inline-block;background-size:contain;background-repeat:no-repeat;background-image:url(../images/admin/chart.svg);vertical-align:middle;margin:0 0.5em}
 .card.list{padding:0;}
 .card.list h3{padding:.5em 0;}
 .card.list:hover{background-color:#fff;}

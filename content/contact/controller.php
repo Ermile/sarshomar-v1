@@ -10,6 +10,7 @@ class controller extends \content\main\controller
 
 		$this->get(false, false)->ALL("/contact/");
 		$this->post("contact")->ALL("/contact/");
+		$this->get()
 	}
 }
 ?>

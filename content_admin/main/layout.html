@@ -21,40 +21,40 @@
     <h2>Sarshomar</h2>
     <nav>
       <li>
-        <div data-icon="pie-chart">All Poll</div>
+        <div data-icon="pie-chart">{% trans "All Poll" %}</div>
         <nav class="submenu">
           <a href="">Users Dashboards</a>
           <a href="">Refresh Numbers</a>
         </nav>
       </li>
       <li>
-        <div data-icon="note">Sarshomar poll</div>
+        <div data-icon="note">{% trans "Sarshomar poll" %}</div>
         <nav class="submenu">
-          <a href="">Exchange rate</a>
-          <a href="">Transaction Items</a>
+          <a href="">{% trans "Exchange rate" %}</a>
+          <a href="">{% trans "Transaction Items" %}</a>
         </nav>
       </li>
       <a href="">
-        <div data-icon="line-chart">People poll</div>
+        <div data-icon="line-chart">{% trans "People poll" %}</div>
       </a>
       <a href="">
-        <div data-icon="app">Total</div>
+        <div data-icon="app">{% trans "Total" %}</div>
       </a>
       <li>
-        <div data-icon="form">Logitems</div>
+        <div data-icon="form">{% trans "Logitems" %}</div>
         <nav class="submenu">
-          <a href="">Logs</a>
-          <a href="">Spam</a>
+          <a href="">{% trans "Logs" %}</a>
+          <a href="">{% trans "Spam" %}</a>
         </nav>
       </li>
       <a href="">
-        <div data-icon="app">Units</div>
+        <div data-icon="app">{% trans "Units" %}</div>
       </a>
       <a href="">
-        <div data-icon="line-chart">Transactions</div>
+        <div data-icon="line-chart">{% trans "Transactions" %}</div>
       </a>
       <a href="">
-        <div data-icon="note">Users</div>
+        <div data-icon="note">{% trans "Users" %}</div>
       </a>
     </nav>
   </aside>
@@ -74,9 +74,9 @@
         <div id="profile">
           <span>Ali Modabber</span>
           <nav>
-            <a href="">My Profile</a>
-            <a href="">Change Password</a>
-            <a href="">Logout</a>
+            <a href="">{% trans "My Profile" %}</a>
+            <a href="">{% trans "Change Password" %}</a>
+            <a href="">{% trans "Logout" %}</a>
           </nav>
         </div>
       </header>
@@ -88,9 +88,9 @@
             <div class="card">
               <div class="card-data">
                 <img src="{{url.static}}images/admin/elections.svg">
-                <span>1589</span>
+                <span>{{number_static.polls.total|number_format|fitNumber}}</span>
               </div>
-              <div class="card-desc">Total Polls</div>
+              <div class="card-desc">{% trans "Total Polls" %}</div>
             </div>
           </div>
 
@@ -98,9 +98,9 @@
             <div class="card">
               <div class="card-data">
                 <img src="{{url.static}}images/admin/spam.svg">
-                <span>14</span>
+                <span>{{number_static.polls.spam|number_format|fitNumber}}</span>
               </div>
-              <div class="card-desc">Spam Polls</div>
+              <div class="card-desc">{% trans "Spam Polls" %}</div>
             </div>
           </div>
 
@@ -108,9 +108,9 @@
             <div class="card">
               <div class="card-data">
                 <img src="{{url.static}}images/admin/hourglass.svg">
-                <span>79</span>
+                <span>{{number_static.polls.awaiting|number_format|fitNumber}}</span>
               </div>
-              <div class="card-desc">Awaiting Polls</div>
+              <div class="card-desc">{% trans "Awaiting Polls" %}</div>
             </div>
           </div>
 
@@ -118,16 +118,16 @@
             <div class="card">
               <div class="card-data">
                 <img src="{{url.static}}images/admin/draft.svg">
-                <span>148</span>
+                <span>{{number_static.polls.draft|number_format|fitNumber}}</span>
               </div>
-              <div class="card-desc">Draft Polls</div>
+              <div class="card-desc">{% trans "Draft Polls" %}</div>
             </div>
           </div>
         </div>
 
         <div class="f">
           <div class="card chart2">
-            <h3>Polls</h3>
+            <h3>{% trans "Polls" %}</h3>
             <div id="chartdiv1"></div>
           </div>
         </div>
@@ -135,7 +135,7 @@
         <div class="f">
           <div class="c8 s12">
             <div class="card chart2">
-              <h3>Registration</h3>
+              <h3>{% trans "Registration" %}</h3>
               <div id="chartdiv2"></div>
             </div>
           </div>
@@ -144,50 +144,50 @@
 
               <div class="c12 s12">
                 <div class="card">
-                  <h3>Successful</h3>
+                  <h3>{% trans "Successful" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/checked.svg">
-                    <span>345</span>
+                    <span>{{number_static.users.total|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Verified</h3>
+                  <h3>{% trans "Verified" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/user-verification-symbol-for-interface.svg">
-                    <span>354</span>
+                    <span>{{(number_static.verify.mobile +  number_static.verify.complete)|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Guests</h3>
+                  <h3>{% trans "Guests" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/guest.svg">
-                    <span>1356</span>
+                    <span>{{number_static.users.total_guest|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Telegram</h3>
+                  <h3>{% trans "Telegram" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/telegram.svg">
-                    <span>345</span>
+                    <span>{{(number_static.users.telegram_guest +  number_static.users.telegram)|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>API</h3>
+                  <h3>{% trans "API" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/api.svg">
-                    <span>141</span>
+                    <span>{{number_static.users.api|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
@@ -201,39 +201,39 @@
             <div class="f">
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Total</h3>
+                  <h3>{% trans "Total" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/list.svg">
-                    <span>1456</span>
+                    <span>{{number_static.visitor.total|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Unique</h3>
+                  <h3>{% trans "Unique" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/award.svg">
-                    <span>354</span>
+                    <span>{{number_static.visitor.unique|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Today</h3>
+                  <h3>{% trans "Today" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/24-hours-delivery.svg">
-                    <span>756</span>
+                    <span>{{number_static.visitor.today|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
               <div class="c6 m12 s6">
                 <div class="card">
-                  <h3>Last Week</h3>
+                  <h3>{% trans "Last Week" %}</h3>
                   <div class="card-data">
                     <img src="{{url.static}}images/admin/weekly-calendar.svg">
-                    <span>678</span>
+                    <span>{{number_static.visitor.last_week|number_format|fitNumber}}</span>
                   </div>
                 </div>
               </div>
@@ -242,7 +242,7 @@
           <div class="c8 s12">
             <div class="card chart2">
               <div class="data">
-                <h3>Visitors</h3>
+                <h3>{% trans "Visitors" %}</h3>
                 <div id="chartdiv3"></div>
               </div>
             </div>
@@ -252,13 +252,13 @@
         <div class="f">
           <div class="c6 s12">
             <div class="card chart2">
-              <h3>Answers</h3>
+              <h3>{% trans "Answers" %}</h3>
               <div id="chartdiv4"></div>
             </div>
           </div>
           <div class="c6 s12">
             <div class="card chart2">
-              <h3>Transactions</h3>
+              <h3>{% trans "Transactions" %}</h3>
               <div id="chartdiv5"></div>
             </div>
           </div>
@@ -267,7 +267,7 @@
         <div class="f">
           <div class="c8 s12">
             <div class="card chart2">
-              <h3>Visits</h3>
+              <h3>{% trans "Visits" %}</h3>
               <div id="chartdiv6"></div>
             </div>
           </div>
@@ -276,29 +276,29 @@
               <div class="c12">
                 <div class="card">
                   <div class="card-data">
-                    <span>79</span>
+                    <span>121454</span>
                     <img src="{{url.static}}images/admin/list.svg">
                   </div>
-                  <div class="card-desc">Awaiting Polls</div>
+                  <div class="card-desc">{% trans "Total" %}</div>
                 </div>
               </div>
 
               <div class="c6 m12 s6">
                 <div class="card">
                   <div class="card-data">
-                    <span>79</span>
+                    <span>2657</span>
                     <img src="{{url.static}}images/admin/award.svg">
                   </div>
-                  <div class="card-desc">Awaiting Polls</div>
+                  <div class="card-desc">{% trans "Unique" %}</div>
                 </div>
               </div>
               <div class="c6 m12 s6">
                 <div class="card">
                   <div class="card-data">
-                    <span>79</span>
+                    <span>369</span>
                     <img src="{{url.static}}images/admin/24-hours-delivery.svg">
                   </div>
-                  <div class="card-desc">Awaiting Polls</div>
+                  <div class="card-desc">{% trans "Today" %}</div>
                 </div>
               </div>
             </div>
@@ -308,7 +308,7 @@
         <div class="f">
           <div class="c6 s12">
             <div class="card list latest-polls">
-              <h3>Latest Polls</h3>
+              <h3>{% trans "Latest Polls" %}</h3>
               <a href="#">
                 <i class="c1" data-color='red'></i>
                 <span class="c11">Just use the box-shadow and play with it to get the best result for you?</span>
@@ -326,7 +326,7 @@
 
           <div class="c6 s12">
             <div class="card list trending-polls">
-              <h3>Trending Polls</h3>
+              <h3>{% trans "Trending Polls" %}</h3>
               <a href="#">
                 <i class="c1" data-color='red'></i>
                 <span class="c11">Just use the box-shadow and play with it to get the best result for you?</span>
