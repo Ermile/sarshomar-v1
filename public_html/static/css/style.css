@@ -1328,6 +1328,8 @@ body.rtl .poll-panel{right:16px;left:auto}
 .eq-container{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:-moz-box;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;position:relative}
 .eq-container>div{width:33.3333333333%;padding:15px}
 
+[data-response="filter_privacy"] .msg{margin-top:2em}
+
 /* poll comments */
 #comments-box .overall{font-size:6em;color:#767676;line-height:1}
 #comments-box .stars .star{color:#9F9F9F;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s}
