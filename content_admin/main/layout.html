@@ -1,0 +1,350 @@
+{%extends display.main%}
+
+
+{%block head_css%}
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style-admin-v2.css' | filemtime(true)}}">
+{%endblock%}
+
+
+
+{%block body%}
+{{block ('aside')}}
+{{block ('contentAdmin')}}
+
+{%endblock%}
+
+
+
+
+{%block aside%}
+  <aside class="sidebar">
+    <h2>Sarshomar</h2>
+    <nav>
+      <li>
+        <div data-icon="pie-chart">All Poll</div>
+        <nav class="submenu">
+          <a href="">Users Dashboards</a>
+          <a href="">Refresh Numbers</a>
+        </nav>
+      </li>
+      <li>
+        <div data-icon="note">Sarshomar poll</div>
+        <nav class="submenu">
+          <a href="">Exchange rate</a>
+          <a href="">Transaction Items</a>
+        </nav>
+      </li>
+      <a href="">
+        <div data-icon="line-chart">People poll</div>
+      </a>
+      <a href="">
+        <div data-icon="app">Total</div>
+      </a>
+      <li>
+        <div data-icon="form">Logitems</div>
+        <nav class="submenu">
+          <a href="">Logs</a>
+          <a href="">Spam</a>
+        </nav>
+      </li>
+      <a href="">
+        <div data-icon="app">Units</div>
+      </a>
+      <a href="">
+        <div data-icon="line-chart">Transactions</div>
+      </a>
+      <a href="">
+        <div data-icon="note">Users</div>
+      </a>
+    </nav>
+  </aside>
+{%endblock%}
+
+
+
+{%block contentAdmin%}
+  <div class="f">
+    <div class="c2 m0 s0"></div>
+    <div class="c10 m12 s12">
+
+      <header>
+        <nav>
+          <a href="">فارسی</a>
+        </nav>
+        <div id="profile">
+          <span>Ali Modabber</span>
+          <nav>
+            <a href="">My Profile</a>
+            <a href="">Change Password</a>
+            <a href="">Logout</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="wrapper">
+        <div class="f">
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/elections.svg">
+                <span>1589</span>
+              </div>
+              <div class="card-desc">Total Polls</div>
+            </div>
+          </div>
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/spam.svg">
+                <span>14</span>
+              </div>
+              <div class="card-desc">Spam Polls</div>
+            </div>
+          </div>
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/hourglass.svg">
+                <span>79</span>
+              </div>
+              <div class="card-desc">Awaiting Polls</div>
+            </div>
+          </div>
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/draft.svg">
+                <span>148</span>
+              </div>
+              <div class="card-desc">Draft Polls</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="card chart2">
+            <h3>Polls</h3>
+            <div id="chartdiv1"></div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c8 s12">
+            <div class="card chart2">
+              <h3>Registration</h3>
+              <div id="chartdiv2"></div>
+            </div>
+          </div>
+          <div class="c4 s12">
+            <div class="f">
+
+              <div class="c12 s12">
+                <div class="card">
+                  <h3>Successful</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/checked.svg">
+                    <span>345</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Verified</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/user-verification-symbol-for-interface.svg">
+                    <span>354</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Guests</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/guest.svg">
+                    <span>1356</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Telegram</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/telegram.svg">
+                    <span>345</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>API</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/api.svg">
+                    <span>141</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="f">
+          <div class="c4 s12">
+            <div class="f">
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Total</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/list.svg">
+                    <span>1456</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Unique</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/award.svg">
+                    <span>354</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Today</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/24-hours-delivery.svg">
+                    <span>756</span>
+                  </div>
+                </div>
+              </div>
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>Last Week</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/weekly-calendar.svg">
+                    <span>678</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c8 s12">
+            <div class="card chart2">
+              <div class="data">
+                <h3>Visitors</h3>
+                <div id="chartdiv3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c6 s12">
+            <div class="card chart2">
+              <h3>Answers</h3>
+              <div id="chartdiv4"></div>
+            </div>
+          </div>
+          <div class="c6 s12">
+            <div class="card chart2">
+              <h3>Transactions</h3>
+              <div id="chartdiv5"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c8 s12">
+            <div class="card chart2">
+              <h3>Visits</h3>
+              <div id="chartdiv6"></div>
+            </div>
+          </div>
+          <div class="c4 s12">
+            <div class="f">
+              <div class="c12">
+                <div class="card">
+                  <div class="card-data">
+                    <span>79</span>
+                    <img src="{{url.static}}images/admin/list.svg">
+                  </div>
+                  <div class="card-desc">Awaiting Polls</div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <div class="card-data">
+                    <span>79</span>
+                    <img src="{{url.static}}images/admin/award.svg">
+                  </div>
+                  <div class="card-desc">Awaiting Polls</div>
+                </div>
+              </div>
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <div class="card-data">
+                    <span>79</span>
+                    <img src="{{url.static}}images/admin/24-hours-delivery.svg">
+                  </div>
+                  <div class="card-desc">Awaiting Polls</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c6 s12">
+            <div class="card list latest-polls">
+              <h3>Latest Polls</h3>
+              <a href="#">
+                <i class="c1" data-color='red'></i>
+                <span class="c11">Just use the box-shadow and play with it to get the best result for you?</span>
+              </a>
+              <a href="#">
+                <i class="c1" data-color='blue'></i>
+                <span class="c11">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
+              </a>
+              <a href="#">
+                <i class="c1" data-color='green'></i>
+                <span class="c11">Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="c6 s12">
+            <div class="card list trending-polls">
+              <h3>Trending Polls</h3>
+              <a href="#">
+                <i class="c1" data-color='red'></i>
+                <span class="c11">Just use the box-shadow and play with it to get the best result for you?</span>
+              </a>
+              <a href="#">
+                <i data-color='blue'></i>
+                <span>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
+              </a>
+              <a href="#">
+                <i data-color='green'></i>
+                <span>Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+{%endblock%}
