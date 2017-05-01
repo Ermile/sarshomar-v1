@@ -168,7 +168,7 @@ trait data
 	 */
 	public static function get_user_filter($_user_id)
 	{
-		$filter_id = \lib\db\users::get($_user_id, 'filter_id');
+		$filter_id = \lib\utility\users::get_filter_id($_user_id);
 
 		if(!$filter_id)
 		{

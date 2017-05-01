@@ -6,7 +6,7 @@ use \lib\utility;
 use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
-use \lib\db\polldetails;
+use \lib\db\answerdetails;
 use \lib\utility\profiles;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
@@ -36,7 +36,7 @@ trait delete
 		}
 		$_args = array_merge($default_args, $_args);
 
-		$old_answer = polldetails::get($_args['user_id'], $_args['poll_id']);
+		$old_answer = answerdetails::get($_args['user_id'], $_args['poll_id']);
 
 		// check update chart and set the poll ranks
 		$update_chart = false;
@@ -117,10 +117,9 @@ trait delete
 			]
 		];
 
-
 		self::$IS_ANSWERED = [];
 
-		$result = polldetails::remove($_args['user_id'], $_args['poll_id']);
+		$result = answerdetails::remove($_args['user_id'], $_args['poll_id']);
 
 		if($result)
 		{
@@ -145,6 +144,18 @@ trait delete
 
 				profiles::minus_dashboard_data($_args['user_id'], "poll_answered");
 				profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
+			}
+
+
+			$get_is_plused_asked = "SELECT * FROM answers WHERE post_id = $_args[poll_id] AND user_id = $_args[user_id] LIMIT 1 ";
+			$get_is_plused_asked = \lib\db::get($get_is_plused_asked, null, true);
+
+			if(array_key_exists('ask', $get_is_plused_asked))
+			{
+				if(is_numeric($get_is_plused_asked['ask']))
+				{
+					\lib\db\polls::minus_asked($_args['poll_id']);
+				}
 			}
 
 			\lib\db\logs::set('user:answer:delete', $_args['user_id'], $log_meta);

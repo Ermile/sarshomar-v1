@@ -62,10 +62,10 @@ trait charts
 			case 'answer':
 				$end      = date("Y-m-d", strtotime('-30 days'));
 				$answer =
-				"SELECT DATE(polldetails.insertdate) AS `createdate`, COUNT(polldetails.id) AS `count`
-				FROM polldetails
-				WHERE  polldetails.insertdate >= '$end'
-				GROUP BY DATE(polldetails.insertdate) ORDER BY DATE(polldetails.insertdate) DESC";
+				"SELECT DATE(answers.createdate) AS `createdate`, COUNT(answers.id) AS `count`
+				FROM answers
+				WHERE  answers.createdate >= '$end'
+				GROUP BY DATE(answers.createdate) ORDER BY DATE(answers.createdate) DESC";
 				$answer = \lib\db::get($answer, ['createdate', 'count']);
 				$this->chart_save_options('answer', $answer);
 				return $answer;

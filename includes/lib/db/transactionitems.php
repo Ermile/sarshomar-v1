@@ -148,7 +148,6 @@ class transactionitems
 		$result = \lib\db::get($query, null, true);
 		if(!$result || empty($result))
 		{
-			return false;
 			return self::auto_insert($_caller);
 		}
 		return $result;

@@ -6,7 +6,7 @@ use \lib\utility;
 use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
-use \lib\db\polldetails;
+use \lib\db\answerdetails;
 use \lib\utility\profiles;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
@@ -61,7 +61,7 @@ trait validation
 	{
 
 		// get all user answer to poll
-		$invalid_answers    = polldetails::get($_user_id);
+		$invalid_answers    = answerdetails::get($_user_id);
 		$save_offline_chart = self::user_validataion($_user_id);
 		foreach ($invalid_answers as $key => $value)
 		{
@@ -114,7 +114,7 @@ trait validation
 
 		if(self::$user_verify === 'mobile' || self::$user_verify === 'complete')
 		{
-			$query = "UPDATE polldetails SET validstatus = 'valid' WHERE user_id = $_user_id";
+			$query = "UPDATE answerdetails SET validstatus = 'valid' WHERE user_id = $_user_id";
 			db::query($query);
 		}
 
@@ -140,7 +140,7 @@ trait validation
 
 		$old_filter    = \lib\db\filters::get($_options['old_filter']);
 		$new_filter    = \lib\db\filters::get($_options['new_filter']);
-		$saved_answers = polldetails::get($_options['user_id']);
+		$saved_answers = answerdetails::get($_options['user_id']);
 		var_dump($saved_answers);
 		foreach ($new_filter as $key => $value)
 		{
@@ -212,7 +212,7 @@ trait validation
 		}
 		if(self::$user_verify === 'mobile' || self::$user_verify === 'complete')
 		{
-			$query = "UPDATE polldetails SET validstatus = 'valid' WHERE user_id = $_user_id";
+			$query = "UPDATE answerdetails SET validstatus = 'valid' WHERE user_id = $_user_id";
 			db::query($query);
 		}
 

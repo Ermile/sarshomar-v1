@@ -75,66 +75,6 @@ class polls
 	";
 
 
-			// ((IFNULL(ranks.skip, 0) * 100) / IF(ranks.vote IS NULL OR ranks.vote < 1, 1, ranks.vote))					 			AS `vote_skip`
-			// (
-			// 	SELECT
-			// 		IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
-			// 	FROM
-			// 		pollopts
-			// 	WHERE
-			// 		pollopts.post_id = posts.id AND
-			// 		(pollopts.groupscore IS NOT NULL OR pollopts.score IS NOT NULL)
-			// 	LIMIT 1 ) AS `have_score`,
-			// (
-			// 	SELECT
-			// 		IF(COUNT(pollopts.id) > 0, TRUE, FALSE)
-			// 	FROM
-			// 		pollopts
-			// 	WHERE
-			// 		pollopts.post_id = posts.id AND
-			// 		pollopts.true    = 1
-			// 	LIMIT 1 ) AS `have_true_answer`
-
-
-	// (
-	// select
-	// GROUP_CONCAT(
-	// 	  JSON_OBJECT(
-	// 		'key' , pollopts.key,
-	// 		'type' , pollopts.type,
-	// 		'title' , pollopts.title,
-	// 		'sub_type' , pollopts.subtype,
-	// 		'is_true' , pollopts.true,
-	// 		'group_score' , pollopts.groupscore,
-	// 		'description' , pollopts.desc,
-	// 		'score' , pollopts.score,
-	// 		'attachment' , pollopts.attachment_id,
-	// 		'attachment_type' , pollopts.attachmenttype
-	// 	  )
-	// 	)
-	// from pollopts
-	// 	WHERE
-	// 		pollopts.post_id = posts.id
-	// ) AS `answers`
-
-	// SELECT
-	// 					GROUP_CONCAT(
-	// 				 		CONCAT('{',
-	// 								'\"key\":\"', 				pollopts.key , 				'\",',
-	// 								'\"type\":\"', 				pollopts.type , 			'\",',
-	// 								'\"title\":\"', 			pollopts.title , 			'\",',
-	// 								'\"sub_type\":\"', 			pollopts.subtype , 			'\",',
-	// 								'\"is_true\":\"', 			pollopts.true , 			'\",',
-	// 								'\"group_score\":\"', 		pollopts.groupscore , 		'\",',
-	// 								'\"description\":\"', 		pollopts.desc , 			'\",',
-	// 								'\"score\":\"', 			pollopts.score , 			'\",',
-	// 								'\"attachment\":\"', 		pollopts.attachment_id , 	'\",',
-	// 								'\"attachment_type\":\"', 	pollopts.attachmenttype , 	'\",',
-	// 				 			'}')
-	// 				 			)
-	// 				FROM
-	// 					pollopts
-
 	/**
 	 * delete answers of specefic user
 	 * @param  [type] $_user_id [description]
@@ -144,7 +84,7 @@ class polls
 	{
 		$qry = "
 			DELETE FROM
-				polldetails
+				answerdetails
 			WHERE
 				user_id = $_user_id
 			-- polls::removeUserAnswers

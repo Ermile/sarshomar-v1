@@ -66,20 +66,46 @@ trait data
 
 
 	/**
-	 * update polldetails
+	 * update answerdetails
 	 */
-	private static function sync_polldetails()
+	private static function sync_answerdetails()
 	{
+
 		$new_user_id = self::$new_user_id;
 		$old_user_id = self::$old_user_id;
 
-		// update all polldetails by old user id to new user id
-		$query ="UPDATE IGNORE polldetails SET user_id = $new_user_id WHERE user_id = $old_user_id ";
+		// update all answerdetails by old user id to new user id
+		\lib\db::query(
+		"
+			INSERT IGNORE INTO
+				answers
+				(
+				 answers.user_id,
+				 answers.post_id,
+				 answers.lastopt,
+				 answers.ask,
+				 answers.countupdate,
+				 answers.createdate,
+				 answers.date_modified
+				)
+			SELECT
+				 $new_user_id,
+				 answers.post_id,
+				 answers.lastopt,
+				 answers.ask,
+				 answers.countupdate,
+				 answers.createdate,
+				 answers.date_modified
+			FROM answers
+			WHERE answers.user_id = $old_user_id
+			");
+
+		$query ="UPDATE IGNORE answerdetails SET user_id = $new_user_id WHERE user_id = $old_user_id ";
 		$user_old_answers = \lib\db::get($query);
 
 		// get all record was not update this mean the record was duplicate
 		// we must minus the records
-		$query ="SELECT * FROM polldetails WHERE polldetails.user_id = $old_user_id ";
+		$query ="SELECT * FROM answerdetails WHERE answerdetails.user_id = $old_user_id ";
 		$user_old_answers = \lib\db::get($query);
 
 		foreach ($user_old_answers as $key => $value)
@@ -120,7 +146,7 @@ trait data
 			}
 
 			// remove answer must be remove
-			\lib\db\polldetails::remove($value['user_id'], $value['post_id'], $value['opt']);
+			\lib\db\answerdetails::remove($value['user_id'], $value['post_id'], $value['opt']);
 		}
 	}
 
@@ -263,50 +289,50 @@ trait data
 	 */
 	private static function sync_transactions()
 	{
-		$new_user_id = self::$new_user_id;
-		$old_user_id = self::$old_user_id;
-		$query =
-		"
-			INSERT INTO transactions
-			(
-				transactions.title,
-				transactions.transactionitem_id,
-				transactions.user_id,
-				transactions.type,
-				transactions.unit_id,
-				transactions.plus,
-				transactions.minus,
-				transactions.budgetbefore,
-				transactions.budget,
-				transactions.status,
-				transactions.meta,
-				transactions.desc,
-				transactions.related_user_id,
-				transactions.parent_id,
-				transactions.finished
-			)
-			SELECT
-				transactions.title,
-				transactions.transactionitem_id,
-				$new_user_id,
-				transactions.type,
-				transactions.unit_id,
-				transactions.plus,
-				transactions.minus,
-				transactions.budgetbefore,
-				transactions.budget,
-				transactions.status,
-				transactions.meta,
-				transactions.desc,
-				transactions.related_user_id,
-				transactions.parent_id,
-				transactions.finished
-			FROM
-				transactions
-			WHERE
-				transactions.user_id = $old_user_id
-		";
-		\lib\db::query($query);
+		// $new_user_id = self::$new_user_id;
+		// $old_user_id = self::$old_user_id;
+		// $query =
+		// "
+		// 	INSERT INTO transactions
+		// 	(
+		// 		transactions.title,
+		// 		transactions.transactionitem_id,
+		// 		transactions.user_id,
+		// 		transactions.type,
+		// 		transactions.unit_id,
+		// 		transactions.plus,
+		// 		transactions.minus,
+		// 		transactions.budgetbefore,
+		// 		transactions.budget,
+		// 		transactions.status,
+		// 		transactions.meta,
+		// 		transactions.desc,
+		// 		transactions.related_user_id,
+		// 		transactions.parent_id,
+		// 		transactions.finished
+		// 	)
+		// 	SELECT
+		// 		transactions.title,
+		// 		transactions.transactionitem_id,
+		// 		$new_user_id,
+		// 		transactions.type,
+		// 		transactions.unit_id,
+		// 		transactions.plus,
+		// 		transactions.minus,
+		// 		transactions.budgetbefore,
+		// 		transactions.budget,
+		// 		transactions.status,
+		// 		transactions.meta,
+		// 		transactions.desc,
+		// 		transactions.related_user_id,
+		// 		transactions.parent_id,
+		// 		transactions.finished
+		// 	FROM
+		// 		transactions
+		// 	WHERE
+		// 		transactions.user_id = $old_user_id
+		// ";
+		// \lib\db::query($query);
 	}
 
 
@@ -315,34 +341,34 @@ trait data
 	 */
 	private static function sync_logs()
 	{
-		$new_user_id = self::$new_user_id;
-		$old_user_id = self::$old_user_id;
-		$query =
-		"
-			INSERT INTO logs
-			(
-				logs.logitem_id,
-				logs.user_id,
-				logs.log_data,
-				logs.log_meta,
-				logs.log_status,
-				logs.log_createdate,
-				logs.date_modified
-			)
-			SELECT
-				logs.logitem_id,
-				$new_user_id,
-				logs.log_data,
-				logs.log_meta,
-				logs.log_status,
-				logs.log_createdate,
-				logs.date_modified
-			FROM
-				logs
-			WHERE
-				logs.user_id = $old_user_id
-		";
-		\lib\db::query($query);
+		// $new_user_id = self::$new_user_id;
+		// $old_user_id = self::$old_user_id;
+		// $query =
+		// "
+		// 	INSERT INTO logs
+		// 	(
+		// 		logs.logitem_id,
+		// 		logs.user_id,
+		// 		logs.log_data,
+		// 		logs.log_meta,
+		// 		logs.log_status,
+		// 		logs.log_createdate,
+		// 		logs.date_modified
+		// 	)
+		// 	SELECT
+		// 		logs.logitem_id,
+		// 		$new_user_id,
+		// 		logs.log_data,
+		// 		logs.log_meta,
+		// 		logs.log_status,
+		// 		logs.log_createdate,
+		// 		logs.date_modified
+		// 	FROM
+		// 		logs
+		// 	WHERE
+		// 		logs.user_id = $old_user_id
+		// ";
+		// \lib\db::query($query);
 	}
 
 

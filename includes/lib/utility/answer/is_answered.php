@@ -6,7 +6,6 @@ use \lib\utility;
 use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
-use \lib\db\polldetails;
 use \lib\utility\profiles;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
@@ -34,15 +33,17 @@ trait is_answered
 				SELECT
 					*
 				FROM
-					polldetails
+					answerdetails
 				WHERE
-					polldetails.user_id = $_user_id AND
-					polldetails.post_id = $_poll_id
+					answerdetails.user_id = $_user_id AND
+					answerdetails.post_id = $_poll_id AND
+					answerdetails.status <> 'disable'
 				-- to get enable at first
-				ORDER BY polldetails.status ASC
+				ORDER BY answerdetails.status ASC
 				-- answers::is_answered()
 			";
 			$result = db::get($query, null);
+			// var_dump($result);exit();
 			self::$IS_ANSWERED[$_user_id][$_poll_id] = $result;
 		}
 

@@ -6,13 +6,30 @@ use \lib\utility;
 use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
-use \lib\db\polldetails;
 use \lib\utility\profiles;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
 
 trait access
 {
+
+
+	/**
+	 * update count in updat_every_time
+	 *
+	 * @var        integer
+	 */
+	public static $update_answer_count  = 3;
+
+
+	/**
+	 * update old answer where saved less than 1 hour
+	 *
+	 * @var        <type>
+	 */
+	public static $update_old_answer_in = (60 * 60 * 1);
+
+
 	/**
 	 * check access to answer to this poll
 	 *
@@ -23,8 +40,8 @@ trait access
 
 		$default_args =
 		[
-			'update_every_time' => (60 * 60 * 1), // update every time, one time
-			'count'             => 3,
+			'update_every_time' => self::$update_old_answer_in,
+			'count'             => self::$update_answer_count,
 			'time'              => (60 * 60 * 24 * 365 * 10),
 			'user_id'           => null,
 			'poll_id'           => null,
@@ -49,17 +66,6 @@ trait access
 			return true;
 		}
 
-		$insert_time = date("Y-m-d H:i:s");
-		$now         = time();
-		foreach (self::$old_answer as $key => $value)
-		{
-			if(isset($value['insertdate']))
-			{
-				$insert_time = $value['insertdate'];
-				break;
-			}
-		}
-
 		$log_meta =
 		[
 			'meta' =>
@@ -68,19 +74,6 @@ trait access
 				'input'      => $_args,
 			]
 		];
-
-		$insert_time  = strtotime($insert_time);
-		$diff_seconds = $now - $insert_time;
-
-		if($diff_seconds > $_args['time'])
-		{
-			if($_args['debug'])
-			{
-				\lib\db\logs::set('user:answer:error:max_time', $_args['user_id'], $log_meta);
-				debug::error(T_("Many time left, can not update or delete answer"), 'answer', 'permission');
-			}
-			return false;
-		}
 
 		$log_search =
 		[
@@ -95,60 +88,39 @@ trait access
 		$get_log = \lib\db\logs::search(null, $log_search);
 		if($get_log && is_numeric($get_log))
 		{
-			if((int) $get_log >= (int) $_args['count'])
+			if(intval($get_log) >= intval($_args['count']))
 			{
-				// if($_args['debug'])
-				// {
-					\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
-					debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
-				// }
+				\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
+				debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
 				return false;
 			}
 		}
 
-
-		// // get count of updated the poll
-		// $where =
-		// [
-		// 	'post_id'      => $_args['poll_id'],
-		// 	'user_id'      => $_args['user_id'],
-		// 	'option_cat'   => "user_detail_$_args[user_id]",
-		// 	'option_key'   => "update_answer_$_args[poll_id]",
-		// 	'option_value' => "update_answer",
-		// 	'limit'        => 1,
-		// ];
-
-		// $update_count = options::get($where);
-
-		// $last_update = time();
-
-		// if(isset($update_count['date_modified']))
+		// $insert_time = date("Y-m-d H:i:s");
+		// $now         = time();
+		// foreach (self::$old_answer as $key => $value)
 		// {
-		// 	$last_update = strtotime($update_count['date_modified']);
-		// }
-
-		// if((time() - $last_update) < (int) $_args['update_every_time'])
-		// {
-		// 	if(isset($update_count['meta']))
+		// 	if(isset($value['createdate']))
 		// 	{
-		// 		if((int) $update_count['meta'] >= (int) $_args['count'])
-		// 		{
-		// 			// if($_args['debug'])
-		// 			// {
-		// 				\lib\db\logs::set('user:answer:error:many_update', $_args['user_id'], $log_meta);
-		// 				debug::error(T_("You have updated your answer many times and can not update it anymore"),'answer', 'permission');
-		// 			// }
-		// 			return false;
-		// 		}
+		// 		$insert_time = $value['createdate'];
+		// 		break;
 		// 	}
 		// }
-		// elseif((time() - $last_update) > (int) $_args['update_every_time'])
+
+
+		// $insert_time  = strtotime($insert_time);
+		// $diff_seconds = $now - $insert_time;
+
+		// if($diff_seconds > $_args['time'])
 		// {
-		// 	if(isset($update_count['id']))
+		// 	if($_args['debug'])
 		// 	{
-		// 		\lib\db\options::update(['option_meta' => 1], $update_count['id']);
+		// 		\lib\db\logs::set('user:answer:error:max_time', $_args['user_id'], $log_meta);
+		// 		debug::error(T_("Many time left, can not update or delete answer"), 'answer', 'permission');
 		// 	}
+		// 	return false;
 		// }
+
 
 		return true;
 	}

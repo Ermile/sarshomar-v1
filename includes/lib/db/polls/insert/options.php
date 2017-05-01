@@ -51,7 +51,7 @@ trait options
 					return false;
 				}
 
-				self::save_options('class', self::$args['options']['class']);
+				self::save_options('class', trim(self::$args['options']['class']));
 			}
 			else
 			{

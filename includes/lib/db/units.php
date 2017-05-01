@@ -194,11 +194,10 @@ class units
 		// get users answer
 		$query =
 		"
-			SELECT COUNT(polldetails.id) AS `count`, posts.post_language AS `lang` FROM polldetails
-			INNER JOIN posts ON posts.id = polldetails.post_id
+			SELECT COUNT(answers.id) AS `count`, posts.post_language AS `lang` FROM answers
+			INNER JOIN posts ON posts.id = answers.post_id
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.status = 'enable'
+				answers.user_id = $_user_id
 			GROUP BY lang
 		";
 		$result = \lib\db::get($query, ['lang', 'count']);

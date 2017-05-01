@@ -6,16 +6,13 @@ use \lib\utility;
 use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
-use \lib\db\polldetails;
+use \lib\db\answerdetails;
 use \lib\utility\profiles;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
 
 trait update
 {
-
-
-
 
 	/**
 	 * update the user answer
@@ -27,6 +24,7 @@ trait update
 	 */
 	public static function update($_args = [])
 	{
+		// \lib\db::transaction();
 		$default_args =
 		[
 			'user_id' => null,
@@ -44,7 +42,7 @@ trait update
 		// or old answer is skipped and new is a opt must be update
 		// or old answer is a opt and now the user skipped the poll
 
-		// when update the polldetails neet to update the pollstats
+		// when update the answerdetails neet to update the pollstats
 		// on this process we check the old answer and new answer
 		// and update pollstats if need
 
@@ -55,7 +53,7 @@ trait update
 
 		$old_opt = [];
 
-		self::$old_answer = polldetails::get($_args['user_id'], $_args['poll_id']);
+		self::$old_answer = answerdetails::get($_args['user_id'], $_args['poll_id']);
 
 		if(is_array(self::$old_answer))
 		{
@@ -96,6 +94,74 @@ trait update
 		$old_answer_is_skipped = false;
 		$new_answer_is_skipped = false;
 
+		$ask_me_on = \lib\db\polls::get_user_ask_me_on($_args['user_id']);
+		$is_ask_me = (int) $ask_me_on === (int) $_args['poll_id'] ? true : false;
+
+		$set_option =
+		[
+			'answer_txt'  => null,
+			'validation'  => self::$validation,
+			'port'        => $_args['port'],
+			'subport'     => $_args['subport'],
+			'user_verify' => self::$user_verify,
+			'ask'         => $is_ask_me,
+		];
+
+		answerdetails::clean();
+
+		if($_args['skipped'] === true)
+		{
+			$new_answer_is_skipped = true;
+			$result  = answerdetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
+			profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
+		}
+		elseif(!empty(self::$must_insert))
+		{
+			foreach ($_args['answer'] as $key => $value)
+			{
+				// update users profile
+				$answers_details =
+				[
+					'validation'  => self::$validation,
+					'poll_id'     => $_args['poll_id'],
+					'opt_key'     => $key,
+					'user_id'     => $_args['user_id'],
+					'update_mode' => true,
+					'user_verify' => self::$user_verify,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
+
+				];
+				// set user profile if this poll is profile poll
+				profiles::set_profile_by_poll($answers_details);
+
+				$set_option =
+				[
+					'answer_txt'  => $value,
+					'validation'  => self::$validation,
+					'port'        => $_args['port'],
+					'subport'     => $_args['subport'],
+					'user_verify' => self::$user_verify,
+					'ask'         => $is_ask_me,
+				];
+
+				$result = answerdetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
+				// save the poll lucked by profile
+
+				if($save_offline_chart)
+				{
+					$temp_update_chart_new = stat_polls::set_poll_result($answers_details);
+					if(!$update_chart_new && $temp_update_chart_new)
+					{
+						$update_chart_new = true;
+					}
+				}
+			}
+			profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
+		}
+
+		answerdetails::check_and_save();
+
 		// remove answer must be remove
 		foreach (self::$must_remove as $key => $value)
 		{
@@ -104,7 +170,7 @@ trait update
 				$old_answer_is_skipped = true;
 			}
 
-			$remove_old_answer = polldetails::remove($_args['user_id'], $_args['poll_id'], $value);
+			// $remove_old_answer = answerdetails::remove($_args['user_id'], $_args['poll_id'], $value);
 
 			$profile          = 0;
 			self::$validation = 'invalid';
@@ -114,7 +180,6 @@ trait update
 			{
 				if($o['opt'] == $value)
 				{
-
 					$profile          = isset($o['profile']) ? $o['profile'] : null;
 					self::$validation = isset($o['validstatus']) ? $o['validstatus'] : null;
 				}
@@ -148,65 +213,6 @@ trait update
 					$update_chart_old = true;
 				}
 			}
-		}
-
-		$set_option =
-		[
-			'answer_txt'  => null,
-			'validation'  => self::$validation,
-			'port'        => $_args['port'],
-			'subport'     => $_args['subport'],
-			'user_verify' => self::$user_verify,
-		];
-
-		if($_args['skipped'] === true)
-		{
-			$new_answer_is_skipped = true;
-			$result  = polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
-			profiles::people_see_my_poll($_args['poll_id'], "skipped", 'plus');
-		}
-		elseif(!empty(self::$must_insert))
-		{
-			foreach ($_args['answer'] as $key => $value)
-			{
-				// update users profile
-				$answers_details =
-				[
-					'validation'  => self::$validation,
-					'poll_id'     => $_args['poll_id'],
-					'opt_key'     => $key,
-					'user_id'     => $_args['user_id'],
-					'update_mode' => true,
-					'user_verify' => self::$user_verify,
-					'port'        => $_args['port'],
-					'subport'     => $_args['subport'],
-
-				];
-				// set user profile if this poll is profile poll
-				profiles::set_profile_by_poll($answers_details);
-
-				$set_option =
-				[
-					'answer_txt'  => $value,
-					'validation'  => self::$validation,
-					'port'        => $_args['port'],
-					'subport'     => $_args['subport'],
-					'user_verify' => self::$user_verify,
-				];
-
-				$result = polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
-				// save the poll lucked by profile
-
-				if($save_offline_chart)
-				{
-					$temp_update_chart_new = stat_polls::set_poll_result($answers_details);
-					if(!$update_chart_new && $temp_update_chart_new)
-					{
-						$update_chart_new = true;
-					}
-				}
-			}
-			profiles::people_see_my_poll($_args['poll_id'], "answered", 'plus');
 		}
 
 		\lib\db\logs::set('user:answer:update', $_args['user_id'], $log_meta);
@@ -257,6 +263,17 @@ trait update
 				}
 
 				ranks::plus($_args['poll_id'], 'skip');
+
+				$get_is_plused_asked = "SELECT * FROM answers WHERE post_id = $_args[poll_id] AND user_id = $_args[user_id] LIMIT 1 ";
+				$get_is_plused_asked = \lib\db::get($get_is_plused_asked, null, true);
+
+				if(array_key_exists('ask', $get_is_plused_asked))
+				{
+					if(is_numeric($get_is_plused_asked['ask']))
+					{
+						\lib\db\polls::minus_asked($_args['poll_id']);
+					}
+				}
 			}
 
 			profiles::minus_dashboard_data($_args['user_id'], "poll_answered");

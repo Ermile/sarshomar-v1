@@ -82,35 +82,35 @@ class model extends \mvc\model
 	 */
 	public function make_query_result($_filename)
 	{
-		$post_id = \lib\utility\shortURL::decode($_filename);
+		// $post_id = \lib\utility\shortURL::decode($_filename);
 
-		if(!$post_id)
-		{
-			return false;
-		}
-		$query =
-		"
-			SELECT
-				count(*) AS `count`,
-				DATE(polldetails.insertdate) AS `date`,
-				polldetails.opt AS `opt`
-			FROM
-				polldetails
-			WHERE
-				polldetails.post_id = $post_id AND
-				polldetails.opt <> 0 AND
-				polldetails.status = 'enable'
-			GROUP BY polldetails.opt, DATE(polldetails.insertdate)
-		";
-		$result = \lib\db::get($query);
-		if(\lib\define::get_language() === 'fa')
-		{
-			foreach ($result as $key => $value)
-			{
-				$result[$key]['date'] = \lib\utility\jdate::date("Y-m-d", $value['date'], false);
-			}
-		}
-		$result = json_encode($result, JSON_UNESCAPED_UNICODE);
-		return $result;
+		// if(!$post_id)
+		// {
+		// 	return false;
+		// }
+		// $query =
+		// "
+		// 	SELECT
+		// 		count(*) AS `count`,
+		// 		DATE(polldetails.insertdate) AS `date`,
+		// 		polldetails.opt AS `opt`
+		// 	FROM
+		// 		polldetails
+		// 	WHERE
+		// 		polldetails.post_id = $post_id AND
+		// 		polldetails.opt <> 0 AND
+		// 		polldetails.status = 'enable'
+		// 	GROUP BY polldetails.opt, DATE(polldetails.insertdate)
+		// ";
+		// // $result = \lib\db::get($query);
+		// if(\lib\define::get_language() === 'fa')
+		// {
+		// 	foreach ($result as $key => $value)
+		// 	{
+		// 		$result[$key]['date'] = \lib\utility\jdate::date("Y-m-d", $value['date'], false);
+		// 	}
+		// }
+		// $result = json_encode($result, JSON_UNESCAPED_UNICODE);
+		// return $result;
 	}
 }

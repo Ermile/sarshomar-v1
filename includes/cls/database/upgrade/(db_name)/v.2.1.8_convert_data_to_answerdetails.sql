@@ -1,0 +1,39 @@
+INSERT IGNORE INTO answerdetails
+(
+`answer_id`,
+`post_id`,
+`user_id`,
+`port`,
+`validstatus`,
+`subport`,
+`opt`,
+`answertype`,
+`type`,
+`txt`,
+`profile`,
+`ask`,
+`visitor_id`,
+`status`,
+`createdate`,
+`date_affected`,
+`date_modified`
+)
+SELECT
+(SELECT answers.id FROM answers WHERE answers.post_id = polldetails.post_id AND answers.user_id = polldetails.user_id),
+`post_id`,
+`user_id`,
+`port`,
+`validstatus`,
+`subport`,
+`opt`,
+`answertype`,
+`type`,
+`txt`,
+`profile`,
+NULL,
+`visitor_id`,
+`status`,
+`insertdate`,
+`insertdate`,
+`date_modified`
+FROM polldetails;

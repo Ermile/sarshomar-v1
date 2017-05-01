@@ -6,7 +6,7 @@ use \lib\utility;
 use \lib\db\ranks;
 use \lib\db\options;
 use \lib\utility\users;
-use \lib\db\polldetails;
+use \lib\db\answerdetails;
 use \lib\utility\profiles;
 use \lib\utility\shortURL;
 use \lib\utility\stat_polls;
@@ -62,17 +62,18 @@ trait save
 
 		$user_delete_answer = self::is_answered($_args['user_id'], $_args['poll_id'], ['type' =>  'all']);
 
+		$ask_me_on = \lib\db\polls::get_user_ask_me_on($_args['user_id']);
+		$is_ask_me = (int) $ask_me_on === (int) $_args['poll_id'] ? true : false;
+
 		$set_option =
 		[
 			'answer_txt'  => null,
 			'validation'  => self::$validation,
 			'port'        => $_args['port'],
 			'subport'     => $_args['subport'],
+			'aks'         => $is_ask_me,
 			'user_verify' => self::$user_verify,
 		];
-
-		$ask_me_on = \lib\db\polls::get_user_ask_me_on($_args['user_id']);
-		$is_ask_me = (int) $ask_me_on === (int) $_args['poll_id'] ? true : false;
 
 		$log_meta =
 		[
@@ -86,14 +87,14 @@ trait save
 
 			]
 		];
-
+		answerdetails::clean();
 		$skipped = false;
 
 		if($_args['skipped'] == true)
 		{
 			$skipped = true;
 			\lib\db\logs::set('user:answer:skip', $_args['user_id'], $log_meta);
-			$result  = polldetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
+			$result  = answerdetails::save($_args['user_id'], $_args['poll_id'], 0, $set_option);
 		}
 		else
 		{
@@ -121,10 +122,11 @@ trait save
 					'validation'  => self::$validation,
 					'user_verify' => self::$user_verify,
 					'port'        => $_args['port'],
+					'ask'         => $is_ask_me,
 					'subport'     => $_args['subport'],
 				];
 
-				$result = polldetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
+				$result = answerdetails::save($_args['user_id'], $_args['poll_id'], $key, $set_option);
 
 				if($save_offline_chart)
 				{
@@ -138,6 +140,8 @@ trait save
 			}
 			\lib\db\logs::set('user:answer:add', $_args['user_id'], $log_meta);
 		}
+
+		answerdetails::check_and_save();
 
 		/**
 		 * set count total answere + 1
@@ -187,7 +191,17 @@ trait save
 			{
 				$text = implode(T_(',') . ' ', $_args['answer']);
 			}
-			return debug::true(T_("Your answer to :text has been submitted", ['text' => "'". $text."'"]));
+
+			if($skipped)
+			{
+				$msg = T_("Lets go next");
+			}
+			else
+			{
+				$msg = T_("Your answer to :text has been submitted", ['text' => "'". $text."'"]);
+			}
+
+			return debug::true($msg);
 
 			// return debug::true(T_("Your answer has been submitted"));
 		}

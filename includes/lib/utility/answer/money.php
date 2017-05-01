@@ -76,16 +76,27 @@ trait money
 		$now        = date("Y-m-d H:i:s");
 		$first_time = date("Y-m-d H:i:s", $first_time);
 
+		// $query =
+		// "
+		// 	SELECT
+		// 		COUNT(DISTINCT polldetails.post_id) AS `count`
+		// 	FROM
+		// 		polldetails
+		// 	WHERE
+		// 		polldetails.insertdate >= '$first_time' AND
+		// 		polldetails.insertdate < '$now' AND
+		// 		polldetails.user_id  = $_args[user_id]
+		// ";
 		$query =
 		"
 			SELECT
-				COUNT(DISTINCT polldetails.post_id) AS `count`
+				COUNT(DISTINCT answers.post_id) AS `count`
 			FROM
-				polldetails
+				answers
 			WHERE
-				polldetails.insertdate >= '$first_time' AND
-				polldetails.insertdate < '$now' AND
-				polldetails.user_id  = $_args[user_id]
+				answers.createdate >= '$first_time' AND
+				answers.createdate < '$now' AND
+				answers.user_id  = $_args[user_id]
 		";
 		$count = db::get($query, 'count', true);
 
@@ -112,13 +123,20 @@ trait money
 
 		if(!isset($_args['poll_detail']['count_vote']))
 		{
+			// $count_vote_query =
+			// "SELECT
+			// 	COUNT(DISTINCT polldetails.user_id) AS `count`
+			// FROM
+			// 	polldetails
+			// WHERE
+			// 	polldetails.post_id  = $_args[poll_id]";
 			$count_vote_query =
 			"SELECT
-				COUNT(DISTINCT polldetails.user_id) AS `count`
+				COUNT(*) AS `count`
 			FROM
-				polldetails
+				answers
 			WHERE
-				polldetails.post_id  = $_args[poll_id]";
+				answers.post_id  = $_args[poll_id]";
 			$count_vote = db::get($count_vote_query, 'count', true);
 		}
 		else

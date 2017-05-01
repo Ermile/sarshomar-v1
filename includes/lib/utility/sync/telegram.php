@@ -134,9 +134,9 @@ trait telegram
 		self::sync_notifications();
 		//----- sync the termuseages
 		self::sync_termusages();
-		//----- sync the polldetails
+		//----- sync the answerdetails
 		//----- sync the pollstats
-		self::sync_polldetails();
+		self::sync_answerdetails();
 		//----- sync the posts
 		self::sync_posts();
 		//----- sync the options

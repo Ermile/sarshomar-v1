@@ -33,7 +33,7 @@ trait api_options
 
 			permission::$get_from_session = false;
 
-			$user_perm = \lib\db\users::get_user_data($_user_id, 'user_permission');
+			$user_perm = \lib\utility\users::get_user_permission($_user_id);
 
 			if(isset($user_perm['user_permission']))
 			{

@@ -60,7 +60,7 @@ trait get
 		}
 		$poll_id = shortURL::decode($poll['id']);
 
-		$answrs_list = \lib\db\polldetails::get_answrs_list($poll_id, [
+		$answrs_list = \lib\db\answerdetails::get_answrs_list($poll_id, [
 			'api_mode' => true,
 			'from' => $from,
 			'length' => ($to - $from),
@@ -77,7 +77,7 @@ trait get
 				$list['profile'] = [];
 				if(in_array('displayname', $poll['access_profile']))
 				{
-					$list['profile']['displayname'] = \lib\db\users::get($value['user_id'], 'user_displayname');
+					$list['profile']['displayname'] = \lib\utility\users::get_user_displayname($value['user_id']);
 					$telegram_id = \lib\db\options::get([
 						'user_id' => $value['user_id'],
 						'option_cat' => 'telegram',

@@ -13,7 +13,7 @@ trait refresh
 
 	public static function refresh_all()
 	{
-		$query = "SELECT post_id FROM polldetails GROUP BY post_id";
+		$query = "SELECT DISTINCT post_id FROM answers ";
 		$poll_ids = \lib\db::get($query, 'post_id');
 		self::$time = time();
 		foreach ($poll_ids as $key => $value)
@@ -42,7 +42,7 @@ trait refresh
 			return fales;
 		}
 
-		$all_answers = \lib\db::get("SELECT * FROM polldetails WHERE post_id = $_poll_id AND status = 'enable' ORDER BY polldetails.opt ASC ");
+		$all_answers = \lib\db::get("SELECT * FROM answerdetails WHERE post_id = $_poll_id AND status = 'enable' ORDER BY answerdetails.opt ASC ");
 		$all_user_id    = [];
 		$all_profile_id = [];
 
@@ -205,12 +205,12 @@ trait refresh
 								LIMIT 1");
 				\lib\db::query("UPDATE ranks set ranks.skip =
 					(
-						SELECT 	IFNULL(COUNT(polldetails.id), 0)
-						FROM polldetails
-						WHERE polldetails.post_id = $_poll_id
-						AND polldetails.opt = 0
-						AND polldetails.status = 'enable'
-						AND polldetails.validstatus IS NOT NULL
+						SELECT 	IFNULL(COUNT(answerdetails.id), 0)
+						FROM answerdetails
+						WHERE answerdetails.post_id = $_poll_id
+						AND answerdetails.opt = 0
+						AND answerdetails.status = 'enable'
+						AND answerdetails.validstatus IS NOT NULL
 					) WHERE ranks.post_id = $_poll_id LIMIT 1");
 
 			}
@@ -313,12 +313,12 @@ trait refresh
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	private static function check_value(&$_data, $_type = 'polldetails')
+	private static function check_value(&$_data, $_type = 'answerdetails')
 	{
 		$check = true;
 		switch ($_type)
 		{
-			case 'polldetails':
+			case 'answerdetails':
 				if(!array_key_exists('id', $_data))					$check = false;
 				if(!array_key_exists('post_id', $_data))			$check = false;
 				if(!array_key_exists('user_id', $_data))			$check = false;

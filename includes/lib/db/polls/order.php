@@ -63,18 +63,18 @@ trait order
 		$query =
 		"
 			SELECT
-				COUNT(DISTINCT polldetails.post_id) AS `count`
+				COUNT(DISTINCT answers.post_id) AS `count`
 			FROM
-				polldetails
+				answers
 			WHERE
-				polldetails.insertdate >= '$first_time' AND
-				polldetails.insertdate < '$now' AND
-				polldetails.user_id  = $_user_id
+				answers.user_id  = $_user_id AND
+				answers.createdate >= '$first_time' AND
+				answers.createdate < '$now'
 		";
 
 		$count = \lib\db::get($query, 'count', true);
 
-		if(intval($count) > 20)
+		if(intval($count) > 200)
 		{
 			$_SESSION['ask_me_limit'] = true;
 			\lib\db\logs::set('user:ask:me:limit:20count:20hours', $_user_id);
@@ -145,15 +145,16 @@ trait order
 			AND (posts.post_type = 'poll' OR posts.post_type = 'survey')
 			AND posts.post_language = '$language'
 			AND posts.post_privacy = 'public'
+			AND (posts.post_member > posts.post_asked)
 			-- check users not answered to this poll
 			AND
 			(
-				SELECT DISTINCT polldetails.post_id
-				FROM polldetails
+				SELECT answers.id
+				FROM answers
 				WHERE
-					polldetails.user_id = $_user_id AND
-					polldetails.post_id = posts.id AND
-					polldetails.status  = 'enable'
+					answers.user_id = $_user_id AND
+					answers.post_id = posts.id AND
+					answers.lastopt IS NOT NULL
 			) IS NULL
 			-- Check poll tree
 			AND
@@ -166,17 +167,17 @@ trait order
 						posts.post_parent IN
 						(
 							SELECT
-								polldetails.post_id
+								answerdetails.post_id
 							FROM
-								polldetails
+								answerdetails
 							WHERE
-								polldetails.user_id = $_user_id AND
-								polldetails.post_id = posts.post_parent AND
-								polldetails.status  = 'enable' AND
-								polldetails.opt IN
+								answerdetails.user_id = $_user_id AND
+								answerdetails.post_id = posts.post_parent AND
+								answerdetails.status  = 'enable' AND
+								answerdetails.opt IN
 								(
 									SELECT
-										IF(polltrees.opt IS NULL, polldetails.opt, polltrees.opt)
+										IF(polltrees.opt IS NULL, answerdetails.opt, polltrees.opt)
 									FROM
 										polltrees
 									WHERE
@@ -207,8 +208,7 @@ trait order
 					)
 				END
 			)
-			-- ORDER BY posts.post_rank DESC, posts.id ASC
-			ORDER BY posts.id ASC
+			ORDER BY posts.post_rank DESC, posts.id ASC
 			LIMIT 1
 			-- ASK QUERY --
 			-- polls::get_last()

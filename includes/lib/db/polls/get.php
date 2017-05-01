@@ -243,37 +243,38 @@ trait get
 	 */
 	public static function get_next_url($_user_id, $_current = null)
 	{
+		return false;
 		$query_whit_current_post_id =
 		"
 			SELECT
 				posts.post_url AS 'url'
 			FROM
-				polldetails
-			INNER JOIN posts ON posts.id = polldetails.post_id
+				answerdetails
+			INNER JOIN posts ON posts.id = answerdetails.post_id
 			WHERE
-				polldetails.id =
+				answerdetails.id =
 				(
 					SELECT
-						MIN(polldetails.id)
+						MIN(answerdetails.id)
 					FROM
-						polldetails
+						answerdetails
 					WHERE
-						polldetails.id >
+						answerdetails.id >
 							(
 								SELECT
-									MIN(polldetails.id)
+									MIN(answerdetails.id)
 								FROM
-									polldetails
+									answerdetails
 								WHERE
-									polldetails.user_id = $_user_id AND
-									polldetails.post_id = $_current AND
-									polldetails.status  = 'enable'
-								GROUP BY polldetails.post_id
+									answerdetails.user_id = $_user_id AND
+									answerdetails.post_id = $_current AND
+									answerdetails.status  = 'enable'
+								GROUP BY answerdetails.post_id
 								LIMIT 1
 							)
 						AND
-						polldetails.status  = 'enable'
-						GROUP BY polldetails.post_id
+						answerdetails.status  = 'enable'
+						GROUP BY answerdetails.post_id
 						LIMIT 1
 
 				)
@@ -287,12 +288,12 @@ trait get
 			SELECT
 				posts.post_url AS 'url'
 			FROM
-				polldetails
-			INNER JOIN posts ON posts.id = polldetails.post_id
+				answerdetails
+			INNER JOIN posts ON posts.id = answerdetails.post_id
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.status  = 'enable'
-			ORDER BY polldetails.id DESC
+				answerdetails.user_id = $_user_id AND
+				answerdetails.status  = 'enable'
+			ORDER BY answerdetails.id DESC
 			LIMIT 1
 			-- polls::get_previous_url()
 			-- to get previous of answered this user
@@ -318,36 +319,37 @@ trait get
 	 */
 	public static function get_previous_url($_user_id, $_current = null)
 	{
+		return false;
 		$query_whit_current_post_id =
 		"
 			SELECT
 				posts.post_url AS 'url'
 			FROM
-				polldetails
-			INNER JOIN posts ON posts.id = polldetails.post_id
+				answerdetails
+			INNER JOIN posts ON posts.id = answerdetails.post_id
 			WHERE
-				polldetails.id =
+				answerdetails.id =
 				(
 					SELECT
-						MAX(polldetails.id)
+						MAX(answerdetails.id)
 					FROM
-						polldetails
+						answerdetails
 					WHERE
-						polldetails.id <
+						answerdetails.id <
 							(
 								SELECT
-									MAX(polldetails.id)
+									MAX(answerdetails.id)
 								FROM
-									polldetails
+									answerdetails
 								WHERE
-									polldetails.user_id = $_user_id AND
-									polldetails.post_id = $_current AND
-									polldetails.status  = 'enable'
-								GROUP BY polldetails.post_id
+									answerdetails.user_id = $_user_id AND
+									answerdetails.post_id = $_current AND
+									answerdetails.status  = 'enable'
+								GROUP BY answerdetails.post_id
 								LIMIT 1
 							) AND
-						polldetails.status  = 'enable'
-						GROUP BY polldetails.post_id
+						answerdetails.status  = 'enable'
+						GROUP BY answerdetails.post_id
 						LIMIT 1
 				)
 			LIMIT 1
@@ -360,12 +362,12 @@ trait get
 			SELECT
 				posts.post_url AS 'url'
 			FROM
-				polldetails
-			INNER JOIN posts ON posts.id = polldetails.post_id
+				answerdetails
+			INNER JOIN posts ON posts.id = answerdetails.post_id
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.status  = 'enable'
-			ORDER BY polldetails.id DESC
+				answerdetails.user_id = $_user_id AND
+				answerdetails.status  = 'enable'
+			ORDER BY answerdetails.id DESC
 			LIMIT 1
 			-- polls::get_previous_url()
 			-- to get previous of answered this user

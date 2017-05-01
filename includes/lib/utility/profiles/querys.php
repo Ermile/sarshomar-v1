@@ -15,43 +15,43 @@ trait querys
 		$querys = [];
 		$querys['poll_answered'] =
 		"
-			SELECT COUNT(polldetails.id)
-			FROM polldetails
+			SELECT COUNT(answerdetails.id)
+			FROM answerdetails
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.type    = 'poll' AND
-				polldetails.status  = 'enable' AND
-				polldetails.opt <> 0
+				answerdetails.user_id = $_user_id AND
+				answerdetails.type    = 'poll' AND
+				answerdetails.status  = 'enable' AND
+				answerdetails.opt <> 0
 		";
 		$querys['poll_skipped'] =
 		"
-			SELECT COUNT(polldetails.id)
-			FROM polldetails
+			SELECT COUNT(answerdetails.id)
+			FROM answerdetails
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.type    = 'poll' AND
-				polldetails.status  = 'enable' AND
-				polldetails.opt     = 0
+				answerdetails.user_id = $_user_id AND
+				answerdetails.type    = 'poll' AND
+				answerdetails.status  = 'enable' AND
+				answerdetails.opt     = 0
 		";
 		$querys['survey_answered'] =
 		"
-			SELECT COUNT(polldetails.id)
-			FROM polldetails
+			SELECT COUNT(answerdetails.id)
+			FROM answerdetails
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.type    = 'survey' AND
-				polldetails.status  = 'enable' AND
-				polldetails.opt <> 0
+				answerdetails.user_id = $_user_id AND
+				answerdetails.type    = 'survey' AND
+				answerdetails.status  = 'enable' AND
+				answerdetails.opt <> 0
 		";
 		$querys['survey_skipped'] =
 		"
-			SELECT COUNT(polldetails.id)
-			FROM polldetails
+			SELECT COUNT(answerdetails.id)
+			FROM answerdetails
 			WHERE
-				polldetails.user_id = $_user_id AND
-				polldetails.type    = 'survey' AND
-				polldetails.status  = 'enable' AND
-				polldetails.opt     = 0
+				answerdetails.user_id = $_user_id AND
+				answerdetails.type    = 'survey' AND
+				answerdetails.status  = 'enable' AND
+				answerdetails.opt     = 0
 		";
 		$querys['my_poll'] =
 		"
@@ -74,16 +74,16 @@ trait querys
 		$querys['my_poll_answered']   =
 		"
 			SELECT
-				COUNT(polldetails.id)
+				COUNT(answerdetails.id)
 			FROM
-				polldetails
+				answerdetails
 			INNER JOIN posts
-				ON polldetails.post_id = posts.id AND posts.post_type = 'poll'
+				ON answerdetails.post_id = posts.id AND posts.post_type = 'poll'
 			WHERE
-				polldetails.type    = 'poll' AND
-				polldetails.status  = 'enable' AND
-				polldetails.opt <> 0 AND
-				polldetails.post_id IN
+				answerdetails.type    = 'poll' AND
+				answerdetails.status  = 'enable' AND
+				answerdetails.opt <> 0 AND
+				answerdetails.post_id IN
 					(
 						SELECT posts.id
 						FROM posts
@@ -95,16 +95,16 @@ trait querys
 		$querys['my_poll_skipped']    =
 		"
 			SELECT
-				COUNT(polldetails.id)
+				COUNT(answerdetails.id)
 			FROM
-				polldetails
+				answerdetails
 			INNER JOIN posts
-				ON polldetails.post_id = posts.id AND posts.post_type = 'poll'
+				ON answerdetails.post_id = posts.id AND posts.post_type = 'poll'
 			WHERE
-				polldetails.type   = 'poll' AND
-				polldetails.status = 'enable' AND
-				polldetails.opt    = 0 AND
-				polldetails.post_id IN
+				answerdetails.type   = 'poll' AND
+				answerdetails.status = 'enable' AND
+				answerdetails.opt    = 0 AND
+				answerdetails.post_id IN
 					(
 						SELECT posts.id
 						FROM posts
@@ -116,16 +116,16 @@ trait querys
 		$querys['my_survey_answered'] =
 		"
 			SELECT
-				COUNT(polldetails.id)
+				COUNT(answerdetails.id)
 			FROM
-				polldetails
+				answerdetails
 			INNER JOIN posts
-				ON polldetails.post_id = posts.id AND posts.post_type = 'survey'
+				ON answerdetails.post_id = posts.id AND posts.post_type = 'survey'
 			WHERE
-				polldetails.type    = 'survey' AND
-				polldetails.status  = 'enable' AND
-				polldetails.opt <> 0 AND
-				polldetails.post_id IN
+				answerdetails.type    = 'survey' AND
+				answerdetails.status  = 'enable' AND
+				answerdetails.opt <> 0 AND
+				answerdetails.post_id IN
 					(
 						SELECT posts.id
 						FROM posts
@@ -137,16 +137,16 @@ trait querys
 		$querys['my_survey_skipped']  =
 		"
 			SELECT
-				COUNT(polldetails.id)
+				COUNT(answerdetails.id)
 			FROM
-				polldetails
+				answerdetails
 			INNER JOIN posts
-				ON polldetails.post_id = posts.id AND posts.post_type = 'survey'
+				ON answerdetails.post_id = posts.id AND posts.post_type = 'survey'
 			WHERE
-				polldetails.type   = 'survey' AND
-				polldetails.status = 'enable' AND
-				polldetails.opt    = 0 AND
-				polldetails.post_id IN
+				answerdetails.type   = 'survey' AND
+				answerdetails.status = 'enable' AND
+				answerdetails.opt    = 0 AND
+				answerdetails.post_id IN
 					(
 						SELECT posts.id
 						FROM posts

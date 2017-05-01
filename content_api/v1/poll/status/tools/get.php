@@ -125,7 +125,7 @@ trait get
 	 */
 	public static function answer_one_person($_poll_id)
 	{
-		$query  = "SELECT polldetails.id AS `count` FROM polldetails WHERE polldetails.post_id = $_poll_id LIMIT 1";
+		$query  = "SELECT answers.id AS `count` FROM answers WHERE answers.post_id = $_poll_id AND answers.lastopt IS NOT NULL LIMIT 1";
 		$result = \lib\db::get($query,'count', true);
 		$result = intval($result);
 		if($result)

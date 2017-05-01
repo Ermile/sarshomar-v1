@@ -267,6 +267,12 @@ trait set
 				$pollstats['total'] = 0;
 			}
 		}
+
+		if(!isset($pollstats['total']) || !is_numeric($pollstats['total']))
+		{
+			$pollstats['total'] = 1;
+		}
+
 		// set the pollstats.total field in query
 		$set[] = " pollstats.total = ". $pollstats['total'];
 

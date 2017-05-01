@@ -1,15 +1,5 @@
 <?php
 namespace lib\utility;
-use \lib\db;
-use \lib\debug;
-use \lib\utility;
-use \lib\db\ranks;
-use \lib\db\options;
-use \lib\utility\users;
-use \lib\db\polldetails;
-use \lib\utility\profile;
-use \lib\utility\shortURL;
-use \lib\utility\stat_polls;
 
 class answers
 {
