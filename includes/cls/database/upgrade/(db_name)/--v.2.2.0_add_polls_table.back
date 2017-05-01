@@ -1,5 +1,5 @@
 CREATE TABLE `polls` (
-`id`					bigint(20) UNSIGNED NOT NULL,
+`id`					bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 
 `language`				char(2) NULL DEFAULT NULL,
 
@@ -53,6 +53,7 @@ CREATE TABLE `polls` (
 `rank` 					bigint(20) 			 NULL DEFAULT NULL,
 `tree`					bigint(20) 	UNSIGNED NULL DEFAULT NULL,
 `cat_id`				bigint(20) 	UNSIGNED NULL DEFAULT NULL,
+`file_id`				bigint(20) 	UNSIGNED NULL DEFAULT NULL,
 `show_if`				bigint(20) 	UNSIGNED NULL DEFAULT NULL,
 `group_id`				bigint(20) 	UNSIGNED NULL DEFAULT NULL,
 `survey_id`				bigint(20) 	UNSIGNED NULL DEFAULT NULL,
@@ -77,3 +78,28 @@ CREATE TABLE `polls` (
 PRIMARY KEY (`id`),
 CONSTRAINT `foreign_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `scores` (
+`id`					bigint(20) 		UNSIGNED NOT NULL AUTO_INCREMENT,
+`survey_id`				bigint(20) 		UNSIGNED NOT NULL,
+`poll_id`				bigint(20) 		UNSIGNED NOT NULL,
+`opt_id`				bigint(20) 		UNSIGNED NOT NULL,
+`group_title`			varchar(255)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`minus`					int(10) 		NULL DEFAULT NULL,
+`plus`					int(10) 		NULL DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `jumps` (
+`id`					bigint(20) 		UNSIGNED NOT NULL AUTO_INCREMENT,
+`survey_id`				bigint(20) 		UNSIGNED NOT NULL,
+`poll_id`				bigint(20) 		UNSIGNED NOT NULL,
+`condition`				ENUM('=', '<>', 'like', 'not like', 'like%', '%like', '%like%', 'sum_score', 'sum_group') NULL DEFAULT NULL,
+`group_title`			varchar(255)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`value`					varchar(255)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`jump_to`				bigint(20) 		UNSIGNED NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
