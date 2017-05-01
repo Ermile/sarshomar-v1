@@ -107,7 +107,7 @@
       <div class="option-content">
        <input {% if answer_lock %} disabled="disabled" {% endif %} type="text" name="descriptive" placeholder="{{value.title}}" {% if poll.my_answer[value.key] %} value="{{poll.my_answer[value.key]}}" {% endif %}>
       </div>
-      <span>
+      <span class="checkbox">
        <input {% if answer_lock %} disabled="disabled" {% endif %} type="checkbox" name="check_{{value.key}}" id="check_{{value.key}}" value="{{value.key}}" {% if poll.my_answer[value.key] %} checked="checked" {% endif %}>
        <label for="check_{{value.key}}"></label>
       </span>
