@@ -8,7 +8,7 @@ class controller extends \lib\mvc\controller
 	{
 		if(!$this->login())
 		{
-			$cookie = \lib\utility::cookie('remember_me');
+			$cookie = \lib\db\sessions::get_cookie();
 			if($cookie)
 			{
 				$this->model()->mvc_login_by_remember();

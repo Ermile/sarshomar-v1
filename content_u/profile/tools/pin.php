@@ -9,7 +9,15 @@ trait pin
 	{
 		$old_pin = utility::post('old-pin');
 		$new_pin = utility::post('new-pin');
-
+		$log_meta =
+		[
+			'meta' =>
+			[
+				'old'     => $old_pin,
+				'new'     => $new_pin,
+				'session' => $_SESSION,
+			]
+		];
 		$have_pin = $this->have_pin();
 
 		if(!$have_pin && $old_pin)
@@ -63,12 +71,7 @@ trait pin
 		}
 
 		$update = \lib\db\users::update(['user_pass' => $new_pin], $this->login('id'));
-		// remove all remember me
-		\lib\db\options::delete([
-		'user_id'    => $this->login('id'),
-		'option_cat' => 'session',
-		'option_key' => 'rememberme',
-		]);
+		\lib\db\sessions::change_password($this->login('id'));
 		debug::true($msg);
 	}
 }

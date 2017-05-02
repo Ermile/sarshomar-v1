@@ -103,15 +103,9 @@ trait login
 				break;
 		}
 		// distroy guest session to set new session
+		\lib\db\sessions::logout($this->user_id);
 		$this->put_logout();
-		if(\lib\utility::cookie('remember_me'))
-		{
-			\lib\db\options::delete([
-			'option_cat'	=> 'session',
-			'option_key'	=> 'rememberme',
-			'option_value'	=> \lib\utility::cookie('remember_me'),
-			]);
-		}
+
 	}
 
 
@@ -160,27 +154,7 @@ trait login
 	 */
 	public function login_remember()
 	{
-		if(\lib\utility::cookie('remember_me'))
-		{
-			\lib\db\options::delete([
-			'option_cat'	=> 'session',
-			'option_key'	=> 'rememberme',
-			'option_value'	=> \lib\utility::cookie('remember_me'),
-			]);
-		}
-
-		$uniq_id = urlencode(\lib\utility::hasher(time() . $this->user_id)) . rand(701, 1301);
-		$insert = \lib\db\options::insert([
-			'user_id' 		=> $this->user_id,
-			'option_cat'	=> 'session',
-			'option_key'	=> 'rememberme',
-			'option_value'	=> $uniq_id,
-			'date_modified'	=> date("Y-m-d H:i:s", time())
-			]);
-		$service_name = '.' . \lib\router::get_domain(count(\lib\router::get_domain(-1))-2);
-		$tld = \lib\router::get_domain(-1);
-		$service_name .= '.' . end($tld);
-		setcookie("remember_me", $uniq_id, time() + (60*60*24*365), '/', $service_name);
+		\lib\db\sessions::set($this->user_id);
 	}
 
 
@@ -244,20 +218,15 @@ trait login
 	 */
 	public function login_by_remember($_url = null)
 	{
-		if(\lib\utility::cookie('remember_me') && !$this->login())
+		if(\lib\db\sessions::get_cookie() && !$this->login())
 		{
-			$get = \lib\db\options::get([
-			'option_cat'	=> 'session',
-			'option_key'	=> 'rememberme',
-			'option_status'	=> 'enable',
-			'option_value'	=> \lib\utility::cookie('remember_me'),
-			'limit'			=> 1
-			]);
-			if($get && isset($get['user_id']))
+			$user_id = \lib\db\sessions::get_user_id();
+
+			if($user_id)
 			{
-				$this->user_id   = $get['user_id'];
-				$this->user_data = \lib\utility\users::get($get['user_id']);
-				$this->mobile    = \lib\utility\users::get_mobile($get['user_id']);
+				$this->user_id   = $user_id;
+				$this->user_data = \lib\utility\users::get($user_id);
+				$this->mobile    = \lib\utility\users::get_mobile($user_id);
 				$this->login_set($_url);
 				return true;
 			}
