@@ -3,11 +3,10 @@ CREATE TABLE `polls` (
 
 `language`				char(2) NULL DEFAULT NULL,
 
-`type`					varchar(100)	NULL DEFAULT NULL,
-`password`				varchar(100)		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
-`button`				varchar(100)		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
-`format`				varchar(100)		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
-`vertical_algin`		varchar(100)		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`password`				varchar(100)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`button`				varchar(100)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`format`				varchar(100)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
+`vertical_algin`		varchar(100)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 `code`					varchar(100)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 `short_url`				varchar(255)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 `summary`				varchar(255)	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
@@ -28,6 +27,7 @@ CREATE TABLE `polls` (
 `design`				mediumtext 		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 `config`				mediumtext 		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 
+`type`					ENUM('email','date', 'select', 'descriptive', 'like', 'emoji') NULL DEFAULT NULL,
 `comment_status`		ENUM('open','closed') NULL DEFAULT NULL,
 `status`				ENUM('stop','pause','trash','publish','draft','enable','disable','deleted','schedule','expired','awaiting','filtered','blocked','spam','violence','pornography','other') NULL DEFAULT NULL,
 `privacy`				ENUM('public','private')  NULL DEFAULT NULL,

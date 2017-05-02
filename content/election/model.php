@@ -5,13 +5,41 @@ use \lib\utility;
 
 class model extends \mvc\model
 {
+	/**
+	 * update chart every $update_every time
+	 *
+	 * @var        integer
+	 */
+	public static $update_every = 60 * 1;
 
+
+	/**
+	 * Gets the election.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  The election.
+	 */
 	public function get_election($_args)
 	{
+		if(utility::get("id") && is_string(utility::get("id")))
+		{
+			$id = utility::get("id");
+		}
+		else
+		{
+			if(Tld === 'dev')
+			{
+				$id = 'tZ7v'; // sport id
+			}
+			else
+			{
+				$id = 'tZ9Y'; // election id
+			}
+		}
+		$result = $this->get_file($id);
 
-		// $result = $this->get_file('tZ9Y');
-		// $result = $this->get_file('tZ7v'); // dev
-		// return $result;
+		return $result;
 	}
 
 
@@ -22,10 +50,26 @@ class model extends \mvc\model
 	 */
 	public function post_election($_args)
 	{
-		$result = $this->get_file('tZ9Y');
-		// $result = $this->get_file('tZ7v'); // dev
+		if(utility::post("id") && is_string(utility::post("id")))
+		{
+			$id = utility::post("id");
+		}
+		else
+		{
+			if(Tld === 'dev')
+			{
+				$id = 'tZ7v'; // sport id
+			}
+			else
+			{
+				$id = 'tZ9Y'; // election id
+			}
+		}
+
+		$result = $this->get_file($id);
 		debug::msg('chart', $result);
 	}
+
 
 	/**
 	 * Gets the file.
@@ -58,7 +102,7 @@ class model extends \mvc\model
 		else
 		{
 			$file_time = \filemtime($url);
-			if((time() - $file_time) >  (60))
+			if((time() - $file_time) >  (self::$update_every))
 			{
 				$result = $this->make_query_result($_filename);
 				\lib\utility\file::write($url, $result);
@@ -82,35 +126,36 @@ class model extends \mvc\model
 	 */
 	public function make_query_result($_filename)
 	{
-		// $post_id = \lib\utility\shortURL::decode($_filename);
+		$post_id = \lib\utility\shortURL::decode($_filename);
 
-		// if(!$post_id)
-		// {
-		// 	return false;
-		// }
-		// $query =
-		// "
-		// 	SELECT
-		// 		count(*) AS `count`,
-		// 		DATE(polldetails.insertdate) AS `date`,
-		// 		polldetails.opt AS `opt`
-		// 	FROM
-		// 		polldetails
-		// 	WHERE
-		// 		polldetails.post_id = $post_id AND
-		// 		polldetails.opt <> 0 AND
-		// 		polldetails.status = 'enable'
-		// 	GROUP BY polldetails.opt, DATE(polldetails.insertdate)
-		// ";
-		// // $result = \lib\db::get($query);
-		// if(\lib\define::get_language() === 'fa')
-		// {
-		// 	foreach ($result as $key => $value)
-		// 	{
-		// 		$result[$key]['date'] = \lib\utility\jdate::date("Y-m-d", $value['date'], false);
-		// 	}
-		// }
-		// $result = json_encode($result, JSON_UNESCAPED_UNICODE);
-		// return $result;
+		if(!$post_id)
+		{
+			return false;
+		}
+		$query =
+		"
+			SELECT
+				count(*) AS `count`,
+				DATE(answerdetails.createdate) AS `date`,
+				answerdetails.opt AS `opt`
+			FROM
+				answerdetails
+			WHERE
+				answerdetails.post_id = $post_id AND
+				answerdetails.opt <> 0 AND
+				( answerdetails.status = 'enable' OR answerdetails.status = 'disable')
+			GROUP BY answerdetails.opt, DATE(answerdetails.createdate)
+		";
+		$result = \lib\db::get($query);
+		if(\lib\define::get_language() === 'fa')
+		{
+			foreach ($result as $key => $value)
+			{
+				$result[$key]['date'] = \lib\utility\jdate::date("Y-m-d", $value['date'], false);
+			}
+		}
+		$result = json_encode($result, JSON_UNESCAPED_UNICODE);
+
+		return $result;
 	}
 }

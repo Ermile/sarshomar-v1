@@ -28,6 +28,7 @@ trait access
 	 * @var        <type>
 	 */
 	public static $update_old_answer_in = (60 * 60 * 1);
+	// public static $update_old_answer_in = (1);
 
 
 	/**
