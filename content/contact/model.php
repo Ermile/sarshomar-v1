@@ -110,6 +110,16 @@ class model extends \mvc\model
 		$result = \lib\db\comments::insert($args);
 		if($result)
 		{
+			// $mail =
+			// [
+			// 	'from'    => 'info@sarshomar.com',
+			// 	'to'      => 'info@sarshomar.com',
+			// 	'subject' => 'contact',
+			// 	'body'    => $content,
+			// 	'debug'   => false,
+			// ];
+			// \lib\utility\mail::send($mail);
+
 			\lib\db\logs::set('user:send:contact', $user_id, $log_meta);
 			debug::true(T_("Thank You For contacting us"));
 		}
