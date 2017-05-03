@@ -5,6 +5,20 @@ use \lib\debug;
 
 class model extends \mvc\model
 {
+	public function post_accept()
+	{
+		if(utility::post('ids') && is_array(utility::post("ids")))
+		{
+			$ids = implode(',', utility::post('ids'));
+			$query = "UPDATE posts SET post_status = 'publish' WHERE id IN ($ids) AND post_status = 'awaiting' ";
+			\lib\db::query($query);
+			$row_affected = \lib\db::changed();
+			debug::true(T_(":count rows changed on status publish", ['count' => (int) $row_affected]));
+			return;
+		}
+
+	}
+
 
 	/**
 	 * get log data to show
@@ -27,8 +41,14 @@ class model extends \mvc\model
 		{
 			$meta['order'] = $_args->get("order")[0];
 		}
+
+		if(isset($_args->get("status")[0]))
+		{
+			$meta['post_status'] = $_args->get("status")[0];
+		}
+
 		$meta['post_type']      = 'attachment';
-		$meta['limit']          = 10;
+		$meta['limit']          = 30;
 		$meta['check_language'] = false;
 		$meta['sort']           = 'id';
 		$meta['order']          = 'desc';

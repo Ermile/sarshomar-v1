@@ -34,6 +34,9 @@
                 {%endfor%}
             </div>
         </div>
+        <h3>
+            <a href="{{url.base}}/admin/attachments" data-ajaxify data-data='{"ids" : {{ids}}}' data-method="post">{%trans "Accept ALL" %}</a>
+        </h3>
     </div>
     <div class="pagination-container">
     {%include display.pagination%}
