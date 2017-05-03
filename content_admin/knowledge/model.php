@@ -128,7 +128,7 @@ class model extends \mvc\model
 			$request['in'] = 'sarshomar';
 		}
 
-		if(array_key_exists('0', $match->sarshomar) && !$match->sarshomar[0])
+		if(isset($match->sarshomar) && is_array($match->sarshomar) &&  array_key_exists('0', $match->sarshomar) && !$match->sarshomar[0])
 		{
 			$request['in'] = 'people';
 		}
