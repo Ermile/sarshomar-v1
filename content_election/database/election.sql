@@ -14,11 +14,14 @@ CREATE TABLE election.elections (
 `year` 			int(4) DEFAULT NULL,
 `en_url`		varchar(500) NULL DEFAULT NULL,
 `fa_url`		varchar(500) NULL DEFAULT NULL,
+`cat`			varchar(255) NULL DEFAULT NULL,
+`win`			int(10) UNSIGNED NULL DEFAULT NULL,
 `createdate`	datetime DEFAULT CURRENT_TIMESTAMP,
 `date_modified`	timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 `desc`			text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
 `meta`			mediumtext 	CHARACTER SET utf8mb4 NULL DEFAULT NULL,
-PRIMARY KEY (`id`)
+PRIMARY KEY (`id`),
+CONSTRAINT `election_win` FOREIGN KEY (`win`) REFERENCES `candidas` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -31,6 +34,8 @@ CREATE TABLE election.candidas (
 `nationalcode`	varchar(255) NULL,
 `birthdate`		datetime NULL,
 `electioncode`	varchar(255) NULL,
+`file_url`		varchar(255) NULL,
+`file_url_2`	varchar(255) NULL,
 `status`		enum('active','cancel') NOT NULL DEFAULT 'active',
 `createdate`	datetime DEFAULT CURRENT_TIMESTAMP,
 `date_modified`	timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,

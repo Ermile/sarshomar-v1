@@ -5,6 +5,8 @@ class controller extends \content_election\main\controller
 {
 	public function _route()
 	{
+		$this->access('election', 'data', 'admin', 'block');
+
 		$this->get("list", "list")->ALL();
 		$this->get("add", "add")->ALL("/data\/report\/add\/(\d+)/");
 

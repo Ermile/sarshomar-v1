@@ -14,6 +14,8 @@ ADD candida
 		<th>{%trans "brithdate" %}</th>
 		<th>{%trans "electioncode" %}</th>
 		<th>{%trans "desc" %}</th>
+		<th>{%trans "file_url" %}</th>
+		<th>{%trans "file_url_2" %}</th>
 	</tr>
 
 {%for key, value in candida_list%}
@@ -27,6 +29,8 @@ ADD candida
 		<td>{{value.birthdate}}</td>
 		<td>{{value.electioncode}}</td>
 		<td>{{value.desc}}</td>
+		<td><img height="100" width="100" src="{{url.static}}{{value.file_url}}">{{value.file_url}}</td>
+		<td><img height="100" width="100" src="{{url.static}}{{value.file_url_2}}">{{value.file_url_2}}</td>
 	</tr>
 {%endfor%}
 </table>
@@ -37,7 +41,7 @@ ADD candida
 <h1>add new candida</h1>
 {%endif%}
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	{%trans "election"%}
 	<select name="election_id">
 			<option  selected>{%trans "Please select one item"%}</option>
@@ -51,6 +55,9 @@ ADD candida
 	<br>{%trans "birthdate" %}:<input type="date" name="birthdate" id="birthdate" placeholder="birthdate" value='{{candida.birthdate|date("m/d/Y")}}'>
 	<br>{%trans "nationalcode" %}:<input type="text" name="nationalcode" id="nationalcode" placeholder="nationalcode" value="{{candida.nationalcode}}">
 	<br>{%trans "electioncode" %}:<input type="text" name="electioncode" id="electioncode" placeholder="electioncode" value="{{candida.electioncode}}">
+<br>
+    file 1:<input type="file" name="file_url" ><br>
+    file 2<input type="file" name="file_url_2" > <br>
 
 	<br>
 	{%trans "Status"%}

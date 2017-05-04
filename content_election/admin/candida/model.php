@@ -55,7 +55,45 @@ class model extends \content_election\main\model
 		{
 			return false;
 		}
+		$file_url   = null;
+		$file_url_2 = null;
 
+		if(utility::files('file_url'))
+		{
+			$target_dir = root. "public_html/static/images/election/";
+			if(!\lib\utility\file::exists($target_dir))
+			{
+				\lib\utility\file::makeDir($target_dir);
+			}
+
+			$basename = basename(utility::files('file_url')["name"]);
+
+			$target_file = $target_dir . $basename;
+
+			if (move_uploaded_file(utility::files('file_url')["tmp_name"], $target_file))
+			{
+				$file_url = 'images/election/'. $basename;
+			}
+		}
+
+		if(utility::files('file_url_2'))
+		{
+			$target_dir = root. "public_html/static/images/election/";
+
+			if(!\lib\utility\file::exists($target_dir))
+			{
+				\lib\utility\file::makeDir($target_dir);
+			}
+
+			$basename = basename(utility::files('file_url_2')["name"]);
+			$target_file = $target_dir . $basename;
+
+			if (move_uploaded_file(utility::files('file_url_2')["tmp_name"], $target_file))
+			{
+				$file_url_2 = 'images/election/'. $basename;
+			}
+
+		}
 		$update =
 		[
 			'name'         => utility::post('name'),
@@ -68,6 +106,15 @@ class model extends \content_election\main\model
 			'status'       => utility::post('status'),
 			'desc'         => utility::post('desc'),
 		];
+
+		if($file_url)
+		{
+			$update['file_url'] = $file_url;
+		}
+		if($file_url_2)
+		{
+			$update['file_url_2'] = $file_url_2;
+		}
 
 		$result = \content_election\lib\candidas::update($update, $id);
 		if($result)
@@ -89,6 +136,45 @@ class model extends \content_election\main\model
 	 */
 	public function post_candida($_args)
 	{
+		$file_url   = null;
+		$file_url_2 = null;
+
+		if(utility::files('file_url'))
+		{
+			$target_dir = root. "public_html/static/images/election/";
+			if(!\lib\utility\file::exists($target_dir))
+			{
+				\lib\utility\file::makeDir($target_dir);
+			}
+
+			$basename = basename(utility::files('file_url')["name"]);
+
+			$target_file = $target_dir . $basename;
+
+			if (move_uploaded_file(utility::files('file_url')["tmp_name"], $target_file))
+			{
+				$file_url = 'images/election/'. $basename;
+			}
+		}
+
+		if(utility::files('file_url_2'))
+		{
+			$target_dir = root. "public_html/static/images/election/";
+
+			if(!\lib\utility\file::exists($target_dir))
+			{
+				\lib\utility\file::makeDir($target_dir);
+			}
+
+			$basename = basename(utility::files('file_url_2')["name"]);
+			$target_file = $target_dir . $basename;
+
+			if (move_uploaded_file(utility::files('file_url_2')["tmp_name"], $target_file))
+			{
+				$file_url_2 = 'images/election/'. $basename;
+			}
+
+		}
 
 		$args =
 		[
@@ -102,6 +188,15 @@ class model extends \content_election\main\model
 			'status'       => utility::post('status'),
 			'desc'         => utility::post('desc'),
 		];
+		if($file_url)
+		{
+			$args['file_url'] = $file_url;
+		}
+		if($file_url_2)
+		{
+			$args['file_url_2'] = $file_url_2;
+		}
+
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
 			debug::error(T_("Please select one items of election"));

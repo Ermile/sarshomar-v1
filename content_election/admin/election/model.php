@@ -71,6 +71,8 @@ class model extends \content_election\main\model
 			'desc'        => utility::post('desc'),
 			'en_url'      => utility::post('en_url'),
 			'fa_url'      => utility::post('fa_url'),
+			'cat'         => utility::post('cat'),
+			'win'         => utility::post('win'),
 		];
 
 		$result = \content_election\lib\elections::update($update, $id);
@@ -108,6 +110,8 @@ class model extends \content_election\main\model
 			'desc'        => utility::post('desc'),
 			'en_url'      => utility::post('en_url'),
 			'fa_url'      => utility::post('fa_url'),
+			'cat'         => utility::post('cat'),
+			'win'         => utility::post('win'),
 		];
 
 		$result = \content_election\lib\elections::insert($args);

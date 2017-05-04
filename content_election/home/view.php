@@ -9,9 +9,11 @@ class view extends \content_election\main\view
 	 */
 	public function config()
 	{
+		$running  = [];
 		$election = \content_election\lib\elections::search();
+
 		$this->data->election_list = $election;
-		$running = [];
+
 		foreach ($election as $key => $value)
 		{
 			if(isset($value['status']) && $value['status'] === 'running')
@@ -21,6 +23,16 @@ class view extends \content_election\main\view
 		}
 
 		$this->data->running = $running;
+
+		if($this->access('election', 'admin', 'admin'))
+		{
+			$this->data->perm_admin = true;
+		}
+
+		if($this->access('election', 'data', 'admin'))
+		{
+			$this->data->perm_data = true;
+		}
 	}
 
 

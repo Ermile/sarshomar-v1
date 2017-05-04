@@ -16,6 +16,8 @@ ADD ELECTION
 		<th>{%trans "jalali_year" %}</th>
 		<th>{%trans "en_url" %}</th>
 		<th>{%trans "fa_url" %}</th>
+		<th>{%trans "cat" %}</th>
+		<th>{%trans "win" %}</th>
 		<th>{%trans "year" %}</th>
 		<th>{%trans "desc" %}</th>
 		<th>{%trans "status" %}</th>
@@ -34,6 +36,8 @@ ADD ELECTION
 		<td>{{value.jalali_year}}</td>
 		<td><a href="{{url.base}}/election/{{value.en_url}}">{{value.en_url}}</a></td>
 		<td><a href="{{url.base}}/election/{{value.fa_url}}">{{value.fa_url}}</a></td>
+		<td>{{value.cat}}</td>
+		<td>{{value.win}}</td>
 		<td>{{value.year}}</td>
 		<td>{{value.desc}}</td>
 		<td>{{value.status}}</td>
@@ -60,6 +64,13 @@ ADD ELECTION
 	<br>{%trans "desc" %}:<textarea name="desc" id="desc" placeholder="desc">{{election.desc}}</textarea>
 	<br>{%trans "en_url" %}:<input type="text" name="en_url" id="en_url" placeholder="en_url" value="{{election.en_url}}">
 	<br>{%trans "fa_url" %}:<input type="text" name="fa_url" id="fa_url" placeholder="fa_url" value="{{election.fa_url}}">
+	<br>{%trans "cat" %}:<input type="text" name="cat" id="cat" placeholder="cat" value="{{election.cat}}">
+	<br>{%trans "win" %}<select name="win">
+		<option value="">{%trans "Please select one item"%}</option>
+	{%for key, value in candidas%}
+		<option value="{{value.id}}">{{value.name}} {{value.family}}</option>
+	{%endfor%}
+	</select>
 	<br>
 	{%trans "Status"%}<select name="status">
 		<option value="awaiting" {%if election.status == 'awaiting' %}selected{%endif%}>{%trans "awaiting"%}</option>
