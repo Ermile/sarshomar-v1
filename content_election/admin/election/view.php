@@ -1,7 +1,7 @@
 <?php
 namespace content_election\admin\election;
 
-class view extends \mvc\view
+class view extends \content_election\main\view
 {
 	public function view_election($_args)
 	{

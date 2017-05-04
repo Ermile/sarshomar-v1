@@ -1,7 +1,7 @@
 <?php
 namespace content_election\home;
 
-class controller extends \mvc\controller
+class controller extends \content_election\main\controller
 {
 
 }

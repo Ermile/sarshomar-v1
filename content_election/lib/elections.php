@@ -16,7 +16,8 @@ class elections
 		$set = \lib\db\config::make_set($_args);
 		if($set)
 		{
-			return \lib\db::query("INSERT INTO elections SET $set", 'election');
+			\lib\db::query("INSERT INTO elections SET $set", 'election');
+			return \lib\db::insert_id();
 		}
 	}
 

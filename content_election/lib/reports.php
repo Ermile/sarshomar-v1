@@ -1,7 +1,7 @@
 <?php
 namespace content_election\lib;
 
-class candidas
+class reports
 {
 
 	/**
@@ -16,7 +16,7 @@ class candidas
 		$set = \lib\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO candidas SET $set", 'election');
+			\lib\db::query("INSERT INTO reports SET $set", 'election');
 			return \lib\db::insert_id();
 		}
 	}
@@ -33,7 +33,7 @@ class candidas
 	{
 		if($_id && is_numeric($_id))
 		{
-			$query = "SELECT * FROM candidas WHERE id = $_id LIMIT 1";
+			$query = "SELECT * FROM reports WHERE id = $_id LIMIT 1";
 			$result = \lib\db::get($query, null, true, 'election');
 			return $result;
 		}
@@ -55,7 +55,7 @@ class candidas
 			return false;
 		}
 
-		$query = "UPDATE candidas SET $set WHERE id = $_id LIMIT 1";
+		$query = "UPDATE reports SET $set WHERE id = $_id LIMIT 1";
 		return \lib\db::query($query, 'election');
 	}
 
@@ -114,14 +114,14 @@ class candidas
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " COUNT(candidas.id) AS 'electioncount' FROM	candidas";
+			$public_fields  = " COUNT(reports.id) AS 'electioncount' FROM	reports";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = " candidas.*, elections.title FROM candidas INNER JOIN elections ON elections.id = candidas.election_id";
+			$public_fields = " reports.*, elections.title FROM reports LEFT JOIN elections ON elections.id = reports.election_id";
 
 			if($_options['limit'])
 			{
@@ -152,7 +152,7 @@ class candidas
 			}
 			else
 			{
-				$order = " ORDER BY candidas.id DESC ";
+				$order = " ORDER BY reports.id DESC ";
 			}
 		}
 		else
@@ -163,7 +163,7 @@ class candidas
 			}
 			else
 			{
-				$order = " ORDER BY candidas.id $_options[order] ";
+				$order = " ORDER BY reports.id $_options[order] ";
 			}
 		}
 
@@ -186,21 +186,21 @@ class candidas
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					// for similar "candidas.`field` LIKE '%valud%'"
-					$where[] = " candidas.`$key` $value[0] $value[1] ";
+					// for similar "reports.`field` LIKE '%valud%'"
+					$where[] = " reports.`$key` $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " candidas.`$key` IS NULL ";
+				$where[] = " reports.`$key` IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " candidas.`$key` = $value ";
+				$where[] = " reports.`$key` = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " candidas.`$key` = '$value' ";
+				$where[] = " reports.`$key` = '$value' ";
 			}
 		}
 
@@ -210,7 +210,7 @@ class candidas
 		{
 			$_string = trim($_string);
 
-			$search = "(candidas.title  LIKE '%$_string%' )";
+			$search = "(reports.title  LIKE '%$_string%' )";
 			if($where)
 			{
 				$search = " AND ". $search;
@@ -228,7 +228,7 @@ class candidas
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(candidas.id) AS `count`	FROM candidas	$where $search ";
+			$pagenation_query = "SELECT	COUNT(reports.id) AS `count`	FROM reports	$where $search ";
 			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
 
 			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
@@ -244,7 +244,7 @@ class candidas
 		}
 
 		$json = json_encode(func_get_args());
-		$query = " SELECT $public_fields $where $search $order $limit -- candidas::search() 	-- $json";
+		$query = " SELECT $public_fields $where $search $order $limit -- reports::search() 	-- $json";
 
 		if(!$only_one_value)
 		{

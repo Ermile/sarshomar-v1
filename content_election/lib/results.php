@@ -1,7 +1,7 @@
 <?php
 namespace content_election\lib;
 
-class candidas
+class results
 {
 
 	/**
@@ -16,11 +16,25 @@ class candidas
 		$set = \lib\db\config::make_set($_args);
 		if($set)
 		{
-			\lib\db::query("INSERT INTO candidas SET $set", 'election');
+			\lib\db::query("INSERT INTO results SET $set", 'election');
 			return \lib\db::insert_id();
 		}
 	}
 
+
+	/**
+	 * insert multi record in results
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public static function insert_multi($_args)
+	{
+		$_args = \lib\db\config::make_multi_insert($_args);
+		if($_args)
+		{
+			return \lib\db::query("INSERT INTO results $_args", 'election');
+		}
+	}
 
 	/**
 	 * get election record
@@ -33,7 +47,7 @@ class candidas
 	{
 		if($_id && is_numeric($_id))
 		{
-			$query = "SELECT * FROM candidas WHERE id = $_id LIMIT 1";
+			$query = "SELECT * FROM results WHERE id = $_id LIMIT 1";
 			$result = \lib\db::get($query, null, true, 'election');
 			return $result;
 		}
@@ -55,7 +69,7 @@ class candidas
 			return false;
 		}
 
-		$query = "UPDATE candidas SET $set WHERE id = $_id LIMIT 1";
+		$query = "UPDATE results SET $set WHERE id = $_id LIMIT 1";
 		return \lib\db::query($query, 'election');
 	}
 
@@ -114,14 +128,33 @@ class candidas
 		if($_options['get_count'] === true)
 		{
 			$get_count      = true;
-			$public_fields  = " COUNT(candidas.id) AS 'electioncount' FROM	candidas";
+			$public_fields  =
+			"
+				COUNT(results.id) AS 'electioncount'
+				FROM
+					results
+					INNER JOIN candidas ON candidas.id = results.candida_id
+					LEFT JOIN elections ON elections.id = results.election_id
+					LEFT JOIN reports ON reports.id = results.report_id
+			";
 			$limit          = null;
 			$only_one_value = true;
 		}
 		else
 		{
 			$limit         = null;
-			$public_fields = " candidas.*, elections.title FROM candidas INNER JOIN elections ON elections.id = candidas.election_id";
+			$public_fields =
+			"
+					results.*,
+					elections.title,
+					candidas.*,
+					reports.*
+				FROM
+					results
+				INNER JOIN candidas ON candidas.id = results.candida_id
+				LEFT JOIN elections ON elections.id = results.election_id
+				LEFT JOIN reports ON reports.id = results.report_id
+			";
 
 			if($_options['limit'])
 			{
@@ -152,7 +185,7 @@ class candidas
 			}
 			else
 			{
-				$order = " ORDER BY candidas.id DESC ";
+				$order = " ORDER BY results.id DESC ";
 			}
 		}
 		else
@@ -163,7 +196,7 @@ class candidas
 			}
 			else
 			{
-				$order = " ORDER BY candidas.id $_options[order] ";
+				$order = " ORDER BY results.id $_options[order] ";
 			}
 		}
 
@@ -186,21 +219,21 @@ class candidas
 			{
 				if(isset($value[0]) && isset($value[1]) && is_string($value[0]) && is_string($value[1]))
 				{
-					// for similar "candidas.`field` LIKE '%valud%'"
-					$where[] = " candidas.`$key` $value[0] $value[1] ";
+					// for similar "results.`field` LIKE '%valud%'"
+					$where[] = " results.`$key` $value[0] $value[1] ";
 				}
 			}
 			elseif($value === null)
 			{
-				$where[] = " candidas.`$key` IS NULL ";
+				$where[] = " results.`$key` IS NULL ";
 			}
 			elseif(is_numeric($value))
 			{
-				$where[] = " candidas.`$key` = $value ";
+				$where[] = " results.`$key` = $value ";
 			}
 			elseif(is_string($value))
 			{
-				$where[] = " candidas.`$key` = '$value' ";
+				$where[] = " results.`$key` = '$value' ";
 			}
 		}
 
@@ -210,7 +243,7 @@ class candidas
 		{
 			$_string = trim($_string);
 
-			$search = "(candidas.title  LIKE '%$_string%' )";
+			$search = "(results.title  LIKE '%$_string%' )";
 			if($where)
 			{
 				$search = " AND ". $search;
@@ -228,7 +261,7 @@ class candidas
 
 		if($pagenation && !$get_count)
 		{
-			$pagenation_query = "SELECT	COUNT(candidas.id) AS `count`	FROM candidas	$where $search ";
+			$pagenation_query = "SELECT	COUNT(results.id) AS `count`	FROM results	$where $search ";
 			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
 
 			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
@@ -244,7 +277,7 @@ class candidas
 		}
 
 		$json = json_encode(func_get_args());
-		$query = " SELECT $public_fields $where $search $order $limit -- candidas::search() 	-- $json";
+		$query = " SELECT $public_fields $where $search $order $limit -- results::search() 	-- $json";
 
 		if(!$only_one_value)
 		{

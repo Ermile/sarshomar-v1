@@ -3,7 +3,7 @@ namespace content_election\admin\election;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \mvc\model
+class model extends \content_election\main\model
 {
 
 

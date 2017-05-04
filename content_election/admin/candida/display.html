@@ -8,6 +8,11 @@ ADD candida
 		<th>{%trans "id" %}</th>
 		<th>{%trans "election" %}</th>
 		<th>{%trans "name" %}</th>
+		<th>{%trans "family" %}</th>
+		<th>{%trans "father" %}</th>
+		<th>{%trans "nationalcode" %}</th>
+		<th>{%trans "brithdate" %}</th>
+		<th>{%trans "electioncode" %}</th>
 		<th>{%trans "desc" %}</th>
 	</tr>
 
@@ -16,6 +21,11 @@ ADD candida
 		<td><a href="{{url.base}}/election/admin/candida/edit={{value.id}}">{{value.id}}</a></td>
 		<td>{{value.title}}</td>
 		<td>{{value.name}}</td>
+		<td>{{value.family}}</td>
+		<td>{{value.father}}</td>
+		<td>{{value.nationalcode}}</td>
+		<td>{{value.birthdate}}</td>
+		<td>{{value.electioncode}}</td>
 		<td>{{value.desc}}</td>
 	</tr>
 {%endfor%}
@@ -36,6 +46,12 @@ ADD candida
 		{%endfor%}
 	</select>
 	<br>{%trans "name" %}:<input type="text" name="name" id="name" placeholder="name" value="{{candida.name}}">
+	<br>{%trans "family" %}:<input type="text" name="family" id="family" placeholder="family" value="{{candida.family}}">
+	<br>{%trans "father" %}:<input type="text" name="father" id="father" placeholder="father" value="{{candida.father}}">
+	<br>{%trans "birthdate" %}:<input type="date" name="birthdate" id="birthdate" placeholder="birthdate" value='{{candida.birthdate|date("m/d/Y")}}'>
+	<br>{%trans "nationalcode" %}:<input type="text" name="nationalcode" id="nationalcode" placeholder="nationalcode" value="{{candida.nationalcode}}">
+	<br>{%trans "electioncode" %}:<input type="text" name="electioncode" id="electioncode" placeholder="electioncode" value="{{candida.electioncode}}">
+
 	<br>
 	{%trans "Status"%}
 	<select name="status">

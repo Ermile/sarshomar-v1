@@ -3,7 +3,7 @@ namespace content_election\admin\candida;
 use \lib\utility;
 use \lib\debug;
 
-class model extends \mvc\model
+class model extends \content_election\main\model
 {
 
 
@@ -58,10 +58,15 @@ class model extends \mvc\model
 
 		$update =
 		[
-			'name'        => utility::post('name'),
-			'election_id' => utility::post('election_id'),
-			'status'      => utility::post('status'),
-			'desc'        => utility::post('desc'),
+			'name'         => utility::post('name'),
+			'family'       => utility::post('family'),
+			'father'       => utility::post('father'),
+			'birthdate'    => utility::post('birthdate'),
+			'nationalcode' => utility::post('nationalcode'),
+			'electioncode' => utility::post('electioncode'),
+			'election_id'  => utility::post('election_id'),
+			'status'       => utility::post('status'),
+			'desc'         => utility::post('desc'),
 		];
 
 		$result = \content_election\lib\candidas::update($update, $id);
@@ -87,10 +92,15 @@ class model extends \mvc\model
 
 		$args =
 		[
-			'name'        => utility::post('name'),
-			'election_id' => utility::post('election_id'),
-			'status'      => utility::post('status'),
-			'desc'        => utility::post('desc'),
+			'name'         => utility::post('name'),
+			'family'       => utility::post('family'),
+			'father'       => utility::post('father'),
+			'birthdate'    => utility::post('birthdate'),
+			'nationalcode' => utility::post('nationalcode'),
+			'electioncode' => utility::post('electioncode'),
+			'election_id'  => utility::post('election_id'),
+			'status'       => utility::post('status'),
+			'desc'         => utility::post('desc'),
 		];
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{

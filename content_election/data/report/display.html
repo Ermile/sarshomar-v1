@@ -1,0 +1,64 @@
+{%extends display.mvc%}
+{%block body%}
+ADD report
+{%if report_list%}
+<h1>report list</h1>
+<table border="1">
+<tr>
+		<th>{%trans "id" %}</th>
+		<th>{%trans "election" %}</th>
+		<th>{%trans "desc" %}</th>
+		<td>{%trans "date" %}</td>
+		<td>{%trans "level" %}</td>
+		<td>{%trans "number" %}</td>
+		<td>{%trans "cash" %}</td>
+		<td>{%trans "voted" %}</td>
+		<td>{%trans "invalid" %}</td>
+	</tr>
+
+{%for key, value in report_list%}
+	<tr>
+		<td><a href="{{url.base}}/election/data/report/edit={{value.id}}">{{value.id}}</a></td>
+		<td>{{value.title}}</td>
+		<td>{{value.desc}}</td>
+		<td>{{value.date}}</td>
+		<td>{{value.level}}</td>
+		<td>{{value.number}}</td>
+		<td>{{value.cash}}</td>
+		<td>{{value.voted}}</td>
+		<td>{{value.invalid}}</td>
+	</tr>
+{%endfor%}
+</table>
+{%endif%}
+{%if edit_report%}
+<h1>edit  report {{report.title}}</h1>
+{%else%}
+<h1>add new report</h1>
+{%endif%}
+
+<form method="post" data-ajaxify>
+	{%trans "election"%}
+	<select name="election_id">
+			<option  selected>{%trans "Please select one item"%}</option>
+		{%for key, value in election_list%}
+			<option value="{{value.id}}" {%if report.election_id == value.id %}selected{%endif%}>{{value.title}}</option>
+		{%endfor%}
+	</select>
+	<br>{%trans "date" %}:<input type="date" name="date" id="date" placeholder="date" value="{{report.date}}">
+	<br>{%trans "level" %}:<input type="text" name="level" id="level" placeholder="level" value="{{report.level}}">
+	<br>{%trans "number" %}:<input type="number" name="number" id="number" placeholder="number" value="{{report.number}}">
+	<br>{%trans "cash" %}:<input type="number" name="cash" id="cash" placeholder="cash" value="{{report.cash}}">
+	<br>{%trans "voted" %}:<input type="number" name="voted" id="voted" placeholder="voted" value="{{report.voted}}">
+	<br>{%trans "invalid" %}:<input type="number" name="invalid" id="invalid" placeholder="invalid" value="{{report.invalid}}">
+	<br>
+	{%trans "Status"%}
+	<select name="status">
+		<option value="enable" {%if report.status == 'enable' %}selected{%endif%}>{%trans "enable"%}</option>
+		<option value="disable" {%if report.status == 'disable' %}selected{%endif%}>{%trans "disable"%}</option>
+	</select>
+	<br>{%trans "desc" %}:<textarea name="desc" id="desc" placeholder="desc">{{report.desc}}</textarea>
+	<br><input type="submit" value="save">
+</form>
+{%endblock%}
+

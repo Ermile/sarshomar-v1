@@ -1,7 +1,7 @@
 <?php
 namespace content_election\admin\election;
 
-class controller extends \mvc\controller
+class controller extends \content_election\main\controller
 {
 	public function _route()
 	{

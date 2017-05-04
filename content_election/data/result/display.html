@@ -1,0 +1,64 @@
+{%extends display.mvc%}
+{%block body%}
+ ELECTION result {{election.title}}
+{%if result%}
+<h1>election list</h1>
+
+<table border="1">
+	<tr>
+		<th>{%trans "id"%}</th>
+		<th>{%trans "election_id"%}</th>
+		<th>{%trans "report_id"%}</th>
+		<th>{%trans "candida_id"%}</th>
+		<th>{%trans "total"%}</th>
+		<th>{%trans "status"%}</th>
+		<th>{%trans "createdate"%}</th>
+		<th>{%trans "date_modified"%}</th>
+		<th>{%trans "desc"%}</th>
+		<th>{%trans "meta"%}</th>
+		<th>{%trans "title"%}</th>
+		<th>{%trans "name"%}</th>
+		<th>{%trans "family"%}</th>
+		<th>{%trans "father"%}</th>
+		<th>{%trans "nationalcode"%}</th>
+		<th>{%trans "birthdate"%}</th>
+		<th>{%trans "electioncode"%}</th>
+		<th>{%trans "date"%}</th>
+		<th>{%trans "level"%}</th>
+		<th>{%trans "number"%}</th>
+		<th>{%trans "cash"%}</th>
+		<th>{%trans "voted"%}</th>
+		<th>{%trans "invalid"%}</th>
+	</tr>
+
+{%for key, value in result%}
+	<tr>
+		<td>{{value.id}}</td>
+		<td>{{value.election_id}}</td>
+		<td>{{value.report_id}}</td>
+		<td>{{value.candida_id}}</td>
+		<td>{{value.total}}</td>
+		<td>{{value.status}}</td>
+		<td>{{value.createdate}}</td>
+		<td>{{value.date_modified}}</td>
+		<td>{{value.desc}}</td>
+		<td>{{value.meta}}</td>
+		<td>{{value.title}}</td>
+		<td>{{value.name}}</td>
+		<td>{{value.family}}</td>
+		<td>{{value.father}}</td>
+		<td>{{value.nationalcode}}</td>
+		<td>{{value.birthdate}}</td>
+		<td>{{value.electioncode}}</td>
+		<td>{{value.date}}</td>
+		<td>{{value.level}}</td>
+		<td>{{value.number}}</td>
+		<td>{{value.cash}}</td>
+		<td>{{value.voted}}</td>
+		<td>{{value.invalid}}</td>
+	</tr>
+{%endfor%}
+</table>
+{%endif%}
+
+{%endblock%}
