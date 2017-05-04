@@ -352,15 +352,18 @@
 
 {%block poll_similar%}
  {% set similar =  similar_post({"post_id":poll.id|shortURL('decode'),"term_type" :"sarshomar%" , "termusage_foreign": "tag", "post_status": "publish", "post_privacy": "public"})%}
- {% if similar %}
+
+{% if similar %}
  <div class="title">{%trans "Similar Questions"%}</div>
   <ul>
    {%for key, value in similar%}
    <li><a href="{{url.base}}/{{value.url}}">{{value.title}}</a></li>
    {%endfor%}
   </ul>
-  {% else %}
-    {% set last_post =  post_search({"post_type":"poll","post_status" :"publish" , "post_privacy": "public", "order":"desc"}) %}
+{% endif %}
+
+{% if similar|length < 5%}
+    {% set last_post =  post_search({"post_type":"poll","post_status" :"publish" , "post_privacy": "public", "order":"desc", "limit":(10-(similar|length))  }) %}
     {% if last_post %}
     <div class="title">{%trans "Latest Questions"%}</div>
     <ul>
