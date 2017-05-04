@@ -49,7 +49,7 @@ class model extends \mvc\model
 		$sitemap->addItem('terms', '0.8', 'weekly');
 		$sitemap->addItem('privacy', '0.8', 'weekly');
 		$sitemap->addItem('social-responsibility', '0.8', 'weekly');
-		$sitemap->addItem('features', '0.8', 'weekly');
+		$sitemap->addItem('benefits', '0.8', 'weekly');
 		$sitemap->addItem('ref', '0.5', 'monthly');
 		$sitemap->addItem('gift', '0.4', 'monthly');
 		$sitemap->addItem('logo', '1', 'monthly');
@@ -60,21 +60,21 @@ class model extends \mvc\model
 		$sitemap->addItem('target/agencies', '0.8', 'weekly');
 		$sitemap->addItem('target/developers-and-webmasters', '0.8', 'weekly');
 
-		// add all features
-		$sitemap->addItem('features/guest', '0.8', 'weekly');
-		$sitemap->addItem('features/multimedia-questions', '0.7', 'weekly');
-		$sitemap->addItem('features/results-output', '0.7', 'weekly');
-		$sitemap->addItem('features/graphic-results', '0.7', 'weekly');
-		$sitemap->addItem('features/essay-type-questions', '0.7', 'weekly');
-		$sitemap->addItem('features/language-localization', '0.7', 'weekly');
-		$sitemap->addItem('features/without-disturbance', '0.7', 'weekly');
-		$sitemap->addItem('features/social-networks', '0.7', 'weekly');
-		$sitemap->addItem('features/target-statistical-population', '0.7', 'weekly');
-		$sitemap->addItem('features/question-charts', '0.7', 'weekly');
-		$sitemap->addItem('features/results-personalization', '0.7', 'weekly');
-		$sitemap->addItem('features/easy-access', '0.7', 'weekly');
-		$sitemap->addItem('features/valid-population', '0.7', 'weekly');
-		$sitemap->addItem('features/knowledge-base', '0.7', 'weekly');
+		// add all benefits
+		$sitemap->addItem('benefits/guest', '0.8', 'weekly');
+		$sitemap->addItem('benefits/multimedia-questions', '0.7', 'weekly');
+		$sitemap->addItem('benefits/results-output', '0.7', 'weekly');
+		$sitemap->addItem('benefits/graphic-results', '0.7', 'weekly');
+		$sitemap->addItem('benefits/essay-type-questions', '0.7', 'weekly');
+		$sitemap->addItem('benefits/language-localization', '0.7', 'weekly');
+		$sitemap->addItem('benefits/without-disturbance', '0.7', 'weekly');
+		$sitemap->addItem('benefits/social-networks', '0.7', 'weekly');
+		$sitemap->addItem('benefits/target-statistical-population', '0.7', 'weekly');
+		$sitemap->addItem('benefits/question-charts', '0.7', 'weekly');
+		$sitemap->addItem('benefits/results-personalization', '0.7', 'weekly');
+		$sitemap->addItem('benefits/easy-access', '0.7', 'weekly');
+		$sitemap->addItem('benefits/valid-population', '0.7', 'weekly');
+		$sitemap->addItem('benefits/knowledge-base', '0.7', 'weekly');
 
 
 
@@ -91,27 +91,27 @@ class model extends \mvc\model
 		$sitemap->addItem('fa/terms', '0.8', 'weekly');
 		$sitemap->addItem('fa/privacy', '0.8', 'weekly');
 		$sitemap->addItem('fa/social-responsibility', '0.8', 'weekly');
-		$sitemap->addItem('fa/features', '0.8', 'weekly');
+		$sitemap->addItem('fa/benefits', '0.8', 'weekly');
 		$sitemap->addItem('fa/ref', '0.5', 'monthly');
 		$sitemap->addItem('fa/gift', '0.4', 'monthly');
 		$sitemap->addItem('fa/logo', '1', 'monthly');
 
 
-		// add all features
-		$sitemap->addItem('fa/features/guest', '0.8', 'weekly');
-		$sitemap->addItem('fa/features/multimedia-questions', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/results-output', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/graphic-results', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/essay-type-questions', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/language-localization', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/without-disturbance', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/social-networks', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/target-statistical-population', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/question-charts', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/results-personalization', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/easy-access', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/valid-population', '0.7', 'weekly');
-		$sitemap->addItem('fa/features/knowledge-base', '0.7', 'weekly');
+		// add all benefits
+		$sitemap->addItem('fa/benefits/guest', '0.8', 'weekly');
+		$sitemap->addItem('fa/benefits/multimedia-questions', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/results-output', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/graphic-results', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/essay-type-questions', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/language-localization', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/without-disturbance', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/social-networks', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/target-statistical-population', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/question-charts', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/results-personalization', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/easy-access', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/valid-population', '0.7', 'weekly');
+		$sitemap->addItem('fa/benefits/knowledge-base', '0.7', 'weekly');
 
 		// add all targets
 		$sitemap->addItem('fa/target/organizations-and-companies', '0.8', 'weekly');
