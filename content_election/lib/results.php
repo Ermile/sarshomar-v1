@@ -372,6 +372,10 @@ class results
 	 */
 	public static function get_last($_election_id)
 	{
+		if(!$_election_id || !is_numeric($_election_id))
+		{
+			return false;
+		}
 		$query =
 		"
 			SELECT
@@ -391,6 +395,39 @@ class results
 		$result = \lib\db::get($query, null, false, 'election');
 		return $result;
 	}
+
+
+	/**
+	 * Gets the total.
+	 *
+	 * @param      <type>  $_election_id  The election identifier
+	 */
+	public static function get_senario($_election_id)
+	{
+		if(!$_election_id || !is_numeric($_election_id))
+		{
+			return false;
+		}
+		$query =
+		"
+			SELECT
+				results.*,
+				candidas.*,
+				reports.*
+			FROM
+				results
+			LEFT JOIN reports ON reports.id = results.report_id
+			INNER JOIN candidas ON candidas.id = results.candida_id
+			INNER JOIN elections ON elections.id = results.election_id
+			WHERE
+				candidas.status = 'active' AND
+				elections.id    = $_election_id
+			ORDER BY reports.date ASC
+		";
+		$result = \lib\db::get($query, null, false, 'election');
+		return $result;
+	}
+
 
 }
 ?>

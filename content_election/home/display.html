@@ -7,6 +7,8 @@
 <br>
 {{block('table')}}
 <br>
+{{block('senario')}}
+<br>
 {{block('time_line')}}
 <br>
 {{block('links')}}
@@ -65,3 +67,10 @@
 	time line
 {%endblock%}
 
+
+{%block senario%}
+{%if result.senario%}
+<H1>SENARIO</H1>
+	<code>{{result.senario}}</code>
+{%endif%}
+{%endblock%}
