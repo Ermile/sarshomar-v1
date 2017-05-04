@@ -412,7 +412,7 @@ function gotoStep(_step, _delay, _resend)
 			runLoading(true);
 			changer('username');
 			changer('go');
-			changer('pin');
+			changer('pin', false);
 			changer('code');
 			break;
 
