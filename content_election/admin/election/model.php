@@ -69,6 +69,8 @@ class model extends \content_election\main\model
 			'jalali_year' => utility::post('jalali_year'),
 			'year'        => utility::post('year'),
 			'desc'        => utility::post('desc'),
+			'en_url'      => utility::post('en_url'),
+			'fa_url'      => utility::post('fa_url'),
 		];
 
 		$result = \content_election\lib\elections::update($update, $id);
@@ -104,6 +106,8 @@ class model extends \content_election\main\model
 			'jalali_year' => utility::post('jalali_year'),
 			'year'        => utility::post('year'),
 			'desc'        => utility::post('desc'),
+			'en_url'      => utility::post('en_url'),
+			'fa_url'      => utility::post('fa_url'),
 		];
 
 		$result = \content_election\lib\elections::insert($args);

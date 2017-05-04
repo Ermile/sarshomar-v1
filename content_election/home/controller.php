@@ -8,7 +8,7 @@ class controller extends \content_election\main\controller
 		$url = \lib\router::get_url();
 		if($id = $this->model()->check_url($url))
 		{
-			$this->get("load", "load")->ALL("/.*\/($id)/");
+			$this->get("load", "load")->ALL("/.*/");
 		}
 	}
 }

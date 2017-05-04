@@ -23,7 +23,7 @@ class model extends \content_election\main\model
 	 */
 	public function get_load($_args)
 	{
-		$election_id = $this->getid($_args);
+		$election_id = $this->check_url(\lib\router::get_url());
 		if($election_id)
 		{
 			$result             = [];

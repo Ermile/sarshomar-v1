@@ -1,6 +1,7 @@
 {%extends display.mvc%}
 {%block body%}
 DATA
+{{block('running')}}
 {%if election_list%}
 <h1>election list</h1>
 <table border="1">
@@ -17,7 +18,8 @@ DATA
 		<th>{%trans "year" %}</th>
 		<th>{%trans "desc" %}</th>
 		<th>{%trans "status" %}</th>
-		<th>{%trans "add report" %}</th>
+		<th>{%trans "add en_url" %}</th>
+		<th>{%trans "add fa_url" %}</th>
 		<th>{%trans "add result" %}</th>
 	</tr>
 
@@ -35,10 +37,23 @@ DATA
 		<td>{{value.year}}</td>
 		<td>{{value.desc}}</td>
 		<td>{{value.status}}</td>
-		<td><a href="{{url.base}}/election/data/report/add/{{value.id}}">{%trans "add report"%}</a></td>
+		<td><a href="{{url.base}}/election/{{value.en_url}}">{%trans "En url"%}</a></td>
+		<td><a href="{{url.base}}/election/{{value.fa_url}}">{%trans "Fa url"%}</a></td>
 		<td><a href="{{url.base}}/election/data/result/add/{{value.id}}">{%trans "add result"%}</a></td>
 	</tr>
 {%endfor%}
 </table>
+{%endif%}
+{%endblock%}
+
+
+{%block running%}
+{%if running%}
+
+{%for key, value in running%}
+	<h1><a href="{{url.base}}/election/{{value.fa_url}}">election {{value.title}} is running</a></h1>
+	<h2><a href="{{url.base}}/election/data/report/add/{{value.id}}">add report ;)</a></h2>
+{%endfor%}
+
 {%endif%}
 {%endblock%}

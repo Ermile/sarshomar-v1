@@ -14,6 +14,8 @@ ADD ELECTION
 		<th>{%trans "start_time" %}</th>
 		<th>{%trans "end_time" %}</th>
 		<th>{%trans "jalali_year" %}</th>
+		<th>{%trans "en_url" %}</th>
+		<th>{%trans "fa_url" %}</th>
 		<th>{%trans "year" %}</th>
 		<th>{%trans "desc" %}</th>
 		<th>{%trans "status" %}</th>
@@ -30,6 +32,8 @@ ADD ELECTION
 		<td>{{value.start_time}}</td>
 		<td>{{value.end_time}}</td>
 		<td>{{value.jalali_year}}</td>
+		<td><a href="{{url.base}}/election/{{value.en_url}}">{{value.en_url}}</a></td>
+		<td><a href="{{url.base}}/election/{{value.fa_url}}">{{value.fa_url}}</a></td>
 		<td>{{value.year}}</td>
 		<td>{{value.desc}}</td>
 		<td>{{value.status}}</td>
@@ -54,6 +58,8 @@ ADD ELECTION
 	<br>{%trans "jalali_year" %}:<input type="number" name="jalali_year" id="jalali_year" placeholder="jalali_year" value="{{election.jalali_year}}">
 	<br>{%trans "year" %}:<input type="number" name="year" id="year" placeholder="year" value="{{election.year}}">
 	<br>{%trans "desc" %}:<textarea name="desc" id="desc" placeholder="desc">{{election.desc}}</textarea>
+	<br>{%trans "en_url" %}:<input type="text" name="en_url" id="en_url" placeholder="en_url" value="{{election.en_url}}">
+	<br>{%trans "fa_url" %}:<input type="text" name="fa_url" id="fa_url" placeholder="fa_url" value="{{election.fa_url}}">
 	<br>
 	{%trans "Status"%}<select name="status">
 		<option value="awaiting" {%if election.status == 'awaiting' %}selected{%endif%}>{%trans "awaiting"%}</option>

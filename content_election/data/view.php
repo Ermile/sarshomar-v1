@@ -5,7 +5,18 @@ class view extends \content_election\main\view
 {
 	public function config()
 	{
-		$this->data->election_list = \content_election\lib\elections::search();
+		$election = \content_election\lib\elections::search();
+		$this->data->election_list = $election;
+		$running = [];
+		foreach ($election as $key => $value)
+		{
+			if(isset($value['status']) && $value['status'] === 'running')
+			{
+				$running[] = $value;
+			}
+		}
+
+		$this->data->running = $running;
 	}
 }
 ?>
