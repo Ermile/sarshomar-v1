@@ -21,6 +21,13 @@
  <meta property ="og:type"                 content="website"/>
 {%if site.currentlang == 'fa'%}
  <meta property ='og:locale'               content='fa_IR'/>
+{%endif%}
+{%if poll.file%}
+ <meta property ="og:image"                content="{{poll.file.url}}"/>
+ <meta property ="og:image:width"          content="512"/>
+ <meta property ="og:image:height"         content="512"/>
+{%else%}
+{%if site.currentlang == 'fa'%}
  <meta property ="og:image"                content="{{url.static}}images/share/og-wide-fa.png"/>
 {%else%}
  <meta property ="og:image"                content="{{url.static}}images/share/og-wide-en.png"/>
@@ -30,6 +37,7 @@
  <meta property ="og:image"                content="{{url.static}}images/share/og-square.png"/>
  <meta property ="og:image:width"          content="512"/>
  <meta property ="og:image:height"         content="512"/>
+{%endif%}
 {%endblock%}
 
 
