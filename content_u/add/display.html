@@ -60,8 +60,7 @@
 {%block step2%}
     {%use "content_u/add/step2.html"%}
      {{block('filter_public')}}
-
-      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='private' data-response-effect='slide'>
+      <div class="row auto poll-filters" data-response='filter_privacy' data-response-where='private' data-response-effect='slide' {% if poll.privacy == 'private' %}{%else%}data-response-hide{%endif%}>
       <div class="in msg info">برای جمع‌آوری نظرات در سوالات خصوصی، انتشار و به اشتراک گذاری سوال را خودتان باید انجام دهید.</div>
      {{block('feature_poll_password')}}
      </div>
