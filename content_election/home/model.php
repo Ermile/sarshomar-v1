@@ -87,6 +87,10 @@ class model extends \content_election\main\model
 
 			$result['senario'] = json_encode($temp_senario, JSON_UNESCAPED_UNICODE);
 
+
+			$time_line = \content_election\lib\results::get_time_line($election_id);
+			$result['time_line'] = $time_line;
+
 			return $result;
 		}
 	}

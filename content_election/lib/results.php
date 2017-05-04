@@ -429,5 +429,32 @@ class results
 	}
 
 
+	/**
+	 * Gets the total.
+	 *
+	 * @param      <type>  $_election_id  The election identifier
+	 */
+	public static function get_time_line($_election_id)
+	{
+		if(!$_election_id || !is_numeric($_election_id))
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				elections.*,
+				candidas.*
+			FROM
+				elections
+			LEFT JOIN candidas ON candidas.id = elections.win
+			WHERE
+				elections.cat = (SELECT cat FROM elections WHERE id = $_election_id LIMIT 1)
+			ORDER BY elections.jalali_year ASC
+		";
+		$result = \lib\db::get($query, null, false, 'election');
+		return $result;
+	}
 }
 ?>
