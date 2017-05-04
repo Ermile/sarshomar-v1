@@ -17,5 +17,11 @@
 	{%for key, value in result.result%}
 		{{value.name}} {{value.family}} ----- {{value.total|number_format|fitNumber}}<br>
 	{%endfor%}
+{%else%}
+	{%if running%}
+		{%for key, value in running%}
+			<h1><a href="{{url.base}}/election/{{value.fa_url}}">election {{value.title}} is running</a></h1>
+		{%endfor%}
+	{%endif%}
 {%endif%}
 {%endblock%}
