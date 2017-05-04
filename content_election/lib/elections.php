@@ -41,6 +41,30 @@ class elections
 	}
 
 
+
+	/**
+	 * check url
+	 *
+	 * @param      <type>  $_url   The url
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function check_url($_url)
+	{
+		if($_url && is_string($_url))
+		{
+			$_url   = \lib\utility\safe::safe($_url);
+			$query  = "SELECT * FROM elections WHERE en_url = '$_url' OR fa_url = '$_url' LIMIT 1";
+			$result = \lib\db::get($query, null, true, 'election');
+			if(isset($result['id']))
+			{
+				return $result['id'];
+			}
+		}
+		return false;
+	}
+
+
 	/**
 	 * update election
 	 *

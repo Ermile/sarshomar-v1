@@ -12,6 +12,8 @@ CREATE TABLE election.elections (
 `end_time`		datetime DEFAULT NULL,
 `jalali_year`	int(4) DEFAULT NULL,
 `year` 			int(4) DEFAULT NULL,
+`en_url`		varchar(500) NULL DEFAULT NULL,
+`fa_url`		varchar(500) NULL DEFAULT NULL,
 `createdate`	datetime DEFAULT CURRENT_TIMESTAMP,
 `date_modified`	timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 `desc`			text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,

@@ -292,5 +292,33 @@ class results
 		return $result;
 	}
 
+
+	/**
+	 * Gets the total.
+	 *
+	 * @param      <type>  $_election_id  The election identifier
+	 */
+	public static function get_total($_election_id)
+	{
+		$query =
+		"
+			SELECT
+				SUM(results.total) AS `total`,
+				candidas.name,
+				candidas.family
+			FROM
+				results
+			INNER JOIN candidas ON candidas.id = results.candida_id
+			INNER JOIN elections ON elections.id = results.election_id
+			WHERE
+				elections.id   = $_election_id AND
+				results.status = 'enable'
+			GROUP BY candidas.name, candidas.family
+			ORDER BY total DESC
+		";
+		$result = \lib\db::get($query, null, false, 'election');
+		return $result;
+	}
+
 }
 ?>

@@ -35,38 +35,40 @@ class view extends \lib\mvc\view
 		$this->data->iperm['u']     = $this->access('u', 'all');
 		$this->data->iperm['admin'] = $this->access('admin', 'all');
 
-
-		// get total sarshomart answered
-		$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
-		$this->data->stat = $total;
-		// enable heatmap to detect users action
-		if(\lib\utility::get('heatmap'))
+		if(\lib\router::get_repository_name() !== 'content_election')
 		{
-			$this->include->heatmap = true;
-		}
-
-		$this->data->user_unit      = null;
-		$this->data->user_cash      = null;
-		$this->data->user_cash_gift = null;
-		$this->data->is_guest       = null;
-
-		if($this->login())
-		{
-			$user_unit                  = \lib\db\units::find_user_unit($this->login('id'), true);
-			$user_unit_id               = \lib\db\units::get_id($user_unit);
-			$user_unit_id               = (int) $user_unit_id;
-			if($user_unit == 'dollar')
+			// get total sarshomart answered
+			$total = \lib\utility\stat_polls::get_sarshomar_total_answered();
+			$this->data->stat = $total;
+			// enable heatmap to detect users action
+			if(\lib\utility::get('heatmap'))
 			{
-				$user_unit = '$';
+				$this->include->heatmap = true;
 			}
-			$this->data->user_unit      = T_($user_unit);
-			$user_cash = \lib\db\transactions::budget($this->login('id'), ['unit' => $user_unit_id]);
-			if(is_array($user_cash))
+
+			$this->data->user_unit      = null;
+			$this->data->user_cash      = null;
+			$this->data->user_cash_gift = null;
+			$this->data->is_guest       = null;
+
+			if($this->login())
 			{
-				$user_cash['total'] = array_sum($user_cash);
+				$user_unit                  = \lib\db\units::find_user_unit($this->login('id'), true);
+				$user_unit_id               = \lib\db\units::get_id($user_unit);
+				$user_unit_id               = (int) $user_unit_id;
+				if($user_unit == 'dollar')
+				{
+					$user_unit = '$';
+				}
+				$this->data->user_unit      = T_($user_unit);
+				$user_cash = \lib\db\transactions::budget($this->login('id'), ['unit' => $user_unit_id]);
+				if(is_array($user_cash))
+				{
+					$user_cash['total'] = array_sum($user_cash);
+				}
+				$this->data->user_cash = $user_cash;
+				$this->data->is_guest       = \lib\utility\users::is_guest($this->login('id'));
 			}
-			$this->data->user_cash = $user_cash;
-			$this->data->is_guest       = \lib\utility\users::is_guest($this->login('id'));
 		}
 
 		$this->data->xhr =

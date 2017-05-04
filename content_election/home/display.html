@@ -1,4 +1,21 @@
 {%extends display.mvc%}
 {%block body%}
-ELECTION
+
+{{block('win')}}
+<br>
+{{block('result')}}
+
+{%endblock%}
+
+{%block win%}
+	WIN
+{%endblock%}
+
+{%block result%}
+{%if result%}
+	{{result.election.title}}
+	{%for key, value in result.result%}
+		{{value.name}} {{value.family}} ----- {{value.total|number_format|fitNumber}}<br>
+	{%endfor%}
+{%endif%}
 {%endblock%}
