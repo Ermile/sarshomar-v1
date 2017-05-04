@@ -6,24 +6,6 @@ use \lib\debug;
 class model extends \content_election\main\model
 {
 
-
-	/**
-	 * Gets the identifier from url
-	 *
-	 * @param      <type>   $_args  The arguments
-	 *
-	 * @return     boolean  The identifier.
-	 */
-	public function getid($_args)
-	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : false;
-		if(!$id)
-		{
-			return false;
-		}
-		return $id;
-	}
-
 	/**
 	 * Gets the add.
 	 *
@@ -58,6 +40,12 @@ class model extends \content_election\main\model
 		return \content_election\lib\reports::search();
 	}
 
+
+	/**
+	 * Posts an add result.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function post_add_result($_args)
 	{
 		$id                = $this->getid($_args);
@@ -108,6 +96,7 @@ class model extends \content_election\main\model
 
 		if(!empty($insert))
 		{
+			\content_election\lib\results::disable_old($id);
 			$result = \content_election\lib\results::insert_multi($insert);
 			if($result)
 			{

@@ -28,7 +28,7 @@ class model extends \content_election\main\model
 		{
 			$result             = [];
 			$result['election'] = \content_election\lib\elections::get($election_id);
-			$vote               = \content_election\lib\results::get_total($election_id);
+			$vote               = \content_election\lib\results::get_last($election_id);
 			$result['result']   = $vote;
 			return $result;
 		}

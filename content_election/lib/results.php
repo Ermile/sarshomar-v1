@@ -294,16 +294,31 @@ class results
 
 
 	/**
+	 * Disables the old record of this elections
+	 *
+	 * @param      <type>  $_election_id  The election identifier
+	 */
+	public static function disable_old($_election_id)
+	{
+		if(!$_election_id || !is_numeric($_election_id))
+		{
+			return false;
+		}
+		$query = "UPDATE results SET results.status = 'disable' WHERE results.status = 'enable' AND results.election_id = $_election_id ";
+		return \lib\db::query($query, 'election');
+	}
+
+	/**
 	 * Gets the total.
 	 *
 	 * @param      <type>  $_election_id  The election identifier
 	 */
-	public static function get_total($_election_id)
+	public static function get_last($_election_id)
 	{
 		$query =
 		"
 			SELECT
-				SUM(results.total) AS `total`,
+				results.total AS `total`,
 				candidas.name,
 				candidas.family
 			FROM
@@ -311,9 +326,9 @@ class results
 			INNER JOIN candidas ON candidas.id = results.candida_id
 			INNER JOIN elections ON elections.id = results.election_id
 			WHERE
-				elections.id   = $_election_id AND
-				results.status = 'enable'
-			GROUP BY candidas.name, candidas.family
+				candidas.status = 'active' AND
+				elections.id    = $_election_id AND
+				results.status  = 'enable'
 			ORDER BY total DESC
 		";
 		$result = \lib\db::get($query, null, false, 'election');
