@@ -48,18 +48,24 @@ class model extends \content_election\main\model
 	 */
 	public function post_add_result($_args)
 	{
-		$id                = $this->getid($_args);
-		$report            = [];
-		$report['title']   = utility::post('title');
-		$report['desc']    = utility::post('desc');
-		$report['date']    = utility::post('date');
-		$report['level']   = utility::post('level');
-		$report['number']  = utility::post('number');
-		$report['cash']    = utility::post('cash');
-		$report['voted']   = utility::post('voted');
-		$report['invalid'] = utility::post('invalid');
+		$id                    = $this->getid($_args);
+
+		if(!$id)
+		{
+			return false;
+		}
+
+		$report                = [];
+		$report['election_id'] = $id;
+		$report['date']        = utility::post('date');
+		$report['level']       = utility::post('level');
+		$report['number']      = utility::post('number');
+		$report['cash']        = utility::post('cash');
+		$report['voted']       = utility::post('voted');
+		$report['invalid']     = utility::post('invalid');
 
 		$candida_total    = [];
+
 		foreach (utility::post() as $key => $value)
 		{
 			if(preg_match("/^total\_(\d+)$/", $key, $split))
@@ -74,6 +80,7 @@ class model extends \content_election\main\model
 		$report_id = null;
 		$temp      = $report;
 		$temp      = array_filter($temp);
+
 		if(!empty($temp))
 		{
 			$report_id = \content_election\lib\reports::insert($report);
@@ -100,6 +107,7 @@ class model extends \content_election\main\model
 			$result = \content_election\lib\results::insert_multi($insert);
 			if($result)
 			{
+				\content_election\lib\results::update_cash($id);
 				debug::true(T_("result added"));
 			}
 			else

@@ -17,7 +17,7 @@ class reports
 		if($set)
 		{
 			\lib\db::query("INSERT INTO reports SET $set", 'election');
-			return \lib\db::insert_id();
+			return \lib\db::insert_id(\lib\db::$link_open['election']);
 		}
 	}
 

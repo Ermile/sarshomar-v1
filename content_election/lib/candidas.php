@@ -17,7 +17,7 @@ class candidas
 		if($set)
 		{
 			\lib\db::query("INSERT INTO candidas SET $set", 'election');
-			return \lib\db::insert_id();
+			return \lib\db::insert_id(\lib\db::$link_open['election']);
 		}
 	}
 

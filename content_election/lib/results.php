@@ -17,7 +17,7 @@ class results
 		if($set)
 		{
 			\lib\db::query("INSERT INTO results SET $set", 'election');
-			return \lib\db::insert_id();
+			return \lib\db::insert_id(\lib\db::$link_open['election']);
 		}
 	}
 
@@ -290,6 +290,63 @@ class results
 		}
 
 		return $result;
+	}
+
+
+	/**
+	 * update some cash after insert result
+	 *
+	 * @param      <type>  $_election_id  The election identifier
+	 */
+	public static function update_cash($_election_id)
+	{
+		if(!$_election_id || !is_numeric($_election_id))
+		{
+			return false;
+		}
+		$query =
+		"
+			UPDATE
+				elections
+			SET
+				elections.cash =
+				(
+					SELECT
+						IFNULL(reports.cash, 0)
+					FROM reports
+					WHERE
+						reports.election_id = $_election_id AND
+						reports.status      = 'enable'
+					ORDER BY reports.id DESC
+					LIMIT 1
+				),
+				elections.voted =
+				(
+					SELECT
+						IFNULL(reports.voted, 0)
+					FROM reports
+					WHERE
+						reports.election_id = $_election_id AND
+						reports.status      = 'enable'
+					ORDER BY reports.id DESC
+					LIMIT 1
+				),
+				elections.invalid =
+				(
+					SELECT
+						IFNULL(reports.invalid, 0)
+					FROM reports
+					WHERE
+						reports.election_id = $_election_id AND
+						reports.status      = 'enable'
+					ORDER BY reports.id DESC
+					LIMIT 1
+				)
+			WHERE
+				elections.id = $_election_id
+			LIMIT 1
+		";
+		\lib\db::query($query, 'election');
 	}
 
 
