@@ -4,6 +4,8 @@
 {{block('win')}}
 <br>
 {{block('result')}}
+<br>
+{{block('table')}}
 
 {%endblock%}
 
@@ -23,5 +25,25 @@
 			<h1><a href="{{url.base}}/election/{{value.fa_url}}">election {{value.title}} is running</a></h1>
 		{%endfor%}
 	{%endif%}
+{%endif%}
+{%endblock%}
+
+{%block table%}
+{%if result%}
+<table>
+	<tr>
+		<th>name</th>
+		<th>total</th>
+		<th>persent</th>
+		<th></th>
+	</tr>
+	{%for key, value in result.result%}
+		<tr>
+			<td>{{value.name}} {{value.family}}</td>
+			<td>{{value.total}}</td>
+			<td>{{value.percent}}</td>
+		</tr>
+	{%endfor%}
+</table>
 {%endif%}
 {%endblock%}
