@@ -10,9 +10,10 @@ Disallow: /*.asp$
 Disallow: /*.txt$
 Disallow: /*.php$
 
+Disallow: fa/enter/
+Disallow: fa/enter
+Disallow: fa/admin/
+Disallow: fa/cp/
+
 Sitemap: http://sarshomar.com/sitemap.xml
 Sitemap: http://sarshomar.com/sitemap/sitemap.xml
-
-
-User-agent: Browsershots
-Disallow:
