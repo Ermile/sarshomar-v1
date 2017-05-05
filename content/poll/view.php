@@ -176,6 +176,38 @@ class view extends \mvc\view
 				$poll['my_answer'] = [];
 			}
 		}
+
+		// get opts and fix order of them
+		$descOpts = array_column($poll['result']['answers'], 'value', 'title');
+		arsort($descOpts);
+		$desOptscText = '';
+		foreach ($descOpts as $key => $value)
+		{
+			$desOptscText .= $key. '('. \lib\utility\human::Number($value). ') ';
+		}
+		$this->data->page['desc'] = ''. T_('Result'). ': '. $desOptscText;
+
+		// fix link for twitter
+		if(isset($poll['file']['url']) && isset($poll['file']['type']))
+		{
+			switch (isset($poll['file']['type']))
+			{
+				case 'image':
+					$this->data->share['twitterCard'] = 'summary_large_image';
+					$this->data->share['image']       = $poll['file']['url'];
+					break;
+
+				case 'audio':
+				case 'video':
+					$this->data->share['twitterCard'] = 'player';
+					$this->data->share['image']       = $poll['file']['url'];
+					break;
+
+				default:
+					break;
+			}
+		}
+
 		$this->data->poll      = $poll;
 
 		if(isset($poll['result']['answers']))

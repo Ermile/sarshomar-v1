@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-04-26 13:05+0430\n"
-"PO-Revision-Date: 2017-04-26 13:06+0430\n"
+"POT-Creation-Date: 2017-05-05 15:51+0430\n"
+"PO-Revision-Date: 2017-05-05 15:52+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -177,6 +177,10 @@ msgstr " و :min دقیقه"
 #: saloos/lib/utility/kavenegar_api.php:112
 msgid "Error on Sms system"
 msgstr "خطا در سیستم پیامک"
+
+#: saloos/lib/utility/mail.php:49
+msgid "Mailer Error :error"
+msgstr ""
 
 #: saloos/lib/utility/payment/zarinpal.php:51
 msgid "Can not connect to zarinpal gateway. Install it!"
@@ -523,40 +527,40 @@ msgstr "طول رمز عبور باید بیش از ۵ کاراکتر باشد."
 msgid "Password length must be less 50 characters!"
 msgstr "طول رمز عبور باید کمتر از ۵۰ کاراکتر باشد!"
 
-#: saloos/saloos-addons/content_account/changepass/model.php:78
+#: saloos/saloos-addons/content_account/changepass/model.php:74
 #: saloos/saloos-addons/includes/languages/trans_addons.php:518
 #: sarshomar/includes/languages/trans_addons.php:518
 msgid "change password successfully"
 msgstr "تغییر کلمه عبور با موفقیت به انجام رسید"
 
-#: saloos/saloos-addons/content_account/changepass/model.php:101
+#: saloos/saloos-addons/content_account/changepass/model.php:97
 #: saloos/saloos-addons/includes/languages/trans_addons.php:519
 #: sarshomar/includes/languages/trans_addons.php:519
 msgid "change password failed!"
 msgstr "تغییر کلمه عبور ناموفق بود!"
 
-#: saloos/saloos-addons/content_account/changepass/model.php:107
+#: saloos/saloos-addons/content_account/changepass/model.php:103
 msgid "Password is incorrect"
 msgstr "کلمه عبور اشتباه است"
 
-#: saloos/saloos-addons/content_account/changepass/model.php:113
+#: saloos/saloos-addons/content_account/changepass/model.php:109
 msgid "user is incorrect"
 msgstr "نام کاربری اشتباه است"
 
-#: saloos/saloos-addons/content_account/changepass/model.php:119
-#: saloos/saloos-addons/content_account/login/model.php:141
+#: saloos/saloos-addons/content_account/changepass/model.php:115
+#: saloos/saloos-addons/content_account/login/model.php:122
 #: saloos/saloos-addons/includes/languages/trans_addons.php:349
 #: sarshomar/includes/languages/trans_addons.php:349
 msgid "Please forward this message to administrator"
 msgstr "لطفا این پیغام را برای مدیر سیستم ارسال کنید"
 
-#: saloos/saloos-addons/content_account/home/controller.php:50
-#: saloos/saloos-addons/content_account/home/controller.php:62
+#: saloos/saloos-addons/content_account/home/controller.php:46
+#: saloos/saloos-addons/content_account/home/controller.php:58
 msgid "you can't access to this page!"
 msgstr "شما اجازه دسترسی به این صفحه را ندارید!"
 
-#: saloos/saloos-addons/content_account/home/controller.php:72
-#: saloos/saloos-addons/content_account/home/controller.php:85
+#: saloos/saloos-addons/content_account/home/controller.php:68
+#: saloos/saloos-addons/content_account/home/controller.php:81
 #: saloos/saloos-addons/content_account/signup/controller.php:15
 msgid "you are logined to system!"
 msgstr "شما قبلا یک بار وارد سیستم شده اید!"
@@ -620,14 +624,14 @@ msgstr "ارمایل"
 msgid "Please enter a valid mobile phone number"
 msgstr "لطفا شماره موبایل معتبری وارد کنید"
 
-#: saloos/saloos-addons/content_account/login/model.php:125
+#: saloos/saloos-addons/content_account/login/model.php:106
 #: saloos/saloos-addons/includes/languages/trans_addons.php:347
 #: sarshomar/includes/languages/trans_addons.php:347
 msgid "Login failed!"
 msgstr "ورود به سیستم ناموفق بود!"
 
-#: saloos/saloos-addons/content_account/login/model.php:130
-#: saloos/saloos-addons/content_account/login/model.php:136
+#: saloos/saloos-addons/content_account/login/model.php:111
+#: saloos/saloos-addons/content_account/login/model.php:117
 #: saloos/saloos-addons/includes/languages/trans_addons.php:348
 #: sarshomar/includes/languages/trans_addons.php:348
 msgid "Mobile or password is incorrect"
@@ -819,7 +823,7 @@ msgstr "کتاب‌ها"
 
 #: saloos/saloos-addons/content_cp/manifest.php:48
 #: sarshomar/includes/languages/trans_twig.php:298
-#: sarshomar/includes/mvc/view.php:85
+#: sarshomar/includes/mvc/view.php:89
 msgid "Help Center"
 msgstr "مرکز راهنمایی"
 
@@ -995,7 +999,7 @@ msgstr "بازسازی نقشه سایت با موفقیت انجام شد!"
 msgid "Not Work!"
 msgstr "کار نمیکند!"
 
-#: saloos/saloos-addons/content_cp/tools/controller.php:325
+#: saloos/saloos-addons/content_cp/tools/controller.php:341
 msgid "Do you wanna something here!?"
 msgstr "چیز میخواهید اینجا؟"
 
@@ -3307,8 +3311,8 @@ msgstr "خطا در تراکنش"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:294
 #: sarshomar/includes/languages/trans_addons.php:294
-#: sarshomar/includes/lib/utility/answer/save.php:188
-#: sarshomar/includes/lib/utility/answer/update.php:270
+#: sarshomar/includes/lib/utility/answer/save.php:192
+#: sarshomar/includes/lib/utility/answer/update.php:288
 msgid ","
 msgstr "،"
 
@@ -4016,11 +4020,11 @@ msgstr "لطفا تنها از منوی زیر استفاده کنید"
 msgid "Please fill in the field"
 msgstr "لطفا موارد مورد نیاز را پر کنید"
 
-#: sarshomar/content/contact/model.php:114
+#: sarshomar/content/contact/model.php:124
 msgid "Thank You For contacting us"
 msgstr "از تماس شما متشکریم"
 
-#: sarshomar/content/contact/model.php:119
+#: sarshomar/content/contact/model.php:129
 msgid "We could'nt save the contact"
 msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 
@@ -4160,7 +4164,7 @@ msgstr "طرفدار کدام تیم هستید؟"
 
 #: sarshomar/content/knowledge/view.php:18 sarshomar/content/poll/view.php:142
 #: sarshomar/includes/languages/trans_twig.php:304
-#: sarshomar/includes/mvc/view.php:82
+#: sarshomar/includes/mvc/view.php:86
 msgid "Sarshomar Knowledge"
 msgstr "دانش سرشمار"
 
@@ -4269,6 +4273,10 @@ msgstr "فارغ التحصیل "
 #: sarshomar/content/poll/view.php:137
 msgid "undefined Title!"
 msgstr "عنوان تعریف نشده!"
+
+#: sarshomar/content/poll/view.php:188
+msgid "Result"
+msgstr "نتایج"
 
 #: sarshomar/content/referer/instagram/model.php:37
 msgid "Token error"
@@ -5537,13 +5545,13 @@ msgid "Sarshomar society; now"
 msgstr "جامعه سرشمار؛ همین الان"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/utility.php:459
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/utility.php:459
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/utility.php:472
 #: sarshomar/includes/languages/trans_twig.php:661
 msgid "Total"
 msgstr "مجموع"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/utility.php:460
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/utility.php:460
+#: sarshomar/content/saloos_tg/sarshomarbot/commands/utility.php:473
 #: sarshomar/includes/languages/trans_twig.php:1286
 msgid "Active"
 msgstr "فعال"
@@ -5561,19 +5569,23 @@ msgstr "حالت توسعه دهنده"
 msgid "ورود به سرشمار"
 msgstr ""
 
-#: sarshomar/content_admin/attachments/model.php:67
+#: sarshomar/content_admin/attachments/model.php:16
+msgid ":count rows changed on status publish"
+msgstr ""
+
+#: sarshomar/content_admin/attachments/model.php:87
 msgid "Post status change on :status"
 msgstr ""
 
-#: sarshomar/content_admin/attachments/model.php:71
+#: sarshomar/content_admin/attachments/model.php:91
 msgid "Can not change post status"
 msgstr ""
 
-#: sarshomar/content_admin/attachments/model.php:92
+#: sarshomar/content_admin/attachments/model.php:112
 msgid "The file has moved in new url"
 msgstr ""
 
-#: sarshomar/content_admin/attachments/model.php:98
+#: sarshomar/content_admin/attachments/model.php:118
 msgid "Can not move file to new url"
 msgstr ""
 
@@ -5732,25 +5744,25 @@ msgstr "طول شناسه‌ی تلگرام وارد شده صحیح نیست"
 msgid "System error"
 msgstr "خطای سیستم"
 
-#: sarshomar/content_api/v1/home/tools/get_options.php:484
+#: sarshomar/content_api/v1/home/tools/get_options.php:493
 msgid "You must select :min options"
 msgstr "باید :min گزینه انتخاب کنید"
 
-#: sarshomar/content_api/v1/home/tools/get_options.php:488
+#: sarshomar/content_api/v1/home/tools/get_options.php:497
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:337
 msgid "You can select at least :min and at most :max options"
 msgstr "شما باید حداقل :min و حداکثر :max گزینه را انتخاب کنید"
 
-#: sarshomar/content_api/v1/home/tools/get_options.php:493
+#: sarshomar/content_api/v1/home/tools/get_options.php:502
 msgid "You can select at least :min options"
 msgstr "شما می‌توانید حداقل :min گزینه انتخاب کنید"
 
-#: sarshomar/content_api/v1/home/tools/get_options.php:497
+#: sarshomar/content_api/v1/home/tools/get_options.php:506
 #: sarshomar/content_api/v1/poll/answer/tools/add.php:354
 msgid "You can select at most :max options"
 msgstr "شما می‌توانید حداکثر :max گزینه را انتخاب کنید"
 
-#: sarshomar/content_api/v1/home/tools/get_options.php:501
+#: sarshomar/content_api/v1/home/tools/get_options.php:510
 msgid "You can select all of the options"
 msgstr "شما می‌توانید تمامی گزینه‌ها را انتخاب کنید"
 
@@ -6152,17 +6164,86 @@ msgstr ""
 msgid "Search faild"
 msgstr "جستجو با خطا مواجه شد"
 
-#: sarshomar/content_api/v1/tag/search/tools/search.php:53
+#: sarshomar/content_api/v1/tag/search/tools/search.php:74
 msgid "Invalid parameter parent"
 msgstr "پارامتر والد نامعتبر است"
 
-#: sarshomar/content_api/v1/tag/search/tools/search.php:109
+#: sarshomar/content_api/v1/tag/search/tools/search.php:130
 msgid "Type not found"
 msgstr "نوع یافت نشد"
 
-#: sarshomar/content_api/v1/tag/search/tools/search.php:113
+#: sarshomar/content_api/v1/tag/search/tools/search.php:134
 msgid "Search successfuly"
 msgstr "جستجو موفقیت‌آمیز بود"
+
+#: sarshomar/content_election/admin/candida/model.php:93
+msgid "candida updated"
+msgstr ""
+
+#: sarshomar/content_election/admin/candida/model.php:97
+msgid "Error in update candida"
+msgstr ""
+
+#: sarshomar/content_election/admin/candida/model.php:173
+#: sarshomar/content_election/data/report/model.php:190
+msgid "Please select one items of election"
+msgstr ""
+
+#: sarshomar/content_election/admin/candida/model.php:179
+msgid "candida added"
+msgstr ""
+
+#: sarshomar/content_election/admin/candida/model.php:183
+msgid "Error in adding candida"
+msgstr ""
+
+#: sarshomar/content_election/admin/election/model.php:81
+msgid "Election updated"
+msgstr "انتخابات بروزرسانی شد"
+
+#: sarshomar/content_election/admin/election/model.php:85
+msgid "Error in update election"
+msgstr ""
+
+#: sarshomar/content_election/admin/election/model.php:120
+msgid "Election added"
+msgstr "انتخابات اضافه‌شد"
+
+#: sarshomar/content_election/admin/election/model.php:124
+msgid "Error in adding election"
+msgstr ""
+
+#: sarshomar/content_election/data/report/model.php:111
+msgid "result added"
+msgstr "نتایج اضافه شد"
+
+#: sarshomar/content_election/data/report/model.php:115
+msgid "Error in adding result"
+msgstr ""
+
+#: sarshomar/content_election/data/report/model.php:158
+msgid "report updated"
+msgstr "گزارش بروز شد"
+
+#: sarshomar/content_election/data/report/model.php:162
+msgid "Error in update report"
+msgstr ""
+
+#: sarshomar/content_election/data/report/model.php:196
+msgid "report added"
+msgstr "گزارش اضافه شد"
+
+#: sarshomar/content_election/data/report/model.php:200
+msgid "Error in adding report"
+msgstr ""
+
+#: sarshomar/content_election/manifest.php:6
+msgid "Allow to add the election, candida and edit it"
+msgstr ""
+
+#: sarshomar/content_election/manifest.php:14
+msgid "Allow to add the election data and edit it"
+msgstr ""
 
 #: sarshomar/content_u/billing/model.php:63
 msgid "You must login to pay amount"
@@ -6376,27 +6457,27 @@ msgstr "اجازه به حذف حساب کاربری"
 msgid "You must login to set profile data"
 msgstr "برای تنظیم اطلاعات پروفایل باید وارد سیستم شوید!"
 
-#: sarshomar/content_u/profile/tools/pin.php:18
+#: sarshomar/content_u/profile/tools/pin.php:26
 msgid "You have not old pin"
 msgstr "شما پین قدیمی ندارید"
 
-#: sarshomar/content_u/profile/tools/pin.php:26
+#: sarshomar/content_u/profile/tools/pin.php:34
 msgid "Invalid old pin, Try again"
 msgstr "پین قدیمی صحیح نیست، دوباره تلاش کنید"
 
-#: sarshomar/content_u/profile/tools/pin.php:33
+#: sarshomar/content_u/profile/tools/pin.php:41
 msgid "Invalid new pin, Try again"
 msgstr "پین جدید صحیح نیست، دوباره تلاش کنید"
 
-#: sarshomar/content_u/profile/tools/pin.php:47
+#: sarshomar/content_u/profile/tools/pin.php:55
 msgid "Invalid old pin"
 msgstr "پین قدیمی صحیح نیست"
 
-#: sarshomar/content_u/profile/tools/pin.php:55
+#: sarshomar/content_u/profile/tools/pin.php:63
 msgid "Your pin has removed"
 msgstr "پین شما حذف شد"
 
-#: sarshomar/content_u/profile/tools/pin.php:61
+#: sarshomar/content_u/profile/tools/pin.php:69
 msgid "Your pin has changed"
 msgstr "پین شما تغییر یافت"
 
@@ -7811,7 +7892,7 @@ msgid "People Voted"
 msgstr "نفر رای داده‌اند"
 
 #: sarshomar/includes/languages/trans_twig.php:239
-#: sarshomar/includes/mvc/view.php:81 sarshomar/includes/mvc/view.php:83
+#: sarshomar/includes/mvc/view.php:85 sarshomar/includes/mvc/view.php:87
 msgid "You"
 msgstr "شما"
 
@@ -8007,7 +8088,7 @@ msgid "API"
 msgstr "رابط برنامه‌نویسی"
 
 #: sarshomar/includes/languages/trans_twig.php:300
-#: sarshomar/includes/mvc/view.php:88
+#: sarshomar/includes/mvc/view.php:92
 msgid "Eco Friendly"
 msgstr "حامی محیط‌زیست"
 
@@ -8028,12 +8109,12 @@ msgid "Learn More"
 msgstr "بیشتر بدانید"
 
 #: sarshomar/includes/languages/trans_twig.php:306
-#: sarshomar/includes/mvc/view.php:86
+#: sarshomar/includes/mvc/view.php:90
 msgid "Terms of Service"
 msgstr "شرایط استفاده"
 
 #: sarshomar/includes/languages/trans_twig.php:307
-#: sarshomar/includes/mvc/view.php:87
+#: sarshomar/includes/mvc/view.php:91
 msgid "Privacy Policy"
 msgstr "حریم خصوصی"
 
@@ -13756,6 +13837,10 @@ msgstr "یاسین‌پیشرو قم"
 msgid "jewish"
 msgstr "یهودیت"
 
+#: sarshomar/includes/lib/db/answerdetails.php:248
+msgid "System can not save your answer"
+msgstr ""
+
 #: sarshomar/includes/lib/db/db_errors.php:3
 msgid "poll not found"
 msgstr "نظرسنجی یافت نشد"
@@ -13962,106 +14047,110 @@ msgid "You can save :max poll in one survey"
 msgstr "حداکثر :max نظرسنجی را در یک پرسشنامه می‌توانید ذخیره کنید"
 
 #: sarshomar/includes/lib/db/polls/insert/options.php:50
+msgid "You must set less than 500 character on options.class"
+msgstr ""
+
+#: sarshomar/includes/lib/db/polls/insert/options.php:77
 msgid "You must set less than 700 character on sms text"
 msgstr "متن پیامک شما باید کمتر از ۷۰۰ کاراکتر باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:76
+#: sarshomar/includes/lib/db/polls/insert/options.php:103
 msgid "You must set less than 20 character in password"
 msgstr "کلمه‌ی عبور شما باید کمتر از ۲۰ کاراکتر باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:152
+#: sarshomar/includes/lib/db/polls/insert/options.php:179
 msgid ""
 "Invalid brand title argument, you must set less than 99 character for the title"
 msgstr ""
 "آرگومان عنوان برند نامعتبر است، نباید بیش از 99 کاراکتر برای عنوان تعیین کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:162
+#: sarshomar/includes/lib/db/polls/insert/options.php:189
 msgid ""
 " Invalid brand URL argument, you must set less than 99 character for brand URL "
 msgstr ""
 " آرگومان آدرس URL برند نامعتبر است، نباید بیشتر از 99 کاراکتر برای URL برند تعیین "
 "کنید "
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:204
+#: sarshomar/includes/lib/db/polls/insert/options.php:231
 msgid "Invalid arguments time"
 msgstr "آرگومان زمان نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:228
+#: sarshomar/includes/lib/db/polls/insert/options.php:255
 msgid "Invalid arguments min"
 msgstr "آرگومان‌های حداقلی نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:235
+#: sarshomar/includes/lib/db/polls/insert/options.php:262
 msgid "Can not set parameter 'min' less than 1"
 msgstr "نمیتوانید پارامتر 'min' را کمتر از 1 قرار دهید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:246
-#: sarshomar/includes/lib/db/polls/insert/options.php:307
+#: sarshomar/includes/lib/db/polls/insert/options.php:273
+#: sarshomar/includes/lib/db/polls/insert/options.php:334
 msgid "You can not set minimum greater than maximum in multi select settings"
 msgstr "نمی‌توانید حداقل را بیش از حداکثر در تنظیمات سوال چند انتخابی تعیین کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:253
+#: sarshomar/includes/lib/db/polls/insert/options.php:280
 msgid "You have set :count answers and can not set :min in min parameter "
 msgstr ""
 "شما :count پاسخ تعیین کرده‌اید و نمیتوانید :min پاسخ در پارامتر min وارد کنید "
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:285
+#: sarshomar/includes/lib/db/polls/insert/options.php:312
 msgid "Invalid arguments max"
 msgstr "آرگومان‌های حداکثری نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:292
+#: sarshomar/includes/lib/db/polls/insert/options.php:319
 msgid "You have set :count answers and can not set :max in max parameter "
 msgstr ""
 "شما :count پاسخ تعیین کرده‌اید و نمیتوانید :max پاسخ در پارامتر max وارد کنید "
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:350
+#: sarshomar/includes/lib/db/polls/insert/options.php:377
 msgid "Can not use multi:min and ordering"
 msgstr "نمی‌توانید همزمان از multi:min و چیدمان استفاده کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:357
+#: sarshomar/includes/lib/db/polls/insert/options.php:384
 msgid "Can not use multi:max and ordering"
 msgstr "نمیتوانید همزمان از multi:max و چیدمان استفاده کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:364
+#: sarshomar/includes/lib/db/polls/insert/options.php:391
 msgid "You can not use multi select and ordering poll"
 msgstr "نمیتوانید همزمان از نظرسنجی چندانتخابی و چینشی استفاده کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:425
+#: sarshomar/includes/lib/db/polls/insert/options.php:452
 msgid "Invalid arguments start"
 msgstr "آرگومان شروع نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:444
+#: sarshomar/includes/lib/db/polls/insert/options.php:471
 msgid "Invalid arguments end_date"
 msgstr "آرگومان end_date نامعبتر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:463
+#: sarshomar/includes/lib/db/polls/insert/options.php:490
 msgid "Parameter article must be array"
 msgstr "پارامتر مقالات باید آرایه باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:472
+#: sarshomar/includes/lib/db/polls/insert/options.php:499
 msgid "Invalid arguments article on index :key"
 msgstr "آرگومان مقاله در شاخص :key نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:539
+#: sarshomar/includes/lib/db/polls/insert/options.php:566
 msgid "Parameter tags must be array"
 msgstr "پارامتر تگ باید آرایه باشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:550
+#: sarshomar/includes/lib/db/polls/insert/options.php:577
 msgid "You have added so many tags, You can save just 5 tags"
 msgstr "تعداد تگ‌های وارد‌شده بیش از حد مجاز است. شما می‌توانید فقط ۵ تگ وارد کنید"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:576
+#: sarshomar/includes/lib/db/polls/insert/options.php:603
 msgid "Invalid tag in index :key, tags must be less than 45 character"
 msgstr "تگ نامعتبر در شاخص :key، تگ‌ها باید کمتر از ۴۵ کاراکتر باشند"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:680
+#: sarshomar/includes/lib/db/polls/insert/options.php:707
 msgid "Invalid parameter cats"
 msgstr "پارامتر دسته بندی نامعتبر است"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:691
+#: sarshomar/includes/lib/db/polls/insert/options.php:718
 msgid "Cat not found"
 msgstr "دسته بندی یافت نشد"
 
-#: sarshomar/includes/lib/db/polls/insert/options.php:698
+#: sarshomar/includes/lib/db/polls/insert/options.php:725
 msgid "Invalid category"
 msgstr "دسته بندی نامعتبر است"
 
@@ -14145,45 +14234,45 @@ msgstr "نرخ ارز پیدا نشد"
 msgid "Unit id or user unit not found"
 msgstr "شناسه واحد یا واحد کاربر پیدا نشد"
 
-#: sarshomar/includes/lib/utility/answer/access.php:80
-msgid "Many time left, can not update or delete answer"
-msgstr "زمان زیادی گذشته است، نمی‌توانید پاسخ خود را حذف یا بروز کنید"
-
-#: sarshomar/includes/lib/utility/answer/access.php:115
+#: sarshomar/includes/lib/utility/answer/access.php:95
 msgid "You have updated your answer many times and can not update it anymore"
 msgstr ""
 "شما پاسخ خود را به‌دفعات تغییر داده‌اید و نمی‌توانید بیش از این آن را بروز کنید!"
 
-#: sarshomar/includes/lib/utility/answer/access.php:172
+#: sarshomar/includes/lib/utility/answer/access.php:169
 msgid "You have already answered to this poll"
 msgstr "شما قبلا به این نظرسنجی پاسخ داده‌اید"
 
-#: sarshomar/includes/lib/utility/answer/access.php:210
+#: sarshomar/includes/lib/utility/answer/access.php:207
 #: sarshomar/includes/lib/utility/token.php:268
 msgid "Invalid type"
 msgstr "نوع نامعتبر است"
 
-#: sarshomar/includes/lib/utility/answer/delete.php:152
+#: sarshomar/includes/lib/utility/answer/delete.php:163
 msgid "Your answer has been deleted"
 msgstr "پاسخ شما حذف شد"
 
-#: sarshomar/includes/lib/utility/answer/delete.php:157
+#: sarshomar/includes/lib/utility/answer/delete.php:168
 msgid "You have not answered to this poll"
 msgstr "شما به این نظرسنجی پاسخ نداده‌اید"
 
-#: sarshomar/includes/lib/utility/answer/save.php:190
+#: sarshomar/includes/lib/utility/answer/save.php:197
+msgid "Lets go next"
+msgstr "برو بعدی"
+
+#: sarshomar/includes/lib/utility/answer/save.php:201
 msgid "Your answer to :text has been submitted"
 msgstr "پاسخ شما به گزینه‌ی :text ثبت شد"
 
-#: sarshomar/includes/lib/utility/answer/save.php:196
+#: sarshomar/includes/lib/utility/answer/save.php:210
 msgid "Error in save your answer"
 msgstr "خطا در ذخیره سوال"
 
-#: sarshomar/includes/lib/utility/answer/update.php:86
+#: sarshomar/includes/lib/utility/answer/update.php:85
 msgid "You have already selected this answer and submited"
 msgstr "شما قبلا با انتخاب همین گزینه پاسخ خود را ثبت کرده‌اید"
 
-#: sarshomar/includes/lib/utility/answer/update.php:273
+#: sarshomar/includes/lib/utility/answer/update.php:291
 msgid "Your answer updated to :text"
 msgstr "پاسخ شما به گزینه‌ی :text بروز شد"
 
@@ -14264,13 +14353,16 @@ msgstr "خطا در اعتبارسنجی (این اعتبارسنجی کلید A
 msgid "Invalid token (tmp login)"
 msgstr "توکن نامعتبر است(ورود tmp)"
 
-#: sarshomar/includes/mvc/view.php:25
+#: sarshomar/includes/mvc/view.php:27
 msgid "Hi Dear"
 msgstr "سلام دوست گرامی"
 
-#: sarshomar/includes/mvc/view.php:84
+#: sarshomar/includes/mvc/view.php:88
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Many time left, can not update or delete answer"
+#~ msgstr "زمان زیادی گذشته است، نمی‌توانید پاسخ خود را حذف یا بروز کنید"
 
 #~ msgid "Your answer to <b> :text </b> has been submitted"
 #~ msgstr "پاسخ شما به گزینه‌ی <b>:text</b> ثبت شد"
