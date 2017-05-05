@@ -832,7 +832,7 @@ function getChartOption($_what, _arg, _this)
 				{
 					if(_arg.data)
 					{
-						console.log(_arg.data);
+						// console.log(_arg.data);
 						// Calculate total of values across all columns in the graph
 						var total = 0;
 						for( var i = 0; i < _arg.data.length; i++ )

@@ -2,67 +2,101 @@
 
 
 {%block head_css%}
+ <link rel="stylesheet"       href="{{url.static}}{{'css/ermile.css' | filemtime(true)}}">
  <link rel="stylesheet"       href="{{url.static}}{{'css/style-admin-v2.css' | filemtime(true)}}">
 {%endblock%}
 
 
-
-{%block body%}
-{{block ('aside')}}
-{{block ('contentAdmin')}}
-
+{%block foot_js%}
+<script type="text/javascript">
+  $('.sidebar div > span').click(function()
+  {
+    var menuTitle = $(this);
+    var submenu   = $(this).parent().children('ul');
+    if (submenu)
+    {
+      submenu.stop().slideToggle(300);
+      menuTitle.toggleClass('open');
+    }
+  });
+</script>
+{%block foot_js_me%}{%endblock%}
 {%endblock%}
 
 
+{%block body%}
+ {{block ('aside')}}
+ {{block ('wrapperAdmin')}}
+{%endblock%}
 
 
 {%block aside%}
-  <aside class="sidebar">
-    <h2>Sarshomar</h2>
-    <nav>
-      <li>
-        <div data-icon="pie-chart">{% trans "All Poll" %}</div>
-        <nav class="submenu">
-          <a href="">Users Dashboards</a>
-          <a href="">Refresh Numbers</a>
-        </nav>
-      </li>
-      <li>
-        <div data-icon="note">{% trans "Sarshomar poll" %}</div>
-        <nav class="submenu">
-          <a href="">{% trans "Exchange rate" %}</a>
-          <a href="">{% trans "Transaction Items" %}</a>
-        </nav>
-      </li>
-      <a href="">
-        <div data-icon="line-chart">{% trans "People poll" %}</div>
-      </a>
-      <a href="">
-        <div data-icon="app">{% trans "Total" %}</div>
-      </a>
-      <li>
-        <div data-icon="form">{% trans "Logitems" %}</div>
-        <nav class="submenu">
-          <a href="">{% trans "Logs" %}</a>
-          <a href="">{% trans "Spam" %}</a>
-        </nav>
-      </li>
-      <a href="">
-        <div data-icon="app">{% trans "Units" %}</div>
-      </a>
-      <a href="">
-        <div data-icon="line-chart">{% trans "Transactions" %}</div>
-      </a>
-      <a href="">
-        <div data-icon="note">{% trans "Users" %}</div>
-      </a>
-    </nav>
-  </aside>
+ <aside class="sidebar">
+  <h1>
+   <a href="{{url.base}}" data-direct>{% trans "Sarshomar" %}</a>
+  </h1>
+  <nav>
+   <a href="{{url.base}}/admin" data-icon="pie-chart">{% trans "Admin" %}</a>
+
+   <div>
+    <span data-icon="check-form">{% trans "Polls" %}</span>
+    <ul>
+     <li><a href="{{url.base}}/admin/knowledge" data-icon="pie-chart">{% trans "All" %}</a></li>
+     <li><a href="{{url.base}}/admin/knowledge/sarshomar=1" data-icon="pie-chart">{% trans "Sarshomar" %}</a></li>
+     <li><a href="{{url.base}}/admin/knowledge/sarshomar=0" data-icon="pie-chart">{% trans "People" %}</a></li>
+    </ul>
+   </div>
+
+   <div>
+    <span data-icon="form">{% trans "Logs" %}</span>
+    <ul>
+     <li><a href="{{url.base}}/admin/logitems" data-icon="pie-chart">{% trans "Logitems" %}</a></li>
+     <li><a href="{{url.base}}/admin/logs" data-icon="pie-chart">{% trans "Logs" %}</a></li>
+    </ul>
+   </div>
+
+   <a href="{{url.base}}/admin/knowledge/status=spam" data-icon="pie-chart">{% trans "Spam" %}</a>
+   <a href="{{url.base}}/admin/transactionitems" data-icon="pie-chart">{% trans "Transaction Items" %}</a>
+   <a href="{{url.base}}/admin/exchangerates" data-icon="pie-chart">{% trans "Exchange rates" %}</a>
+   <a href="{{url.base}}/admin/units" data-icon="pie-chart">{% trans "Units" %}</a>
+   <a href="{{url.base}}/admin/transactions" data-icon="pie-chart">{% trans "Transactions" %}</a>
+   <a href="{{url.base}}/admin/users" data-icon="pie-chart">{% trans "Users" %}</a>
+   <a href="{{url.base}}/admin/userdashboards" data-icon="pie-chart">{% trans "Users Dashboards" %}</a>
+   <a href="{{url.base}}/admin?refresh_dashboard=1" data-icon="pie-chart">{% trans "Refresh Numbers" %}</a>
+   <a href="{{url.base}}/admin/attachments" data-icon="pie-chart">{% trans "Attachments" %}</a>
+  </nav>
+ </aside>
 {%endblock%}
 
 
+{%block wrapperAdmin%}
+ <div class="f">
+  <div class="c2 m0 s0"></div>
+  <div class="c10 m12 s12">
+   {{block ('headerAdmin')}}
+   <div class="wrapper">
+    {%block content%}{%endblock%}
+   </div>
+  </div>
+ </div>
+{%endblock%}
 
-{%block contentAdmin%}
+{%block headerAdmin%}
+ <header>
+  {{langList({'html':true})}}
+  <div id="profile">
+   <span>{{displayname}}</span>
+   <nav>
+    <a href="">{% trans "My Profile" %}</a>
+    <a href="">{% trans "Change Password" %}</a>
+    <a href="{{url.base}}/logout" data-direct>{% trans "Logout" %}</a>
+   </nav>
+  </div>
+ </header>
+{%endblock%}
+
+
+{%block contentAdmin2%}
   <div class="f">
     <div class="c2 m0 s0"></div>
     <div class="c10 m12 s12">
