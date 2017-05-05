@@ -13,6 +13,7 @@ class controller extends \content_election\main\controller
 		{
 			$this->display_name = 'content_election\data\result\city_result.html';
 		}
+		$this->post("save_city")->ALL("/data\/result\/(\d+)\/place/");
 	}
 }
 ?>
