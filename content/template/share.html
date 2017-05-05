@@ -1,37 +1,37 @@
 <nav class="socialbox sharebox">
- <a class="twitter" href="https://twitter.com/intent/tweet?url={{url.full}}&text={{page.title}}">
+ <a class="twitter" href="https://twitter.com/intent/tweet?url={{url.full}}&text={{page.title}}" data-direct>
  	<span>{%trans "Twitter"%}</span>
   <span class="icon-twitter"></span>
  </a>
 
  {%if false%}
- <a class="rss" href="{{url.base}}/rss" target="_blank">
+ <a class="rss" href="{{url.base}}/rss" target="_blank" data-direct>
  	<span>{%trans "RSS"%}</span>
   <span class="icon-rss"></span>
  </a>
  {%endif%}
 
- <a class="telegram" href="tg://msg_url?url={{url.full}}">
+ <a class="telegram" href="tg://msg_url?url={{url.full}}" data-direct>
  	<span>{%trans "Telegram"%}</span>
   <span class="icon-send"></span>
  </a>
- <a class="gplus" href="https://plus.google.com/share?url={{url.full}}">
+ <a class="gplus" href="https://plus.google.com/share?url={{url.full}}" data-direct>
  	<span>{%trans "Google Plus"%}</span>
   <span class="icon-google-plus"></span>
  </a>
- <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url.full}}">
+ <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url.full}}" data-direct>
  	<span>{%trans "Facebook"%}</span>
   <span class="icon-facebook"></span>
  </a>
 
  {%if social.linkedin%}
- <a class="linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url={{url.full}}&title={{page.title}}">
+ <a class="linkedin" href="http://www.linkedin.com/shareArticle?mini=true&url={{url.full}}&title={{page.title}}" data-direct>
   <span>{%trans "LinkedIn"%}</span>
   <span class="icon-linkedin2"></span>
  </a>
  {%endif%}
  {%if poll.id%}
- <a class="linkedin" href="https://t.me/sarshomarbot?start={{poll.id}}">
+ <a class="linkedin" href="https://t.me/sarshomarbot?start={{poll.id}}" data-direct>
   <span>{%trans "Sarshomar Bot"%}</span>
   <span class="icon-android"></span>
  </a>
