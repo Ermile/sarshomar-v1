@@ -55,50 +55,13 @@ class model extends \content_election\main\model
 		{
 			return false;
 		}
-		$file_url   = null;
-		$file_url_2 = null;
 
-		if(utility::files('file_url'))
-		{
-			$target_dir = root. "public_html/static/images/election/";
-			if(!\lib\utility\file::exists($target_dir))
-			{
-				\lib\utility\file::makeDir($target_dir);
-			}
-
-			$basename = basename(utility::files('file_url')["name"]);
-
-			$target_file = $target_dir . $basename;
-
-			if (move_uploaded_file(utility::files('file_url')["tmp_name"], $target_file))
-			{
-				$file_url = 'images/election/'. $basename;
-			}
-		}
-
-		if(utility::files('file_url_2'))
-		{
-			$target_dir = root. "public_html/static/images/election/";
-
-			if(!\lib\utility\file::exists($target_dir))
-			{
-				\lib\utility\file::makeDir($target_dir);
-			}
-
-			$basename = basename(utility::files('file_url_2')["name"]);
-			$target_file = $target_dir . $basename;
-
-			if (move_uploaded_file(utility::files('file_url_2')["tmp_name"], $target_file))
-			{
-				$file_url_2 = 'images/election/'. $basename;
-			}
-
-		}
 		$update =
 		[
 			'name'         => utility::post('name'),
 			'family'       => utility::post('family'),
 			'father'       => utility::post('father'),
+			'fame'         => utility::post('fame'),
 			'birthdate'    => utility::post('birthdate'),
 			'nationalcode' => utility::post('nationalcode'),
 			'electioncode' => utility::post('electioncode'),
@@ -107,13 +70,21 @@ class model extends \content_election\main\model
 			'desc'         => utility::post('desc'),
 		];
 
+		$file_url = $this->find_updload('file_url');
 		if($file_url)
 		{
 			$update['file_url'] = $file_url;
 		}
+		$file_url_2 = $this->find_updload('file_url_2');
 		if($file_url_2)
 		{
 			$update['file_url_2'] = $file_url_2;
+		}
+
+		$win_url = $this->find_updload('win_url');
+		if($win_url)
+		{
+			$update['win_url'] = $win_url;
 		}
 
 		$result = \content_election\lib\candidas::update($update, $id);
@@ -128,6 +99,36 @@ class model extends \content_election\main\model
 
 	}
 
+
+	/**
+	 * find file uploaded or no
+	 *
+	 * @param      <type>  $_name  The name
+	 *
+	 * @return     string  ( description_of_the_return_value )
+	 */
+	public function find_updload($_name)
+	{
+		if(utility::files($_name))
+		{
+			$target_dir = root. "public_html/static/images/election/";
+			if(!\lib\utility\file::exists($target_dir))
+			{
+				\lib\utility\file::makeDir($target_dir);
+			}
+
+			$basename = basename(utility::files($_name)["name"]);
+
+			$target_file = $target_dir . $basename;
+
+			if (move_uploaded_file(utility::files($_name)["tmp_name"], $target_file))
+			{
+				return 'images/election/'. $basename;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Posts an candida.
 	 * add a alection
@@ -136,51 +137,14 @@ class model extends \content_election\main\model
 	 */
 	public function post_candida($_args)
 	{
-		$file_url   = null;
-		$file_url_2 = null;
 
-		if(utility::files('file_url'))
-		{
-			$target_dir = root. "public_html/static/images/election/";
-			if(!\lib\utility\file::exists($target_dir))
-			{
-				\lib\utility\file::makeDir($target_dir);
-			}
-
-			$basename = basename(utility::files('file_url')["name"]);
-
-			$target_file = $target_dir . $basename;
-
-			if (move_uploaded_file(utility::files('file_url')["tmp_name"], $target_file))
-			{
-				$file_url = 'images/election/'. $basename;
-			}
-		}
-
-		if(utility::files('file_url_2'))
-		{
-			$target_dir = root. "public_html/static/images/election/";
-
-			if(!\lib\utility\file::exists($target_dir))
-			{
-				\lib\utility\file::makeDir($target_dir);
-			}
-
-			$basename = basename(utility::files('file_url_2')["name"]);
-			$target_file = $target_dir . $basename;
-
-			if (move_uploaded_file(utility::files('file_url_2')["tmp_name"], $target_file))
-			{
-				$file_url_2 = 'images/election/'. $basename;
-			}
-
-		}
 
 		$args =
 		[
 			'name'         => utility::post('name'),
 			'family'       => utility::post('family'),
 			'father'       => utility::post('father'),
+			'fame'         => utility::post('fame'),
 			'birthdate'    => utility::post('birthdate'),
 			'nationalcode' => utility::post('nationalcode'),
 			'electioncode' => utility::post('electioncode'),
@@ -188,15 +152,22 @@ class model extends \content_election\main\model
 			'status'       => utility::post('status'),
 			'desc'         => utility::post('desc'),
 		];
+		$file_url = $this->find_updload('file_url');
 		if($file_url)
 		{
 			$args['file_url'] = $file_url;
 		}
+		$file_url_2 = $this->find_updload('file_url_2');
 		if($file_url_2)
 		{
 			$args['file_url_2'] = $file_url_2;
 		}
 
+		$win_url = $this->find_updload('win_url');
+		if($win_url)
+		{
+			$args['win_url'] = $win_url;
+		}
 		if(!is_numeric($args['election_id']) || !$args['election_id'])
 		{
 			debug::error(T_("Please select one items of election"));

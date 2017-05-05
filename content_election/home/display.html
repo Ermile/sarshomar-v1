@@ -64,7 +64,9 @@
 
 
 {%block time_line%}
+{%if result.time_line%}
 	{{result.time_line|dump}}
+{%endif%}
 {%endblock%}
 
 

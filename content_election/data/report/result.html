@@ -43,14 +43,18 @@ ADD result
 
 	<table border="1">
 		<tr>
+			<th>{%trans ";)" %}</th>
 			<th>{%trans "name" %}</th>
 			<td>{%trans "family" %}</td>
+			<td>{%trans "fame" %}</td>
 			<td>{%trans "total" %}</td>
 		</tr>
 		{%for key, value in list.candida%}
 		<tr>
+			<td><img height="64" width="64" src="{{url.static}}{{value.file_url}}"></td>
 			<td>{{value.name}}</td>
 			<td>{{value.family}}</td>
+			<td>{{value.fame}}</td>
 			<td><input type="number" name="total_{{value.id}}"></td>
 		</tr>
 		{%endfor%}

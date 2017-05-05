@@ -14,6 +14,8 @@ CREATE TABLE election.elections (
 `year` 			int(4) DEFAULT NULL,
 `en_url`		varchar(500) NULL DEFAULT NULL,
 `fa_url`		varchar(500) NULL DEFAULT NULL,
+`cat`			varchar(255) NULL DEFAULT NULL,
+`win`			int(10) UNSIGNED NULL DEFAULT NULL,
 `createdate`	datetime DEFAULT CURRENT_TIMESTAMP,
 `date_modified`	timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
 `desc`			text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
@@ -28,9 +30,13 @@ CREATE TABLE election.candidas (
 `name`			varchar(255) NOT NULL,
 `family`		varchar(255) NOT NULL,
 `father`		varchar(255) NULL,
+`fame`			varchar(255) NULL,
 `nationalcode`	varchar(255) NULL,
 `birthdate`		datetime NULL,
 `electioncode`	varchar(255) NULL,
+`file_url`		varchar(255) NULL,
+`file_url_2`	varchar(255) NULL,
+`win_url`		varchar(255) NULL,
 `status`		enum('active','cancel') NOT NULL DEFAULT 'active',
 `createdate`	datetime DEFAULT CURRENT_TIMESTAMP,
 `date_modified`	timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -92,6 +98,6 @@ CREATE TABLE election.resultbyplaces (
 `desc` 			text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
 `meta` 				mediumtext 		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 PRIMARY KEY (`id`),
-CONSTRAINT `results_election_id` FOREIGN KEY (`election_id`) REFERENCES `elections` (`id`) ON UPDATE CASCADE,
-CONSTRAINT `results_report_id` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON UPDATE CASCADE
+CONSTRAINT `resultbyplase_election_id` FOREIGN KEY (`election_id`) REFERENCES `elections` (`id`) ON UPDATE CASCADE,
+CONSTRAINT `resultbyplase_report_id` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
