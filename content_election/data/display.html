@@ -21,6 +21,7 @@ DATA
 		<th>{%trans "add en_url" %}</th>
 		<th>{%trans "add fa_url" %}</th>
 		<th>{%trans "add result" %}</th>
+		<th>{%trans "add city result" %}</th>
 	</tr>
 
 {%for key, value in election_list%}
@@ -39,7 +40,8 @@ DATA
 		<td>{{value.status}}</td>
 		<td><a href="{{url.base}}/election/{{value.en_url}}">{%trans "En url"%}</a></td>
 		<td><a href="{{url.base}}/election/{{value.fa_url}}">{%trans "Fa url"%}</a></td>
-		<td><a href="{{url.base}}/election/data/result/add/{{value.id}}">{%trans "add result"%}</a></td>
+		<td><a href="{{url.base}}/election/data/report/add/{{value.id}}">{%trans "add report"%}</a></td>
+		<td><a href="{{url.base}}/election/data/result/place/add/{{value.id}}">{%trans "add plase"%}</a></td>
 	</tr>
 {%endfor%}
 </table>
