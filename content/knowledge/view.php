@@ -20,6 +20,7 @@ class view extends \mvc\view
 
 		$this->user_answered_to_all_poll();
 
+		$this->data->share['image']   =  $this->url->static. 'images/miniature/knowledge-base.png';
 	}
 
 	/**
