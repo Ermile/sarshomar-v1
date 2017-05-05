@@ -1,0 +1,14 @@
+{%extends display.mvc%}
+{%block body%}
+add city result of {{election.title}}
+<br>
+
+{%if provinces%}
+	PROVINCE:
+	{%for key, value in provinces%}
+		<a href="{{url.base}}/election/data/result/add/1/place/iran/{{key}}">{{value}}</a><br>
+	{%endfor%}
+{%endif%}
+
+
+{%endblock%}
