@@ -332,7 +332,7 @@
   <div class="f">
    <div class="c1">{{loop.index |fitNumber}}</div>
    <div class="c8">{{optRow.title}}</div>
-   <div class="c">{{optRow.value |fitNumber}}</div>
+   <div class="c">{{optRow.value |number_format|fitNumber}}</div>
    <div class="c">{{ optRow.ratio |fitNumber}}%</div>
 {%set optTotal = optTotal + optRow.value%}
   </div>
@@ -340,9 +340,9 @@
 
 {%if false%}
   <div class="f tf">
-   <div class="c1"></div>
-   <div class="c8">{%trans "Total"%}</div>
-   <div class="c">{{optTotal |fitNumber}}</div>
+   <div class="c1">{%trans "Total"%}</div>
+   <div class="c8"></div>
+   <div class="c">{{optTotal |number_format|fitNumber}} {%trans "Person"%}</div>
    <div class="c"></div>
   </div>
 {%endif%}
