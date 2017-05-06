@@ -177,15 +177,22 @@ class view extends \mvc\view
 			}
 		}
 
-		// get opts and fix order of them
-		$descOpts = array_column($poll['result']['answers'], 'value', 'title');
-		arsort($descOpts);
-		$desOptscText = '';
-		foreach ($descOpts as $key => $value)
+		if(isset($poll['result']['answers']) && is_array($poll['result']['answers']))
 		{
-			$desOptscText .= $key. '('. \lib\utility\human::Number($value). ') ';
+			// get opts and fix order of them
+			$descOpts = array_column($poll['result']['answers'], 'value', 'title');
+			arsort($descOpts);
+			$desOptscText = '';
+			foreach ($descOpts as $key => $value)
+			{
+				if(is_numeric($value))
+				{
+					$desOptscText .= $key. '('. \lib\utility\human::Number($value). ') ';
+				}
+			}
+			$this->data->page['desc'] = ''. T_('Result'). ': '. $desOptscText;
+
 		}
-		$this->data->page['desc'] = ''. T_('Result'). ': '. $desOptscText;
 
 		// fix link for twitter
 		if(isset($poll['file']['url']) && isset($poll['file']['type']))
