@@ -1,0 +1,14 @@
+{% extends display.admin %}
+{% block content %}
+{% set dlUrl %}{{url.protocol}}://dl.{{url.raw}}{% endset %}
+<img height="500" width="500" src="{{dlUrl}}/{{current_file.url}}">
+<img height="250" width="250" src="{{dlUrl}}/{{current_file.thumb}}">
+<img height="100" width="100" src="{{dlUrl}}/{{current_file.normal}}">
+
+<br>
+{%for key , value in result%}
+<h3>
+    <a href="{{url.root}}{{key}}">{{value}}</a>
+</h3>
+{%endfor%}
+{% endblock %}
