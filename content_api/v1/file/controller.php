@@ -12,6 +12,11 @@ class controller extends  \content_api\v1\home\controller
 		$this->link("upload")->ALL("v1/file");
 
 		/**
+		 * post file to upload
+		 */
+		$this->post("upload")->ALL("v1/file");
+
+		/**
 		 * get to load upload details
 		 */
 		$this->get("upload")->ALL("v1/file");

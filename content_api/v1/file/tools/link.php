@@ -27,6 +27,18 @@ trait link
 
 		$_options = array_merge($default_options, $_options);
 
+		if(utility::request('url') && !$_options['url'])
+		{
+			$_options['url'] = utility::request('url');
+		}
+
+
+		if(utility::request('id') && !$_options['poll_id'])
+		{
+			$_options['poll_id'] = utility::request('id');
+		}
+
+
 		$file_path = false;
 
 		if($_options['url'])

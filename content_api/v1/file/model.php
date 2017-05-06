@@ -23,6 +23,19 @@ class model extends \content_api\v1\home\model
 
 
 	/**
+	 * Posts an upload.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function post_upload($_args)
+	{
+		return $this->upload_file();
+	}
+
+
+	/**
 	 * Gets the upload.
 	 *
 	 * @param      <type>  $_args  The arguments
