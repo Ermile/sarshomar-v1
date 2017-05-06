@@ -1,0 +1,346 @@
+{%extends display.mvc%}
+
+
+{%block head_css%}
+ <link rel="stylesheet"       href="{{url.static}}{{'css/ermile.css' | filemtime(true)}}">
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style-admin-v2.css' | filemtime(true)}}">
+{%endblock%}
+
+
+{%block foot_js%}
+<!-- aaa -->
+{%endblock%}
+
+
+{%block body%}
+ {{block ('aside')}}
+ {{block ('wrapperAdmin')}}
+{%endblock%}
+
+
+{%block aside%}
+ <aside class="sidebar">
+  <h1>
+   <a href="{{url.base}}" data-direct>{% trans "Sarshomar" %}</a>
+  </h1>
+  <nav>
+   <a href="{{url.base}}/admin" data-icon="pie-chart">{% trans "Admin" %}</a>
+  </nav>
+ </aside>
+{%endblock%}
+
+
+{%block wrapperAdmin%}
+ <div class="f">
+  <div class="c2 m0 s0"></div>
+  <div class="c10 m12 s12">
+   {{block ('headerAdmin')}}
+   <div class="wrapper">
+    {%block content%}{%endblock%}
+   </div>
+  </div>
+ </div>
+{%endblock%}
+
+{%block headerAdmin%}
+ <header>
+  {{langList({'html':true})}}
+  <div id="profile">
+   <span>{{displayname}}</span>
+   <nav>
+    <a href="">{% trans "My Profile" %}</a>
+    <a href="">{% trans "Change Password" %}</a>
+    <a href="{{url.base}}/logout" data-direct>{% trans "Logout" %}</a>
+   </nav>
+  </div>
+ </header>
+{%endblock%}
+
+
+{%block contentAdmin2%}
+  <div class="f">
+    <div class="c2 m0 s0"></div>
+    <div class="c10 m12 s12">
+
+      <header>
+        <nav>
+          <a href="">فارسی</a>
+        </nav>
+        <div id="profile">
+          <span>Ali Modabber</span>
+          <nav>
+            <a href="">{% trans "My Profile" %}</a>
+            <a href="">{% trans "Change Password" %}</a>
+            <a href="">{% trans "Logout" %}</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="wrapper">
+        <div class="f">
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/elections.svg">
+                <span>{{number_static.polls.total|number_format|fitNumber}}</span>
+              </div>
+              <div class="card-desc">{% trans "Total Polls" %}</div>
+            </div>
+          </div>
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/spam.svg">
+                <span>{{number_static.polls.spam|number_format|fitNumber}}</span>
+              </div>
+              <div class="card-desc">{% trans "Spam Polls" %}</div>
+            </div>
+          </div>
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/hourglass.svg">
+                <span>{{number_static.polls.awaiting|number_format|fitNumber}}</span>
+              </div>
+              <div class="card-desc">{% trans "Awaiting Polls" %}</div>
+            </div>
+          </div>
+
+          <div class="c3 s6">
+            <div class="card">
+              <div class="card-data">
+                <img src="{{url.static}}images/admin/draft.svg">
+                <span>{{number_static.polls.draft|number_format|fitNumber}}</span>
+              </div>
+              <div class="card-desc">{% trans "Draft Polls" %}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="card chart2">
+            <h3>{% trans "Polls" %}</h3>
+            <div id="chartdiv1"></div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c8 s12">
+            <div class="card chart2">
+              <h3>{% trans "Registration" %}</h3>
+              <div id="chartdiv2"></div>
+            </div>
+          </div>
+          <div class="c4 s12">
+            <div class="f">
+
+              <div class="c12 s12">
+                <div class="card">
+                  <h3>{% trans "Successful" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/checked.svg">
+                    <span>{{number_static.users.total|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Verified" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/user-verification-symbol-for-interface.svg">
+                    <span>{{(number_static.verify.mobile +  number_static.verify.complete)|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Guests" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/guest.svg">
+                    <span>{{number_static.users.total_guest|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Telegram" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/telegram.svg">
+                    <span>{{(number_static.users.telegram_guest +  number_static.users.telegram)|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "API" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/api.svg">
+                    <span>{{number_static.users.api|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="f">
+          <div class="c4 s12">
+            <div class="f">
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Total" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/list.svg">
+                    <span>{{number_static.visitor.total|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Unique" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/award.svg">
+                    <span>{{number_static.visitor.unique|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Today" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/24-hours-delivery.svg">
+                    <span>{{number_static.visitor.today|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <h3>{% trans "Last Week" %}</h3>
+                  <div class="card-data">
+                    <img src="{{url.static}}images/admin/weekly-calendar.svg">
+                    <span>{{number_static.visitor.last_week|number_format|fitNumber}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c8 s12">
+            <div class="card chart2">
+              <div class="data">
+                <h3>{% trans "Visitors" %}</h3>
+                <div id="chartdiv3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c6 s12">
+            <div class="card chart2">
+              <h3>{% trans "Answers" %}</h3>
+              <div id="chartdiv4"></div>
+            </div>
+          </div>
+          <div class="c6 s12">
+            <div class="card chart2">
+              <h3>{% trans "Transactions" %}</h3>
+              <div id="chartdiv5"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c8 s12">
+            <div class="card chart2">
+              <h3>{% trans "Visits" %}</h3>
+              <div id="chartdiv6"></div>
+            </div>
+          </div>
+          <div class="c4 s12">
+            <div class="f">
+              <div class="c12">
+                <div class="card">
+                  <div class="card-data">
+                    <span>121454</span>
+                    <img src="{{url.static}}images/admin/list.svg">
+                  </div>
+                  <div class="card-desc">{% trans "Total" %}</div>
+                </div>
+              </div>
+
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <div class="card-data">
+                    <span>2657</span>
+                    <img src="{{url.static}}images/admin/award.svg">
+                  </div>
+                  <div class="card-desc">{% trans "Unique" %}</div>
+                </div>
+              </div>
+              <div class="c6 m12 s6">
+                <div class="card">
+                  <div class="card-data">
+                    <span>369</span>
+                    <img src="{{url.static}}images/admin/24-hours-delivery.svg">
+                  </div>
+                  <div class="card-desc">{% trans "Today" %}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="f">
+          <div class="c6 s12">
+            <div class="card list latest-polls">
+              <h3>{% trans "Latest Polls" %}</h3>
+              <a href="#">
+                <i class="c1" data-color='red'></i>
+                <span class="c11">Just use the box-shadow and play with it to get the best result for you?</span>
+              </a>
+              <a href="#">
+                <i class="c1" data-color='blue'></i>
+                <span class="c11">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
+              </a>
+              <a href="#">
+                <i class="c1" data-color='green'></i>
+                <span class="c11">Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="c6 s12">
+            <div class="card list trending-polls">
+              <h3>{% trans "Trending Polls" %}</h3>
+              <a href="#">
+                <i class="c1" data-color='red'></i>
+                <span class="c11">Just use the box-shadow and play with it to get the best result for you?</span>
+              </a>
+              <a href="#">
+                <i data-color='blue'></i>
+                <span>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa?</span>
+              </a>
+              <a href="#">
+                <i data-color='green'></i>
+                <span>Quam diu etiam furor iste tuus nos eludet? (How long, O Catiline, will you abuse our patience?</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+{%endblock%}

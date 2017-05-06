@@ -675,6 +675,15 @@ a:hover, a:active, a:focus {
 /* Grid
    ========================================================================== */
 
+.container {
+  position: relative;
+  width: 90%;
+  min-width: 920px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
 .f {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1390,6 +1399,11 @@ a:hover, a:active, a:focus {
 }
 
 @media all and (min-width: 768px) and (max-width: 959px) {
+  .container {
+    min-width: 710px;
+    max-width: 940px;
+  }
+
   .f>.m {
     -webkit-flex-basis: 0;
     -ms-flex-preferred-size: 0;
@@ -1707,6 +1721,11 @@ a:hover, a:active, a:focus {
 }
 
 @media all and (max-width: 767px) {
+  .container {
+    min-width: 450px;
+    max-width: 750px;
+  }
+
   .f>.s {
     -webkit-flex-basis: 0;
     -ms-flex-preferred-size: 0;

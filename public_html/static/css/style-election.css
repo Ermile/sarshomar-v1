@@ -1,3 +1,13 @@
 @charset "utf-8";
 
-body{background-color:#eee;}
+body{/*background-color:#eee;*/}
+
+.president-elect{text-align:center}
+.rivals{width:900px;margin:0 auto}
+.rivals .rival{text-align:center;}
+.rivals .rivals-result .bar{height:2em;background-color:#00667a;width:90%;margin:0 auto}
+.candidates{width:900px;margin:0 auto}
+.candidates .candidate{border-top:1px solid #ccc;padding: 1em 0;}
+.candidates .candidate:last-of-type{border-bottom:1px solid #ccc}
+#chartdiv{height:300px;width:100%;direction:ltr}
+.city-results{width:900px;margin:2em auto}
