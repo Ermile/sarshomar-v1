@@ -168,7 +168,10 @@ class ask
 			$guest_option['inline_report'] = false;
 			$guest_option['skip'] = false;
 		}
-
+		elseif(isset($maker->query_result['poll']['privacy']) && $maker->query_result['poll']['privacy'] == 'public')
+		{
+			$guest_option['share'] = true;
+		}
 		if(is_null($get_answer) || in_array('add', $get_answer['available']) || in_array('edit', $get_answer['available']))
 		{
 			$maker->inline_keyboard->add_poll_answers($options['type'] == 'private' ? $get_answer : null, $guest_option['skip']);
