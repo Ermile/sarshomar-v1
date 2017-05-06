@@ -1,4 +1,4 @@
-{%extends display.main%} {%block content%}
+{%extends display.admin%} {%block content%}
 <div class="box content-management comments-management">
 	<div class="statistics row auto">
 		<a href="{{url.base}}/admin/$/status=total" class="span2">
@@ -54,7 +54,7 @@
 					{%else%}
 					<i class="icon-angle-right fa-4x"></i>
 					{%endif%}
-					</div>				
+					</div>
 			</div>
 		</a>
 	</div>
@@ -67,8 +67,8 @@
 						<div class="span10">
 
 							<div class="media">
-								<div class="media-right">								
-									<img class="media-object" src="{{base.url}}/static/images/svg/avatar.svg" width="68" height="68" alt="...">	
+								<div class="media-right">
+									<img class="media-object" src="{{base.url}}/static/images/svg/avatar.svg" width="68" height="68" alt="...">
 									<div class="external-links"><a target="_blank" href="{{base.url}}/{{value.comment_url}}"><i class="icon-external-link"></i></a></div>
 								</div>
 								<div class="media-body">
@@ -87,8 +87,8 @@
 							</div>
 						</div>
 					</div>
-				</div>	
-				
+				</div>
+
 			</div>
 		</div>
 		{%endfor%}

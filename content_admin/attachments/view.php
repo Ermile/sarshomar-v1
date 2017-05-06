@@ -1,7 +1,7 @@
 <?php
 namespace content_admin\attachments;
 
-class view extends \mvc\view
+class view extends \content_admin\main\view
 {
 	public function view_attachments($_args)
 	{
@@ -21,6 +21,22 @@ class view extends \mvc\view
 	{
 		var_dump($_args);
 		exit();
+	}
+
+	public function view_view($_args)
+	{
+		$this->data->result = $_args->api_callback;
+		$id = (isset($_args->match->url[0][1])) ? $_args->match->url[0][1] : null;
+		if(!$id || !is_numeric($id))
+		{
+			return false;
+		}
+		$get_post = \lib\db\posts::get_one($id);
+
+		if(isset($get_post['post_meta']) && is_array($get_post['post_meta']))
+		{
+			$this->data->current_file = $get_post['post_meta'];
+		}
 	}
 }
 ?>

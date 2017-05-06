@@ -8,8 +8,13 @@ CREATE TABLE election.elections (
 `voted`			int(10) UNSIGNED NULL DEFAULT NULL,
 `invalid`		int(10) UNSIGNED NULL DEFAULT NULL,
 `cash`			int(10) UNSIGNED NULL DEFAULT NULL,
+`branchs `		int(10) UNSIGNED NULL DEFAULT NULL,
+`signuped_count`int(10) UNSIGNED NULL DEFAULT NULL,
+`verified_count`int(10) UNSIGNED NULL DEFAULT NULL,
+`candida_count`	int(10) UNSIGNED NULL DEFAULT NULL,
 `start_time`	datetime DEFAULT NULL,
 `end_time`		datetime DEFAULT NULL,
+`election_date`	datetime DEFAULT NULL,
 `jalali_year`	int(4) DEFAULT NULL,
 `year` 			int(4) DEFAULT NULL,
 `en_url`		varchar(500) NULL DEFAULT NULL,
@@ -99,5 +104,6 @@ CREATE TABLE election.resultbyplaces (
 `meta` 			mediumtext 		CHARACTER SET utf8mb4 NULL DEFAULT NULL,
 PRIMARY KEY (`id`),
 CONSTRAINT `resultbyplase_election_id` FOREIGN KEY (`election_id`) REFERENCES `elections` (`id`) ON UPDATE CASCADE,
+CONSTRAINT `resultbyplase_candida_id` FOREIGN KEY (`candida_id`) REFERENCES `candidas` (`id`) ON UPDATE CASCADE,
 CONSTRAINT `resultbyplase_report_id` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,7 +1,7 @@
 <?php
 namespace content_admin\comments;
 
-class view extends \mvc\view
+class view extends \content_admin\main\view
 {
 	function view_comments($_args)
 	{

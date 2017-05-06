@@ -9,13 +9,13 @@
             <div class="gellery-box">
 
                 {% if value.post_meta.type  == 'image' %}
-                    <img src="{{dlUrl}}/{{value.post_meta.url}}">
+                    <img src="{{dlUrl}}/{{value.post_meta.thumb}}">
                 {% elseif value.post_meta.type  == 'audio' %}
-                    <audio controls><source src="{{dlUrl}}/{{value.post_meta.url}}"></audio>
+                    <audio controls><source src="{{dlUrl}}/{{value.post_meta.thumb}}"></audio>
                 {% elseif value.post_meta.type  == 'video' %}
-                    <video controls><source src="{{dlUrl}}/{{value.post_meta.url}}"></video>
+                    <video controls><source src="{{dlUrl}}/{{value.post_meta.thumb}}"></video>
                 {%else%}
-                    <a href="{{dlUrl}}/{{value.post_meta.url}}"><span>{{value.post_meta.type}}</span></a>
+                    <a href="{{dlUrl}}/{{value.post_meta.thumb}}"><span>{{value.post_meta.type}}</span></a>
                 {% endif %}
 
                 <div class="box-details">
@@ -27,6 +27,7 @@
                         </div>
                         <div class="c flex justify-end">
                             <a href="{{dlUrl}}/{{value.post_meta.url}}" target="_blank" ><img src="{{url.static}}images/admin/preview1.svg"></a>
+                            <a href="{{url.base}}/admin/attachments/view={{value.id}}" target="_blank" ><img src="{{url.static}}images/admin/list.svg"></a>
                         </div>
                     </div>
 

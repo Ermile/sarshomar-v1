@@ -12,10 +12,18 @@ class controller extends \content_admin\main\controller
 		$property['status'] = ["/^.*$/", true, 'status'];
 		$property['sort']   = ["/^.*$/", true, 'sort'];
 		$property['order']  = ["/^.*$/", true, 'order'];
+
 		$this->get("attachments", "attachments")->ALL(['property' => $property]);
-		$this->get("show", "show")->ALL("/attachments\/show\/id\=\d+/");
-		$this->post("show")->ALL("/attachments\/show\/id\=\d+/");
+
 		$this->post("accept")->ALL("/^attachments$/");
+
+		if(preg_match("/attachments\/view=(\d+)/", \lib\router::get_url()))
+		{
+			$this->display_name = 'content_admin/attachments/show.html';
+		}
+
+		$this->get("view", "view")->ALL("/attachments\/view=(\d+)/");
+
 	}
 }
 

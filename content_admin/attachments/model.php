@@ -66,9 +66,41 @@ class model extends \mvc\model
 
 	}
 
-	public function get_show($_args)
+	public function get_view($_args)
 	{
-		var_dump(utility::post());exit();
+		$id = (isset($_args->match->url[0][1])) ? $_args->match->url[0][1] : null;
+		if(!$id || !is_numeric($id))
+		{
+			return false;
+		}
+		$query =
+		"
+			(
+				SELECT
+					posts.post_url,
+					posts.post_title
+				FROM
+					options
+				RIGHT JOIN posts ON options.post_id = posts.id
+				WHERE
+					options.option_key = 'title_attachment' AND
+					options.option_value = $id
+			)
+			UNION ALL
+			(
+				SELECT
+					posts.post_url,
+					posts.post_title
+				FROM
+					pollopts
+				INNER JOIN posts ON pollopts.post_id = posts.id
+				WHERE pollopts.attachment_id = $id
+			)
+		";
+		$result = \lib\db::get($query, ['post_url', 'post_title']);
+		return $result;
+
+
 	}
 
 

@@ -33,5 +33,14 @@ class view extends \mvc\view
 		}
 		$this->data->order_url = $order_url;
 	}
+
+	/**
+	 * [pushState description]
+	 * @return [type] [description]
+	 */
+	function pushState()
+	{
+		exit();
+	}
 }
 ?>

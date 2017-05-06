@@ -1,7 +1,7 @@
 <?php
 namespace content_admin\logitems;
 
-class view extends \mvc\view
+class view extends \content_admin\main\view
 {
 	public function view_logitems($_args)
 	{
