@@ -168,7 +168,7 @@ class ask
 			$guest_option['inline_report'] = false;
 			$guest_option['skip'] = false;
 		}
-		elseif(isset($maker->query_result['poll']['privacy']) && $maker->query_result['poll']['privacy'] == 'public')
+		elseif(isset($maker->query_result['privacy']) && $maker->query_result['privacy'] == 'public')
 		{
 			$guest_option['share'] = true;
 		}
