@@ -19,6 +19,7 @@ class view extends \lib\mvc\view
 		$this->data->template['share']       = 'content/template/share.html';
 		// admin template
 		$this->data->display['admin']        = 'content_admin/main/layout.html';
+		$this->data->display['election']     = 'content_election/main/layout.html';
 
 		$displayname = $this->login("displayname");
 		if($displayname == '')
