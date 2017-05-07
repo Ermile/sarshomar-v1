@@ -1,64 +1,94 @@
-{%extends display.mvc%}
-{%block body%}
-ADD report
+{%extends display.admin%}
+{%block content%}
+
 {%if report_list%}
-<h1>report list</h1>
-<table border="1">
-<tr>
-		<th>{%trans "id" %}</th>
-		<th>{%trans "election" %}</th>
-		<th>{%trans "desc" %}</th>
-		<td>{%trans "date" %}</td>
-		<td>{%trans "level" %}</td>
-		<td>{%trans "number" %}</td>
-		<td>{%trans "cash" %}</td>
-		<td>{%trans "voted" %}</td>
-		<td>{%trans "invalid" %}</td>
-	</tr>
-
-{%for key, value in report_list%}
-	<tr>
-		<td><a href="{{url.base}}/election/data/report/edit={{value.id}}">{{value.id}}</a></td>
-		<td>{{value.title}}</td>
-		<td>{{value.desc}}</td>
-		<td>{{value.date}}</td>
-		<td>{{value.level}}</td>
-		<td>{{value.number}}</td>
-		<td>{{value.cash}}</td>
-		<td>{{value.voted}}</td>
-		<td>{{value.invalid}}</td>
-	</tr>
-{%endfor%}
-</table>
+<h1>{%trans "Report list"%}</h1>
+	<div class="f">
+		<div>{%trans "id" %}</div>
+		<div>{%trans "election" %}</div>
+		<div>{%trans "desc" %}</div>
+		<div>{%trans "date" %}</div>
+		<div>{%trans "level" %}</div>
+		<div>{%trans "number" %}</div>
+		<div>{%trans "cash" %}</div>
+		<div>{%trans "voted" %}</div>
+		<div>{%trans "invalid" %}</div>
+	</div>
+	{%for key, value in report_list%}
+		<div class="f">
+			<div><a href="{{url.base}}/election/data/report/edit={{value.id}}">{{value.id}}</a></div>
+			<div>{{value.title}}</div>
+			<div>{{value.desc}}</div>
+			<div>{{value.date}}</div>
+			<div>{{value.level}}</div>
+			<div>{{value.number}}</div>
+			<div>{{value.cash}}</div>
+			<div>{{value.voted}}</div>
+			<div>{{value.invalid}}</div>
+		</div>
+	{%endfor%}
 {%endif%}
+
 {%if edit_report%}
-<h1>edit  report {{report.title}}</h1>
+<h1>{%trans "Edit report resutl"%}{{report.title}}</h1>
 {%else%}
-<h1>add new report</h1>
+<h1>{%trans "Add new report"%}</h1>
 {%endif%}
 
-<form method="post" data-ajaxify>
-	{%trans "election"%}
-	<select name="election_id">
+<form method="post" class="df">
+	<div class="f">
+		<label class="c1" for="election">{%trans "election"%}</label>
+		<select name="election_id" class="c5" id="election">
 			<option  selected>{%trans "Please select one item"%}</option>
-		{%for key, value in election_list%}
+			{%for key, value in election_list%}
 			<option value="{{value.id}}" {%if report.election_id == value.id %}selected{%endif%}>{{value.title}}</option>
-		{%endfor%}
-	</select>
-	<br>{%trans "date" %}:<input type="date" name="date" id="date" placeholder="date" value="{{report.date}}">
-	<br>{%trans "level" %}:<input type="text" name="level" id="level" placeholder="level" value="{{report.level}}">
-	<br>{%trans "number" %}:<input type="number" name="number" id="number" placeholder="number" value="{{report.number}}">
-	<br>{%trans "cash" %}:<input type="number" name="cash" id="cash" placeholder="cash" value="{{report.cash}}">
-	<br>{%trans "voted" %}:<input type="number" name="voted" id="voted" placeholder="voted" value="{{report.voted}}">
-	<br>{%trans "invalid" %}:<input type="number" name="invalid" id="invalid" placeholder="invalid" value="{{report.invalid}}">
-	<br>
-	{%trans "Status"%}
-	<select name="status">
-		<option value="enable" {%if report.status == 'enable' %}selected{%endif%}>{%trans "enable"%}</option>
-		<option value="disable" {%if report.status == 'disable' %}selected{%endif%}>{%trans "disable"%}</option>
-	</select>
-	<br>{%trans "desc" %}:<textarea name="desc" id="desc" placeholder="desc">{{report.desc}}</textarea>
-	<br><input type="submit" value="save">
+			{%endfor%}
+		</select>
+	</div>
+	<div class="f">
+		<label class="c1" for="date">{%trans "date"%}</label>
+		<input type="text" name="date" id="date" placeholder='{%trans "date"%}' value="{{report.date}}" class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="level">{%trans "level"%}</label>
+		<input type="text" name="level" id="level" placeholder='{%trans "level"%}' value="{{report.level}}" class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="number">{%trans "number"%}</label>
+		<input type="text" name="number" id="number" placeholder='{%trans "number"%}' value="{{report.number}}" class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="cash">{%trans "cash"%}</label>
+		<input type="text" name="cash" id="cash" placeholder='{%trans "cash"%}' value="{{report.cash}}" class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="voted">{%trans "voted"%}</label>
+		<input type="text" name="voted" id="voted" placeholder='{%trans "voted"%}' value="{{report.voted}}" class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="invalid">{%trans "invalid"%}</label>
+		<input type="text" name="invalid" id="invalid" placeholder='{%trans "invalid"%}' value="{{report.invalid}}" class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="status">{%trans "status"%}</label>
+		<select name="status" class="c5" id="status">
+			<option value="enable" {%if report.status == 'enable' %}selected{%endif%}>{%trans "enable"%}</option>
+			<option value="disable" {%if report.status == 'disable' %}selected{%endif%}>{%trans "disable"%}</option>
+		</select>
+	</div>
+	<div class="f">
+		<label class="c1" for="desc">{%trans "desc"%}</label>
+		<textarea name="desc" id="desc" placeholder="desc" class="c5">{{report.desc}}</textarea>
+	</div>
+	<div class="f">
+		{%if edit_report%}
+			<label class="c1">{%trans "Update"%}</label>
+			<input type="submit" class="c5" value='{%trans "Update"%}'>
+		{%else%}
+			<label class="c1">{%trans "Save"%}</label>
+			<input type="submit" class="c5" value='{%trans "Save"%}'>
+		{%endif%}
+	</div>
 </form>
 {%endblock%}
 

@@ -1,68 +1,67 @@
-{%extends display.mvc%}
-{%block body%}
-ADD result
-<form method="post">
-	<h1>report list of {{list.election.title}}</h1>
+{%extends display.admin%}
+{%block content%}
+
+<form method="post" class="df">
+	<h1>{% trans "Report list"%} {{list.election.title}}</h1>
+
 	{%if list%}
-	<table border="1">
-	<tr>
-			<th>{%trans "id" %}</th>
-			<th>{%trans "election" %}</th>
-			<th>{%trans "desc" %}</th>
-			<td>{%trans "date" %}</td>
-			<td>{%trans "level" %}</td>
-			<td>{%trans "number" %}</td>
-			<td>{%trans "cash" %}</td>
-			<td>{%trans "voted" %}</td>
-			<td>{%trans "invalid" %}</td>
-		</tr>
+	<div class="f">
+		<div>{%trans "Click to edit" %}</div>
+		<div>{%trans "Date" %}</div>
+		<div>{%trans "Level" %}</div>
+		<div>{%trans "Number" %}</div>
+		<div>{%trans "Cash" %}</div>
+		<div>{%trans "Voted" %}</div>
+		<div>{%trans "Invalid" %}</div>
+	</div>
 		{%for key, value in list.report%}
-		<tr>
-			<td><a href="{{url.base}}/election/data/report/edit={{value.id}}">{{value.id}}</a></td>
-			<td>{{value.title}}</td>
-			<td>{{value.desc}}</td>
-			<td>{{value.date}}</td>
-			<td>{{value.level}}</td>
-			<td>{{value.number}}</td>
-			<td>{{value.cash}}</td>
-			<td>{{value.voted}}</td>
-			<td>{{value.invalid}}</td>
-		</tr>
+		<div class="f">
+			<div><a href="{{url.base}}/election/data/report/edit={{value.id}}">{%trans "Edit"%}</a></div>
+			<div>{{value.date|jdate("Y-m-d")}}</div>
+			<div>{{value.level}}</div>
+			<div>{{value.number|number_format|fitNumber}}</div>
+			<div>{{value.cash|number_format|fitNumber}}</div>
+			<div>{{value.voted|number_format|fitNumber}}</div>
+			<div>{{value.invalid|number_format|fitNumber}}</div>
+		</div>
 		{%endfor%}
-	</table>
+	{%endif%}
+	<div class="f">
+		<div></div>
+		<div>
+			<input type="text" name="date" placeholder='{%trans "Date" %}' value='{{"now"|jdate("Y-m-d", false, false)}}'>
+		</div>
+		<div>
+			<input type="text" name="level" placeholder='{%trans "Level" %}'>
+		</div>
+		<div>
+			<input type="number" name="number" placeholder='{%trans "Number" %}'>
+		</div>
+		<div>
+			<input type="number" name="cash" placeholder='{%trans "Cash" %}'>
+		</div>
+		<div>
+			<input type="number" name="voted" placeholder='{%trans "Voted" %}'>
+		</div>
+		<div>
+			<input type="number" name="invalid" placeholder='{%trans "Invalid" %}'>
+		</div>
+	</div>
 
-	<input type="date" name="date" placeholder='{%trans "date" %}'>
-	<input type="text" name="level" placeholder='{%trans "level" %}'>
-	<input type="number" name="number" placeholder='{%trans "number" %}'>
-	<input type="number" name="cash" placeholder='{%trans "cash" %}'>
-	<input type="number" name="voted" placeholder='{%trans "voted" %}'>
-	<input type="number" name="invalid" placeholder='{%trans "invalid" %}'>
-
-	<br>
-	<br>
-
-	<table border="1">
-		<tr>
-			<th>{%trans ";)" %}</th>
-			<th>{%trans "name" %}</th>
-			<td>{%trans "family" %}</td>
-			<td>{%trans "fame" %}</td>
-			<td>{%trans "total" %}</td>
-		</tr>
-		{%for key, value in list.candida%}
-		<tr>
-			<td><img height="64" width="64" src="{{url.static}}{{value.file_url}}"></td>
-			<td>{{value.name}}</td>
-			<td>{{value.family}}</td>
-			<td>{{value.fame}}</td>
-			<td><input type="number" name="total_{{value.id}}"></td>
-		</tr>
-		{%endfor%}
-	</table>
-	<br>
-	<input type="submit" value="save" >
+	{%for key, value in list.candida%}
+	<div class="f">
+		<div class="c2">{{value.name}}</div>
+		<div class="c2">{{value.family}}</div>
+		<div class="c1"><img height="64" width="64" src="{{url.static}}{{value.file_url}}"></div>
+		<div class="c3">
+			<input type="number" name="total_{{value.id}}">
+		</div>
+	</div>
+	{%endfor%}
+	<div class="f">
+		<input type="submit" value='{%trans "Save"%}' >
+	</div>
 </form>
-{%endif%}
 
 {%endblock%}
 

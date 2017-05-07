@@ -3,6 +3,9 @@ namespace content_election\data;
 
 class view extends \content_election\main\view
 {
+	/**
+	 * cofnig
+	 */
 	public function config()
 	{
 		$election = \content_election\lib\elections::search();
@@ -15,7 +18,6 @@ class view extends \content_election\main\view
 				$running[] = $value;
 			}
 		}
-
 		$this->data->running = $running;
 	}
 }

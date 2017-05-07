@@ -108,15 +108,15 @@ class model extends \content_election\main\model
 			if($result)
 			{
 				\content_election\lib\results::update_cash($id);
-				debug::true(T_("result added"));
+				debug::true(T_("Result added"));
 			}
 			else
 			{
 				debug::error(T_("Error in adding result"));
 			}
 		}
-
 	}
+
 
 	/**
 	 * Gets the report.
@@ -129,7 +129,13 @@ class model extends \content_election\main\model
 		return $result;
 	}
 
-
+	/**
+	 * Posts an edit.
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public function post_edit($_args)
 	{
 		$id = $this->getid($_args);
@@ -149,20 +155,19 @@ class model extends \content_election\main\model
 			'cash'        => utility::post('cash'),
 			'voted'       => utility::post('voted'),
 			'invalid'     => utility::post('invalid'),
-
 		];
 
 		$result = \content_election\lib\reports::update($update, $id);
 		if($result)
 		{
-			debug::true(T_("report updated"));
+			debug::true(T_("Report updated"));
 		}
 		else
 		{
 			debug::error(T_("Error in update report"));
 		}
-
 	}
+
 
 	/**
 	 * Posts an report.
@@ -199,24 +204,6 @@ class model extends \content_election\main\model
 		{
 			debug::error(T_("Error in adding report"));
 		}
-
-		// id
-		// title
-		// status
-		// eligible
-		// voted
-		// invalid
-		// cash
-		// start_time
-		// end_time
-		// jalali_year
-		// year
-		// createdate
-		// date_modified
-		// desc
-		// meta
-
 	}
-
 }
 ?>
