@@ -30,8 +30,8 @@
 		<div>{%trans "Win"%}</div>
 		<div>{%trans "Desc"%}</div>
 	</div>
+	{%for key, value in election_list%}
 	<div class="f">
-		{%for key, value in election_list%}
 		<div><a href="{{url.base}}/election/admin/election/edit={{value.id}}">{{value.id}}</a></div>
 		<div class="c2">{{value.title}}</div>
 		<div>{%set myStatus = value.status%}{%trans myStatus %}</div>
@@ -55,8 +55,8 @@
 		<div>{{value.cat}}</div>
 		<div>{{value.win}}</div>
 		<div>{{value.desc}}</div>
-	{%endfor%}
 	</div>
+	{%endfor%}
 </div>
 {%endif%}
 

@@ -1,78 +1,117 @@
 {%extends display.admin%}
-
-
 {%block content%}
-ADD candida
+
 {%if candida_list%}
-<h1>candida list</h1>
-<table border="1">
-<tr>
-		<th>{%trans "id" %}</th>
-		<th>{%trans "election" %}</th>
-		<th>{%trans "name" %}</th>
-		<th>{%trans "family" %}</th>
-		<th>{%trans "father" %}</th>
-		<th>{%trans "fame" %}</th>
-		<th>{%trans "nationalcode" %}</th>
-		<th>{%trans "brithdate" %}</th>
-		<th>{%trans "electioncode" %}</th>
-		<th>{%trans "desc" %}</th>
-		<th>{%trans "file_url" %}</th>
-		<th>{%trans "file_url_2" %}</th>
-		<th>{%trans "win url" %}</th>
-	</tr>
-
-{%for key, value in candida_list%}
-	<tr>
-		<td><a href="{{url.base}}/election/admin/candida/edit={{value.id}}">{{value.id}}</a></td>
-		<td>{{value.title}}</td>
-		<td>{{value.name}}</td>
-		<td>{{value.family}}</td>
-		<td>{{value.father}}</td>
-		<td>{{value.nationalcode}}</td>
-		<td>{{value.birthdate}}</td>
-		<td>{{value.electioncode}}</td>
-		<td>{{value.desc}}</td>
-		<td><img height="32" width="32" src="{{url.static}}{{value.file_url}}">{{value.file_url}}</td>
-		<td><img height="32" width="32" src="{{url.static}}{{value.file_url_2}}">{{value.file_url_2}}</td>
-		<td><img height="32" width="32" src="{{url.static}}{{value.win_url}}">{{value.win_url}}</td>
-	</tr>
-{%endfor%}
-</table>
-{%endif%}
-{%if edit_candida%}
-<h1>edit  candida {{candida.title}}</h1>
-{%else%}
-<h1>add new candida</h1>
-{%endif%}
-
-<form method="post" enctype="multipart/form-data">
-	{%trans "election"%}
-	<select name="election_id">
-			<option  selected>{%trans "Please select one item"%}</option>
-		{%for key, value in election_list%}
-			<option value="{{value.id}}" {%if candida.election_id == value.id %}selected{%endif%}>{{value.title}}</option>
+<h1>{%trans "Candida List" %}</h1>
+<div class="tbl myTable">
+	<div class="f th">
+		<div>{%trans "id" %}</div>
+		<div class="c2">{%trans "election" %}</div>
+		<div>{%trans "Name" %}</div>
+		<div>{%trans "Family" %}</div>
+		<div>{%trans "Father" %}</div>
+		<div>{%trans "Fame" %}</div>
+		<div>{%trans "Nationalcode" %}</div>
+		<div>{%trans "Brith date" %}</div>
+		<div>{%trans "Election code" %}</div>
+		<div>{%trans "Desc" %}</div>
+		<div>{%trans "File_url" %}</div>
+		<div>{%trans "File_url_2" %}</div>
+		<div>{%trans "Win url" %}</div>
+	</div>
+		{%for key, value in candida_list%}
+	<div class="f">
+		<div><a href="{{url.base}}/election/admin/candida/edit={{value.id}}">{{value.id}}</a></div>
+		<div class="c2">{{value.title}}</div>
+		<div>{{value.name}}</div>
+		<div>{{value.family}}</div>
+		<div>{{value.father}}</div>
+		<div>{{value.fame}}</div>
+		<div>{{value.nationalcode|fitNumber}}</div>
+		<div>{{value.birthdate|jdate("Y-m-d")}}</div>
+		<div>{{value.electioncode|fitNumber}}</div>
+		<div>{{value.desc}}</div>
+		<div><img height="100" width="100" src="{{url.static}}{{value.file_url}}"></div>
+		<div><img height="100" width="100" src="{{url.static}}{{value.file_url_2}}"></div>
+		<div><img height="100" width="100" src="{{url.static}}{{value.win_url}}"></div>
+	</div>
 		{%endfor%}
-	</select>
-	<br>{%trans "name" %}:<input type="text" name="name" id="name" placeholder="name" value="{{candida.name}}">
-	<br>{%trans "family" %}:<input type="text" name="family" id="family" placeholder="family" value="{{candida.family}}">
-	<br>{%trans "father" %}:<input type="text" name="father" id="father" placeholder="father" value="{{candida.father}}">
-	<br>{%trans "fame" %}:<input type="text" name="fame" id="fame" placeholder="fame" value="{{candida.fame}}">
-	<br>{%trans "birthdate" %}:<input type="date" name="birthdate" id="birthdate" placeholder="birthdate" value='{{candida.birthdate|date("m/d/Y")}}'>
-	<br>{%trans "nationalcode" %}:<input type="text" name="nationalcode" id="nationalcode" placeholder="nationalcode" value="{{candida.nationalcode}}">
-	<br>{%trans "electioncode" %}:<input type="text" name="electioncode" id="electioncode" placeholder="electioncode" value="{{candida.electioncode}}">
-<br>
-    file 1:<input type="file" name="file_url" ><br>
-    file 2<input type="file" name="file_url_2" > <br>
-    win url<input type="file" name="win_url" > <br>
+</div>
+{%endif%}
 
-	<br>
-	{%trans "Status"%}
-	<select name="status">
+{%if edit_candida%}
+<h1>{%trans "Edit candida data"%} {{candida.title}}</h1>
+{%else%}
+<h1>{%trans "Add new candida"%}</h1>
+{%endif%}
+<form method="post" enctype="multipart/form-data">
+	<div class="f">
+		<label class="c1" for="election_id">{%trans "election_id"%}</label>
+		<select name="election_id" id="election_id" class="c5">
+			<option  selected>{%trans "Please select one item"%}</option>
+			{%for key, value in election_list%}
+			<option value="{{value.id}}" {%if candida.election_id == value.id %}selected{%endif%}>{{value.title}}</option>
+			{%endfor%}
+		</select>
+	</div>
+	<div class="f">
+		<label class="c1" for="name">{%trans "name"%}</label>
+		<input type="text" name="name" id="name"  value="{{candida.name}}" placeholder='{%trans "Name"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="family">{%trans "family"%}</label>
+		<input type="text" name="family" id="family"  value="{{candida.family}}" placeholder='{%trans "Family"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="father">{%trans "father"%}</label>
+		<input type="text" name="father" id="father"  value="{{candida.father}}" placeholder='{%trans "Father"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="fame">{%trans "fame"%}</label>
+		<input type="text" name="fame" id="fame"  value="{{candida.fame}}" placeholder='{%trans "Fame"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="birthdate">{%trans "birthdate"%}</label>
+		<input type="date" name="birthdate" id="birthdate"  value="{{candida.birthdate}}" placeholder='{%trans "Birth date"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="nationalcode">{%trans "nationalcode"%}</label>
+		<input type="number" name="nationalcode"  id="nationalcode" value="{{candida.nationalcode}}" placeholder='{%trans "National code"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="electioncode">{%trans "electioncode"%}</label>
+		<input type="text" name="electioncode"  id="electioncode" value="{{candida.electioncode}}" placeholder='{%trans "Election code"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="file_url">{%trans "file_url"%}</label>
+    	<input type="file" name="file_url" class="c5" >
+	</div>
+	<div class="f">
+		<label class="c1" for="file_url_2">{%trans "file_url_2"%}</label>
+      	<input type="file" name="file_url_2" class="c5" >
+	</div>
+	<div class="f">
+		<label class="c1" for="win_url">{%trans "win_url"%}</label>
+    	<input type="file" name="win_url" class="c5" >
+	</div>
+	<div class="f">
+		<label class="c1" for="status">{%trans "status"%}</label>
+		<select name="status" id="status" class="c5">
 		<option value="active" {%if candida.status == 'active' %}selected{%endif%}>{%trans "active"%}</option>
 		<option value="cancel" {%if candida.status == 'cancel' %}selected{%endif%}>{%trans "cancel"%}</option>
 	</select>
-	<br>{%trans "desc" %}:<textarea name="desc" id="desc" placeholder="desc">{{candida.desc}}</textarea>
-	<br><input type="submit" value="save">
+	</div>
+	<div class="f">
+		<label class="c1" for="desc">{%trans "desc"%}</label>
+		<textarea name="desc" id="desc" placeholder="Desc" class="c5">{{candida.desc}}</textarea>
+	</div>
+	<div class="f">
+		<label for="submit" class="c1">{%trans "Save"%}</label>
+		{%if edit_candida%}
+			<input type="submit" value='{%trans "Update"%}' class="c5">
+		{%else%}
+			<input type="submit" value='{%trans "Save"%}' class="c5">
+		{%endif%}
+	</div>
 </form>
 {%endblock%}

@@ -1,8 +1,15 @@
-{%extends display.election%}
+{%extends display.admin%}
 
 
 {%block content%}
-ELECTION ADMIN
-<a href="{{url.base}}/election/admin/candida">{%trans "candida"%}</a>
+<h1>{%trans "Admin Election"%}</h1>
+<div class="f">
+	<span class="c1">
+		<a href="{{url.base}}/election/admin/election">{%trans "Election"%}</a>
+	</span>
+	<span class="c1">
+		<a href="{{url.base}}/election/admin/candida">{%trans "Candida"%}</a>
+	</span>
+</div>
 
 {%endblock%}
