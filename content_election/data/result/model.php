@@ -199,5 +199,14 @@ class model extends \content_election\main\model
 			debug::error(T_("Error in adding result"));
 		}
 	}
+
+
+	/**
+	 * Gets the election list.
+	 */
+	public function get_election_list()
+	{
+		return \content_election\lib\elections::search(null,['pagenation' => false, 'limit' => false]);
+	}
 }
 ?>

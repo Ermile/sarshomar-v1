@@ -68,5 +68,16 @@ class view extends \content_election\main\view
 		$this->data->result = $result;
 	}
 
+
+	/**
+	 * view election list
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function view_election_list($_args)
+	{
+		$this->data->result = $_args->api_callback;
+	}
+
 }
 ?>
