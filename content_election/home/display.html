@@ -1,8 +1,11 @@
 {%extends display.election%}
 
-{% block content3 %}
+{% block content %}
+<div class="container">
  <div class="president-elect">
-  <img src="https://dl.sarshomar.com/files/1/885-5ea4eade6fffaa56d601292fa86c1073.jpg" align="سید مصطفی میرسلیم">
+  <div class="image round">
+   <img src="{{url.static}}images/election/1.png" align="سید مصطفی میرسلیم">
+  </div>
   <h2>سید مصطفی میرسلیم</h2>
   <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3>
  </div>
@@ -10,128 +13,182 @@
  <div class="rivals">
   <div class="f">
    <div class="c2 rival">
-    <img src="https://dl.sarshomar.com/files/1/885-5ea4eade6fffaa56d601292fa86c1073.jpg" align="سید مصطفی میرسلیم">
+    <div class="image round medium">
+     <img src="{{url.static}}images/election/1.png" align="سید مصطفی میرسلیم">
+    </div>
     <h4>میرسلیم</h4>
    </div>
    <div class="c8 flex align-center rivals-result">
-    <div class="bar"></div>
+    <div class="bar">
+     <div class="bar-progress"></div>
+    </div>
    </div>
    <div class="c2 rival">
-    <img src="https://dl.sarshomar.com/files/1/882-340022785755ffdc27678f5c345a871a.jpg" align="سید مصطفی هاشمی‌طبا">
+    <div class="image round medium">
+     <img src="{{url.static}}images/election/6.png" align="سید مصطفی هاشمی‌طبا">
+    </div>
     <h4>هاشمی‌طبا</h4>
    </div>
   </div>
  </div>
 
  <div class="candidates">
-  <h5>لیست نامزدها</h5>
-
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/885-5ea4eade6fffaa56d601292fa86c1073.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/1.png" alt="">
+     </div>
     </div>
-    <div class="c2">
+    <div class="c2 name">
      <span>سید مصطفی</span>
-     <br>
-     <span>میرسلیم</span>
+     <span class="bold">میرسلیم</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress"></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>1,235,658</span>
+    </div>
    </div>
   </div>
 
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/884-50ac47fda83be2407186089572355837.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/2.png">
+     </div>
     </div>
-    <div class="c2">
+    <div class="c2 name">
      <span>اسحاق</span>
-     <br>
-     <span>جهانگیری</span>
+     <span class="bold">جهانگیری</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress"></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>1,235,658</span>
+    </div>
    </div>
   </div>
 
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/886-95b422a6f52f57efd2090ca0ceffca73.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/3.png">
+     </div>
     </div>
-    <div class="c2">
+    <div class="c2 name">
      <span>حسن</span>
-     <br>
-     <span>روحانی</span>
+     <span class="bold">روحانی</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress"></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>1,235,658</span>
+    </div>
    </div>
   </div>
 
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/887-ab2ef2df06db09013a747fa953d15632.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/4.png">
+     </div>
     </div>
-    <div class="c2">
+    <div class="c2 name">
      <span>سید ابراهیم</span>
-     <br>
-     <span>رئیسی</span>
+     <span class="bold">رئیسی</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress"></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>1,235,658</span>
+    </div>
    </div>
   </div>
 
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/883-8437ad0ef38475f3b09b21c960401ba2.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/5.png">
+     </div>
     </div>
-    <div class="c2">
+    <div class="c2 name">
      <span>محمدباقر</span>
-     <br>
-     <span>قالیباف</span>
+     <span class="bold">قالیباف</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress"></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>1,235,658</span>
+    </div>
    </div>
   </div>
 
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/882-340022785755ffdc27678f5c345a871a.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/6.png">
+     </div>
     </div>
-    <div class="c2">
+    <div class="c2 name">
      <span>سید مصطفی</span>
-     <br>
-     <span>هاشمی‌طبا</span>
+     <span class="bold">هاشمی‌طبا</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress" data-percent='23.2%'></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>12,235,658</span>
+    </div>
    </div>
   </div>
 
   <div class="candidate">
    <div class="f">
     <div class="c1">
-     <img src="https://dl.sarshomar.com/files/1/889-dd961c5df54ca22a64382ff8709c8cb2.jpg">
+     <div class="image round low">
+      <img src="{{url.static}}images/election/7.png">
+     </div>
     </div>
-    <div class="c2">
-     <span>رای باطل</span>
+    <div class="c2 name">
+     <span class="bold">رای باطل</span>
     </div>
-    <div class="c7">درصد</div>
-    <div class="c2">تعداد</div>
+    <div class="c7 bar-container">
+     <div class="bar">
+      <div class="bar-progress"></div>
+     </div>
+    </div>
+    <div class="c2 votes-container">
+     <span>1,235,658</span>
+    </div>
    </div>
   </div>
  </div>
 
  <div class="city-results">
-  <div class="f">
+  <div class="f header">
    <div class="c">استان</div>
    <div class="c">میرسلیم</div>
    <div class="c">جهانگیری</div>
@@ -152,9 +209,17 @@
    <div class="c">40%</div>
   </div>
  </div>
+
+ <div class="chart" id="" data-vals='[{"key":"۱۳۹۶-۰۲-۰۶","value":2},{"key":"۱۳۹۶-۰۲-۰۳","value":3}]' style="width:100%;direction:ltr;height: 300px"></div>
+
+</div>
 {% endblock %}
 
-{%block content%}
+{% block foot_js %}
+<script type="text/javascript"></script>
+{% endblock %}
+
+{%block content2%}
 
 {{block('win')}}
 <br>

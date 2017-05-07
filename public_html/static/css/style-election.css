@@ -1,13 +1,42 @@
 @charset "utf-8";
 
-body{/*background-color:#eee;*/}
+body{background-color:#f4f4f4;color:#333;/*background-image:url(../images/election/asanoha.png)*/}
+h1,h2,h3,h4,h5,h6{line-height:1.1}
 
-.president-elect{text-align:center}
-.rivals{width:900px;margin:0 auto}
+.image{position:relative;display:inline-block;overflow:hidden;vertical-align:middle}
+.image::before{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;content:''}
+.image.round{border:1em solid #fff;border-radius:50%;background-color:#fff;box-shadow:0 0 10px 2px #ddd}
+.image.round.medium{border:.5em solid #fff}
+.image.round.low{border:.25em solid #fff}
+.image>img{display:block}
+
+.president-elect{text-align:center;margin:5em auto}
+.president-elect h2{font-size:4em;text-shadow:0 0 2px #666}
+
+.rivals{margin:0 auto 5em}
 .rivals .rival{text-align:center;}
+.rivals .rival .image{max-width:100px}
+.rivals .rival h4{margin-top:1rem}
 .rivals .rivals-result .bar{height:2em;background-color:#00667a;width:90%;margin:0 auto}
-.candidates{width:900px;margin:0 auto}
-.candidates .candidate{border-top:1px solid #ccc;padding: 1em 0;}
-.candidates .candidate:last-of-type{border-bottom:1px solid #ccc}
+
+.candidates{margin:0 auto 5em;border-top:3px solid #666;border-bottom:3px solid #666}
+.candidates .candidate{padding:2em}
+.candidates .candidate:not(:last-of-type){border-bottom:1px solid #ddd}
+.candidates .candidate .name{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.candidates .candidate .name span{display:block;margin:.5rem 1rem}
+.candidates .candidate .name .bold{font-size:2em;font-weight:700}
+.candidates .candidate .name span:not(.bold){font-size:1.2em}
+
+.candidates .candidate .bar-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.candidates .candidate .bar{width:90%;margin:0 auto;height:1.5em;background:#e5e5e5 url(../images/election/striped.png);border:1px solid #e0e0e0}
+.candidates .candidate .bar .bar-progress{width:50%;height:100%;background-color:#007dd6;position:relative}
+.candidates .candidate .bar .bar-progress::before{content:attr(data-percent);position:absolute;top:-2em;left:0;font-weight:500;color:#666}
+
+.candidates .candidate .votes-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.candidates .candidate .votes-container span{font-weight:700;font-size:1.2em;color:#666}
+
 #chartdiv{height:300px;width:100%;direction:ltr}
-.city-results{width:900px;margin:2em auto}
+.city-results{margin:2em auto 5em;border-top:3px solid #666;border-bottom:3px solid #666}
+.city-results .header{font-weight:700;background-color:#ebebeb}
+.city-results .f [class*='c']{padding:1rem;font-size:1.2em}
+.city-results .f:not(:last-of-type){border-bottom:1px solid #ebebeb}
