@@ -40,3 +40,7 @@ h1,h2,h3,h4,h5,h6{line-height:1.1}
 .city-results .header{font-weight:700;background-color:#ebebeb}
 .city-results .f [class*='c']{padding:1rem;font-size:1.2em}
 .city-results .f:not(:last-of-type){border-bottom:1px solid #ebebeb}
+
+.timeline{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;-moz-box-pack:justify;justify-content:space-between;position:relative;margin-bottom:5em}
+.timeline::before{height:3px;content:'';width:100%;left:0;right:0;background-color:#666;position:absolute;top:50%;margin-top:-1em;top:0;bottom:0;margin:auto}
+.timeline .circle{width:5em;height:5em;z-index:2}
