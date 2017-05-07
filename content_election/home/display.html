@@ -2,6 +2,17 @@
 
 {% block content %}
 <div class="container">
+ {{block('win')}}
+ {{block('rivals')}}
+ {{block('result')}}
+ {{block('province_result')}}
+ {{block('city_result')}}
+ {{block('time_line')}}
+</div>
+{% endblock %}
+
+
+{%block win%}
  <div class="president-elect">
   <div class="image round">
    <img src="{{url.static}}images/election/1.png" align="سید مصطفی میرسلیم">
@@ -9,7 +20,9 @@
   <h2>سید مصطفی میرسلیم</h2>
   <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3>
  </div>
+{%endblock%}
 
+{%block rivals%}
  <div class="rivals">
   <div class="f">
    <div class="c2 rival">
@@ -31,188 +44,87 @@
    </div>
   </div>
  </div>
+{%endblock%}
 
+{%block result%}
+{%if result%}
  <div class="candidates">
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/1.png" alt="">
+  {%for key, value in result.result%}
+   <div class="candidate">
+    <div class="f">
+     <div class="c1">
+      <div class="image round low">
+       <img src="{{url.static}}{{value.file_url}}" alt="">
+      </div>
      </div>
-    </div>
-    <div class="c2 name">
-     <span>سید مصطفی</span>
-     <span class="bold">میرسلیم</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress"></div>
+     <div class="c2 name">
+      <span>{{value.name}}</span>
+      <span class="bold">{{value.family}}</span>
      </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>1,235,658</span>
+     <div class="c7 bar-container">
+      <div class="bar">
+       <div class="bar-progress" style="width: {{value.percent}}%"></div>
+      </div>
+     </div>
+     <div class="c2 votes-container">
+      <span>{{value.total|number_format|fitNumber}}</span>
+     </div>
     </div>
    </div>
-  </div>
-
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/2.png">
-     </div>
-    </div>
-    <div class="c2 name">
-     <span>اسحاق</span>
-     <span class="bold">جهانگیری</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress"></div>
-     </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>1,235,658</span>
-    </div>
-   </div>
-  </div>
-
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/3.png">
-     </div>
-    </div>
-    <div class="c2 name">
-     <span>حسن</span>
-     <span class="bold">روحانی</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress"></div>
-     </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>1,235,658</span>
-    </div>
-   </div>
-  </div>
-
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/4.png">
-     </div>
-    </div>
-    <div class="c2 name">
-     <span>سید ابراهیم</span>
-     <span class="bold">رئیسی</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress"></div>
-     </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>1,235,658</span>
-    </div>
-   </div>
-  </div>
-
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/5.png">
-     </div>
-    </div>
-    <div class="c2 name">
-     <span>محمدباقر</span>
-     <span class="bold">قالیباف</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress"></div>
-     </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>1,235,658</span>
-    </div>
-   </div>
-  </div>
-
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/6.png">
-     </div>
-    </div>
-    <div class="c2 name">
-     <span>سید مصطفی</span>
-     <span class="bold">هاشمی‌طبا</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress" data-percent='23.2%'></div>
-     </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>12,235,658</span>
-    </div>
-   </div>
-  </div>
-
-  <div class="candidate">
-   <div class="f">
-    <div class="c1">
-     <div class="image round low">
-      <img src="{{url.static}}images/election/7.png">
-     </div>
-    </div>
-    <div class="c2 name">
-     <span class="bold">رای باطل</span>
-    </div>
-    <div class="c7 bar-container">
-     <div class="bar">
-      <div class="bar-progress"></div>
-     </div>
-    </div>
-    <div class="c2 votes-container">
-     <span>1,235,658</span>
-    </div>
-   </div>
-  </div>
+  {%endfor%}
  </div>
+{%endif%}
+{%endblock%}
 
- <div class="city-results">
-  <div class="f header">
-   <div class="c">استان</div>
-   <div class="c">میرسلیم</div>
-   <div class="c">جهانگیری</div>
-   <div class="c">روحانی</div>
-   <div class="c">رئیسی</div>
-   <div class="c">قالیباف</div>
-   <div class="c">هاشمی طبا</div>
-   <div class="c">رای باطل</div>
+
+{%block province_result%}
+<div class="city-results">
+ <div class="f header">
+  <div class="c">{%trans "Province"%}</div>
+  {%for k, v in result.candida_id%}
+  <div class="c">{{v}}</div>
+  {%endfor%}
   </div>
+  {%for key, value in result.result_by_city.province%}
   <div class="f">
-   <div class="c">قم</div>
-   <div class="c">10%</div>
-   <div class="c">10%</div>
-   <div class="c">10%</div>
-   <div class="c">10%</div>
-   <div class="c">10%</div>
-   <div class="c">10%</div>
-   <div class="c">40%</div>
+  <div class="c">{{value.location.local_name}}</div>
+  {%for k, v in value.data%}
+  <div class="c">{{v}}</div>
+  {%endfor%}
   </div>
+  {%endfor%}
  </div>
 
- <div class="chart" id="" data-vals='[{"key":"۱۳۹۶-۰۲-۰۶","value":2},{"key":"۱۳۹۶-۰۲-۰۳","value":3}]' style="width:100%;direction:ltr;height: 300px;margin-bottom: 5em"></div>
+{%endblock%}
 
- <div class="timeline">
+
+
+{%block city_result%}
+<div class="city-results">
+ <div class="f header">
+  <div class="c">{%trans "City"%}</div>
+  {%for k, v in result.candida_id%}
+  <div class="c">{{v}}</div>
+  {%endfor%}
+  </div>
+  {%for key, value in result.result_by_city.city%}
+  <div class="f">
+  <div class="c">{{value.location.local_name}}</div>
+  {%for k, v in value.data%}
+  <div class="c">{{v}}</div>
+  {%endfor%}
+  </div>
+  {%endfor%}
+ </div>
+
+{%endblock%}
+
+
+
+
+{%block time_line%}
+{%if result.time_line%}
+  <div class="timeline">
   <div class="circle">
    <div class="image round low">
     <img src="{{url.static}}images/election/1.png">
@@ -240,105 +152,14 @@
   </div>
  </div>
 
-</div>
-{% endblock %}
-
-{% block foot_js %}
-<script type="text/javascript"></script>
-{% endblock %}
-
-{%block content2%}
-
-{{block('win')}}
-<br>
-{{block('result')}}
-<br>
-{{block('table')}}
-<br>
-{{block('senario')}}
-<br>
-{{block('time_line')}}
-<br>
-{{block('links')}}
-
-{%endblock%}
-
-{%block win%}
- WIN
-{%endblock%}
-
-{%block result%}
-{%if result%}
- {{result.election.title}}
- <br>
- {%for key, value in result.result%}
-  {{value.name}} {{value.family}} ----- {{value.total|number_format|fitNumber}}<br>
- {%endfor%}
-{%else%}
- {%if running%}
-  {%for key, value in running%}
-   <h1><a href="{{url.base}}/election/{{value.fa_url}}">election {{value.title}} is running</a></h1>
-  {%endfor%}
- {%endif%}
-{%endif%}
-{%endblock%}
-
-{%block table%}
-{%if result%}
-<table>
- <tr>
-  <th>name</th>
-  <th>total</th>
-  <th>persent</th>
-  <th></th>
- </tr>
- {%for key, value in result.result%}
-  <tr>
-   <td>{{value.name}} {{value.family}}</td>
-   <td>{{value.total}}</td>
-   <td>{{value.percent}}</td>
-  </tr>
- {%endfor%}
-</table>
-{%endif%}
-{%endblock%}
-
-{%block links%}
-
-{%if perm_admin%}
-<h5>{%trans "Admin Links" %}</h5>
-<div>
-  <span>
-    <a href="{{url.base}}/election/admin/candida">{%trans "candida"%}</a>
-  </span>
-  <br>
-  <span>
-    <a href="{{url.base}}/election/admin/election">{%trans "election"%}</a>
-  </span>
-</div>
-{%endif%}
-{%if perm_data%}
-<h5>{%trans "Operator Links"%}</h5>
-<div>
-  <span>
-    <a href="{{url.base}}/data/">{%trans "Add data"%}</a>
-  </span>
-</div>
-{%endif%}
-
-{%endblock%}
-
-
-{%block time_line%}
-{%if result.time_line%}
- {{result.time_line|dump}}
 {%endif%}
 {%endblock%}
 
 
 {%block senario%}
 {%if result.senario%}
-<H1>SENARIO</H1>
- <code>{{result.senario}}</code>
+ <div class="chart" id="" data-vals='[{"key"":۱۳۹۶-۰۲-۰۶","value":2},{"key":"۱۳۹۶-۰۲-۰۳","value":3}]' style="width:100%;direction:ltr;height: 300px;margin-bottom: 5em"></div>
 {%endif%}
 {%endblock%}
+
+

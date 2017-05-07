@@ -286,21 +286,18 @@ class resultbyplaces
 				saloos_tools.locations.*
 			FROM
 				election.resultbyplaces
-			INNER JOIN saloos_tools.locations ON saloos_tools.locations.id = election.resultbyplaces.place
+			LEFT JOIN saloos_tools.locations ON saloos_tools.locations.id = election.resultbyplaces.place
 			WHERE election.resultbyplaces.election_id = $_election_id
+			ORDER BY election.resultbyplaces.candida_id ASC
 		";
 		$result = \lib\db::get($query, null, false, 'election');
-
 		$temp = [];
+
 		foreach ($result as $key => $value)
 		{
 			if(isset($value['type']))
 			{
-				if(isset($temp[$value['type']][$value['id']]['data']))
-				{
-					$temp[$value['type']][$value['id']]['data'][$value['candida_id']] = $value['total'];
-				}
-				else
+				if(!isset($temp[$value['type']][$value['id']]['data']))
 				{
 					$temp[$value['type']][$value['id']] =
 					[
@@ -308,8 +305,11 @@ class resultbyplaces
 						'location' => ['name' => $value['name'], 'local_name' => $value['local_name']],
 					];
 				}
+				$temp[$value['type']][$value['id']]['data'][$value['candida_id']] = $value['total'];
 			}
 		}
+
+		// var_dump($temp,$result);exit();
 
 		return $temp;
 	}

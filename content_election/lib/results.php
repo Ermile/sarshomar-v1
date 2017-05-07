@@ -365,6 +365,7 @@ class results
 		return \lib\db::query($query, 'election');
 	}
 
+
 	/**
 	 * Gets the total.
 	 *
@@ -379,9 +380,9 @@ class results
 		$query =
 		"
 			SELECT
-				results.total AS `total`,
-				candidas.name,
-				candidas.family
+				CONCAT(candidas.name , ' ', candidas.family) AS `name_family`,
+				results.*,
+				candidas.*
 			FROM
 				results
 			INNER JOIN candidas ON candidas.id = results.candida_id
