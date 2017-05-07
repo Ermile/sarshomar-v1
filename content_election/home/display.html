@@ -211,10 +211,28 @@
 {%endblock%}
 
 {%block links%}
+
 {%if perm_admin%}
- <a href="{{url.base}}/election/admin/candida">candida</a>
- <a href="{{url.base}}/election/admin/election">election</a>
+<h5>{%trans "Admin Links" %}</h5>
+<div>
+  <span>
+    <a href="{{url.base}}/election/admin/candida">{%trans "candida"%}</a>
+  </span>
+  <br>
+  <span>
+    <a href="{{url.base}}/election/admin/election">{%trans "election"%}</a>
+  </span>
+</div>
 {%endif%}
+{%if perm_data%}
+<h5>{%trans "Operator Links"%}</h5>
+<div>
+  <span>
+    <a href="{{url.base}}/data/">{%trans "Add data"%}</a>
+  </span>
+</div>
+{%endif%}
+
 {%endblock%}
 
 

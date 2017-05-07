@@ -5,6 +5,8 @@ class controller extends \content_election\main\controller
 {
 	public function _route()
 	{
+		parent::_route();
+
 		$url = \lib\router::get_url();
 		if($id = $this->model()->check_url($url))
 		{
