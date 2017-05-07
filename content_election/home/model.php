@@ -91,6 +91,8 @@ class model extends \content_election\main\model
 			$time_line = \content_election\lib\results::get_time_line($election_id);
 			$result['time_line'] = $time_line;
 
+			$result['result_by_city'] = \content_election\lib\resultbyplaces::get_election($election_id);
+
 			return $result;
 		}
 	}

@@ -271,5 +271,48 @@ class resultbyplaces
 		return $result;
 	}
 
+
+	public static function get_election($_election_id)
+	{
+		if(!is_numeric($_election_id))
+		{
+			return false;
+		}
+
+		$query =
+		"
+			SELECT
+				election.resultbyplaces.*,
+				saloos_tools.locations.*
+			FROM
+				election.resultbyplaces
+			INNER JOIN saloos_tools.locations ON saloos_tools.locations.id = election.resultbyplaces.place
+			WHERE election.resultbyplaces.election_id = $_election_id
+		";
+		$result = \lib\db::get($query, null, false, 'election');
+
+		$temp = [];
+		foreach ($result as $key => $value)
+		{
+			if(isset($value['type']))
+			{
+				if(isset($temp[$value['type']][$value['id']]['data']))
+				{
+					$temp[$value['type']][$value['id']]['data'][$value['candida_id']] = $value['total'];
+				}
+				else
+				{
+					$temp[$value['type']][$value['id']] =
+					[
+						'data' => [],
+						'location' => ['name' => $value['name'], 'local_name' => $value['local_name']],
+					];
+				}
+			}
+		}
+
+		return $temp;
+	}
+
 }
 ?>
