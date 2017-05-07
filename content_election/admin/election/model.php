@@ -6,22 +6,54 @@ use \lib\debug;
 class model extends \content_election\main\model
 {
 
-
 	/**
-	 * Gets the identifier from url
+	 * Gets the posts data
 	 *
-	 * @param      <type>   $_args  The arguments
-	 *
-	 * @return     boolean  The identifier.
+	 * @return     array  The posts.
 	 */
-	public function getid($_args)
+	public function getPosts()
 	{
-		$id = isset($_args->match->url[0][1]) ? $_args->match->url[0][1] : false;
-		if(!$id)
+		$args =
+		[
+			'title'                   => utility::post('title'),
+			'status'                  => utility::post('status'),
+			'eligible'                => utility::post('eligible'),
+			'voted'                   => utility::post('voted'),
+			'invalid'                 => utility::post('invalid'),
+			'cash'                    => utility::post('cash'),
+			'branchs'                 => utility::post('branchs'),
+			'first_vote_male_count'   => utility::post('first_vote_male_count'),
+			'first_vote_female_count' => utility::post('first_vote_female_count'),
+			'signuped_count'          => utility::post('signuped_count'),
+			'verified_count'          => utility::post('verified_count'),
+			'candida_count'           => utility::post('candida_count'),
+			'start_time'              => date("Y-m-d H:i:s", strtotime(utility::post('start_time'))),
+			'end_time'                => date("Y-m-d H:i:s", strtotime(utility::post('end_time'))),
+			'election_date'           => utility::post('election_date'),
+			'jalali_year'             => utility::post('jalali_year'),
+			'year'                    => utility::post('year'),
+			'en_url'                  => utility::post('en_url'),
+			'fa_url'                  => utility::post('fa_url'),
+			'cat'                     => utility::post('cat'),
+			'win'                     => utility::post('win'),
+			'desc'                    => utility::post('desc'),
+		];
+
+		if(!utility::post('start_time'))
 		{
-			return false;
+			unset($args['start_time']);
 		}
-		return $id;
+
+		if(!utility::post('end_time'))
+		{
+			unset($args['end_time']);
+		}
+
+		if(!utility::post('election_date'))
+		{
+			unset($args['election_date']);
+		}
+		return $args;
 	}
 
 
@@ -48,6 +80,13 @@ class model extends \content_election\main\model
 	}
 
 
+	/**
+	 * Posts an edit.
+	 *
+	 * @param      <type>   $_args  The arguments
+	 *
+	 * @return     boolean  ( description_of_the_return_value )
+	 */
 	public function post_edit($_args)
 	{
 		$id = $this->getid($_args);
@@ -56,26 +95,7 @@ class model extends \content_election\main\model
 			return false;
 		}
 
-		$update =
-		[
-			'title'       => utility::post('title'),
-			'status'      => utility::post('status'),
-			'eligible'    => utility::post('eligible'),
-			'voted'       => utility::post('voted'),
-			'invalid'     => utility::post('invalid'),
-			'cash'        => utility::post('cash'),
-			'start_time'  => utility::post('start_time'),
-			'end_time'    => utility::post('end_time'),
-			'jalali_year' => utility::post('jalali_year'),
-			'year'        => utility::post('year'),
-			'desc'        => utility::post('desc'),
-			'en_url'      => utility::post('en_url'),
-			'fa_url'      => utility::post('fa_url'),
-			'cat'         => utility::post('cat'),
-			'win'         => utility::post('win'),
-		];
-
-		$result = \content_election\lib\elections::update($update, $id);
+		$result = \content_election\lib\elections::update($this->getPosts(), $id);
 		if($result)
 		{
 			debug::true(T_("Election updated"));
@@ -87,6 +107,7 @@ class model extends \content_election\main\model
 
 	}
 
+
 	/**
 	 * Posts an election.
 	 * add a alection
@@ -95,26 +116,7 @@ class model extends \content_election\main\model
 	 */
 	public function post_election($_args)
 	{
-		$args =
-		[
-			'title'       => utility::post('title'),
-			'status'      => utility::post('status'),
-			'eligible'    => utility::post('eligible'),
-			'voted'       => utility::post('voted'),
-			'invalid'     => utility::post('invalid'),
-			'cash'        => utility::post('cash'),
-			'start_time'  => utility::post('start_time'),
-			'end_time'    => utility::post('end_time'),
-			'jalali_year' => utility::post('jalali_year'),
-			'year'        => utility::post('year'),
-			'desc'        => utility::post('desc'),
-			'en_url'      => utility::post('en_url'),
-			'fa_url'      => utility::post('fa_url'),
-			'cat'         => utility::post('cat'),
-			'win'         => utility::post('win'),
-		];
-
-		$result = \content_election\lib\elections::insert($args);
+		$result = \content_election\lib\elections::insert($this->getPosts());
 		if($result)
 		{
 			debug::true(T_("Election added"));
@@ -123,24 +125,6 @@ class model extends \content_election\main\model
 		{
 			debug::error(T_("Error in adding election"));
 		}
-
-		// id
-		// title
-		// status
-		// eligible
-		// voted
-		// invalid
-		// cash
-		// start_time
-		// end_time
-		// jalali_year
-		// year
-		// createdate
-		// date_modified
-		// desc
-		// meta
-
 	}
-
 }
 ?>
