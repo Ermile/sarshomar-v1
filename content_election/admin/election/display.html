@@ -5,47 +5,51 @@ ADD ELECTION
 <a href="{{url.base}}/election/admin/candida">candida</a>
 {%if election_list%}
 <h1>election list</h1>
-<table border="1">
-<tr>
-		<th>{%trans "id" %}</th>
-		<th>{%trans "title" %}</th>
-		<th>{%trans "eligible" %}</th>
-		<th>{%trans "voted" %}</th>
-		<th>{%trans "invalid" %}</th>
-		<th>{%trans "cash" %}</th>
-		<th>{%trans "start_time" %}</th>
-		<th>{%trans "end_time" %}</th>
-		<th>{%trans "jalali_year" %}</th>
-		<th>{%trans "en_url" %}</th>
-		<th>{%trans "fa_url" %}</th>
-		<th>{%trans "cat" %}</th>
-		<th>{%trans "win" %}</th>
-		<th>{%trans "year" %}</th>
-		<th>{%trans "desc" %}</th>
-		<th>{%trans "status" %}</th>
-	</tr>
+<div class="tbl myTable">
 
-{%for key, value in election_list%}
-	<tr>
-		<td><a href="{{url.base}}/election/admin/election/edit={{value.id}}">{{value.id}}</a></td>
-		<td>{{value.title}}</td>
-		<td>{{value.eligible}}</td>
-		<td>{{value.voted}}</td>
-		<td>{{value.invalid}}</td>
-		<td>{{value.cash}}</td>
-		<td>{{value.start_time}}</td>
-		<td>{{value.end_time}}</td>
-		<td>{{value.jalali_year}}</td>
-		<td><a href="{{url.base}}/election/{{value.en_url}}">{{value.en_url}}</a></td>
-		<td><a href="{{url.base}}/election/{{value.fa_url}}">{{value.fa_url}}</a></td>
-		<td>{{value.cat}}</td>
-		<td>{{value.win}}</td>
-		<td>{{value.year}}</td>
-		<td>{{value.desc}}</td>
-		<td>{{value.status}}</td>
-	</tr>
-{%endfor%}
-</table>
+	<div class="f th">
+		<div>{%trans "id" %}</div>
+		<div class="c2">{%trans "title" %}</div>
+		<div>{%trans "eligible" %}</div>
+		<div>{%trans "voted" %}</div>
+		<div>{%trans "invalid" %}</div>
+		<div>{%trans "cash" %}</div>
+		<div>{%trans "start_time" %}</div>
+		<div>{%trans "end_time" %}</div>
+		<div>{%trans "jalali_year" %}</div>
+		<div>{%trans "en_url" %}</div>
+		<div>{%trans "fa_url" %}</div>
+		<div>{%trans "cat" %}</div>
+		<div>{%trans "win" %}</div>
+		<div>{%trans "year" %}</div>
+		<div>{%trans "desc" %}</div>
+		<div>{%trans "status" %}</div>
+
+	</div>
+	<div class="f">
+		{%for key, value in election_list%}
+			<div><a href="{{url.base}}/election/admin/election/edit={{value.id}}">{{value.id}}</a></div>
+			<div class="c2">{{value.title}}</div>
+			<div>{{value.eligible}}</div>
+			<div>{{value.voted}}</div>
+			<div>{{value.invalid}}</div>
+			<div>{{value.cash}}</div>
+			<div>{{value.start_time}}</div>
+			<div>{{value.end_time}}</div>
+			<div>{{value.jalali_year}}</div>
+			<div><a href="{{url.base}}/election/{{value.en_url}}">fff</a></div>
+			<div><a href="{{url.base}}/election/{{value.fa_url}}">fff</a></div>
+			<div>{{value.cat}}</div>
+			<div>{{value.win}}</div>
+			<div>{{value.year}}</div>
+			<div>{{value.desc}}</div>
+			<div>{{value.status}}</div>
+
+	{%endfor%}
+	</div>
+</div>
+
+
 {%endif%}
 {%if edit_election%}
 <h1>edit  election {{election.title}}</h1>
@@ -54,6 +58,11 @@ ADD ELECTION
 {%endif%}
 
 <form method="post">
+	<div class="f">
+		<label for="title" class="c1">{%trans "title"%}</label>
+		<input type="text" name="title" class="c5" id="title" placeholder="title" value="{{election.title}}">
+	</div>
+
 	<br>{%trans "title" %}:<input type="text" name="title" id="title" placeholder="title" value="{{election.title}}">
 	<br>{%trans "eligible" %}:<input type="number" name="eligible" id="eligible" placeholder="eligible" value="{{election.eligible}}">
 	<br>{%trans "voted" %}:<input type="number" name="voted" id="voted" placeholder="voted" value="{{election.voted}}">
