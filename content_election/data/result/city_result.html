@@ -23,7 +23,7 @@ add city result of {{election.title}}
 					<a href="{{url.full}}/{{key}}">{{value}}</a><br>
 				</td>
 			{%for k, v in candida%}
-				<td><input type="number" name="total_{{key}}_{{v.id}}" ></td>
+				<td><input type="number" name="total_{{key}}_{{v.id}}" value="{{result[key][v.id]}}" ></td>
 			{%endfor%}
 			</tr>
 	{%endfor%}

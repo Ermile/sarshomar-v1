@@ -171,6 +171,11 @@ class resultbyplaces
 		$start_limit = $_options['start_limit'];
 		$end_limit   = $_options['end_limit'];
 
+		$no_limit = false;
+		if($_options['limit'] === false)
+		{
+			$no_limit = true;
+		}
 
 		unset($_options['pagenation']);
 		unset($_options['get_count']);
@@ -245,6 +250,12 @@ class resultbyplaces
 		}
 
 		$json = json_encode(func_get_args());
+
+		if($no_limit)
+		{
+			$limit = null;
+		}
+
 		$query = " SELECT $public_fields $where $search $order $limit -- resultbyplaces::search() 	-- $json";
 
 		if(!$only_one_value)

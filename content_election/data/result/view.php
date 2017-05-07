@@ -24,55 +24,36 @@ class view extends \content_election\main\view
 
 		$find_location_url    = $this->model()->find_location_url();
 
-		$location = null;
-		if(isset($find_location_url['country']) && $find_location_url['country'])
+		if(is_array($find_location_url))
 		{
-			$location = 'province';
-		}
-
-		if(isset($find_location_url['province']) && $find_location_url['province'])
-		{
-			$location = 'city';
-		}
-
-		if($location)
-		{
-			$url = \lib\router::get_url();
-			$url = explode('/', $url);
-			$url = end($url);
-
-			switch ($location)
+			$location = end($find_location_url);
+			$child = \lib\db\locations::get_child($location);
+			if(is_array($child))
 			{
-				case 'country':
-					$place = \lib\utility\location\countres::get('name', $url, 'id');
-					break;
+				$child_id = array_column($child, 'id');
 
-				case 'province':
-					$place = \lib\utility\location\provinces::get('name', $url, 'id');
-					break;
+				$saved_value = \content_election\lib\resultbyplaces::search(null,
+				[
+					'limit'       => false,
+					'election_id' => $election_id,
+					'place'       => ['in', "(". implode(',', $child_id). ")"]
+				]);
 
-				case 'city':
-					$place = \lib\utility\location\cites::get('name', $url, 'id');
-					break;
+				$result = [];
+				foreach ($saved_value as $key => $value)
+				{
+					if(!isset($result[$value['place']]))
+					{
+						$result[$value['place']] = [];
+					}
+					$result[$value['place']][$value['candida_id']] = $value['total'];
+				}
 
-				default:
-					continue;
-					break;
+				$this->data->result = $result;
+
 			}
 
-			$saved_value = \content_election\lib\resultbyplaces::search(null,
-			[
-				'election_id'   => $election_id,
-				'location_type' => $location,
-				'place'         => $place,
-			]);
-			// var_dump($place, $saved_value);
-			// exit();
 		}
-
-		// var_dump($find_location_url);
-		// exit();
-
 	}
 
 

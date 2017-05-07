@@ -2,10 +2,6 @@
 namespace content_election\data\result;
 use \lib\utility;
 use \lib\debug;
-use \lib\utility\location;
-use \lib\utility\location\countres;
-use \lib\utility\location\cites;
-use \lib\utility\location\provinces;
 
 class model extends \content_election\main\model
 {
@@ -30,11 +26,11 @@ class model extends \content_election\main\model
 
 		if(!$this->provinces)
 		{
-			$country_id    = countres::get('name', $this->countres, 'id');
-			$province_list = provinces::search(['country_id' => $country_id]);
+			$country_id    = $this->countres;
+			$province_list = \lib\db\locations::get_child($country_id);
 			$temp          = $province_list;
 			$name          = array_column($temp, 'name', 'id');
-			$localname     = array_column($temp, 'localname', 'id');
+			$localname     = array_column($temp, 'local_name', 'id');
 			foreach ($name as $key => $value)
 			{
 				if(isset($localname[$key]))
@@ -46,11 +42,11 @@ class model extends \content_election\main\model
 		}
 		else
 		{
-			$province_id = provinces::get('name', $this->provinces, 'id');
-			$city_list   = cites::search(['province_id' => $province_id]);
+			$province_id = $this->provinces;
+			$city_list   = \lib\db\locations::get_child($province_id);
 			$temp        = $city_list;
 			$name        = array_column($temp, 'name', 'id');
-			$localname   = array_column($temp, 'localname', 'id');
+			$localname   = array_column($temp, 'local_name', 'id');
 			foreach ($name as $key => $value)
 			{
 				if(isset($localname[$key]))
@@ -92,35 +88,36 @@ class model extends \content_election\main\model
 
 		if(isset($url[4]))
 		{
-			if(countres::check($url[4]))
+			$provinces = \lib\db\locations::get_child($url[4]);
+			$countres = \lib\db\locations::get_country($url[4]);
+			if(isset($countres['id']))
 			{
-				$this->countres = $url[4];
+				$this->countres = $countres['id'];
 			}
 		}
 
 		if(isset($url[5]))
 		{
-			if(provinces::check($url[5]))
+			$city = \lib\db\locations::get_child($url[5]);
+			$provinces = \lib\db\locations::get_province($url[5]);
+			if(isset($provinces['id']))
 			{
-				$this->provinces = $url[5];
+				$this->provinces = $provinces['id'];
 			}
 		}
 
-
-		if(isset($url[6]))
+		$return = [];
+		if($this->countres)
 		{
-			if(cites::check($url[6]))
-			{
-				$this->cites = $url[6];
-			}
+			$return['countres'] = $this->countres;
 		}
 
-		return
-		[
-			'country'  => $this->countres,
-			'province' => $this->provinces,
-			'city'     => $this->cites
-		];
+		if($this->provinces)
+		{
+			$return['provinces'] = $this->provinces;
+		}
+
+		return $return;
 	}
 
 
@@ -164,17 +161,13 @@ class model extends \content_election\main\model
 			{
 				if(isset($split[1]) && isset($split[2]))
 				{
-					if($plase)
-					{
-						$insert[] =
-						[
-							'election_id'   => $election_id,
-							'location_type' => $location,
-							'candida_id'    => $split[2],
-							'place'         => $split[1],
-							'total'         => $value,
-						];
-					}
+					$insert[] =
+					[
+						'election_id'   => $election_id,
+						'candida_id'    => $split[2],
+						'place'         => $split[1],
+						'total'         => $value,
+					];
 				}
 			}
 		}
