@@ -719,3 +719,7 @@ header #profile nav a:hover {
     display: none;
   }
 }
+
+.df input, .df textarea, .df select{padding: 1em;border:none;margin-bottom:1em;background-color:#eaeaea;font-size:1.2em;line-height:2em}
+.df label{padding: 1em;}
+.df input[type="submit"]{background-color:#37aaa7;color:#fff}
