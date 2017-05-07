@@ -1,34 +1,31 @@
-{%extends display.mvc%}
-{%block body%}
-add city result of {{election.title}}
-<br>
-
+{%extends display.admin%}
+{%block content%}
+<h1>{%trans "Add city result of election"%} {{election.title}}</h1>
 {%if list%}
-<form method="post">
-
-	<table>
-		<tr>
-			<th>location</th>
+<form method="post" class="df">
+		<div class="f">
+			<div>location</div>
 			{%for key, value in candida%}
-			<th>
+			<div>
 				<img height="60" width="60" src="{{url.static}}{{value.file_url}}">
 				<br>
 				{{value.name}} {{value.family}}
-			</th>
+			</div>
 			{%endfor%}
-		</tr>
+		</div>
 	{%for key, value in list%}
-			<tr>
-				<td>
-					<a href="{{url.full}}/{{key}}">{{value}}</a><br>
-				</td>
+			<div class="f">
+				<div>
+					<a href="{{url.base}}/election/data/result/{{election.id}}/place/{{city_url}}/{{key}}">{{value}}</a><br>
+				</div>
 			{%for k, v in candida%}
-				<td><input type="number" name="total_{{key}}_{{v.id}}" value="{{result[key][v.id]}}" ></td>
+				<div><input type="number" name="total_{{key}}_{{v.id}}" value="{{result[key][v.id]}}" ></div>
 			{%endfor%}
-			</tr>
+			</div>
 	{%endfor%}
-	</table>
-	<input type="submit" value="save">
+	<div class="f">
+		<input type="submit" value="save">
+	</div>
 </form>
 {%endif%}
 

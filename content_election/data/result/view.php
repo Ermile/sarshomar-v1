@@ -4,6 +4,11 @@ use \lib\utility\location;
 
 class view extends \content_election\main\view
 {
+	public function config()
+	{
+
+	}
+
 	/**
 	 * { function_description }
 	 *
@@ -23,7 +28,6 @@ class view extends \content_election\main\view
 		$this->data->list     = $city_list;
 
 		$find_location_url    = $this->model()->find_location_url();
-
 		if(is_array($find_location_url))
 		{
 			$location = end($find_location_url);
@@ -50,10 +54,10 @@ class view extends \content_election\main\view
 				}
 
 				$this->data->result = $result;
-
 			}
-
 		}
+
+		$this->data->city_url = isset($find_location_url['countres']) ? $find_location_url['countres'] : null;
 	}
 
 

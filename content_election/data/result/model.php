@@ -20,9 +20,8 @@ class model extends \content_election\main\model
 		$location    = $this->find_location_url();
 		if(!$this->countres)
 		{
-			$this->countres = 'iran';
+			$this->countres = 111;
 		}
-
 
 		if(!$this->provinces)
 		{
@@ -133,10 +132,7 @@ class model extends \content_election\main\model
 		$post        = utility::post();
 		$location    = null;
 
-		if($this->countres)
-		{
-			$location = 'province';
-		}
+		$location = 'province';
 
 		if($this->provinces)
 		{
