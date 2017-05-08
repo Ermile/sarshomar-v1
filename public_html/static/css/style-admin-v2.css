@@ -98,6 +98,7 @@ header #profile nav a:hover {
 .sidebar h1 {
   font-weight: 700;
   margin-top: 0;
+  padding: 1em 0;
   text-align: center;
   color: #d9dbdd;
   border-bottom: 1px solid #5d5d5d;

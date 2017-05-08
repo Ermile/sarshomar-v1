@@ -1,52 +1,56 @@
 {%extends display.election%}
 
 {% block content %}
- {{block('win')}}
- {{block('rivals')}}
-<div class="container">
- {{block('result')}}
- {{block('province_result')}}
- {{block('city_result')}}
- {{block('time_line')}}
-</div>
+ <div class="box-top">
+  {{block('win')}}
+  {{block('rivals')}}
+  {{block('toolbox')}}
+ </div>
+ <div class="container">
+  {{block('result')}}
+  {{block('province_result')}}
+  {{block('city_result')}}
+  {{block('time_line')}}
+ </div>
 {% endblock %}
 
-
 {%block win%}
-{% if false %}
- <div class="president-elect">
-  <div class="image round">
-   <img src="{{url.static}}images/election/1.png" align="سید مصطفی میرسلیم">
+ <div class="top-one">
+  <div class="image">
+   <img src="{{url.static}}images/election/3.png" align="سید ابراهیم رئیسی">
   </div>
-  <!-- <h2>سید مصطفی میرسلیم</h2> -->
-  <h2>Mostafa Mirsalim</h2>
-  <!-- <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3> -->
-  <h3>Winner of 12th election of Islamic Republic of IRAN</h3>
+  <h2>حسن روحانی</h2>
+  <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3>
  </div>
-{% endif %}
 {%endblock%}
 
 {%block rivals%}
- <div class="top-two-candidates">
+ <div class="top-two">
   <div class="container">
    <div class="flex justify-between top-two-container">
-    <div class="flex align-center first candidate">
-     <div class="image round medium"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
-     <h4>{{result.rival[0]['fame']}}</h4>
+    <div class="flex align-end first candidate">
+     <div class="image"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+     <div class="data flex f-column align-center justify-end">
+      <h4>{{result.rival[0]['fame']}}</h4>
+      <div class="vote-count">{{result.rival[0]['percent']|fitNumber}}%</div>
+     </div>
     </div>
-    <div class="flex align-center second candidate">
-     <h4>{{result.rival[1]['fame']}}</h4>
-     <div class="image round medium"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+
+    <div class="flex align-end second candidate">
+     <div class="data flex f-column align-center justify-end">
+      <h4>{{result.rival[1]['fame']}}</h4>
+      <div class="vote-count">{{result.rival[1]['percent']|fitNumber}}%</div>
+     </div>
+     <div class="image"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
     </div>
    </div>
 
-   <div class="flex status-bar">
+   <div class="flex justify-between status-bar">
     <div class="first" style="width:{{result.rival[0]['percent']}}%">
      <div class="percentage">
       <span>{{result.rival[0]['total']|number_format|fitNumber}}</span>
      </div>
     </div>
-    <div class="gap" style="width:{{(100 - (result.rival[0]['percent'] + result.rival[1]['percent']))}}%"></div>
     <div class="second" style="width:{{result.rival[1]['percent']}}%">
      <div class="percentage">
       <span>{{result.rival[1]['total']|number_format|fitNumber}}</span>
@@ -55,8 +59,19 @@
     <div class="indicator"></div>
    </div>
   </div>
- </div><!-- /.top-two -->
+ </div>
 {%endblock%}
+
+{% block toolbox %}
+<div class="container">
+ <div class="flex justify-between toolbox">
+  <div class="live">
+   <i></i>
+   <span>پوشش زنده</span>
+  </div>
+ </div>
+</div>
+{% endblock %}
 
 {%block result%}
 {%if result%}
@@ -65,7 +80,7 @@
    <div class="candidate">
     <div class="f">
      <div class="c1">
-      <div class="image round low">
+      <div class="image">
        <img src="{{url.static}}{{value.file_url}}" alt="">
       </div>
      </div>
@@ -148,7 +163,7 @@
   <div class="timeline">
   {%for key, value in result.time_line%}
   <div class="circle {%if value.en_url == url.path or value.fa_url == url.path%}active{%endif%}">
-   <div class="image round low">
+   <div class="image">
     <img src="{{url.static}}images/election/1.png">
    </div>
   </div>

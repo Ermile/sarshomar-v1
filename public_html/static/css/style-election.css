@@ -1,7 +1,6 @@
 @charset "utf-8";
 
-body{background-color:#f4f4f4;color:#333;/*background-image:url(../images/election/asanoha.png)*/}
-h1,h2,h3,h4,h5,h6{line-height:1.1}
+body{color:#333;background-color:#f4f4f4}
 
 .image{position:relative;display:inline-block;overflow:hidden;vertical-align:middle}
 .image::before{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;content:''}
@@ -10,27 +9,66 @@ h1,h2,h3,h4,h5,h6{line-height:1.1}
 .image.round.low{border:.25em solid #fff}
 .image>img{display:block}
 
-.president-elect{text-align:center;margin:5em auto}
-.president-elect h2{font-size:4em;text-shadow:0 0 2px #666}
+.box-top{margin-bottom:5em;padding:5em 0;border-top:3px solid #eeeff0;border-bottom:3px solid #eeeff0;background-image:url(../images/election/asanoha.png)}
 
-.top-two-candidates{margin-bottom:5em;background-color:#e3e7f2;padding:5em 0}
-.top-two-candidates .top-two-container{margin-bottom:2em}
-.top-two-candidates .top-two-container .image{max-width:10em}
+.top-one{text-align:center}
+.top-one .image{max-width:20em}
+.top-one h2{font-size:4em;text-shadow:0 0 2px #666}
 
-.top-two-candidates .status-bar{height:5em;background-color:#fff;position:relative}
-.top-two-candidates .status-bar .indicator,.top-two-candidates .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #000}
-.top-two-candidates .status-bar .indicator{height:100%;bottom:0;}
-.top-two-candidates .status-bar::before{content:'';height:15px;top:-15px}
-.top-two-candidates .top-two-container .candidate h4{padding:0 2rem}
+.top-two{}
+.top-two .top-two-container{margin-bottom:2em}
+.top-two .top-two-container .image{max-width:15em}
 
-.top-two-candidates .status-bar .first,.top-two-candidates .status-bar .second{position:relative}
-.top-two-candidates .status-bar .first{background-color:#239f40}
-.top-two-candidates .status-bar .gap{background-color:#fff}
-.top-two-candidates .status-bar .second{background-color:#da0000}
+.top-two .status-bar{position:relative;height:5em;border:3px solid #eeeff0;background-color:#fff}
 
-.top-two-candidates .status-bar .first .percentage,.top-two-candidates .status-bar .second .percentage{position:absolute;top:50%;margin-top:-1.25rem;font-size:3em;font-weight:700;color:#fff;text-shadow:0 0 1px #000;display:block}
-.top-two-candidates .status-bar .first .percentage{left:1rem;}
-.top-two-candidates .status-bar .second .percentage{right:1rem;}
+.top-two .status-bar .indicator,.top-two .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #666}
+.top-two .status-bar .indicator{height:100%;bottom:0;}
+/*.top-two .status-bar::before{content:'';height:15px;top:-15px}*/
+
+
+.top-two .top-two-container .candidate .data{padding:0 2rem 2rem}
+.top-two .top-two-container .candidate .data h4{font-size:3em;margin-bottom:.5em}
+.top-two .top-two-container .candidate .data .vote-count{font-size:1.2em;font-weight:700}
+
+.top-two .status-bar .first,.top-two .status-bar .second{position:relative}
+.top-two .status-bar .first{background-color:#239f40}
+.top-two .status-bar .gap{background-color:#fff}
+.top-two .status-bar .second{background-color:#da0000}
+
+.top-two .status-bar .first .percentage,.top-two .status-bar .second .percentage{position:absolute;top:50%;margin-top:-1.25rem;font-size:3em;font-weight:700;color:#fff;text-shadow:0 0 1px #000;display:block}
+.top-two .status-bar .first .percentage{left:1rem;}
+.rtl .top-two .status-bar .first .percentage{right:1rem;left:auto;}
+.top-two .status-bar .second .percentage{right:1rem;}
+.rtl .top-two .status-bar .second .percentage{right:auto;left:1rem;}
+
+
+
+.toolbox{margin-top:2em;padding:0 3px}
+.toolbox i{position:relative;display:inline-block;width:12px;height:12px;vertical-align:middle;border:3px solid #bb1919;border-radius:50%}
+.toolbox i::before{position:absolute;top:2px;left:2px;width:8px;height:8px;content:'';-webkit-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;-moz-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;-o-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;border-radius:50%;background-color:#bb1919}
+.toolbox .live span{font-size:1.2em;font-weight:700;display:inline-block;padding:0 .25rem;vertical-align:middle;color:#bb1919}
+@-webkit-keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+@-moz-keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+@-o-keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+@keyframes pulse{
+  0%{opacity:1;}
+  50%{opacity:.3;}
+  100%{opacity:1;}
+}
+
+
 
 .candidates{margin:0 auto 5em;border-top:3px solid #666;border-bottom:3px solid #666}
 .candidates .candidate{padding:2em}
@@ -57,3 +95,7 @@ h1,h2,h3,h4,h5,h6{line-height:1.1}
 .timeline{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;-moz-box-pack:justify;justify-content:space-between;position:relative;margin-bottom:5em}
 .timeline::before{height:3px;content:'';width:100%;left:0;right:0;background-color:#666;position:absolute;top:50%;margin-top:-1em;top:0;bottom:0;margin:auto}
 .timeline .circle{width:5em;height:5em;z-index:2}
+
+
+
+
