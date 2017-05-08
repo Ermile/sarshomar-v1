@@ -241,14 +241,19 @@ class model extends \mvc\model
 						}
 					}
 
-					if(isset($poll['user_id']) && intval($poll['user_id']) === intval($this->login('id')))
-					{
-						// no problem to load poll
-					}
-					else
+					if(!$this->login())
 					{
 						\lib\error::access(T_("Can not access to load this poll"));
 					}
+
+					// if(isset($poll['user_id']) && intval($poll['user_id']) === intval($this->login('id')))
+					// {
+					// 	// no problem to load poll
+					// }
+					// else
+					// {
+					// 	\lib\error::access(T_("Can not access to load this poll"));
+					// }
 				}
 			}
 		}
