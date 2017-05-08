@@ -79,6 +79,15 @@ class model extends \content_election\main\model
 			$result['time_line'] = $time_line;
 
 			$result['result_by_city'] = \content_election\lib\resultbyplaces::get_election($election_id);
+			if(isset($result['result'][0]))
+			{
+				$result['rival'][0] = $result['result'][0];
+			}
+
+			if(isset($result['result'][1]))
+			{
+				$result['rival'][1] = $result['result'][1];
+			}
 			// var_dump($result);exit();
 			return $result;
 		}
