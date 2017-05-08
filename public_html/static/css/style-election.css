@@ -13,11 +13,24 @@ h1,h2,h3,h4,h5,h6{line-height:1.1}
 .president-elect{text-align:center;margin:5em auto}
 .president-elect h2{font-size:4em;text-shadow:0 0 2px #666}
 
-.rivals{margin:0 auto 5em}
-.rivals .rival{text-align:center;}
-.rivals .rival .image{max-width:100px}
-.rivals .rival h4{margin-top:1rem}
-.rivals .rivals-result .bar{height:2em;background-color:#00667a;width:90%;margin:0 auto}
+.top-two-candidates{margin-bottom:5em;background-color:#e3e7f2;padding:5em 0}
+.top-two-candidates .top-two-container{margin-bottom:2em}
+.top-two-candidates .top-two-container .image{max-width:10em}
+
+.top-two-candidates .status-bar{height:5em;background-color:#fff;position:relative}
+.top-two-candidates .status-bar .indicator,.top-two-candidates .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #000}
+.top-two-candidates .status-bar .indicator{height:100%;bottom:0;}
+.top-two-candidates .status-bar::before{content:'';height:15px;top:-15px}
+.top-two-candidates .top-two-container .candidate h4{padding:0 2rem}
+
+.top-two-candidates .status-bar .first,.top-two-candidates .status-bar .second{position:relative}
+.top-two-candidates .status-bar .first{background-color:#239f40}
+.top-two-candidates .status-bar .gap{background-color:#fff}
+.top-two-candidates .status-bar .second{background-color:#da0000}
+
+.top-two-candidates .status-bar .first .percentage,.top-two-candidates .status-bar .second .percentage{position:absolute;top:50%;margin-top:-1.25rem;font-size:3em;font-weight:700;color:#fff;text-shadow:0 0 1px #000;display:block}
+.top-two-candidates .status-bar .first .percentage{left:1rem;}
+.top-two-candidates .status-bar .second .percentage{right:1rem;}
 
 .candidates{margin:0 auto 5em;border-top:3px solid #666;border-bottom:3px solid #666}
 .candidates .candidate{padding:2em}

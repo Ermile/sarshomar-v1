@@ -1,9 +1,9 @@
 {%extends display.election%}
 
 {% block content %}
-<div class="container">
  {{block('win')}}
  {{block('rivals')}}
+<div class="container">
  {{block('result')}}
  {{block('province_result')}}
  {{block('city_result')}}
@@ -13,37 +13,51 @@
 
 
 {%block win%}
+{% if false %}
  <div class="president-elect">
   <div class="image round">
    <img src="{{url.static}}images/election/1.png" align="سید مصطفی میرسلیم">
   </div>
-  <h2>سید مصطفی میرسلیم</h2>
-  <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3>
+  <!-- <h2>سید مصطفی میرسلیم</h2> -->
+  <h2>Mostafa Mirsalim</h2>
+  <!-- <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3> -->
+  <h3>Winner of 12th election of Islamic Republic of IRAN</h3>
  </div>
+{% endif %}
 {%endblock%}
 
 {%block rivals%}
- <div class="rivals">
-  <div class="f">
-   <div class="c2 rival">
-    <div class="image round medium">
-     <img src="{{url.static}}images/election/1.png" align="سید مصطفی میرسلیم">
+ <div class="top-two-candidates">
+  <div class="container">
+   <div class="flex justify-between top-two-container">
+    <div class="flex align-center first candidate">
+     <div class="image round medium"><img src="{{url.static}}images/election/1.png" alt=""></div>
+     <!-- <h4>مصطفی میرسلیم</h4> -->
+     <h4>Mostafa Mirsalim</h4>
     </div>
-    <h4>میرسلیم</h4>
+    <div class="flex align-center second candidate">
+     <!-- <h4>اسحاق جهانگیری</h4> -->
+     <h4>Eshaq Jahangiri</h4>
+     <div class="image round medium"><img src="{{url.static}}images/election/2.png" alt=""></div>
+    </div>
    </div>
-   <div class="c8 flex align-center rivals-result">
-    <div class="bar">
-     <div class="bar-progress"></div>
+
+   <div class="flex status-bar">
+    <div class="first" style="width:20%">
+     <div class="percentage">
+      <span>2,356,879</span>
+     </div>
     </div>
-   </div>
-   <div class="c2 rival">
-    <div class="image round medium">
-     <img src="{{url.static}}images/election/6.png" align="سید مصطفی هاشمی‌طبا">
+    <div class="gap" style="width:50%"></div>
+    <div class="second" style="width:30%">
+     <div class="percentage">
+      <span>3,254,663</span>
+     </div>
     </div>
-    <h4>هاشمی‌طبا</h4>
+    <div class="indicator"></div>
    </div>
   </div>
- </div>
+ </div><!-- /.top-two -->
 {%endblock%}
 
 {%block result%}
