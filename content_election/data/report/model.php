@@ -107,7 +107,7 @@ class model extends \content_election\main\model
 			$result = \content_election\lib\results::insert_multi($insert);
 			if($result)
 			{
-				\content_election\lib\results::update_cash($id);
+				// \content_election\lib\results::update_cash($id);
 				debug::true(T_("Result added"));
 			}
 			else
