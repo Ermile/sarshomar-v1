@@ -122,38 +122,6 @@
 
 
 
-{%block time_line%}
-{%if result.time_line%}
-  <div class="timeline">
-  <div class="circle">
-   <div class="image round low">
-    <img src="{{url.static}}images/election/1.png">
-   </div>
-  </div>
-  <div class="circle">
-   <div class="image round low">
-    <img src="{{url.static}}images/election/2.png">
-   </div>
-  </div>
-  <div class="circle">
-   <div class="image round low">
-    <img src="{{url.static}}images/election/3.png">
-   </div>
-  </div>
-  <div class="circle">
-   <div class="image round low">
-    <img src="{{url.static}}images/election/4.png">
-   </div>
-  </div>
-  <div class="circle">
-   <div class="image round low">
-    <img src="{{url.static}}images/election/5.png">
-   </div>
-  </div>
- </div>
-
-{%endif%}
-{%endblock%}
 
 
 {%block senario%}
@@ -163,3 +131,16 @@
 {%endblock%}
 
 
+{%block time_line%}
+{%if result.time_line%}
+  <div class="timeline">
+  {%for key, value in result.time_line%}
+  <div class="circle {%if value.en_url == url.path or value.fa_url == url.path%}active{%endif%}">
+   <div class="image round low">
+    <img src="{{url.static}}images/election/4.png">
+   </div>
+  </div>
+  {%endfor%}
+ </div>
+{%endif%}
+{%endblock%}
