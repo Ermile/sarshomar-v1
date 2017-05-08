@@ -93,7 +93,14 @@ trait link
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
-		$ready_upload['post_status'] = 'awaiting';
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+		{
+			$ready_upload['post_status'] = 'publish';
+		}
+		else
+		{
+			$ready_upload['post_status'] = 'awaiting';
+		}
 
 		$ready_upload['user_size_remaining'] = self::remaining($this->user_id);
 
