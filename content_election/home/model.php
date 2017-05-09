@@ -26,11 +26,14 @@ class model extends \content_election\main\model
 		$election_id = $this->check_url(\lib\router::get_url());
 		if($election_id)
 		{
-			$result             = [];
-			$election           = \content_election\lib\elections::get($election_id);
-			$result['election'] = $election;
-			$vote               = \content_election\lib\results::get_last($election_id);
-			$result['candida_id']   = array_column($vote, 'name_family', 'candida_id');
+			$result               = [];
+			$election             = \content_election\lib\elections::get($election_id);
+			$result['election']   = $election;
+			$vote                 = \content_election\lib\results::get_last($election_id);
+			$candida_id           = \content_election\lib\candidas::list($election_id);
+
+			$result['candida']    = $candida_id;
+			$result['candida_id'] = array_column($candida_id, 'name_family', 'candida_id');
 
 			$total = array_column($vote, 'total');
 			$total = array_sum($total);

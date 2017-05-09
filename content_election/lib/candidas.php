@@ -259,5 +259,20 @@ class candidas
 		return $result;
 	}
 
+
+	/**
+	 * { item_description }
+	 */
+	public static function list($_election_id)
+	{
+		if($_election_id && is_numeric($_election_id))
+		{
+			$query = "SELECT candidas.*, CONCAT(name, ' ', family) as `name_family` FROM candidas WHERE candidas.election_id = $_election_id AND candidas.status = 'active' ";
+			$result = \lib\db::get($query, null, false, 'election');
+
+			return $result;
+		}
+	}
+
 }
 ?>

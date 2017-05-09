@@ -94,7 +94,7 @@
   <div class="live">
    <i></i>
    <span class="title">{% trans "Live Converage" %}</span>
-   <span class="last-update">({% trans "Last Update" %})</span>
+   <span class="last-update">({% trans "Last Update" %} {{result.result[0]['report_date']|jdate("l H:i")}})</span>
   </div>
  </div>
 </div>

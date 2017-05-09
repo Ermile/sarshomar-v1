@@ -381,10 +381,12 @@ class results
 		"
 			SELECT
 				CONCAT(candidas.name , ' ', candidas.family) AS `name_family`,
+				reports.date as 'report_date',
 				results.*,
 				candidas.*
 			FROM
 				results
+			LEFT JOIN reports ON reports.id = results.candida_id
 			INNER JOIN candidas ON candidas.id = results.candida_id
 			INNER JOIN elections ON elections.id = results.election_id
 			WHERE
