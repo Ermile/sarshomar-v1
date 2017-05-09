@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-05-09 19:20+0430\n"
-"PO-Revision-Date: 2017-05-09 19:21+0430\n"
+"POT-Creation-Date: 2017-05-09 19:24+0430\n"
+"PO-Revision-Date: 2017-05-09 19:31+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -10721,44 +10721,36 @@ msgid "election"
 msgstr "انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1068
-#, fuzzy
-#| msgid "Name"
 msgid "En Name"
-msgstr "نام"
+msgstr "نام به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1069
 msgid "Family"
 msgstr "خانواده "
 
 #: sarshomar/includes/languages/trans_twig.php:1070
-#, fuzzy
-#| msgid "Family"
 msgid "En Family"
-msgstr "خانواده "
+msgstr "نام خانوادگی به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1071
 msgid "Father"
-msgstr "مادر"
+msgstr "پدر"
 
 #: sarshomar/includes/languages/trans_twig.php:1072
-#, fuzzy
-#| msgid "Father"
 msgid "En Father"
-msgstr "مادر"
+msgstr "پدر به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1073
 msgid "Fame"
-msgstr ""
+msgstr "شهرت"
 
 #: sarshomar/includes/languages/trans_twig.php:1074
 msgid "En Fame"
-msgstr ""
+msgstr "شهرت به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1075
-#, fuzzy
-#| msgid "vocational"
 msgid "Nationalcode"
-msgstr "فنی و حرفه‌ای"
+msgstr "کد ملی"
 
 #: sarshomar/includes/languages/trans_twig.php:1076
 #, fuzzy
@@ -10767,10 +10759,8 @@ msgid "Brith date"
 msgstr "تاریخ انتشار"
 
 #: sarshomar/includes/languages/trans_twig.php:1077
-#, fuzzy
-#| msgid "Election added"
 msgid "Election code"
-msgstr "انتخابات اضافه‌شد"
+msgstr "کد انتخاباتی"
 
 #: sarshomar/includes/languages/trans_twig.php:1078
 #, fuzzy
@@ -10780,7 +10770,7 @@ msgstr "فایل"
 
 #: sarshomar/includes/languages/trans_twig.php:1079
 msgid "File_url_2"
-msgstr ""
+msgstr "آدرس فایل ۲"
 
 #: sarshomar/includes/languages/trans_twig.php:1080
 msgid "Win url"
@@ -10797,78 +10787,60 @@ msgid "Add new candida"
 msgstr "افزودن رکورد جدید"
 
 #: sarshomar/includes/languages/trans_twig.php:1083
-#, fuzzy
-#| msgid "election"
 msgid "election_id"
-msgstr "انتخابات"
+msgstr "شناسه‌ی انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1084
 msgid "name"
 msgstr "نام"
 
 #: sarshomar/includes/languages/trans_twig.php:1085
-#, fuzzy
-#| msgid "name"
 msgid "en_name"
-msgstr "نام"
+msgstr "نام به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1086
 msgid "family"
 msgstr "خانواده"
 
 #: sarshomar/includes/languages/trans_twig.php:1087
-#, fuzzy
-#| msgid "Father"
 msgid "father"
-msgstr "مادر"
+msgstr "پدر"
 
 #: sarshomar/includes/languages/trans_twig.php:1088
 msgid "fame"
-msgstr ""
+msgstr "شهرت"
 
 #: sarshomar/includes/languages/trans_twig.php:1089
-#, fuzzy
-#| msgid "birthday"
 msgid "birthdate"
 msgstr "تاریخ تولد"
 
 #: sarshomar/includes/languages/trans_twig.php:1090
-#, fuzzy
-#| msgid "Birthday"
 msgid "Birth date"
 msgstr "تاریخ تولد"
 
 #: sarshomar/includes/languages/trans_twig.php:1091
-#, fuzzy
-#| msgid "international"
 msgid "nationalcode"
-msgstr "بین‌المللی"
+msgstr "کد ملی"
 
 #: sarshomar/includes/languages/trans_twig.php:1092
-#, fuzzy
-#| msgid "vocational"
 msgid "National code"
-msgstr "فنی و حرفه‌ای"
+msgstr "کد ملی"
 
 #: sarshomar/includes/languages/trans_twig.php:1093
-#, fuzzy
-#| msgid "election"
 msgid "electioncode"
-msgstr "انتخابات"
+msgstr "کد انتخاباتی"
 
 #: sarshomar/includes/languages/trans_twig.php:1094
-#, fuzzy
-#| msgid "file"
 msgid "file_url"
-msgstr "فایل"
+msgstr "آدرس فایل"
 
 #: sarshomar/includes/languages/trans_twig.php:1095
 msgid "file_url_2"
-msgstr ""
+msgstr "آدرس فایل ۲"
 
 #: sarshomar/includes/languages/trans_twig.php:1096
 msgid "win_url"
-msgstr ""
+msgstr "آدرس فایل در صورت پیروزی"
 
 #: sarshomar/includes/languages/trans_twig.php:1098
 #, fuzzy
@@ -11028,11 +11000,11 @@ msgstr "زمان پایان"
 
 #: sarshomar/includes/languages/trans_twig.php:1134
 msgid "running"
-msgstr ""
+msgstr "درحال‌اجرا"
 
 #: sarshomar/includes/languages/trans_twig.php:1135
 msgid "done"
-msgstr "کردم"
+msgstr "پایان‌یافته"
 
 #: sarshomar/includes/languages/trans_twig.php:1138
 #, fuzzy
