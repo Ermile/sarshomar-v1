@@ -134,6 +134,7 @@
 
 
 {%block province_result%}
+{% if result.result_by_city.province %}
 <p class="d-title">آراء نامزدها به تفکیک استان</p>
 <div class="city-results">
  <div class="f header">
@@ -141,21 +142,22 @@
   {%for k, v in result.candida_id%}
   <div class="c">{{v}}</div>
   {%endfor%}
-  </div>
-  {%for key, value in result.result_by_city.province%}
-  <div class="f">
-  <div class="c">{{value.location.local_name}}</div>
-  {%for k, v in value.data%}
-  <div class="c">{{v|fitNumber}}</div>
-  {%endfor%}
-  </div>
-  {%endfor%}
  </div>
-
+  {%for key, value in result.result_by_city.province%}
+   <div class="f">
+    <div class="c">{{value.location.local_name}}</div>
+    {%for k, v in value.data%}
+     <div class="c">{{v|fitNumber}}</div>
+    {%endfor%}
+   </div>
+  {%endfor%}
+</div>
+{% endif %}
 {%endblock%}
 
 
 {%block city_result%}
+{% if result.result_by_city.city %}
 <p class="d-title">آراء نامزدها به تفکیک شهر</p>
 <div class="city-results">
  <div class="f header">
@@ -173,7 +175,7 @@
   </div>
   {%endfor%}
  </div>
-
+{% endif %}
 {%endblock%}
 
 
