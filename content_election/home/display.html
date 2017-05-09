@@ -29,38 +29,61 @@
 {%block rivals%}
  <div class="top-two">
   <div class="container">
-   <p>آخرین نتایج انتخابات ریاست جمهوری {{1396|fitNumber}}</p>
+   {% if result.election.title %}<p>{{result.election.title}}</p>{% endif %}
    <div class="flex justify-between top-two-container">
     <div class="flex align-end first candidate">
+     {% if result.rival[0]['file_url'] %}
      <div class="image"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+     {% endif %}
      <div class="data flex f-column align-center justify-end">
-      <h4>{{result.rival[0]['fame']}}</h4>
-      <div class="vote-count">{{result.rival[0]['percent']|fitNumber}}%</div>
+      {% if result.rival[0]['fame'] %}
+       <h4>{{result.rival[0]['fame']}}</h4>
+      {% else %}
+       <h4>{{result.rival[0]['family']}}</h4>
+      {% endif %}
+      {% if result.rival[0]['percent'] %}
+       <div class="vote-count">{{result.rival[0]['percent']|fitNumber}}%</div>
+      {% endif %}
      </div>
     </div>
 
     <div class="flex align-end second candidate">
      <div class="data flex f-column align-center justify-end">
-      <h4>{{result.rival[1]['fame']}}</h4>
-      <div class="vote-count">{{result.rival[1]['percent']|fitNumber}}%</div>
+      {% if result.rival[1]['fame'] %}
+       <h4>{{result.rival[1]['fame']}}</h4>
+      {% else %}
+       <h4>{{result.rival[1]['family']}}</h4>
+      {% endif %}
+      {% if result.rival[1]['percent'] %}
+       <div class="vote-count">{{result.rival[1]['percent']|fitNumber}}%</div>
+      {% endif %}
      </div>
-     <div class="image"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+     {% if result.rival[1]['file_url'] %}
+      <div class="image"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+     {% endif %}
     </div>
    </div>
 
+   {% if result.rival[0]['total'] and result.rival[1]['total'] %}
    <div class="flex justify-between status-bar">
+    {% if result.rival[0]['total'] %}
     <div class="first" style="width:{{result.rival[0]['percent']}}%">
      <div class="percentage">
       <span>{{result.rival[0]['total']|number_format|fitNumber}}</span>
      </div>
     </div>
+    {% endif %}
+    {% if result.rival[1]['total'] %}
     <div class="second" style="width:{{result.rival[1]['percent']}}%">
      <div class="percentage">
       <span>{{result.rival[1]['total']|number_format|fitNumber}}</span>
      </div>
     </div>
+    {% endif %}
     <div class="indicator"></div>
    </div>
+   {% endif %}
+
   </div>
  </div>
 {%endblock%}
@@ -79,7 +102,7 @@
 
 {%block result%}
 {%if result%}
- <p class="d-title">لیست نامزدها (به ترتیب اکثریت آرا)</p>
+ <p class="d-title">{% trans "Candidates' List" %}</p>
  <div class="candidates">
   {%for key, value in result.result%}
    <div class="candidate">

@@ -30,7 +30,7 @@ body{color:#333;background-color:#f4f4f4}
 
 
 .top-two .top-two-container .candidate .data{padding:0 2rem 2rem}
-.top-two .top-two-container .candidate .data h4{font-size:3em;margin-bottom:.5em}
+.top-two .top-two-container .candidate .data h4{font-size:3em;margin:0}
 .top-two .top-two-container .candidate .data .vote-count{font-size:1.2em;font-weight:700}
 
 .top-two .status-bar .first,.top-two .status-bar .second{position:relative}
