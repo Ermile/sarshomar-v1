@@ -84,7 +84,7 @@
   {%for key, value in result.result%}
    <div class="candidate">
     <div class="f">
-     <div class="c1">
+     <div class="c1 flex align-center">
       <div class="image">
        <img src="{{url.static}}{{value.file_url}}" alt="">
       </div>
@@ -94,6 +94,7 @@
       <span class="bold">{{value.family}}</span>
      </div>
      <div class="c7 bar-container">
+      <div class="bar-percent">{{value.percent|fitNumber}}%</div>
       <div class="bar">
        <div class="bar-progress" style="width: {{value.percent}}%"></div>
       </div>

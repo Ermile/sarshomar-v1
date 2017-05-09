@@ -73,9 +73,11 @@ body{color:#333;background-color:#f4f4f4}
 }
 
 .d-title{font-size:2em;font-weight:700;}
+.d-title::before{display:inline-block;width:5px;height:40px;margin-right:1rem;content:'';vertical-align:middle;background-color:#ddd}
+.rtl .d-title::before{margin-right:0;margin-left:1rem}
 
 .candidates{margin:0 auto 5em;border:2px solid #ddd}
-.candidates .candidate{padding:2em;background-color:#fff}
+.candidates .candidate{padding:1em 2em;background-color:#fff}
 .candidates .candidate:not(:last-of-type){border-bottom:1px solid #ddd}
 .candidates .candidate .name{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
 .candidates .candidate .name span{display:block;margin:.5rem 1rem}
@@ -84,6 +86,7 @@ body{color:#333;background-color:#f4f4f4}
 
 .candidates .candidate .bar-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
 .candidates .candidate .bar{width:90%;margin:0 auto;height:1.5em;background:#e5e5e5 url(../images/election/striped.png);border:1px solid #e0e0e0}
+.candidates .candidate .bar-percent{margin-bottom:2rem;font-weight:700;font-size:1.2em}
 .candidates .candidate .bar .bar-progress{width:50%;height:100%;background-color:#007dd6;position:relative}
 .candidates .candidate .bar .bar-progress::before{content:attr(data-percent);position:absolute;top:-2em;left:0;font-weight:500;color:#666}
 
