@@ -93,8 +93,8 @@
  <div class="flex justify-between toolbox">
   <div class="live">
    <i></i>
-   <span class="title">پوشش زنده</span>
-   <span class="last-update">(آخرین به‌روزرسانی سه‌شنبه {{10|fitNumber}}:{{20|fitNumber}})</span>
+   <span class="title">{% trans "Live Converage" %}</span>
+   <span class="last-update">({% trans "Last Update" %})</span>
   </div>
  </div>
 </div>
@@ -135,7 +135,7 @@
 
 {%block province_result%}
 {% if result.result_by_city.province %}
-<p class="d-title">آراء نامزدها به تفکیک استان</p>
+<p class="d-title">{% trans "Candidates' Votes on Provinces" %}</p>
 <div class="city-results">
  <div class="f header">
   <div class="c">{%trans "Province"%}</div>
@@ -158,7 +158,7 @@
 
 {%block city_result%}
 {% if result.result_by_city.city %}
-<p class="d-title">آراء نامزدها به تفکیک شهر</p>
+<p class="d-title">{% trans "Candidates' Votes on Cities" %}</p>
 <div class="city-results">
  <div class="f header">
   <div class="c">{%trans "City"%}</div>
