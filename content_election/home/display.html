@@ -2,9 +2,11 @@
 
 {% block content %}
  <div class="box-top">
+  {% if false %}
   {{block('win')}}
-  {{block('rivals')}}
+  {% endif %}
   {{block('toolbox')}}
+  {{block('rivals')}}
  </div>
  <div class="container">
   {{block('result')}}
@@ -27,6 +29,7 @@
 {%block rivals%}
  <div class="top-two">
   <div class="container">
+   <p>آخرین نتایج انتخابات ریاست جمهوری {{1396|fitNumber}}</p>
    <div class="flex justify-between top-two-container">
     <div class="flex align-end first candidate">
      <div class="image"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
@@ -67,7 +70,8 @@
  <div class="flex justify-between toolbox">
   <div class="live">
    <i></i>
-   <span>پوشش زنده</span>
+   <span class="title">پوشش زنده</span>
+   <span class="last-update">(آخرین به‌روزرسانی سه‌شنبه {{10|fitNumber}}:{{20|fitNumber}})</span>
   </div>
  </div>
 </div>
@@ -75,6 +79,7 @@
 
 {%block result%}
 {%if result%}
+ <p class="d-title">لیست نامزدها (به ترتیب اکثریت آرا)</p>
  <div class="candidates">
   {%for key, value in result.result%}
    <div class="candidate">
@@ -105,6 +110,7 @@
 
 
 {%block province_result%}
+<p class="d-title">آراء نامزدها به تفکیک استان</p>
 <div class="city-results">
  <div class="f header">
   <div class="c">{%trans "Province"%}</div>
@@ -116,7 +122,7 @@
   <div class="f">
   <div class="c">{{value.location.local_name}}</div>
   {%for k, v in value.data%}
-  <div class="c">{{v}}</div>
+  <div class="c">{{v|fitNumber}}</div>
   {%endfor%}
   </div>
   {%endfor%}
@@ -125,8 +131,8 @@
 {%endblock%}
 
 
-
 {%block city_result%}
+<p class="d-title">آراء نامزدها به تفکیک شهر</p>
 <div class="city-results">
  <div class="f header">
   <div class="c">{%trans "City"%}</div>
@@ -138,7 +144,7 @@
   <div class="f">
   <div class="c">{{value.location.local_name}}</div>
   {%for k, v in value.data%}
-  <div class="c">{{v}}</div>
+  <div class="c">{{v|fitNumber}}</div>
   {%endfor%}
   </div>
   {%endfor%}
@@ -162,11 +168,11 @@
 {%if result.time_line%}
   <div class="timeline">
   {%for key, value in result.time_line%}
-  <div class="circle {%if value.en_url == url.path or value.fa_url == url.path%}active{%endif%}">
-   <div class="image">
+  <a class="circle {%if value.en_url == url.path or value.fa_url == url.path%}active{%endif%}" href="#">
+   <div class="image round low">
     <img src="{{url.static}}images/election/1.png">
    </div>
-  </div>
+  </a>
   {%endfor%}
  </div>
 {%endif%}
