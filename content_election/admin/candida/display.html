@@ -8,9 +8,13 @@
 		<div>{%trans "id" %}</div>
 		<div class="c2">{%trans "election" %}</div>
 		<div>{%trans "Name" %}</div>
+		<div>{%trans "En Name" %}</div>
 		<div>{%trans "Family" %}</div>
+		<div>{%trans "En Family" %}</div>
 		<div>{%trans "Father" %}</div>
+		<div>{%trans "En Father" %}</div>
 		<div>{%trans "Fame" %}</div>
+		<div>{%trans "En Fame" %}</div>
 		<div>{%trans "Nationalcode" %}</div>
 		<div>{%trans "Brith date" %}</div>
 		<div>{%trans "Election code" %}</div>
@@ -24,9 +28,13 @@
 		<div><a href="{{url.base}}/election/admin/candida/edit={{value.id}}">{{value.id}}</a></div>
 		<div class="c2">{{value.title}}</div>
 		<div>{{value.name}}</div>
+		<div>{{value.en_name}}</div>
 		<div>{{value.family}}</div>
+		<div>{{value.en_family}}</div>
 		<div>{{value.father}}</div>
+		<div>{{value.en_father}}</div>
 		<div>{{value.fame}}</div>
+		<div>{{value.en_fame}}</div>
 		<div>{{value.nationalcode|fitNumber}}</div>
 		<div>{{value.birthdate|jdate("Y-m-d")}}</div>
 		<div>{{value.electioncode|fitNumber}}</div>
@@ -58,17 +66,36 @@
 		<label class="c1" for="name">{%trans "name"%}</label>
 		<input type="text" name="name" id="name"  value="{{candida.name}}" placeholder='{%trans "Name"%}' class="c5">
 	</div>
+
+	<div class="f">
+		<label class="c1" for="en_name">{%trans "En Name"%}</label>
+		<input type="text" name="en_name" id="en_name"  value="{{candida.en_name}}" placeholder='{%trans "en_name"%}' class="c5">
+	</div>
+
 	<div class="f">
 		<label class="c1" for="family">{%trans "family"%}</label>
 		<input type="text" name="family" id="family"  value="{{candida.family}}" placeholder='{%trans "Family"%}' class="c5">
 	</div>
 	<div class="f">
+		<label class="c1" for="en_family">{%trans "En Family"%}</label>
+		<input type="text" name="en_family" id="en_family"  value="{{candida.en_family}}" placeholder='{%trans "En Family"%}' class="c5">
+	</div>
+
+	<div class="f">
 		<label class="c1" for="father">{%trans "father"%}</label>
 		<input type="text" name="father" id="father"  value="{{candida.father}}" placeholder='{%trans "Father"%}' class="c5">
 	</div>
 	<div class="f">
+		<label class="c1" for="en_father">{%trans "En Father"%}</label>
+		<input type="text" name="en_father" id="en_father"  value="{{candida.en_father}}" placeholder='{%trans "En Father"%}' class="c5">
+	</div>
+	<div class="f">
 		<label class="c1" for="fame">{%trans "fame"%}</label>
 		<input type="text" name="fame" id="fame"  value="{{candida.fame}}" placeholder='{%trans "Fame"%}' class="c5">
+	</div>
+	<div class="f">
+		<label class="c1" for="en_fame">{%trans "En Fame"%}</label>
+		<input type="text" name="en_fame" id="en_fame"  value="{{candida.en_fame}}" placeholder='{%trans "En Fame"%}' class="c5">
 	</div>
 	<div class="f">
 		<label class="c1" for="birthdate">{%trans "birthdate"%}</label>

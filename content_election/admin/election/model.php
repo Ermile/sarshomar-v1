@@ -16,6 +16,7 @@ class model extends \content_election\main\model
 		$args =
 		[
 			'title'                   => utility::post('title'),
+			'en_title'                => utility::post('en_title'),
 			'status'                  => utility::post('status'),
 			'eligible'                => utility::post('eligible'),
 			'voted'                   => utility::post('voted'),

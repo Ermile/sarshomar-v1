@@ -27,9 +27,13 @@ class model extends \content_election\main\model
 		$args =
 		[
 			'name'         => utility::post('name'),
+			'en_name'      => utility::post('en_name'),
 			'family'       => utility::post('family'),
+			'en_family'    => utility::post('en_family'),
 			'father'       => utility::post('father'),
+			'en_father'    => utility::post('en_father'),
 			'fame'         => utility::post('fame'),
+			'en_fame'      => utility::post('en_fame'),
 			'birthdate'    => utility::post('birthdate'),
 			'nationalcode' => utility::post('nationalcode'),
 			'electioncode' => utility::post('electioncode'),

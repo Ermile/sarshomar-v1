@@ -12,6 +12,10 @@ class controller extends \content_election\main\controller
 		{
 			$this->get("load", "load")->ALL("/.*/");
 		}
+		else
+		{
+			$this->display_name = 'content_election\home\home.html';
+		}
 	}
 }
 ?>

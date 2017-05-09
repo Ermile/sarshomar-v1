@@ -8,6 +8,7 @@
 	<div class="f th">
 		<div>{%trans "ID" %}</div>
 		<div class="c2">{%trans "Title"%}</div>
+		<div class="c2">{%trans "En Title"%}</div>
 		<div>{%trans "Status"%}</div>
 		<div>{%trans "Eligible"%}</div>
 		<div>{%trans "Voted"%}</div>
@@ -34,6 +35,7 @@
 	<div class="f">
 		<div><a href="{{url.base}}/election/admin/election/edit={{value.id}}">{{value.id}}</a></div>
 		<div class="c2">{{value.title}}</div>
+		<div class="c2">{{value.en_title}}</div>
 		<div>{%set myStatus = value.status%}{%trans myStatus %}</div>
 		<div>{{value.eligible|number_format|fitNumber}}</div>
 		<div>{{value.voted|number_format|fitNumber}}</div>
@@ -69,6 +71,10 @@
 	<div class="f">
 		<label for="title" class="c1">{%trans "Title"%}</label>
 		<input type="text" name="title" id="title" value="{{election.title}}" placeholder='{%trans "Title"%}' class="c5">
+	</div>
+	<div class="f">
+		<label for="en_title" class="c1">{%trans "En Title"%}</label>
+		<input type="text" name="en_title" id="en_title" value="{{election.en_title}}" placeholder='{%trans "En Title"%}' class="c5">
 	</div>
 	<div class="f">
 		<label for="eligible" class="c1">{%trans "Eligible"%}</label>
