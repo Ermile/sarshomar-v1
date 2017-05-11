@@ -59,7 +59,7 @@ private function transtext()
 
 	//---------------------------------------saloos-addons\content_cp\home\layout.html
 	echo T_("Use this menu for navigating to all part of control panel");             // Line 8
-	echo T_("Dashboard");                                                             // Line 93 Seperate
+	echo T_("Dashboard");                                                             // Line 51
 	echo T_("Homepage");                                                              // Line 76 Seperate
 	echo T_("Next →");                                                                // Line 21
 	echo T_("← Back");                                                                // Line 21
@@ -68,10 +68,10 @@ private function transtext()
 	echo T_("Help");                                                                  // Line 23
 	echo T_("You can work with control panel in your language");                      // Line 25
 	echo T_("Go to your profile, change password or logout from conrtol panel");      // Line 31
-	echo T_("My Profile");                                                            // Line 101 Seperate
-	echo T_("Change Password");                                                       // Line 335 Seperate
+	echo T_("My Profile");                                                            // Line 85
+	echo T_("Change Password");                                                       // Line 86
 	echo T_("Lock Screen");                                                           // Line 103 Seperate
-	echo T_("Logout");                                                                // Line 104 Seperate
+	echo T_("Logout");                                                                // Line 87
 	echo T_("We glad to working for you and hope you enjoy using our system");        // Line 61
 	echo T_("Some right reserved");                                                   // Line 63
 	echo T_("Powered by");                                                            // Line 63
@@ -259,15 +259,18 @@ private function transtext()
 	echo T_("Submit");                                                                // Line 55
 	echo T_("Project Database");                                                      // Line 61
 	echo T_("Automatically read database and create sql files");                      // Line 60
-	echo T_("Database Logs");                                                         // Line 66
-	echo T_("Logs");                                                                  // Line 69
-	echo T_("Logs - check");                                                          // Line 70
-	echo T_("Logs - warn");                                                           // Line 71
-	echo T_("Logs - critical");                                                       // Line 72
-	echo T_("Error Logs");                                                            // Line 73
-	echo T_("Telegram Errors");                                                       // Line 76
-	echo T_("telegram Logs");                                                         // Line 80
-	echo T_("telegram - Error Logs");                                                 // Line 81
+	echo T_("Server Logs");                                                           // Line 65
+	echo T_("Access logs");                                                           // Line 67
+	echo T_("Error logs");                                                            // Line 68
+	echo T_("Database Logs");                                                         // Line 71
+	echo T_("Logs");                                                                  // Line 74
+	echo T_("Logs - check");                                                          // Line 75
+	echo T_("Logs - warn");                                                           // Line 76
+	echo T_("Logs - critical");                                                       // Line 77
+	echo T_("Error Logs");                                                            // Line 78
+	echo T_("Telegram Errors");                                                       // Line 81
+	echo T_("telegram Logs");                                                         // Line 85
+	echo T_("telegram - Error Logs");                                                 // Line 86
 
 	//------------------------------saloos-addons\includes\languages\trans_static.html
 	echo T_("saloos");                                                                // Line 8 Seperate
@@ -314,7 +317,7 @@ private function transtext()
 	echo T_("Iran");                                                                  // Line 61 Seperate
 	echo T_("iran");                                                                  // Line 62 Seperate
 	echo T_("Qom");                                                                   // Line 63 Seperate
-	echo T_("qom");                                                                   // Line 64 Seperate
+	echo T_("qom");                                                                   // Line 411 Seperate
 	echo T_("submit");                                                                // Line 65 Seperate
 	echo T_("save");                                                                  // Line 66 Seperate
 	echo T_("add new");                                                               // Line 67 Seperate
@@ -550,12 +553,45 @@ private function transtext()
 	echo T_("Your phone number registered successfully;)");                           // Line 385 Seperate
 	echo T_("We dont need another users contact:?)");                                 // Line 386 Seperate
 	echo T_("We need mobile number!");                                                // Line 387 Seperate
-	echo T_(" ");                                                                     // Line 391 Seperate
+	echo T_(" ");                                                                     // Line 389 Seperate
+	echo T_("east azerbaijan");                                                       // Line 393 Seperate
+	echo T_("west azerbaijan");                                                       // Line 394 Seperate
+	echo T_("ardabil");                                                               // Line 395 Seperate
+	echo T_("esfahan");                                                               // Line 396 Seperate
+	echo T_("alborz");                                                                // Line 397 Seperate
+	echo T_("eilam");                                                                 // Line 398 Seperate
+	echo T_("bushehr");                                                               // Line 399 Seperate
+	echo T_("tehran");                                                                // Line 400 Seperate
+	echo T_("chaharmahal and bakhtiari");                                             // Line 401 Seperate
+	echo T_("south khorasan");                                                        // Line 402 Seperate
+	echo T_("razavi khorasan");                                                       // Line 403 Seperate
+	echo T_("north khorasan");                                                        // Line 404 Seperate
+	echo T_("khuzestan");                                                             // Line 405 Seperate
+	echo T_("zanjan");                                                                // Line 406 Seperate
+	echo T_("semnan");                                                                // Line 407 Seperate
+	echo T_("sistan and baluchestan");                                                // Line 408 Seperate
+	echo T_("fars");                                                                  // Line 409 Seperate
+	echo T_("qazvin");                                                                // Line 410 Seperate
+	echo T_("kordestan");                                                             // Line 412 Seperate
+	echo T_("kerman");                                                                // Line 413 Seperate
+	echo T_("kermanshah");                                                            // Line 414 Seperate
+	echo T_("kohgiluyeh and boyerahmad");                                             // Line 415 Seperate
+	echo T_("golestan");                                                              // Line 416 Seperate
+	echo T_("gilan");                                                                 // Line 417 Seperate
+	echo T_("lorestan");                                                              // Line 418 Seperate
+	echo T_("mazandaran");                                                            // Line 419 Seperate
+	echo T_("markazi");                                                               // Line 420 Seperate
+	echo T_("hormozgan");                                                             // Line 421 Seperate
+	echo T_("hamedan");                                                               // Line 422 Seperate
+	echo T_("yazd");                                                                  // Line 423 Seperate
 
 	//-----------------------------------------saloos-addons\includes\macro\forms.html
 	echo T_("Select");                                                                // Line 81
 
-	//-----------------------------------------saloos-addons\includes\mvc\display.html
+	//------------------------------------saloos-addons\includes\mvc\display-back.html
+	echo T_("Hello");                                                                 // Line 42
+
+	//-------------------------------------saloos-addons\includes\mvc\display-mvc.html
 
 }
 ?>

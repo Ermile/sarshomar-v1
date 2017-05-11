@@ -1,4 +1,4 @@
-{%extends display.admin%}
+{%extends display.election%}
 {%block content%}
 
 {%if candida_list%}
@@ -52,7 +52,7 @@
 {%else%}
 <h1>{%trans "Add new candida"%}</h1>
 {%endif%}
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" class="df">
 	<div class="f">
 		<label class="c1" for="election_id">{%trans "election_id"%}</label>
 		<select name="election_id" id="election_id" class="c5">

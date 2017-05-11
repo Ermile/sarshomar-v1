@@ -1,17 +1,20 @@
-{%extends display.mvc%}
+{%extends display.back%}
+
 
 {%block head_css%}
- {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
- <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
+{{parent()}}
  <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
 {%endblock%}
 
-{%block foot_js%}{%endblock%}
 
-{%block body%}
- {{block ('wrapperElection')}}
-{%endblock%}
+{%block sidenav%}
+{%if perm.admin.view%}
+    <li><a href="{{url.base}}/election/admin"><i class='icon-laptop'></i> <span>{% trans "Admin Dashboard" %}</span></a></li>
+    <li><a href="{{url.base}}/election/admin/election"><i class='icon-check'></i> <span>{% trans "Election" %}</span></a></li>
+    <li><a href="{{url.base}}/election/admin/candida"><i class='icon-user'></i> <span>{% trans "Candida" %}</span></a></li>
+{%endif%}
 
-{%block wrapperElection%}
- {%block content%}{%endblock%}
+    <li><a href="{{url.base}}/election/data"><i class='icon-bullhorn'></i> <span>{% trans "Add Data" %}</span></a></li>
+
+    <li><a href="{{url.base}}/election" data-direct target="_blank"><i class='icon-chart-line'></i> <span>{% trans "View Election" %}</span></a></li>
 {%endblock%}

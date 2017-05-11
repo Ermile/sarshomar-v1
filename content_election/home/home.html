@@ -1,5 +1,11 @@
-{%extends display.election%}
+{%extends display.mvc%}
 
 {% block content %}
 home
+{%endblock%}
+
+{%block head_css%}
+ {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
+ <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
 {%endblock%}
