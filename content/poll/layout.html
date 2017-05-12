@@ -91,7 +91,7 @@
 
 {%block poll_options%}
  {%if poll.answers%}
- <ul class="poll-options{%if login%}{%if answer_lock%} locked{%endif%}{%else%} guest{%endif%}{%if (poll.options.class == 'iran-provinces') or (poll.options.class == 'two-col') or (poll.options.class == 'three-col')%} f{%endif%}"
+ <ul class="poll-options{%if login%}{%if answer_lock%} locked{%endif%}{%else%} guest{%endif%}{%if (poll.options.class == 'iran-provinces') or (poll.options.class == 'col2') or (poll.options.class == 'col3')%} f{%endif%}"
   data-answer-type="{{poll_type}}"
   data-type="{%if poll.options.multi%}multi{%endif%}"
   {%if min%}data-multi-min="{{min}}"{%endif%}
@@ -100,7 +100,7 @@
   {%if poll.options.multi%}
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
-    <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "two-col")%} c6 s12{%elseif (poll.options.class == "three-col")%} c4 s12{%endif%}'>
+    <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "col2")%} c6 s12{%elseif (poll.options.class == "col3")%} c4 s12{%endif%}'>
      <label for="check_other">
       <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
       <div class="option-content">
@@ -115,7 +115,7 @@
 
     {%else%}
 
-     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "two-col")%} c6 s12{%elseif (poll.options.class == "three-col")%} c4 s12{%endif%}'>
+     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "col2")%} c6 s12{%elseif (poll.options.class == "col3")%} c4 s12{%endif%}'>
       <label for="check_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
@@ -132,7 +132,7 @@
    {%for key, value in poll.answers%}
     {%if value.type == 'descriptive' %}
 
-     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "two-col")%} c6 s12{%elseif (poll.options.class == "three-col")%} c4 s12{%endif%}'>
+     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "col2")%} c6 s12{%elseif (poll.options.class == "col3")%} c4 s12{%endif%}'>
       <label for="radio_other">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">
@@ -147,7 +147,7 @@
 
     {%else%}
 
-     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "two-col")%} c6 s12{%elseif (poll.options.class == "three-col")%} c4 s12{%endif%}'>
+     <li class='{%if poll.my_answer[value.key] %}selected{%endif%}{%if (poll.options.class == "iran-provinces") or (poll.options.class == "col2")%} c6 s12{%elseif (poll.options.class == "col3")%} c4 s12{%endif%}'>
       <label for="radio_{{value.key}}">
        <div class="option-number" data-number='{% set myKey = myKey + 1%}{{myKey|fitNumber}}'></div>
        <div class="option-content">{{value.title}}</div>
