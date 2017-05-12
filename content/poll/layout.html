@@ -44,8 +44,9 @@
 
 
 {%block guest_alert%}
- {%if is_guest%}
-  <div class="alert alert-error">{%trans "Your are our Guest!"%}</div>
+ {%if login%}
+ {%else%}
+  <div class="msg info">{%trans "Simply enter to Sarshomar and participate in the poll and register your vote."%}</div>
  {%endif%}
 {%endblock%}
 
