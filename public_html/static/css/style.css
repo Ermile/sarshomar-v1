@@ -253,7 +253,7 @@ ul{list-style:none inside none}
 ul.list{list-style:square outside none;margin:0 3em}
 ul.list li{padding:0.5em 0;font-size:1.4em}
 ul.list li a{padding:0.3em 0.5em}
-
+.text-center{text-align:center}
 
 /************************************************************** Forms */
 label,input,select,textarea,button{font-family:"IRANSans",'Roboto Slab',sans-serif;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-transition:border .2s,color .2s,background .2s;-o-transition:border .2s,color .2s,background .2s;-moz-transition:border .2s,color .2s,background .2s;transition:border .2s,color .2s,background .2s}
