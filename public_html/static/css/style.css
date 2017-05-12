@@ -1,7 +1,7 @@
 /*
  * In the Name of God
  * Sarshomar Styles
- * Version: 5.1.0
+ * Version: 5.1.1
  * Author: Ermile
  * Author URI: Ermile.com
  */
@@ -1287,11 +1287,11 @@ body.rtl .poll-panel{right:16px;left:auto}
 #result .in{position:absolute;right:0;left:0;margin:auto;top:30%}
 #result .opt-media-box{padding:0 18px 0 50px;margin-bottom:2em}
 .rtl #result .opt-media-box{padding:0 50px 0 18px}
-#result .opt-media-box .c img{width:90%;max-height:200px;display:block;margin:0 auto;}
+#result .opt-media-box .c img{width:80%;max-height:200px;display:block;margin:0 auto;}
 
 /*for homepage*/
 .homepage .opt-media-box{padding:0 18px}
-.homepage .opt-media-box .c img{width:75%;max-height:200px;display:block;margin:0 auto;}
+.homepage .opt-media-box .c img{width:65%;max-height:200px;display:block;margin:0 auto;}
 .homepage .chart svg{z-index:2}
 .homepage .amcharts-balloon-div-categoryAxis{z-index: 100;}
 
@@ -1667,7 +1667,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 .ultra.multi-line{height:75px}
 .ultra .data{-webkit-box-flex:1;-ms-flex:1;-webkit-flex:1;-moz-box-flex:1;flex:1}
 .ultra .preview{max-height:75px;max-width:85px;z-index: 12;}
-.ultra .preview img{width:75px;min-width:75px;max-height:75px;margin-left:5px}
+.ultra .preview img{max-width:75px;max-height:75px;margin-left:5px}
 .rtl .ultra .preview img{margin-left:0;margin-right:5px}
 .ultra .element{margin-bottom:5px}
 
