@@ -24,7 +24,7 @@ body{color:#333;background-color:#f4f4f4}
 
 .top-two .status-bar{position:relative;height:5em;border:3px solid #eeeff0;background-color:#fff}
 
-.top-two .status-bar .indicator,.top-two .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #666}
+.top-two .status-bar .indicator,.top-two .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #f4f4f4}
 .top-two .status-bar .indicator{height:100%;bottom:0;}
 /*.top-two .status-bar::before{content:'';height:15px;top:-15px}*/
 

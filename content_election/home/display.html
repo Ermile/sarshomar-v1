@@ -11,9 +11,7 @@
 
 {% block content %}
  <div class="box-top">
-  {% if false %}
   {{block('win')}}
-  {% endif %}
   {{block('toolbox')}}
   {{block('rivals')}}
  </div>
@@ -26,13 +24,23 @@
 {% endblock %}
 
 {%block win%}
+ {% if result.election.status == 'done' %}
  <div class="top-one">
   <div class="image">
-   <img src="{{url.static}}images/election/3.png" align="سید ابراهیم رئیسی">
+
+   {% if result.candida[result.election.win - 1]['win_url'] %}
+      <img src="{{url.static}}{{result.candida[result.election.win - 1]['win_url']}}" alt="{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}">
+   {% elseif result.candida[result.election.win - 1]['file_url_2'] %}
+      <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url_2']}}" alt="{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}">
+   {% else %}
+      <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url']}}" alt="{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}">
+   {% endif %}
+
   </div>
-  <h2>حسن روحانی</h2>
-  <h3>کاندیدای منتخب دوازدهمین دوره‌ی ریاست جمهوری ایران</h3>
+  <h2>{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}</h2>
+  <h3>{% trans "President-elect of" %} {{result.election.title}}</h3>
  </div>
+ {% endif %}
 {%endblock%}
 
 {%block rivals%}
@@ -101,9 +109,11 @@
 <div class="container">
  <div class="flex justify-between toolbox">
   <div class="live">
+   {% if result.election.status == 'running' %}
    <i></i>
    <span class="title">{% trans "Live Converage" %}</span>
-   <span class="last-update">({% trans "Last Update" %} {{result.result[0]['report_date']|jdate("l H:i")}})</span>
+   {% endif %}
+   <span class="last-update">({% trans "Last Update" %} {{result.result[0]['report_date']|sdate()}})</span>
   </div>
  </div>
 </div>

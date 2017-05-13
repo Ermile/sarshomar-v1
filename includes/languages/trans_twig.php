@@ -38,7 +38,7 @@ private function transtext()
 	echo T_("Two minute tour");                                                       // Line 5
 	echo T_("Contact Us");                                                            // Line 87
 	echo T_("Quick Access");                                                          // Line 143
-	echo T_("Link");                                                                  // Line 56
+	echo T_("Link");                                                                  // Line 55
 	echo T_("Search");                                                                // Line 8
 	echo T_("General");                                                               // Line 40
 	echo T_("Billing");                                                               // Line 165
@@ -231,7 +231,7 @@ private function transtext()
 	echo T_("deleted");                                                               // Line 65
 	echo T_("schedule");                                                              // Line 670
 	echo T_("expired");                                                               // Line 66
-	echo T_("awaiting");                                                              // Line 167
+	echo T_("awaiting");                                                              // Line 166
 	echo T_("filtered");                                                              // Line 68
 	echo T_("blocked");                                                               // Line 69
 	echo T_("spam");                                                                  // Line 70
@@ -685,7 +685,7 @@ private function transtext()
 	echo T_("datemodified");                                                          // Line 119
 	echo T_("enddate");                                                               // Line 74
 	echo T_("exchangerates");                                                         // Line 104
-	echo T_("ID");                                                                    // Line 9
+	echo T_("ID");                                                                    // Line 8
 
 	//---------------------------------------------content_admin\home\display.bak.html
 	echo T_("Total Polls");                                                           // Line 89
@@ -734,7 +734,7 @@ private function transtext()
 	//-------------------------------------------------content_admin\logs\display.html
 	echo T_("User");                                                                  // Line 368
 	echo T_("Log data");                                                              // Line 17
-	echo T_("Desc");                                                                  // Line 162
+	echo T_("Desc");                                                                  // Line 161
 	echo T_("User data");                                                             // Line 33
 	echo T_("Find this user in logs");                                                // Line 34
 	echo T_("Log meta");                                                              // Line 42
@@ -1105,43 +1105,43 @@ private function transtext()
 
 	//------------------------------------content_election\admin\election\display.html
 	echo T_("Election list");                                                         // Line 5
-	echo T_("En Title");                                                              // Line 77
-	echo T_("Eligible");                                                              // Line 81
+	echo T_("En Title");                                                              // Line 76
+	echo T_("Eligible");                                                              // Line 80
 	echo T_("Voted");                                                                 // Line 44
 	echo T_("Invalid");                                                               // Line 47
 	echo T_("Cash");                                                                  // Line 152
-	echo T_("Branchs");                                                               // Line 97
-	echo T_("First vote male count");                                                 // Line 18
-	echo T_("First vote female count");                                               // Line 19
-	echo T_("Signuped");                                                              // Line 109
-	echo T_("Candida count");                                                         // Line 22
-	echo T_("Start time");                                                            // Line 121
-	echo T_("End_time");                                                              // Line 24
-	echo T_("Election date");                                                         // Line 129
-	echo T_("Jalali year");                                                           // Line 133
-	echo T_("Year");                                                                  // Line 137
-	echo T_("En url");                                                                // Line 20
-	echo T_("Fa url");                                                                // Line 21
-	echo T_("Cat");                                                                   // Line 149
-	echo T_("Win");                                                                   // Line 152
-	echo T_("Edit election data");                                                    // Line 66
-	echo T_("Add new election");                                                      // Line 68
-	echo T_("Cashs");                                                                 // Line 93
-	echo T_("First vote male");                                                       // Line 101
-	echo T_("First vote female");                                                     // Line 105
-	echo T_("End time");                                                              // Line 125
-	echo T_("running");                                                               // Line 168
+	echo T_("Branchs");                                                               // Line 96
+	echo T_("First vote male count");                                                 // Line 17
+	echo T_("First vote female count");                                               // Line 18
+	echo T_("Signuped");                                                              // Line 108
+	echo T_("Candida count");                                                         // Line 21
+	echo T_("Start time");                                                            // Line 120
+	echo T_("End_time");                                                              // Line 23
+	echo T_("Election date");                                                         // Line 128
+	echo T_("Jalali year");                                                           // Line 132
+	echo T_("Year");                                                                  // Line 136
+	echo T_("En url");                                                                // Line 21
+	echo T_("Fa url");                                                                // Line 22
+	echo T_("Cat");                                                                   // Line 148
+	echo T_("Win");                                                                   // Line 151
+	echo T_("Edit election data");                                                    // Line 65
+	echo T_("Add new election");                                                      // Line 67
+	echo T_("Cashs");                                                                 // Line 92
+	echo T_("First vote male");                                                       // Line 100
+	echo T_("First vote female");                                                     // Line 104
+	echo T_("End time");                                                              // Line 124
+	echo T_("running");                                                               // Line 167
 	echo T_("done");                                                                  // Line 524 Seperate
 
 	//----------------------------------------------content_election\data\display.html
 	echo T_("Election List");                                                         // Line 7
-	echo T_("add en_url");                                                            // Line 11
-	echo T_("add fa_url");                                                            // Line 12
-	echo T_("add result");                                                            // Line 13
-	echo T_("add city result");                                                       // Line 14
-	echo T_("Add report");                                                            // Line 22
-	echo T_("Add place");                                                             // Line 23
-	echo T_("Running Election");                                                      // Line 31
+	echo T_("add en_url");                                                            // Line 12
+	echo T_("add fa_url");                                                            // Line 13
+	echo T_("add result");                                                            // Line 14
+	echo T_("add city result");                                                       // Line 15
+	echo T_("Add report");                                                            // Line 23
+	echo T_("Add place");                                                             // Line 24
+	echo T_("Running Election");                                                      // Line 33
 
 	//---------------------------------------content_election\data\report\display.html
 	echo T_("Report list");                                                           // Line 5
@@ -1166,11 +1166,12 @@ private function transtext()
 	echo T_("father");                                                                // Line 17
 
 	//----------------------------------------------content_election\home\display.html
-	echo T_("Live Converage");                                                        // Line 96
-	echo T_("Last Update");                                                           // Line 97
-	echo T_("Candidates' List");                                                      // Line 105
-	echo T_("Candidates' Votes on Provinces");                                        // Line 138
-	echo T_("Candidates' Votes on Cities");                                           // Line 161
+	echo T_("President-elect of");                                                    // Line 41
+	echo T_("Live Converage");                                                        // Line 114
+	echo T_("Last Update");                                                           // Line 116
+	echo T_("Candidates' List");                                                      // Line 124
+	echo T_("Candidates' Votes on Provinces");                                        // Line 157
+	echo T_("Candidates' Votes on Cities");                                           // Line 180
 	echo T_("City");                                                                  // Line 347
 
 	//-------------------------------------------content_election\main\layout.bak.html
