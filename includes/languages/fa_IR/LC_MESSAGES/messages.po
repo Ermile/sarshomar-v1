@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-05-12 14:13+0430\n"
-"PO-Revision-Date: 2017-05-12 14:14+0430\n"
+"POT-Creation-Date: 2017-05-13 15:44+0430\n"
+"PO-Revision-Date: 2017-05-13 16:12+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -5037,7 +5037,6 @@ msgstr "پاسخ"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:164
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:189
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:164
-#: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:189
 msgid "Share"
 msgstr "اشتراک‌گذاری"
 
@@ -6185,43 +6184,41 @@ msgid "Search successfuly"
 msgstr "جستجو موفقیت‌آمیز بود"
 
 #: sarshomar/content_election/admin/candida/model.php:103
-#, fuzzy
-#| msgid "Can update"
 msgid "Candida updated"
-msgstr "اجازه ویرایش"
+msgstr "نامزد به‌روزرسانی شد"
 
 #: sarshomar/content_election/admin/candida/model.php:107
 msgid "Error in update candida"
-msgstr ""
+msgstr "خطا در به‌روزرسانی نامزد"
 
 #: sarshomar/content_election/admin/candida/model.php:155
 #: sarshomar/content_election/data/report/model.php:195
 msgid "Please select one items of election"
-msgstr ""
+msgstr "لطفا یکی از گزینه‌های انتخابات را انتخاب کنید"
 
 #: sarshomar/content_election/admin/candida/model.php:163
 msgid "Candida added"
-msgstr ""
+msgstr "نامزد افزوده شد"
 
 #: sarshomar/content_election/admin/candida/model.php:167
 msgid "Error in adding candida"
-msgstr ""
+msgstr "خطا در افزودن نامزد"
 
 #: sarshomar/content_election/admin/election/model.php:102
 msgid "Election updated"
-msgstr "انتخابات بروزرسانی شد"
+msgstr "انتخابات به‌روزرسانی شد"
 
 #: sarshomar/content_election/admin/election/model.php:106
 msgid "Error in update election"
-msgstr ""
+msgstr "خطا در به‌روزرسانی انتخابات"
 
 #: sarshomar/content_election/admin/election/model.php:123
 msgid "Election added"
-msgstr "انتخابات اضافه‌شد"
+msgstr "انتخابات اضافه شد"
 
 #: sarshomar/content_election/admin/election/model.php:127
 msgid "Error in adding election"
-msgstr ""
+msgstr "خطا در افزودن انتخابات"
 
 #: sarshomar/content_election/data/report/model.php:111
 #: sarshomar/content_election/data/result/model.php:191
@@ -6255,11 +6252,11 @@ msgstr ""
 
 #: sarshomar/content_election/manifest.php:6
 msgid "Allow to add the election, candida and edit it"
-msgstr ""
+msgstr "اجازه‌ی افزودن و ویرایش انتخابات و نامزد"
 
 #: sarshomar/content_election/manifest.php:14
 msgid "Allow to add the election data and edit it"
-msgstr ""
+msgstr "اجازه‌ی افزودن و ویرایش انتخابات"
 
 #: sarshomar/content_u/billing/model.php:63
 msgid "You must login to pay amount"
@@ -10381,7 +10378,7 @@ msgstr "عنوان پاسخ را تعیین کنید"
 
 #: sarshomar/includes/languages/trans_twig.php:897
 msgid "select the type of the answer."
-msgstr "انتخاب نوع پاسخ"
+msgstr "نوع پاسخ را انتخاب کنید."
 
 #: sarshomar/includes/languages/trans_twig.php:898
 msgid "If your answers has a file like an image, specify it here."
@@ -10877,7 +10874,7 @@ msgstr "پاسخ JSON معتبری نیست"
 
 #: sarshomar/includes/languages/trans_twig.php:1065
 msgid "Candida List"
-msgstr ""
+msgstr "لیست نامزدها"
 
 #: sarshomar/includes/languages/trans_twig.php:1067
 msgid "election"
@@ -10941,13 +10938,11 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_twig.php:1081
 msgid "Edit candida data"
-msgstr ""
+msgstr "خطا در اطلاعات نامزد"
 
 #: sarshomar/includes/languages/trans_twig.php:1082
-#, fuzzy
-#| msgid "Add New Record"
 msgid "Add new candida"
-msgstr "افزودن رکورد جدید"
+msgstr "افزودن نامزد جدید"
 
 #: sarshomar/includes/languages/trans_twig.php:1083
 msgid "election_id"
@@ -11008,132 +11003,100 @@ msgid "cancel"
 msgstr "انصراف"
 
 #: sarshomar/includes/languages/trans_twig.php:1102
-#, fuzzy
-#| msgid "election"
 msgid "Admin Election"
-msgstr "انتخابات"
+msgstr "ادمین انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1103
-#, fuzzy
-#| msgid "election"
 msgid "Election"
 msgstr "انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1104
 msgid "Candida"
-msgstr ""
+msgstr "نامزد"
 
 #: sarshomar/includes/languages/trans_twig.php:1107
-#, fuzzy
-#| msgid "Election updated"
 msgid "Election list"
-msgstr "انتخابات بروزرسانی شد"
+msgstr "انتخابات به‌روزرسانی شد"
 
 #: sarshomar/includes/languages/trans_twig.php:1108
-#, fuzzy
-#| msgid "Title"
 msgid "En Title"
-msgstr "عنوان"
+msgstr "عنوان به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1109
 msgid "Eligible"
-msgstr ""
+msgstr "واجد شرایط"
 
 #: sarshomar/includes/languages/trans_twig.php:1110
-#, fuzzy
-#| msgid "Vote"
 msgid "Voted"
-msgstr "رای"
+msgstr "رای داده"
 
 #: sarshomar/includes/languages/trans_twig.php:1112
 msgid "Cash"
 msgstr "موجودی"
 
 #: sarshomar/includes/languages/trans_twig.php:1113
-#, fuzzy
-#| msgid "branch"
 msgid "Branchs"
-msgstr "شعبه"
+msgstr "شعب"
 
 #: sarshomar/includes/languages/trans_twig.php:1114
 msgid "First vote male count"
-msgstr ""
+msgstr "تعداد مردان رای اولی"
 
 #: sarshomar/includes/languages/trans_twig.php:1115
 msgid "First vote female count"
-msgstr ""
+msgstr "تعداد زنان رای اولی"
 
 #: sarshomar/includes/languages/trans_twig.php:1116
-#, fuzzy
-#| msgid "signup"
 msgid "Signuped"
-msgstr "ثبت نام"
+msgstr "ثبت نام کرده"
 
 #: sarshomar/includes/languages/trans_twig.php:1117
-#, fuzzy
-#| msgid "discount"
 msgid "Candida count"
-msgstr "تخفیف"
+msgstr "تعداد نامزدها"
 
 #: sarshomar/includes/languages/trans_twig.php:1118
-#, fuzzy
-#| msgid "Start Time"
 msgid "Start time"
 msgstr "زمان شروع"
 
 #: sarshomar/includes/languages/trans_twig.php:1119
-#, fuzzy
-#| msgid "no time"
 msgid "End_time"
-msgstr "فرصت نکردن"
+msgstr "زمان پایان"
 
 #: sarshomar/includes/languages/trans_twig.php:1120
-#, fuzzy
-#| msgid "Election updated"
 msgid "Election date"
-msgstr "انتخابات بروزرسانی شد"
+msgstr "تاریخ انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1121
-#, fuzzy
-#| msgid "last year"
 msgid "Jalali year"
-msgstr "سال اخیر"
+msgstr "سال جلالی"
 
 #: sarshomar/includes/languages/trans_twig.php:1122
 msgid "Year"
-msgstr ""
+msgstr "سال"
 
 #: sarshomar/includes/languages/trans_twig.php:1123
 msgid "En url"
-msgstr ""
+msgstr "آدرس صفحه‌ی انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1124
 msgid "Fa url"
-msgstr ""
+msgstr "آدرس صفحه‌ی فارسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1125
-#, fuzzy
-#| msgid "cat"
 msgid "Cat"
-msgstr "دسته"
+msgstr "دسته‌بندی"
 
 #: sarshomar/includes/languages/trans_twig.php:1126
-#, fuzzy
-#| msgid "Pin"
 msgid "Win"
-msgstr "پین"
+msgstr "برنده"
 
 #: sarshomar/includes/languages/trans_twig.php:1127
-#, fuzzy
-#| msgid "Election updated"
 msgid "Edit election data"
-msgstr "انتخابات بروزرسانی شد"
+msgstr "ویرایش اطلاعات انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1128
-#, fuzzy
-#| msgid "election"
 msgid "Add new election"
-msgstr "انتخابات"
+msgstr "افزودن انتخابات جدید"
 
 #: sarshomar/includes/languages/trans_twig.php:1129
 #, fuzzy
@@ -11142,14 +11105,12 @@ msgid "Cashs"
 msgstr "موجودی"
 
 #: sarshomar/includes/languages/trans_twig.php:1130
-#, fuzzy
-#| msgid "First Name"
 msgid "First vote male"
-msgstr "نام"
+msgstr "مردان رای اولی"
 
 #: sarshomar/includes/languages/trans_twig.php:1131
 msgid "First vote female"
-msgstr ""
+msgstr "زنان رای اولی"
 
 #: sarshomar/includes/languages/trans_twig.php:1132
 #, fuzzy
@@ -11166,10 +11127,8 @@ msgid "done"
 msgstr "پایان‌یافته"
 
 #: sarshomar/includes/languages/trans_twig.php:1137
-#, fuzzy
-#| msgid "Questions List"
 msgid "Election List"
-msgstr "لیست سوالات"
+msgstr "لیست انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1138
 msgid "add en_url"
@@ -11204,10 +11163,8 @@ msgid "Add place"
 msgstr "افزودن نظرسنجی"
 
 #: sarshomar/includes/languages/trans_twig.php:1144
-#, fuzzy
-#| msgid "connection"
 msgid "Running Election"
-msgstr "نحوه اتصال"
+msgstr "انتخابات جاری"
 
 #: sarshomar/includes/languages/trans_twig.php:1147
 #, fuzzy
@@ -11267,7 +11224,7 @@ msgstr "عدد"
 
 #: sarshomar/includes/languages/trans_twig.php:1163
 msgid "Add city result of election"
-msgstr ""
+msgstr "افزودن نتیجه‌ی شهر در انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1166
 msgid "father"
@@ -11298,20 +11255,16 @@ msgid "City"
 msgstr "شهر"
 
 #: sarshomar/includes/languages/trans_twig.php:1179
-#, fuzzy
-#| msgid "Dashboard"
 msgid "Admin Dashboard"
-msgstr "داشبورد"
+msgstr "داشبورد ادمین"
 
 #: sarshomar/includes/languages/trans_twig.php:1180
 msgid "Add Data"
-msgstr ""
+msgstr "افزودن داده"
 
 #: sarshomar/includes/languages/trans_twig.php:1181
-#, fuzzy
-#| msgid "election"
 msgid "View Election"
-msgstr "انتخابات"
+msgstr "مشاهده‌ی انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1184
 msgid "Synced"
