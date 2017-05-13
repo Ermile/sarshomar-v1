@@ -3,45 +3,45 @@
 
 {%if candida_list%}
 <h1>{%trans "Candida List" %}</h1>
-<div class="tbl myTable">
+<div class="dt">
 	<div class="f th">
-		<div>{%trans "id" %}</div>
-		<div class="c2">{%trans "election" %}</div>
-		<div>{%trans "Name" %}</div>
-		<div>{%trans "En Name" %}</div>
-		<div>{%trans "Family" %}</div>
-		<div>{%trans "En Family" %}</div>
-		<div>{%trans "Father" %}</div>
-		<div>{%trans "En Father" %}</div>
-		<div>{%trans "Fame" %}</div>
-		<div>{%trans "En Fame" %}</div>
-		<div>{%trans "Nationalcode" %}</div>
-		<div>{%trans "Brith date" %}</div>
-		<div>{%trans "Election code" %}</div>
-		<div>{%trans "Desc" %}</div>
-		<div>{%trans "File_url" %}</div>
-		<div>{%trans "File_url_2" %}</div>
-		<div>{%trans "Win url" %}</div>
+		<div class="c"><span>{%trans "id" %}</span></div>
+		<div class="c"><span>{%trans "election" %}</span></div>
+		<div class="c"><span>{%trans "Name" %}</span></div>
+		<div class="c"><span>{%trans "En Name" %}</span></div>
+		<div class="c"><span>{%trans "Family" %}</span></div>
+		<div class="c"><span>{%trans "En Family" %}</span></div>
+		<div class="c"><span>{%trans "Father" %}</span></div>
+		<div class="c"><span>{%trans "En Father" %}</span></div>
+		<div class="c"><span>{%trans "Fame" %}</span></div>
+		<div class="c"><span>{%trans "En Fame" %}</span></div>
+		<div class="c"><span>{%trans "Nationalcode" %}</span></div>
+		<div class="c"><span>{%trans "Brith date" %}</span></div>
+		<div class="c"><span>{%trans "Election code" %}</span></div>
+		<div class="c"><span>{%trans "Desc" %}</span></div>
+		<div class="c"><span>{%trans "File_url" %}</span></div>
+		<div class="c"><span>{%trans "File_url_2" %}</span></div>
+		<div class="c"><span>{%trans "Win url" %}</span></div>
 	</div>
 		{%for key, value in candida_list%}
 	<div class="f">
-		<div><a href="{{url.base}}/election/admin/candida/edit={{value.id}}">{{value.id}}</a></div>
-		<div class="c2">{{value.title}}</div>
-		<div>{{value.name}}</div>
-		<div>{{value.en_name}}</div>
-		<div>{{value.family}}</div>
-		<div>{{value.en_family}}</div>
-		<div>{{value.father}}</div>
-		<div>{{value.en_father}}</div>
-		<div>{{value.fame}}</div>
-		<div>{{value.en_fame}}</div>
-		<div>{{value.nationalcode|fitNumber}}</div>
-		<div>{{value.birthdate|jdate("Y-m-d")}}</div>
-		<div>{{value.electioncode|fitNumber}}</div>
-		<div>{{value.desc}}</div>
-		<div><img height="100" width="100" src="{{url.static}}{{value.file_url}}"></div>
-		<div><img height="100" width="100" src="{{url.static}}{{value.file_url_2}}"></div>
-		<div><img height="100" width="100" src="{{url.static}}{{value.win_url}}"></div>
+		<div class="c"><a href="{{url.base}}/election/admin/candida/edit={{value.id}}"><b>{{value.id}}</b></a></div>
+		<div class="c">{{value.title}}</div>
+		<div class="c">{{value.name}}</div>
+		<div class="c">{{value.en_name}}</div>
+		<div class="c">{{value.family}}</div>
+		<div class="c">{{value.en_family}}</div>
+		<div class="c">{{value.father}}</div>
+		<div class="c">{{value.en_father}}</div>
+		<div class="c">{{value.fame}}</div>
+		<div class="c">{{value.en_fame}}</div>
+		<div class="c">{{value.nationalcode|fitNumber}}</div>
+		<div class="c">{{value.birthdate|jdate("Y-m-d")}}</div>
+		<div class="c">{{value.electioncode|fitNumber}}</div>
+		<div class="c">{{value.desc}}</div>
+		<div class="c">{% if value.file_url %}<img height="100" width="100" src="{{url.static}}{{value.file_url}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.file_url_2 %}<img height="100" width="100" src="{{url.static}}{{value.file_url_2}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.win_url %}<img height="100" width="100" src="{{url.static}}{{value.win_url}}">{% else %}<b>-</b>{% endif %}</div>
 	</div>
 		{%endfor%}
 </div>
