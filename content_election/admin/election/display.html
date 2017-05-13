@@ -2,61 +2,60 @@
 {%block content%}
 
 {%if election_list%}
-<div class="tbl myTable">
 	<h1>{% trans "Election list"%}</h1>
-
+<div class="dt">
 	<div class="f th">
-		<div>{%trans "ID" %}</div>
-		<div class="c2">{%trans "Title"%}</div>
-		<div class="c2">{%trans "En Title"%}</div>
-		<div>{%trans "Status"%}</div>
-		<div>{%trans "Eligible"%}</div>
-		<div>{%trans "Voted"%}</div>
-		<div>{%trans "Invalid"%}</div>
-		<div>{%trans "Cash"%}</div>
-		<div>{%trans "Branchs"%}</div>
-		<div>{%trans "First vote male count"%}</div>
-		<div>{%trans "First vote female count"%}</div>
-		<div>{%trans "Signuped"%}</div>
-		<div>{%trans "Verified"%}</div>
-		<div>{%trans "Candida count"%}</div>
-		<div>{%trans "Start time"%}</div>
-		<div>{%trans "End_time"%}</div>
-		<div>{%trans "Election date"%}</div>
-		<div>{%trans "Jalali year"%}</div>
-		<div>{%trans "Year"%}</div>
-		<div>{%trans "En url"%}</div>
-		<div>{%trans "Fa url"%}</div>
-		<div>{%trans "Cat"%}</div>
-		<div>{%trans "Win"%}</div>
-		<div>{%trans "Desc"%}</div>
+		<div class="c">{%trans "ID" %}</div>
+		<div class="c">{%trans "Title"%}</div>
+		<div class="c">{%trans "En Title"%}</div>
+		<div class="c">{%trans "Status"%}</div>
+		<div class="c">{%trans "Eligible"%}</div>
+		<div class="c">{%trans "Voted"%}</div>
+		<div class="c">{%trans "Invalid"%}</div>
+		<div class="c">{%trans "Cash"%}</div>
+		<div class="c">{%trans "Branchs"%}</div>
+		<div class="c">{%trans "First vote male count"%}</div>
+		<div class="c">{%trans "First vote female count"%}</div>
+		<div class="c">{%trans "Signuped"%}</div>
+		<div class="c">{%trans "Verified"%}</div>
+		<div class="c">{%trans "Candida count"%}</div>
+		<div class="c">{%trans "Start time"%}</div>
+		<div class="c">{%trans "End_time"%}</div>
+		<div class="c">{%trans "Election date"%}</div>
+		<div class="c">{%trans "Jalali year"%}</div>
+		<div class="c">{%trans "Year"%}</div>
+		<div class="c">{%trans "En url"%}</div>
+		<div class="c">{%trans "Fa url"%}</div>
+		<div class="c">{%trans "Cat"%}</div>
+		<div class="c">{%trans "Win"%}</div>
+		<div class="c">{%trans "Desc"%}</div>
 	</div>
 	{%for key, value in election_list%}
 	<div class="f">
-		<div><a href="{{url.base}}/election/admin/election/edit={{value.id}}">{{value.id}}</a></div>
-		<div class="c2">{{value.title}}</div>
-		<div class="c2">{{value.en_title}}</div>
-		<div>{%set myStatus = value.status%}{%trans myStatus %}</div>
-		<div>{{value.eligible|number_format|fitNumber}}</div>
-		<div>{{value.voted|number_format|fitNumber}}</div>
-		<div>{{value.invalid|number_format|fitNumber}}</div>
-		<div>{{value.cash|number_format|fitNumber}}</div>
-		<div>{{value.branchs|number_format|fitNumber}}</div>
-		<div>{{value.first_vote_male_count|number_format|fitNumber}}</div>
-		<div>{{value.first_vote_female_count|number_format|fitNumber}}</div>
-		<div>{{value.signuped_count|number_format|fitNumber}}</div>
-		<div>{{value.verified_count|number_format|fitNumber}}</div>
-		<div>{{value.candida_count|number_format|fitNumber}}</div>
-		<div>{{value.start_time|jdate("Y-m-d H:i:s")}}</div>
-		<div>{{value.end_time|jdate("Y-m-d H:i:s")}}</div>
-		<div>{{value.election_date|jdate("Y-m-d")}}</div>
-		<div>{{value.jalali_year|fitNumber}}</div>
-		<div>{{value.year|fitNumber}}</div>
-		<div><a href="{{url.base}}/election/{{value.en_url}}">{%trans "Link"%}</a></div>
-		<div><a href="{{url.base}}/election/{{value.fa_url}}">{%trans "Link"%}</a></div>
-		<div>{{value.cat}}</div>
-		<div>{{value.win}}</div>
-		<div>{{value.desc}}</div>
+		<div class="c"><a href="{{url.base}}/election/admin/election/edit={{value.id}}"><b>{{value.id}}</b></a></div>
+		<div class="c">{{value.title}}</div>
+		<div class="c">{{value.en_title}}</div>
+		<div class="c">{%set myStatus = value.status%}{%trans myStatus %}</div>
+		<div class="c">{{value.eligible|number_format|fitNumber}}</div>
+		<div class="c">{{value.voted|number_format|fitNumber}}</div>
+		<div class="c">{{value.invalid|number_format|fitNumber}}</div>
+		<div class="c">{{value.cash|number_format|fitNumber}}</div>
+		<div class="c">{{value.branchs|number_format|fitNumber}}</div>
+		<div class="c">{{value.first_vote_male_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.first_vote_female_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.signuped_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.verified_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.candida_count|number_format|fitNumber}}</div>
+		<div class="c">{{value.start_time|jdate("Y-m-d H:i:s")}}</div>
+		<div class="c">{{value.end_time|jdate("Y-m-d H:i:s")}}</div>
+		<div class="c">{{value.election_date|jdate("Y-m-d")}}</div>
+		<div class="c">{{value.jalali_year|fitNumber}}</div>
+		<div class="c">{{value.year|fitNumber}}</div>
+		<div class="c"><a href="{{url.base}}/election/{{value.en_url}}"><b>{%trans "Link"%}</b></a></div>
+		<div class="c"><a href="{{url.base}}/election/{{value.fa_url}}"><b>{%trans "Link"%}</b></a></div>
+		<div class="c">{{value.cat}}</div>
+		<div class="c">{{value.win}}</div>
+		<div class="c">{{value.desc}}</div>
 	</div>
 	{%endfor%}
 </div>
