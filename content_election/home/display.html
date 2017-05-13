@@ -1,5 +1,14 @@
 {%extends display.mvc%}
 
+{% block head_css %}
+<link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
+{% if url.tld == 'dev' %}
+<link rel="stylesheet"       href="http://code.ermile.com/css/ermile-10.1.0.css">
+{% else %}
+<link rel="stylesheet"       href="http://code.ermile.com/css/ermile-10.1.0.css">
+{% endif %}
+{% endblock %}
+
 {% block content %}
  <div class="box-top">
   {% if false %}
