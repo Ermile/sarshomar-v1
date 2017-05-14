@@ -71,7 +71,7 @@
 {%block win%}
  {% if result.election.status == 'done' %}
  <div class="top-one">
-  <div class="image">
+  <div class="image{%if result.election.status == 'done'%} round{%endif%}">
    {% if result.candida[result.election.win - 1]['win_url'] %}
       <img src="{{url.static}}{{result.candida[result.election.win - 1]['win_url']}}" alt="">
    {% elseif result.candida[result.election.win - 1]['file_url_2'] %}
@@ -101,7 +101,7 @@
    <div class="flex justify-between top-two-container">
     <div class="flex align-end first candidate">
      {% if result.rival[0]['file_url'] %}
-     <div class="image"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+     <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
      {% endif %}
      <div class="data flex f-column align-center justify-end">
 
@@ -153,7 +153,7 @@
      </div>
 
      {% if result.rival[1]['file_url'] %}
-      <div class="image"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+      <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
      {% endif %}
     </div>
    </div>
@@ -206,7 +206,7 @@
    <div class="candidate">
     <div class="f">
      <div class="c1 flex align-center">
-      <div class="image">
+      <div class="image{%if result.election.status == 'done'%} round low{%endif%}">
        <img src="{{url.static}}{{value.file_url}}" alt="">
       </div>
      </div>
