@@ -9,7 +9,48 @@
 {% endif %}
 {% endblock %}
 
-{% block content %}
+
+
+
+
+{%block content%}
+ {%if site.currentlang == 'en'%}
+
+  {%set election_title%}{%if result.election.en_title%}{{result.election.en_title}}{%else%}-{%endif%}{%endset%}
+
+  {%if result.election.status == 'done'%}
+   {%set winner%}
+    {%if result.election.win and result.candida[result.election.win - 1]%}
+     {%if result.candida[result.election.win - 1]['en_fame']%}
+      {{result.candida[result.election.win - 1]['en_name']}} {{result.candida[result.election.win - 1]['en_fame']}}
+     {%elseif result.candida[result.election.win - 1]['en_family']%}
+      {{result.candida[result.election.win - 1]['en_name']}} {{result.candida[result.election.win - 1]['en_family']}}
+     {%endif%}
+    {%else%}
+    -
+    {%endif%}
+   {%endset%}
+  {%endif%}
+
+ {%else%}
+  {%set election_title%}{%if result.election.title%}{{result.election.title}}{%else%}-{%endif%}{%endset%}
+
+  {%if result.election.status == 'done'%}
+   {%set winner%}
+    {%if result.election.win and result.candida[result.election.win - 1]%}
+     {%if result.candida[result.election.win - 1]['fame']%}
+      {{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}
+     {%elseif result.candida[result.election.win - 1]['family']%}
+      {{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['family']}}
+     {%endif%}
+    {%else%}
+    -
+    {%endif%}
+   {%endset%}
+  {%endif%}
+
+ {%endif%}
+
  <div class="box-top">
   {{block('win')}}
   {{block('toolbox')}}
@@ -23,22 +64,24 @@
  </div>
 {% endblock %}
 
+
+
+
+
 {%block win%}
  {% if result.election.status == 'done' %}
  <div class="top-one">
   <div class="image">
-
    {% if result.candida[result.election.win - 1]['win_url'] %}
-      <img src="{{url.static}}{{result.candida[result.election.win - 1]['win_url']}}" alt="{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}">
+      <img src="{{url.static}}{{result.candida[result.election.win - 1]['win_url']}}" alt="">
    {% elseif result.candida[result.election.win - 1]['file_url_2'] %}
-      <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url_2']}}" alt="{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}">
+      <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url_2']}}" alt="">
    {% else %}
-      <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url']}}" alt="{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}">
+      <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url']}}" alt="">
    {% endif %}
-
   </div>
-  <h2>{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}</h2>
-  <h3>{% trans "President-elect of" %} {{result.election.title}}</h3>
+  <h2>{{winner}}</h2>
+  <h3>{{election_title}}</h3>
  </div>
  {% endif %}
 {%endblock%}
@@ -46,18 +89,38 @@
 {%block rivals%}
  <div class="top-two">
   <div class="container">
-   {% if result.election.title %}<p>{{result.election.title}}</p>{% endif %}
+
+   {% if site.currentlang == 'en' and result.election.en_title %}
+    <p>{{result.election.en_title}}</p>
+   {% elseif site.currentlang == 'fa' and result.election.title %}
+    <p>{{result.election.title}}</p>
+   {% else %}
+    <p>-</p>
+   {% endif %}
+
    <div class="flex justify-between top-two-container">
     <div class="flex align-end first candidate">
      {% if result.rival[0]['file_url'] %}
      <div class="image"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
      {% endif %}
      <div class="data flex f-column align-center justify-end">
-      {% if result.rival[0]['fame'] %}
-       <h4>{{result.rival[0]['fame']}}</h4>
+
+      {% if site.currentlang == 'en' %}
+       {% if result.rival[0]['en_fame'] %}
+        <h4>{{result.rival[0]['en_fame']}}</h4>
+       {% elseif result.rival[0]['en_family'] %}
+        <h4>{{result.rival[0]['en_family']}}</h4>
+       {% else %}
+        <h4>-</h4>
+       {% endif %}
       {% else %}
-       <h4>{{result.rival[0]['family']}}</h4>
+       {% if result.rival[0]['fame'] %}
+        <h4>{{result.rival[0]['fame']}}</h4>
+       {% else %}
+        <h4>{{result.rival[0]['family']}}</h4>
+       {% endif %}
       {% endif %}
+
       {% if result.rival[0]['percent'] %}
        <div class="vote-count">{{result.rival[0]['percent']|fitNumber}}%</div>
       {% endif %}
@@ -66,15 +129,29 @@
 
     <div class="flex align-end second candidate">
      <div class="data flex f-column align-center justify-end">
-      {% if result.rival[1]['fame'] %}
-       <h4>{{result.rival[1]['fame']}}</h4>
+      {% if site.currentlang == 'en' %}
+       {% if result.rival[1]['en_fame'] %}
+        <h4>{{result.rival[1]['en_fame']}}</h4>
+       {% elseif result.rival[1]['en_family'] %}
+        <h4>{{result.rival[1]['en_family']}}</h4>
+       {% else %}
+        <h4>-</h4>
+       {% endif %}
       {% else %}
-       <h4>{{result.rival[1]['family']}}</h4>
+       {% if result.rival[1]['fame'] %}
+        <h4>{{result.rival[1]['fame']}}</h4>
+       {% else %}
+        <h4>{{result.rival[1]['family']}}</h4>
+       {% endif %}
       {% endif %}
+
       {% if result.rival[1]['percent'] %}
        <div class="vote-count">{{result.rival[1]['percent']|fitNumber}}%</div>
+      {%else%}
+       <div class="vote-count">-</div>
       {% endif %}
      </div>
+
      {% if result.rival[1]['file_url'] %}
       <div class="image"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
      {% endif %}
@@ -82,21 +159,23 @@
    </div>
 
    {% if result.rival[0]['total'] and result.rival[1]['total'] %}
-   <div class="flex justify-between status-bar">
-    {% if result.rival[0]['total'] %}
-    <div class="first" style="width:{{result.rival[0]['percent']}}%">
-     <div class="percentage">
-      <span>{{result.rival[0]['total']|number_format|fitNumber}}</span>
+   <div class="status-bar-box">
+    <div class="flex justify-between status-bar">
+     {% if result.rival[0]['total'] %}
+     <div class="first" style="width:{{result.rival[0]['percent']}}%">
+      <div class="percentage">
+       <span>{{result.rival[0]['total']|number_format|fitNumber}}</span>
+      </div>
      </div>
-    </div>
-    {% endif %}
-    {% if result.rival[1]['total'] %}
-    <div class="second" style="width:{{result.rival[1]['percent']}}%">
-     <div class="percentage">
-      <span>{{result.rival[1]['total']|number_format|fitNumber}}</span>
+     {% endif %}
+     {% if result.rival[1]['total'] %}
+     <div class="second" style="width:{{result.rival[1]['percent']}}%">
+      <div class="percentage">
+       <span>{{result.rival[1]['total']|number_format|fitNumber}}</span>
+      </div>
      </div>
+     {% endif %}
     </div>
-    {% endif %}
     <div class="indicator"></div>
    </div>
    {% endif %}

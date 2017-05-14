@@ -22,11 +22,12 @@ body{color:#333;background-color:#f4f4f4}
 .top-two .top-two-container{margin-bottom:2em}
 .top-two .top-two-container .image{max-width:15em}
 
-.top-two .status-bar{position:relative;height:5em;border:3px solid #eeeff0;background-color:#fff}
+.top-two .status-bar-box{position:relative}
+.top-two .status-bar{height:5em;border:3px solid #eeeff0;background-color:#fff}
 
-.top-two .status-bar .indicator,.top-two .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #f4f4f4}
-.top-two .status-bar .indicator{height:100%;bottom:0;}
-/*.top-two .status-bar::before{content:'';height:15px;top:-15px}*/
+.top-two .status-bar-box .indicator,.top-two .status-bar::before{width:1px;position:absolute;right:0;left:0;margin:auto;border-left:2px dashed #f4f4f4}
+.top-two .status-bar-box .indicator{height:100%;bottom:0;}
+/*.top-two .status-bar-box::before{content:'';height:15px;top:-15px}*/
 
 
 .top-two .top-two-container .candidate .data{padding:0 2rem 2rem}
