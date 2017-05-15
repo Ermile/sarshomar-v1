@@ -47,7 +47,7 @@ body{color:#333;background-color:#f4f4f4}
 
 
 
-.toolbox{margin-bottom:2em;padding:0 3px}
+.toolbox{margin-bottom:5em;padding:0 3px}
 .toolbox i{position:relative;display:inline-block;width:14px;height:14px;vertical-align:middle;border:3px solid #bb1919;border-radius:50%}
 .toolbox i::before{position:absolute;top:1px;left:1px;width:6px;height:6px;content:'';-webkit-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;-moz-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;-o-animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;animation:pulse 1.7s cubic-bezier(.25, .1, .25, 1) infinite;border-radius:50%;background-color:#bb1919}
 .toolbox .live .title,.toolbox .live .last-update{font-size:1.2em;font-weight:700;display:inline-block;padding:0 .25rem;vertical-align:middle}
@@ -82,7 +82,7 @@ body{color:#333;background-color:#f4f4f4}
 .candidates .candidate:not(:last-of-type){border-bottom:1px solid #ddd}
 .candidates .candidate .name{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
 .candidates .candidate .name span{display:block;margin:.5rem 1rem}
-.candidates .candidate .name .bold{font-size:2em;font-weight:700}
+.candidates .candidate .name .bold{font-size:2em;font-weight:700;text-align:center}
 .candidates .candidate .name span:not(.bold){font-size:1.2em}
 
 .candidates .candidate .bar-container{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
@@ -95,14 +95,38 @@ body{color:#333;background-color:#f4f4f4}
 .candidates .candidate .votes-container span{font-weight:700;font-size:1.2em;color:#666}
 
 #chartdiv{height:300px;width:100%;direction:ltr}
-.city-results{margin:0 auto 5em;border:2px solid #ddd;background-color:#fff}
-.city-results .header{font-weight:700;background-color:#ebebeb;border-bottom:3px solid #ddd}
-.city-results .f{transition:0.3s}
-.city-results .f [class*='c']{padding:1rem;font-size:1.2em}
-.city-results .f:not(.header):not(:last-of-type){border-bottom:1px solid #ebebeb}
-.city-results .f:not(.header):hover{background-color:#f0a000}
+
+.election-tbl#place-results>.th{font-weight:700}
+.election-tbl#place-results>.f{}
+.election-tbl#place-results>.f>[class*='c']{cursor:default;font-size:1.2em}
+.election-tbl#place-results>.f:not(.header):not(:last-of-type){}
+.election-tbl#place-results>.f:not(.header):hover{background-color:#4db6ac;color:#fff}
 
 .timeline{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;-moz-box-pack:justify;justify-content:space-between;position:relative;margin-bottom:5em}
 .timeline::before{height:3px;content:'';width:100%;left:0;right:0;background-color:#666;position:absolute;top:50%;margin-top:-1em;top:0;bottom:0;margin:auto}
 .timeline .circle{width:5em;height:5em;z-index:2}
 .timeline .circle .image{max-width:100%}
+
+
+/**/
+.election-tbl{margin:0 auto 5em;transition:all .3s cubic-bezier(.25,.8,.25,1);border-radius:.5rem;background-color:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24)}
+.election-tbl>.f:not(:last-of-type){border-bottom:1px solid #f4f4f4}
+.election-tbl>.f>[class*='c']{padding:1rem}
+
+.election-tbl .first-name,.election-tbl .last-name{text-align:center}
+.election-tbl .first-name{font-size:1.2em;font-weight:500;margin-bottom:1rem;text-align:center;color:#666}
+.election-tbl .last-name{font-size:1.8em;font-weight:700;text-align:center}
+.rtl .election-tbl .last-name{font-size:2em}
+
+.election-tbl .image{max-width:10em}
+.election-tbl .image.round.low{border:1px solid #f4f4f4;box-shadow:none}
+
+.percentage-container{width:96%;min-width:2em;margin:0 auto}
+.percentage-container .percentage-value{font-size:1.2em;font-weight:700;margin-bottom:1rem;text-align:center}
+.percentage-container .percentage-bar{height:1.5em;margin:0 auto;border:1px solid #e0e0e0;background:#e5e5e5 url(../images/election/striped.png)}
+.percentage-container .percentage-bar .percentage-progress{position:relative;max-width:100%;height:100%;background-color:#007dd6}
+
+.election-tbl .vote-count{font-size:1.2em;font-weight:700;text-align:center;color:#666}
+
+.all-center,.vertical-center{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
+.vertical-center{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column}

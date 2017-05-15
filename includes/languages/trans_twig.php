@@ -1166,12 +1166,11 @@ private function transtext()
 	echo T_("father");                                                                // Line 17
 
 	//----------------------------------------------content_election\home\display.html
-	echo T_("President-elect of");                                                    // Line 41
-	echo T_("Live Converage");                                                        // Line 114
-	echo T_("Last Update");                                                           // Line 116
-	echo T_("Candidates' List");                                                      // Line 124
-	echo T_("Candidates' Votes on Provinces");                                        // Line 157
-	echo T_("Candidates' Votes on Cities");                                           // Line 180
+	echo T_("Live Converage");                                                        // Line 187
+	echo T_("Last Update");                                                           // Line 189
+	echo T_("candidatesates List");                                                   // Line 197
+	echo T_("Candidates Votes on Provinces");                                         // Line 230
+	echo T_("Candidates Votes on Cities");                                            // Line 253
 	echo T_("City");                                                                  // Line 347
 
 	//-------------------------------------------content_election\main\layout.bak.html
