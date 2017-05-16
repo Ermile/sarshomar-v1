@@ -1291,7 +1291,7 @@ body.rtl .poll-panel{right:16px;left:auto}
 
 /*for homepage*/
 .homepage .opt-media-box{padding:0 18px}
-.homepage .opt-media-box .c img{width:65%;max-height:200px;display:block;margin:0 auto;}
+.homepage .opt-media-box .c img{width:65%;max-height:200px;display:block;margin:0 auto;max-width:100px;}
 .homepage .chart svg{z-index:2}
 .homepage .amcharts-balloon-div-categoryAxis{z-index: 100;}
 
