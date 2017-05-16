@@ -362,7 +362,7 @@
  <div class="timeline-box">
   <div class="timeline flex justify-around">
 {%for key, value in result.time_line%}
-   <a href="#">
+   <a href="{%if site.currentlang == 'en'%}{{value.en_url}}{%else%}{{value.fa_url}}{%endif%}">
     <div class="image round low">
      <img src="{{url.static}}{{value.file_url}}" alt="">
     </div>
