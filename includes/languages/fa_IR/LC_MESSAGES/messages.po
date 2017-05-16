@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-05-15 16:52+0430\n"
-"PO-Revision-Date: 2017-05-15 16:53+0430\n"
+"POT-Creation-Date: 2017-05-16 17:59+0430\n"
+"PO-Revision-Date: 2017-05-16 17:59+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -11231,18 +11231,16 @@ msgid "father"
 msgstr "پدر"
 
 #: sarshomar/includes/languages/trans_twig.php:1169
+msgid "President-elect of"
+msgstr "رئیس‌جمهور منتخب"
+
+#: sarshomar/includes/languages/trans_twig.php:1170
 msgid "Live Converage"
 msgstr "پوشش زنده"
 
-#: sarshomar/includes/languages/trans_twig.php:1170
+#: sarshomar/includes/languages/trans_twig.php:1171
 msgid "Last Update"
 msgstr "آخرین به‌روزرسانی"
-
-#: sarshomar/includes/languages/trans_twig.php:1171
-#, fuzzy
-#| msgid "Candidates List"
-msgid "candidatesates List"
-msgstr "فهرست نامزدها"
 
 #: sarshomar/includes/languages/trans_twig.php:1172
 msgid "Candidates Votes on Provinces"
@@ -14942,8 +14940,10 @@ msgstr "سلام دوست گرامی"
 msgid "Case Study"
 msgstr "مورد مطالعه"
 
-#~ msgid "President-elect of"
-#~ msgstr "رئیس‌جمهور منتخب"
+#, fuzzy
+#~| msgid "Candidates List"
+#~ msgid "candidatesates List"
+#~ msgstr "فهرست نامزدها"
 
 #~ msgid "To register your vote you must enter to Sarshomar."
 #~ msgstr "برای ثبت رای خود باید وارد سرشمار شوید."

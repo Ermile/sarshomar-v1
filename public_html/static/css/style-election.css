@@ -17,7 +17,7 @@ body{color:#333;background-color:#f4f4f4}
 .top-one h3{margin:0;margin-bottom:5rem}
 
 .top-two{}
-.top-two p{font-weight:bold;font-size:2.5em;text-align:center}
+.top-two h2{font-weight:bold;font-size:2.5em;text-align:center}
 
 .top-two .top-two-container{margin-bottom:2em}
 .top-two .top-two-container .image{max-width:15em}
@@ -96,16 +96,11 @@ body{color:#333;background-color:#f4f4f4}
 
 #chartdiv{height:300px;width:100%;direction:ltr}
 
-.election-tbl#place-results>.th{font-weight:700}
-.election-tbl#place-results>.f{}
-.election-tbl#place-results>.f>[class*='c']{cursor:default;font-size:1.2em}
-.election-tbl#place-results>.f:not(.header):not(:last-of-type){}
-.election-tbl#place-results>.f:not(.header):hover{background-color:#4db6ac;color:#fff}
-
-.timeline{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;-moz-box-pack:justify;justify-content:space-between;position:relative;margin-bottom:5em}
-.timeline::before{height:3px;content:'';width:100%;left:0;right:0;background-color:#666;position:absolute;top:50%;margin-top:-1em;top:0;bottom:0;margin:auto}
-.timeline .circle{width:5em;height:5em;z-index:2}
-.timeline .circle .image{max-width:100%}
+.timeline-box{position:relative;margin-bottom:5em}
+.timeline-box::before{position:absolute;top:25%;right:0;bottom:0; left:0;width:100%;height:3px;margin:auto;margin-top:0rem;content:'';background-color:#666}
+.timeline-box a{text-align:center;color:#333;font-weight:700}
+.timeline-box a .info{margin-top:1rem}
+.timeline-box .timeline .image{width:5em;height:5em;z-index:2}
 
 
 /**/
@@ -120,6 +115,12 @@ body{color:#333;background-color:#f4f4f4}
 
 .election-tbl .image{max-width:10em}
 .election-tbl .image.round.low{border:1px solid #f4f4f4;box-shadow:none}
+
+.election-tbl#place-results>.th{font-weight:700}
+.election-tbl#place-results>.f{}
+.election-tbl#place-results>.f>[class*='c']{cursor:default;font-size:1.2em}
+.election-tbl#place-results>.f:not(.header):not(:last-of-type){}
+.election-tbl#place-results>.f:not(.header):hover{background-color:#4db6ac;color:#fff}
 
 .percentage-container{width:96%;min-width:2em;margin:0 auto}
 .percentage-container .percentage-value{font-size:1.2em;font-weight:700;margin-bottom:1rem;text-align:center}

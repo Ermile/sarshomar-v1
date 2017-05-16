@@ -10,18 +10,8 @@
 {%block content%}
  {%if site.currentlang == 'en'%}
   {%set election_title%}{{result.election.en_title}}{%endset%}
-  {%if result.candida[result.election.win - 1]['en_fame']%}
-   {%set winner%}{{result.candida[result.election.win - 1]['en_name']}} {{result.candida[result.election.win - 1]['en_fame']}}{%endset%}
-  {%else%}
-   {%set winner%}{{result.candida[result.election.win - 1]['en_name']}} {{result.candida[result.election.win - 1]['en_family']}}{%endset%}
-  {%endif%}
  {%else%}
   {%set election_title%}{{result.election.title}}{%endset%}
-  {%if result.candida[result.election.win - 1]['fame']%}
-   {%set winner%}{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['fame']}}{%endset%}
-  {%else%}
-   {%set winner%}{{result.candida[result.election.win - 1]['name']}} {{result.candida[result.election.win - 1]['family']}}{%endset%}
-  {%endif%}
  {%endif%}
 
  <div class="box-top">
@@ -30,10 +20,12 @@
   {{block('rivals')}}
  </div>
  <div class="container">
+  {%if false%}
   {{block('candidates')}}
   {{block('result')}}
   {{block('province_result')}}
   {{block('city_result')}}
+  {%endif%}
   {{block('time_line')}}
  </div>
 {% endblock %}
@@ -41,22 +33,33 @@
 
 
 {%block winner%}
-{%if result.election.status == 'done'%}
-<div class="container">
- <div class="top-one">
-  <div class="image{%if result.election.status == 'done'%} round{%endif%}">
-   {%if result.candida[result.election.win - 1]['win_url']%}
-    <img src="{{url.static}}{{result.candida[result.election.win - 1]['win_url']}}" alt="{{winner}}">
-   {%elseif result.candida[result.election.win - 1]['file_url_2']%}
-    <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url_2']}}" alt="{{winner}}">
-   {%else%}
-    <img src="{{url.static}}{{result.candida[result.election.win - 1]['file_url']}}" alt="{{winner}}">
-   {%endif%}
+{%if result.election.status == 'done' and result.election.win%}
+ {%for key, value in result.candida%}
+ {%if value.id == result.election.win%}
+  {%if site.currentlang == 'en'%}
+  {%set winner%}{{value.en_name}} {{value.en_fame}}{%endset%}
+  {%else%}
+  {%set winner%}{{value.name}} {{value.fame}}{%endset%}
+  {%endif%}
+
+  <div class="container">
+   <div class="top-one">
+    <div class="image{%if result.election.status == 'done'%} round medium{%endif%}">
+     {%if value.win_url%}
+      <img src="{{url.static}}{{value.win_url}}" alt="{{winner}}">
+     {%elseif result.candida[result.election.win - 1]['file_url_2']%}
+      <img src="{{url.static}}{{value.file_url_2}}" alt="{{winner}}">
+     {%else%}
+      <img src="{{url.static}}{{value.file_url}}" alt="{{winner}}">
+     {%endif%}
+    </div>
+    <h2>{{winner}}</h2>
+    <h3>{%trans "President-elect of"%} {{election_title}}</h3>
+   </div>
   </div>
-  <h2>{{winner}}</h2>
-  <h3>{{election_title}}</h3>
- </div>
-</div>
+
+ {%endif%}
+ {%endfor%}
 {%endif%}
 {%endblock%}
 
@@ -67,9 +70,9 @@
   <div class="top-two">
 
    {%if site.currentlang == 'en' and result.election.en_title%}
-    <p>{{result.election.en_title}}</p>
+    <h2>{{result.election.en_title}}</h2>
    {%elseif site.currentlang == 'fa' and result.election.title%}
-    <p>{{result.election.title}}</p>
+    <h2>{{result.election.title}}</h2>
    {%endif%}
 
    {%if result.rival%}
@@ -352,17 +355,20 @@
 
 
 {%block time_line%}
-{%if false%}
 {%if result.time_line%}
-  <div class="timeline">
-  {%for key, value in result.time_line%}
-  <a class="circle {%if value.en_url == url.path or value.fa_url == url.path%}active{%endif%}" href="#">
-   <div class="image round low">
-    <img src="{{url.static}}images/election/1.png">
-   </div>
-  </a>
-  {%endfor%}
+
+ <div class="timeline-box">
+  <div class="timeline flex justify-around">
+{%for key, value in result.time_line%}
+   <a href="#">
+    <div class="image round low">
+     <img src="{{url.static}}{{value.file_url}}" alt="">
+    </div>
+    <div class="info">{%if site.currentlang == 'en'%}{{value.en_name}}<br>{{value.en_fame}}{%else%}{{value.name}}<br>{{value.fame}}{%endif%}</div>
+   </a>
+{%endfor%}
+  </div>
  </div>
-{%endif%}
+
 {%endif%}
 {%endblock%}
