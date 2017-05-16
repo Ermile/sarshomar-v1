@@ -15,9 +15,10 @@
  {%endif%}
 
  <div class="box-top">
+  {{block('live')}}
   {{block('winner')}}
-  {{block('toolbox')}}
   {{block('rivals')}}
+  {{block('electionUpdate')}}
  </div>
  <div class="container">
   {{block('candidates')}}
@@ -160,19 +161,22 @@
  </div>
 {%endblock%}
 
-{%block toolbox%}
-{%if false%}
-<div class="container toolbox">
- <div class="flex justify-between">
-  <div class="live">
-   {%if result.election.status == 'running'%}
-   <i></i>
-   <span class="title">{%trans "Live Converage"%}</span>
-   {%endif%}
-   <span class="last-update">({%trans "Last Update"%} {{result.result[0]['report_date']|sdate()}})</span>
-  </div>
- </div>
+
+
+{%block electionUpdate%}
+<div class="election-update">
+ <span>({%trans "Last Update"%} {{result.result[0]['report_date']|sdate()}})</span>
 </div>
+{%endblock%}
+
+
+
+{%block live%}
+{%if result.election.status == 'done'%}
+ <div class="live">
+  <i></i>
+  <span class="title">{%trans "Live Converage"%}</span>
+ </div>
 {%endif%}
 {%endblock%}
 
