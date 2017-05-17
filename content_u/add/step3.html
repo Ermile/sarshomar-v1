@@ -1,7 +1,7 @@
 {%block content%}
  <div class="span1"></div>
  <div class="span6">
-  {% if perm.sarshomar_knowledge.admin %}
+  {% if permission('sarshomar_knowledge:admin') %}
   <div class="element no-pad">
    <label class="title large" for="cat0">{%trans "Category"%}</label>
    <div class="element-in">
@@ -45,7 +45,7 @@
    </div>
   </div>
 
-  <div class="tagDetector separate" id="tags" {%if perm.sarshomar_knowledge.admin%}{%else%}data-limit='5'{%endif%} {% if poll.tags %} data-val='{{poll_tags_code|raw}}' {% endif %}>
+  <div class="tagDetector separate" id="tags" {%if permission('sarshomar_knowledge:admin')%}{%else%}data-limit='5'{%endif%} {% if poll.tags %} data-val='{{poll_tags_code|raw}}' {% endif %}>
    <div class="element no-pad" >
     <label class="title large" for="tag-input">{%trans "Tags"%}</label>
     <div class="element-in">
@@ -86,7 +86,7 @@
    <button class='btn'>{%if poll.options.prize.unit%}{%set myPrizeUnit = poll.options.prize.unit %}{%trans myPrizeUnit %}{%else%}{{myUnit}}{%endif%}</button>
   </div>
 
-  {% if perm.sarshomar_knowledge.admin %}
+  {% if permission('sarshomar_knowledge:admin') %}
   <div class='element no-pad'>
    <label class='title large' for='poll-class'>{%trans "Class"%}</label>
    <div class='element-in'>
@@ -112,7 +112,7 @@
  </div>
 
  <div class="span4">
-  <div class="tbl" id='totalPrice'{% if perm.free_account.view%} data-free{%endif%}>
+  <div class="tbl" id='totalPrice'{% if permission('free_account:view')%} data-free{%endif%}>
    <div class="tbl-header">
     <span>{%trans "Title"%}</span>
     <span>{%trans "Price"%} <span>{%trans "Toman"%}</span></span>

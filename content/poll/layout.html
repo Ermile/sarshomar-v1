@@ -381,7 +381,7 @@
 {%block poll_info%}
 {{block('poll_status')}}
 {{block('poll_count')}}
-{%if iperm.admin.admin.view%}
+{%if permission('admin:admin:view')%}
 {{block('poll_skip_count')}}
 {{block('poll_privacy')}}
 {{block('poll_range')}}
@@ -608,7 +608,7 @@
 
 {%block poll_admin%}
 
-{%if iperm.admin.admin.view%}
+{%if permission('admin:admin:view')%}
 
 <div class="admin-toolbox">
 <div class="f">
@@ -754,7 +754,7 @@
  </div>
  {%endif%}
 
-{%if poll.user_id == login.id|shortURL("encode") or iperm.admin.admin.view%}
+{%if poll.user_id == login.id|shortURL("encode") or permission('admin:admin:view')%}
  <nav class='poll-panel-nav'>
   <a class='f{%if "publish" in  status_avalible.available%}{%else%} hide{%endif%}' data-data='{"status": "publish", "redirect_url":"{{url.full}}"}' data-method='post' href='{{url.base}}/@/add/{{poll.id}}' data-ajaxify data-direct>
    <span class='c3 flex justify-center align-center icon-delivered'></span>
