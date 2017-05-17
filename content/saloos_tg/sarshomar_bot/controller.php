@@ -42,7 +42,7 @@ class controller extends \lib\mvc\controller
 			self::$microtime_log[] = $_args;
 		});
 
-		$myhook = 'saloos_tg/sarshomar_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
+		$myhook = 'saloos_tg/sarshomar_bot/'.\lib\option::social('telegram', 'hookFolder');
 		if($this->url('path') != $myhook)
 		{
 			return;
@@ -227,7 +227,7 @@ class controller extends \lib\mvc\controller
 		\lib\db\tg_session::set('tg', $_SESSION['tg']);
 		\lib\db\tg_session::set('last_message', self::$last_message);
 		\lib\db\tg_session::save();
-		if(\lib\utility\option::get('telegram', 'meta', 'debug'))
+		if(\lib\option::social('telegram', 'debug'))
 		{
 			var_dump($result);
 		}

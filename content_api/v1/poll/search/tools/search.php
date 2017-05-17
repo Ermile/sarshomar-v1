@@ -29,7 +29,7 @@ trait search
 		$in_me      = false;
 		$admin_mode = false;
 
-		if(\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
 		{
 			$admin_mode = true;
 		}
@@ -226,7 +226,7 @@ trait search
 		{
 			$avalible_sort = ['id', 'rank', 'vote', 'date', 'comment', 'title'];
 
-			if(!\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+			if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
 			{
 				if(!in_array(utility::request('sort'), $avalible_sort))
 				{
@@ -257,7 +257,7 @@ trait search
 					$sort_field = 'posts.post_title';
 					break;
 				default:
-					if(!\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+					if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
 					{
 						$sort_field = 'posts.id';
 					}
@@ -288,7 +288,7 @@ trait search
 		$meta['start_limit'] = $from;
 		$meta['limit']       = $to - $from;
 
-		if(\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin'))
 		{
 			$meta['admin']       = utility::request('admin') ? true : false;
 			if($meta['admin'])

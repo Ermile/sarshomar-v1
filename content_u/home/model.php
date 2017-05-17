@@ -17,7 +17,7 @@ class model extends \mvc\model
 
 		if(utility::post('delete_account'))
 		{
-			if($this->access('u','delete_account', 'view') && !$this->access('admin','admin', 'view') && $this->login('mobile') && $this->login('id'))
+			if($this->access('u:delete_account:view') && !$this->access('admin:admin:view') && $this->login('mobile') && $this->login('id'))
 			{
 				$this->remove_account();
 			}

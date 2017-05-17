@@ -29,7 +29,7 @@ class view extends \content_u\home\view
 		$this->set_range_default_multiple();
 
 		$this->data->myUnit = $this->data->user_unit;
-		if($this->access('u', 'sarshomar', 'view'))
+		if($this->access('u:sarshomar:view'))
 		{
 			$this->data->myUnit = T_("Sarshomar");
 		}
@@ -185,7 +185,7 @@ class view extends \content_u\home\view
 			}
 
 			// if he is sarshomar user and previously set max value, use max value for it now
-			if($this->access('u', 'sarshomar', 'view') && (int) $_filter['count'] === 1000000000)
+			if($this->access('u:sarshomar:view') && (int) $_filter['count'] === 1000000000)
 			{
 				$this->data->persons['from'] = $this->data->persons['max'];
 			}
@@ -219,7 +219,7 @@ class view extends \content_u\home\view
 			$persons['step'] = 10;
 		}
 		// default set to zero for from value
-		if($this->access('u', 'sarshomar', 'view'))
+		if($this->access('u:sarshomar:view'))
 		{
 			$persons['from'] = $persons['max'];
 		}

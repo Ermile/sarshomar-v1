@@ -89,12 +89,12 @@ trait ready
 		 * load some ting because is my poll
 		 * for example load the password poll
 		 */
-		if($my_poll || self::check_api_permission('admin', 'admin', 'view'))
+		if($my_poll || self::check_api_permission('admin:admin:view'))
 		{
 			self::$private_is_my_poll = true;
 		}
 
-		if($_options['check_is_my_poll'] === true && !$my_poll && !self::check_api_permission('admin', 'admin', 'view'))
+		if($_options['check_is_my_poll'] === true && !$my_poll && !self::check_api_permission('admin:admin:view'))
 		{
 			if($_options['debug'])
 			{

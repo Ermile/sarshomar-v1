@@ -246,7 +246,7 @@ class view extends \mvc\view
 		}
 
 
-		if($this->access('admin','admin'))
+		if($this->access('admin:admin'))
 		{
 			if(isset($poll['id']))
 			{

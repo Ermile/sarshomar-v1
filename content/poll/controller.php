@@ -14,7 +14,7 @@ class controller extends \content\main\controller
 
 		// $this->post("save_answer")->ALL("/^\\$\/(([". self::$shortURL. "]+)(\/(.+))?)$/");
 		$this->post("save_answer")->ALL("/.*/");
-		$check_status = $this->access('admin','admin', 'view') ? false : true ;
+		$check_status = $this->access('admin:admin:view') ? false : true ;
 
 		$load_poll =
 		[

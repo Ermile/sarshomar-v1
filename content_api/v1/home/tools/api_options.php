@@ -1,6 +1,6 @@
 <?php
 namespace content_api\v1\home\tools;
-use \lib\utility\permission;
+use \lib\permission;
 use \lib\utility;
 use \lib\debug;
 
@@ -15,10 +15,9 @@ trait api_options
 	 *
 	 * @return     <type>  ( description_of_the_return_value )
 	 */
-	public static function check_api_permission($_content = null, $_permission = null, $_actions = null)
+	public static function check_api_permission()
 	{
-		$permission = new \lib\utility\permission;
-		return $permission->access($_content, $_permission, $_actions);
+		return \lib\permission::access(...func_get_args());
 	}
 
 

@@ -93,7 +93,7 @@ trait link
 			$ready_upload['upload_name'] = $_options['upload_name'];
 		}
 
-		if(\content_api\v1\home\tools\api_options::check_api_permission('admin', 'admin', 'view'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
 		{
 			$ready_upload['post_status'] = 'publish';
 		}

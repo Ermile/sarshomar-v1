@@ -10,7 +10,7 @@ class controller extends \content_election\main\controller
 	{
 		parent::_route();
 
-		$this->access('election', 'admin', 'admin', 'block');
+		$this->access('election:admin:admin', 'block');
 
 		$this->get("list", "list")->ALL();
 		$this->get("election", "election")->ALL("/admin\/election\/edit=(\d+)/");

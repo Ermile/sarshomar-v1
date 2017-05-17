@@ -13,7 +13,7 @@ class controller extends \content\main\controller
 			return;
 		}
 
-		$check_status = $this->access('admin','admin', 'view') ? false : true ;
+		$check_status = $this->access('admin:admin:view') ? false : true ;
 		$load_poll =
 		[
 			'post_status'    => self::$accept_poll_status,

@@ -7,7 +7,7 @@ class controller extends \content_election\main\controller
 	{
 		parent::_route();
 
-		$this->access('election', 'admin', 'admin', 'block');
+		$this->access('election:admin:admin', 'block');
 	}
 }
 ?>

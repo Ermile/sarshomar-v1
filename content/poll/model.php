@@ -87,7 +87,7 @@ class model extends \content\home\model
 		{
 			return ;
 		}
-		$check_status = $this->access('admin','admin', 'view') ? false : true ;
+		$check_status = $this->access('admin:admin:view') ? false : true ;
 		$load_poll =
 		[
 			'post_status'    => $this->controller()::$accept_poll_status,

@@ -24,12 +24,12 @@ class view extends \content_election\main\view
 
 		$this->data->running = $running;
 
-		if($this->access('election', 'admin', 'admin'))
+		if($this->access('election:admin:admin'))
 		{
 			$this->data->perm_admin = true;
 		}
 
-		if($this->access('election', 'data', 'admin'))
+		if($this->access('election:data:admin'))
 		{
 			$this->data->perm_data = true;
 		}

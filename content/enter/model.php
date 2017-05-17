@@ -65,7 +65,7 @@ class model extends \mvc\model
 
 	public function config()
 	{
-		if($this->access('admin', 'everyone_login', 'view') || isset($_SESSION['main_account']))
+		if($this->access('admin:everyone_login:view') || isset($_SESSION['main_account']))
 		{
 			$this->have_main_account = true;
 		}
@@ -317,6 +317,8 @@ class model extends \mvc\model
 				{
 					case 'telegram':
 					case 'code':
+					case 'sms1':
+					case 'sms2':
 					case 'call':
 						$this->step_mobile($resend_on);
 						break;

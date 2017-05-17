@@ -130,10 +130,10 @@ trait check
 	 *
 	 * @return     boolean  ( description_of_the_return_value )
 	 */
-	public static function poll_check_permission($_content = null, $_permission = null, $_accions = null)
+	public static function poll_check_permission()
 	{
-		$permission = new \lib\utility\permission;
-		return $permission->access($_content, $_permission, $_accions);
+		\lib\permission::$user_id = self::$user_id;
+		return \lib\permission::access(...func_get_args());
 	}
 
 

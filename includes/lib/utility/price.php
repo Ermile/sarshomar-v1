@@ -78,7 +78,7 @@ class price
 		$price       = 0;
 		$price_array = [];
 
-		if(true || !\content_api\v1\home\tools\api_options::check_api_permission('u', 'sarshomar', 'view'))
+		if(true || !\content_api\v1\home\tools\api_options::check_api_permission('u:sarshomar:view'))
 		{
 			// $member  = (int) \lib\db\ranks::get($poll_id, 'member');
 			// if($member > 0)
@@ -93,7 +93,7 @@ class price
 
 		if(!empty($filters))
 		{
-			if(true || !\content_api\v1\home\tools\api_options::check_api_permission('u', 'free_add_filter', 'view'))
+			if(true || !\content_api\v1\home\tools\api_options::check_api_permission('u:free_add_filter:view'))
 			{
 				foreach ($filters as $key => $value)
 				{
@@ -165,12 +165,12 @@ class price
 	 */
 	public static function run($_args)
 	{
-		if(\content_api\v1\home\tools\api_options::check_api_permission('u', 'free_account', 'view'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('u:free_account:view'))
 		{
 			// return true;
 		}
 
-		if(\content_api\v1\home\tools\api_options::check_api_permission('u', 'free_add_poll', 'view'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('u:free_add_poll:view'))
 		{
 			// return true;
 		}

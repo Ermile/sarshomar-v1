@@ -12,7 +12,7 @@ class controller extends \lib\mvc\controller
 	 */
 	function _route()
 	{
-		$myhook = 'saloos_tg/germile_bot/'.\lib\utility\option::get('telegram', 'meta', 'hookFolder');
+		$myhook = 'saloos_tg/germile_bot/'.\lib\option::social('telegram', 'hookFolder');
 		if($this->url('path') == $myhook)
 		{
 			bot::$api_key     = '216549449:AAG4IXa9gFLJSrSrjdTbhWhbAzhpCkRngvo';

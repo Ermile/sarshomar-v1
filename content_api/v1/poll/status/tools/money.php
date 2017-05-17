@@ -16,12 +16,12 @@ trait money
 
 		return true;
 
-		if(self::check_api_permission('u', 'free_account', 'view'))
+		if(self::check_api_permission('u:free_account:view'))
 		{
 			// return true;
 		}
 
-		if(self::check_api_permission('u', 'free_add_poll', 'view'))
+		if(self::check_api_permission('u:free_add_poll:view'))
 		{
 			// return true;
 		}
@@ -30,7 +30,7 @@ trait money
 
 		$price   = 0;
 		$price_array = [];
-		if(true || !self::check_api_permission('u', 'sarshomar', 'view'))
+		if(true || !self::check_api_permission('u:sarshomar:view'))
 		{
 			// $member  = (int) \lib\db\ranks::get($poll_id, 'member');
 			// if($member > 0)
@@ -45,7 +45,7 @@ trait money
 
 		if(!empty($filters))
 		{
-			if(true || !self::check_api_permission('u', 'free_add_filter', 'view'))
+			if(true || !self::check_api_permission('u:free_add_filter:view'))
 			{
 				foreach ($filters as $key => $value)
 				{
