@@ -26,25 +26,25 @@ trait api_options
 	 */
 	public function set_api_permission($_user_id)
 	{
-		if($_user_id)
-		{
-			$permission = [];
+		// if($_user_id)
+		// {
+		// 	$permission = [];
 
-			permission::$get_from_session = false;
+		// 	permission::$get_from_session = false;
 
-			$user_perm = \lib\utility\users::get_user_permission($_user_id);
+		// 	$user_perm = \lib\utility\users::get_user_permission($_user_id);
 
-			if(isset($user_perm['user_permission']))
-			{
-				$permission['user']['permission']   = $user_perm['user_permission'];
+		// 	if(isset($user_perm['user_permission']))
+		// 	{
+		// 		$permission['user']['permission']   = $user_perm['user_permission'];
 
-				if(is_numeric($user_perm['user_permission']))
-				{
-					$permission['permission'] = $this->setPermissionSession($user_perm['user_permission'], true);
-				}
-				permission::$PERMISSION       = $permission;
-			}
-		}
+		// 		if(is_numeric($user_perm['user_permission']))
+		// 		{
+		// 			$permission['permission'] = $this->setPermissionSession($user_perm['user_permission'], true);
+		// 		}
+		// 		permission::$PERMISSION       = $permission;
+		// 	}
+		// }
 	}
 }
 
