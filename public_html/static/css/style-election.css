@@ -10,14 +10,12 @@ body{color:#333;background-color:#f4f4f4}
 .image>img{display:block}
 
 .box-top{margin-bottom:5em;padding:5em 0;border-top:3px solid #eeeff0;border-bottom:3px solid #eeeff0;background-image:url(../images/election/asanoha.png)}
+.box-top>h2{font-weight:bold;font-size:2.5em;text-align:center}
 
 .top-one{text-align:center}
 .top-one .image{max-width:20em}
 .top-one h2{font-size:4em;text-shadow:0 0 2px #666;margin:0}
-.top-one h3{margin:0;margin-bottom:5rem}
-
-.top-two{}
-.top-two h2{font-weight:bold;font-size:2.5em;text-align:center}
+.top-one h3{margin:0;margin-bottom:3rem}
 
 .top-two .top-two-container{margin-bottom:2em}
 .top-two .top-two-container .image{max-width:15em}
@@ -111,7 +109,7 @@ body{color:#333;background-color:#f4f4f4}
 .election-tbl>.f:not(:last-of-type){border-bottom:1px solid #f4f4f4}
 .election-tbl>.f>[class*='c']{padding:1rem}
 
-.election-tbl .first-name,.election-tbl .last-name{text-align:center}
+.election-tbl .first-name,.election-tbl .last-name{margin-bottom:0;text-align:center}
 .election-tbl .first-name{font-size:1.2em;font-weight:500;margin-bottom:1rem;text-align:center;color:#666}
 .election-tbl .last-name{font-size:1.8em;font-weight:700;text-align:center}
 .rtl .election-tbl .last-name{font-size:2em}
@@ -134,3 +132,18 @@ body{color:#333;background-color:#f4f4f4}
 
 .all-center,.vertical-center{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
 .vertical-center{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column}
+
+
+@media all and (max-width: 767px) {
+ .container{min-width:initial}
+ .box-top>h2{font-size:2em}
+ .top-one h2{font-size:2.5em}
+ .top-one h3{font-size:1.4em}
+ .top-two .top-two-container .candidate .data{padding:0 1rem}
+ .top-two .top-two-container .candidate .data h4{font-size:1.4em}
+ .image.round.medium{border:.25em solid #fff}
+ .timeline-box a:not(:last-of-type){margin-bottom:4rem}
+ .timeline-box::before{top:0;width:3px;height:100%}
+ .timeline-box a .info{background-color:#fff;width:90%;margin:0 auto;z-index:7;position:relative;border-radius:3px;box-shadow:0 0 10px 2px #ddd;padding:1rem}
+ .timeline-box a .info span{font-size:1.2em}
+}
