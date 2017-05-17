@@ -15,16 +15,23 @@
  {%endif%}
 
  <div class="box-top">
+  {%if site.currentlang == 'en' and result.election.en_title%}
+   <h2>{{result.election.en_title}}</h2>
+  {%elseif site.currentlang == 'fa' and result.election.title%}
+   <h2>{{result.election.title}}</h2>
+  {%endif%}
   {{block('live')}}
   {{block('winner')}}
   {{block('rivals')}}
   {{block('electionUpdate')}}
  </div>
  <div class="container">
+ {%if false%}
   {{block('candidates')}}
   {{block('result')}}
   {{block('province_result')}}
   {{block('city_result')}}
+  {%endif%}
   {{block('time_line')}}
  </div>
 {% endblock %}
@@ -68,17 +75,13 @@
  <div class="container">
   <div class="top-two">
 
-   {%if site.currentlang == 'en' and result.election.en_title%}
-    <h2>{{result.election.en_title}}</h2>
-   {%elseif site.currentlang == 'fa' and result.election.title%}
-    <h2>{{result.election.title}}</h2>
-   {%endif%}
-
    {%if result.rival%}
    <div class="flex justify-between top-two-container">
     <div class="flex align-end first candidate">
      {% if result.rival[0]['file_url'] %}
-     <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{{url.static}}{{result.rival[0]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+
+
+     <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{%if result.rival[0]['file_url_2']%}{{url.static}}{{result.rival[0]['file_url_2']}}{%else%}{{url.static}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
      {% endif %}
      <div class="data flex f-column align-center justify-end">
 
@@ -129,8 +132,9 @@
       {% endif %}
      </div>
 
+
      {% if result.rival[1]['file_url'] %}
-      <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{{url.static}}{{result.rival[1]['file_url']}}" alt="{{result.rival[0]['name']}} {{result.rival[0]['family']}}"></div>
+      <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{%if result.rival[1]['file_url_2']%}{{url.static}}{{result.rival[1]['file_url_2']}}{%else%}{{url.static}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
      {% endif %}
     </div>
    </div>
@@ -164,9 +168,11 @@
 
 
 {%block electionUpdate%}
+{%if result.election.status == 'running'%}
 <div class="election-update">
- <span>({%trans "Last Update"%} {{result.result[0]['report_date']|sdate()}})</span>
+ <span>({%trans "Last Update"%} {{result.result[0]['report_date']|tdate()}})</span>
 </div>
+{%endif%}
 {%endblock%}
 
 
@@ -175,7 +181,7 @@
 {%if result.election.status == 'running'%}
  <div class="live">
   <i></i>
-  <span class="title">{%trans "Live Converage"%}</span>
+  <span class="title">{%trans "Live"%}</span>
  </div>
 {%endif%}
 {%endblock%}
@@ -189,14 +195,14 @@
    {%for key, value in result.candida%}
     {%if site.currentlang == 'en'%}
      <div class="f">
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="image">
         <img src="{{url.static}}{{value.file_url}}" alt="">
        </div>
       </div>
-      <div class="c2 vertical-center">
-       <span class="first-name">{{value.en_name}}</span>
-       <span class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</span>
+      <div class="c2 s6 vertical-center">
+       <h5 class="first-name">{{value.en_name}}</h5>
+       <h5 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h5>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -206,20 +212,20 @@
         </div>
        </div>
       </div>
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="vote-count">{{0|fitNumber}} {%trans "Votes"%}</div>
       </div>
      </div>
     {%else%}
      <div class="f">
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="image">
         <img src="{{url.static}}{{value.file_url}}" alt="">
        </div>
       </div>
-      <div class="c2 vertical-center">
-       <span class="first-name">{{value.name}}</span>
-       <span class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</span>
+      <div class="c2 s6 vertical-center">
+       <h5 class="first-name">{{value.name}}</h5>
+       <h5 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h5>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -229,7 +235,7 @@
         </div>
        </div>
       </div>
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="vote-count">{{0|fitNumber}} {%trans "Votes"%}</div>
       </div>
      </div>
@@ -248,14 +254,16 @@
    {%for key, value in result.result%}
     {%if site.currentlang == 'en'%}
      <div class="f">
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="image{%if result.election.status == 'done'%} round low{%endif%}">
         <img src="{{url.static}}{{value.file_url}}" alt="">
        </div>
       </div>
-      <div class="c2 vertical-center">
-       <span class="first-name">{{value.en_name}}</span>
-       <span class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</span>
+      <div class="c2 s6 vertical-center">
+       <h5 class="first-name">
+       {%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}
+       </h5>
+       <h5 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h5>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -265,20 +273,22 @@
         </div>
        </div>
       </div>
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="vote-count">{{value.total|number_format|fitNumber}} {%trans "Votes"%}</div>
       </div>
      </div>
     {%else%}
      <div class="f">
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="image{%if result.election.status == 'done'%} round low{%endif%}">
         <img src="{{url.static}}{{value.file_url}}" alt="">
        </div>
       </div>
-      <div class="c2 vertical-center">
-       <span class="first-name">{{value.name}}</span>
-       <span class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</span>
+      <div class="c2 s6 vertical-center">
+       <h5 class="first-name">
+        {%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}
+       </h5>
+       <h5 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h5>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -288,7 +298,7 @@
         </div>
        </div>
       </div>
-      <div class="c2 all-center">
+      <div class="c2 s6 all-center">
        <div class="vote-count">{{value.total|number_format|fitNumber}} {%trans "Votes"%}</div>
       </div>
      </div>
@@ -360,13 +370,21 @@
 {%if result.time_line%}
 
  <div class="timeline-box">
-  <div class="timeline flex justify-around">
+  <div class="timeline flex justify-around s-column">
 {%for key, value in result.time_line%}
    <a href="{%if site.currentlang == 'en'%}{{value.en_url}}{%else%}{{value.fa_url}}{%endif%}">
     <div class="image round low">
      <img src="{{url.static}}{{value.file_url}}" alt="">
     </div>
-    <div class="info">{%if site.currentlang == 'en'%}{{value.en_name}}<br>{{value.en_fame}}{%else%}{{value.name}}<br>{{value.fame}}{%endif%}</div>
+    <div class="info flex f-column s-row justify-center">
+     {%if site.currentlang == 'en'%}
+     <span>{{value.en_name}}</span>
+     <span>{{value.en_fame}}</span>
+     {%else%}
+     <span>{{value.name}}</span>
+     <span>{{value.fame}}</span>
+     {%endif%}
+    </div>
    </a>
 {%endfor%}
   </div>
