@@ -60,17 +60,18 @@ trait check
 	{
 		$MB = 1 * 1000000; // 1 MB
 		$default_user_size = $MB * 10; // 10 MB for test
-		$permission = new \lib\utility\permission;
 
-		if($permission->access('u:upload_1000_mb:view'))
+		\lib\permission::$user_id = $_user_id;
+
+		if(\lib\permission::access('u:upload_1000_mb:view'))
 		{
 			$default_user_size = 1000 * $MB; // 1 TB
 		}
-		elseif($permission->access('u:upload_100_mb:view'))
+		elseif(\lib\permission::access('u:upload_100_mb:view'))
 		{
 			$default_user_size = 100 * $MB; // 100 MB
 		}
-		elseif($permission->access('u:upload_10_mb:view'))
+		elseif(\lib\permission::access('u:upload_10_mb:view'))
 		{
 			$default_user_size = 10 * $MB; // 10 MB
 		}

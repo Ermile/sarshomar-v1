@@ -443,7 +443,7 @@ trait get_options
 			$file_url = self::host('file'). $file_url;
 		}
 
-		if(self::check_api_permission('admin'))
+		if(self::check_api_permission('admin', null, self::$private_user_id))
 		{
 			$file_url = self::host('file').'/'. $real_file_url;
 		}

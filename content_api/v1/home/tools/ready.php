@@ -89,12 +89,12 @@ trait ready
 		 * load some ting because is my poll
 		 * for example load the password poll
 		 */
-		if($my_poll || self::check_api_permission('admin:admin:view'))
+		if($my_poll || self::check_api_permission('admin:admin:view', null, $this->user_id))
 		{
 			self::$private_is_my_poll = true;
 		}
 
-		if($_options['check_is_my_poll'] === true && !$my_poll && !self::check_api_permission('admin:admin:view'))
+		if($_options['check_is_my_poll'] === true && !$my_poll && !self::check_api_permission('admin:admin:view', null, $this->user_id))
 		{
 			if($_options['debug'])
 			{
@@ -102,7 +102,6 @@ trait ready
 			}
 			return;
 		}
-
 		if(array_key_exists('status', $_poll_data))
 		{
 			$msg = null;
@@ -154,8 +153,7 @@ trait ready
 					break;
 			}
 
-
-			if(!$permission_load_poll && !self::check_api_permission('admin'))
+			if(!$permission_load_poll && !self::check_api_permission('admin', null, $this->user_id))
 			{
 				if($_options['debug'])
 				{

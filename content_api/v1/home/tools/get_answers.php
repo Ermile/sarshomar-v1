@@ -113,7 +113,7 @@ trait get_answers
 
 				}
 
-				if(\content_api\v1\home\tools\api_options::check_api_permission('u:complete_profile:admin'))
+				if(\content_api\v1\home\tools\api_options::check_api_permission('u:complete_profile:admin', null, self::$private_user_id))
 				{
 					$show_answers[$key]['profile'] = self::load_profile_lock($array);
 					if(!empty($show_answers[$key]['profile']))

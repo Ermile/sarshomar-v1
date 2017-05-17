@@ -296,7 +296,7 @@ trait get_fields
 		unset($_poll_data['password']);
 		// unset($_poll_data['brand']);
 		unset($_poll_data['brandurl']);
-		if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
+		if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view', null, self::$private_user_id))
 		{
 			unset($_poll_data['asked']);
 			unset($_poll_data['count_rank']);

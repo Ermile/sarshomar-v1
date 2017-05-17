@@ -29,7 +29,7 @@ trait search
 		$in_me      = false;
 		$admin_mode = false;
 
-		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view', null, $this->user_id))
 		{
 			$admin_mode = true;
 		}
@@ -155,13 +155,13 @@ trait search
 
 		if(utility::request("status"))
 		{
-			if(!$in_me && !self::check_api_permission('admin'))
+			if(!$in_me && !self::check_api_permission('admin', null, $this->user_id))
 			{
 				return debug::error(T_("You can not set status and search in all polls"), 'status', 'arguments');
 			}
 
 			$status = explode(' ', utility::request('status'));
-			if(self::check_api_permission('admin'))
+			if(self::check_api_permission('admin', null, $this->user_id))
 			{
 				$status_list =
 				[
@@ -226,7 +226,7 @@ trait search
 		{
 			$avalible_sort = ['id', 'rank', 'vote', 'date', 'comment', 'title'];
 
-			if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
+			if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view', null, $this->user_id))
 			{
 				if(!in_array(utility::request('sort'), $avalible_sort))
 				{
@@ -257,7 +257,7 @@ trait search
 					$sort_field = 'posts.post_title';
 					break;
 				default:
-					if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view'))
+					if(!\content_api\v1\home\tools\api_options::check_api_permission('admin:admin:view', null, $this->user_id))
 					{
 						$sort_field = 'posts.id';
 					}
@@ -288,7 +288,7 @@ trait search
 		$meta['start_limit'] = $from;
 		$meta['limit']       = $to - $from;
 
-		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin'))
+		if(\content_api\v1\home\tools\api_options::check_api_permission('admin:admin', null, $this->user_id))
 		{
 			$meta['admin']       = utility::request('admin') ? true : false;
 			if($meta['admin'])

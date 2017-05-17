@@ -49,6 +49,7 @@ class stat_polls
 	 */
 	public static function set_sarshomar_total_answered()
 	{
+		return true;
 		// set count of answered poll
 		$stat_query =
 		"
@@ -87,28 +88,51 @@ class stat_polls
 
 
 	/**
+	 * Gets the count answered.
+	 */
+	public static function get_count_answered()
+	{
+		$stat_query = "SELECT COUNT(*) AS `count` FROM answers	-- stat_poll::get_count_answered()";
+		$total = \lib\db::get($stat_query, 'count', true);
+		return intval($total);
+	}
+
+
+	/**
 	 * Gets the sarshomar total answered.
 	 *
 	 * @return     <type>  The sarshomar total answered.
 	 */
 	public static function get_sarshomar_total_answered()
 	{
-		$stat_query =
-		"
-			SELECT
-				options.option_value AS 'count'
-			FROM
-				options
-			WHERE
-				options.user_id IS NULL AND
-				options.post_id IS NULL AND
-				options.option_cat   = 'sarshomar_total_answered' AND
-				options.option_key   = 'total_answered'
-			LIMIT 1
-			-- stat_poll::get_sarshomar_total_answered()
-		";
-		$total = \lib\db::get($stat_query, 'count', true);
-		return intval($total);
+		$result = 0;
+		$url    = root. 'public_html/files/data/';
+		if(!\lib\utility\file::exists($url))
+		{
+			\lib\utility\file::makeDir($url, null, true);
+		}
+
+		$url .= 'total_answered.txt';
+		if(!\lib\utility\file::exists($url))
+		{
+			$result = self::get_count_answered();
+			\lib\utility\file::write($url, $result);
+		}
+		else
+		{
+			$file_time = \filemtime($url);
+			if((time() - $file_time) >  (60))
+			{
+				$result = self::get_count_answered();
+				\lib\utility\file::write($url, $result);
+			}
+			else
+			{
+				$result = \lib\utility\file::read($url);
+			}
+
+		}
+		return $result;
 	}
 
 
