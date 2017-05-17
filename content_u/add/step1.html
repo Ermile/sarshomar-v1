@@ -91,7 +91,7 @@
      </div>
     </div>
     <div class="modules">
-{% if permission('complete_profile:admin') %}
+{% if perm('complete_profile:admin') %}
 {% if value.profile%}
 {% set saved_code = [] %}
         {%for  profile in value.profile %}
@@ -236,7 +236,7 @@
 
 
 {%block feature_hiddenresult%}
- {%if permission('hide_result:admin')%}
+ {%if perm('hide_result:admin')%}
  <div class="checkbox">
   <input type="checkbox" id="hide_result" {%if poll.hide_result%}checked{%endif%}>
   <label for="hide_result" class="check-box"></label>
@@ -256,7 +256,7 @@
 
 
 {%block feature_completeprofile%}
- {% if permission('complete_profile:admin') %}
+ {% if perm('complete_profile:admin') %}
  <div class="row auto">
   <div class="span4 checkbox margin-bottom">
    <input type="checkbox" id="complete-profile" data-response-get='id' {% if not edit_mode or poll.profile %}checked{% endif %}>

@@ -8,7 +8,7 @@
 
 
 {%block sidenav%}
-{%if permission('admin:view')%}
+{%if perm('admin:view')%}
     <li><a href="{{url.base}}/election/admin"><i class='icon-laptop'></i> <span>{% trans "Admin Dashboard" %}</span></a></li>
     <li><a href="{{url.base}}/election/admin/election"><i class='icon-check'></i> <span>{% trans "Election" %}</span></a></li>
     <li><a href="{{url.base}}/election/admin/candida"><i class='icon-user'></i> <span>{% trans "Candida" %}</span></a></li>

@@ -5,9 +5,7 @@
 	<h1>{% trans "Election list"%}</h1>
 <div class="dt">
 	<div class="f th">
-		<div class="c">{%trans "ID" %}</div>
-		<div class="c">{%trans "Title"%}</div>
-		<div class="c">{%trans "En Title"%}</div>
+		<div class="c2">{%trans "Title"%}</div>
 		<div class="c">{%trans "Status"%}</div>
 		<div class="c">{%trans "Eligible"%}</div>
 		<div class="c">{%trans "Voted"%}</div>
@@ -32,9 +30,7 @@
 	</div>
 	{%for key, value in election_list%}
 	<div class="f">
-		<div class="c"><a href="{{url.base}}/election/admin/election/edit={{value.id}}"><b>{{value.id}}</b></a></div>
-		<div class="c">{{value.title}}</div>
-		<div class="c">{{value.en_title}}</div>
+		<div class="c2" title="{{value.en_title}}"><a href="{{url.base}}/election/admin/election/edit={{value.id}}"><b>{{value.title}}</b></a></div>
 		<div class="c">{%set myStatus = value.status%}{%trans myStatus %}</div>
 		<div class="c">{{value.eligible|number_format|fitNumber}}</div>
 		<div class="c">{{value.voted|number_format|fitNumber}}</div>

@@ -8,7 +8,8 @@ class view extends \content_election\main\view
 	 */
 	public function config()
 	{
-		$election = \content_election\lib\elections::search();
+		$election = \content_election\lib\elections::search(null, ['limit' => 50]);
+
 		$this->data->election_list = $election;
 		$running = [];
 		foreach ($election as $key => $value)

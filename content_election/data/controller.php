@@ -8,6 +8,7 @@ class controller extends \content_election\main\controller
 		parent::_route();
 
 		$this->access('election:data:admin', 'block');
+		$this->get()->ALL();
 	}
 }
 ?>

@@ -259,7 +259,6 @@ class elections
 		{
 			$pagenation_query = "SELECT	COUNT(elections.id) AS `count`	FROM elections	$where $search ";
 			$pagenation_query = \lib\db::get($pagenation_query, 'count', true, 'election');
-
 			list($limit_start, $limit) = \lib\db::pagnation((int) $pagenation_query, $limit);
 			$limit = " LIMIT $limit_start, $limit ";
 		}

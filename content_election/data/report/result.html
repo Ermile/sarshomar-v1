@@ -26,27 +26,32 @@
 		</div>
 		{%endfor%}
 	{%endif%}
-	<div class="f">
-		<div></div>
-		<div>
-			<input type="text" name="date" placeholder='{%trans "Date" %}' value='{{"now"|jdate("Y-m-d", false, false)}}'>
+		<br>
+		<div class="f">
+			<label for="date" class="c2">{%trans "date"%}</label>
+			<input id="date" type="text" class="c2" name="date" placeholder='{%trans "Date" %}' value='{{"now"|jdate("Y-m-d", false, false)}}'>
 		</div>
-		<div>
-			<input type="text" name="level" placeholder='{%trans "Level" %}'>
+		<div class="f">
+			<label for="level" class="c2" >{%trans "level"%}</label>
+			<input id="level"  class="c2" type="text" name="level" placeholder='{%trans "Level" %}'>
 		</div>
-		<div>
-			<input type="number" name="number" placeholder='{%trans "Number" %}'>
+		<div class="f">
+			<label for="number" class="c2" >{%trans "number"%}</label>
+			<input id="number" class="c2"  type="number" name="number" placeholder='{%trans "Number" %}'>
 		</div>
-		<div>
-			<input type="number" name="cash" placeholder='{%trans "Cash" %}'>
+		<div class="f">
+			<label for="cash" class="c2" >{%trans "cash"%}</label>
+			<input id="cash"  class="c2" type="number" name="cash" placeholder='{%trans "Cash" %}'>
 		</div>
-		<div>
-			<input type="number" name="voted" placeholder='{%trans "Voted" %}'>
+		<div class="f">
+			<label for="voted" class="c2" >{%trans "voted"%}</label>
+			<input id="voted" class="c2"  type="number" name="voted" placeholder='{%trans "Voted" %}'>
 		</div>
-		<div>
-			<input type="number" name="invalid" placeholder='{%trans "Invalid" %}'>
+		<div class="f">
+			<label for="invalid" class="c2" >{%trans "invalid"%}</label>
+			<input id="invalid" class="c2"  type="number" name="invalid" placeholder='{%trans "Invalid" %}'>
 		</div>
-	</div>
+
 
 	{%for key, value in list.candida%}
 	<div class="f">
