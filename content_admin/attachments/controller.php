@@ -17,6 +17,7 @@ class controller extends \content_admin\main\controller
 
 		$this->post("accept")->ALL("/^attachments$/");
 
+
 		if(preg_match("/attachments\/view=(\d+)/", \lib\router::get_url()))
 		{
 			$this->display_name = 'content_admin/attachments/show.html';
@@ -24,6 +25,7 @@ class controller extends \content_admin\main\controller
 
 		$this->get("view", "view")->ALL("/attachments\/view=(\d+)/");
 
+		$this->post("show")->ALL("/attachments\/show\/id\=\d+/");
 	}
 }
 
