@@ -34,7 +34,7 @@
   {%endif%}
   {{block('time_line')}}
  </div>
-{% endblock %}
+{%endblock%}
 
 
 
@@ -50,7 +50,7 @@
 
   <div class="container">
    <div class="top-one">
-    <div class="image{%if result.election.status == 'done'%} round medium{%endif%}">
+    <div class="image round medium">
      {%if value.win_url%}
       <img src="{{url.static}}{{value.win_url}}" alt="{{winner}}">
      {%elseif result.candida[result.election.win - 1]['file_url_2']%}
@@ -81,7 +81,7 @@
      {% if result.rival[0]['file_url'] %}
 
 
-     <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{%if result.rival[0]['file_url_2']%}{{url.static}}{{result.rival[0]['file_url_2']}}{%else%}{{url.static}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
+     <div class="image round medium"><img src="{%if result.rival[0]['file_url_2']%}{{url.static}}{{result.rival[0]['file_url_2']}}{%else%}{{url.static}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
      {% endif %}
      <div class="data flex f-column align-center justify-end">
 
@@ -134,7 +134,7 @@
 
 
      {% if result.rival[1]['file_url'] %}
-      <div class="image{%if result.election.status == 'done'%} round medium{%endif%}"><img src="{%if result.rival[1]['file_url_2']%}{{url.static}}{{result.rival[1]['file_url_2']}}{%else%}{{url.static}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
+      <div class="image round medium"><img src="{%if result.rival[1]['file_url_2']%}{{url.static}}{{result.rival[1]['file_url_2']}}{%else%}{{url.static}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
      {% endif %}
     </div>
    </div>
@@ -197,7 +197,7 @@
      <div class="f">
       <div class="c2 s6 all-center">
        <div class="image">
-        <img src="{{url.static}}{{value.file_url}}" alt="">
+        <img src="{{url.static}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
@@ -220,7 +220,7 @@
      <div class="f">
       <div class="c2 s6 all-center">
        <div class="image">
-        <img src="{{url.static}}{{value.file_url}}" alt="">
+        <img src="{{url.static}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
@@ -255,8 +255,8 @@
     {%if site.currentlang == 'en'%}
      <div class="f">
       <div class="c2 s6 all-center">
-       <div class="image{%if result.election.status == 'done'%} round low{%endif%}">
-        <img src="{{url.static}}{{value.file_url}}" alt="">
+       <div class="image round low">
+        <img src="{{url.static}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
@@ -280,8 +280,8 @@
     {%else%}
      <div class="f">
       <div class="c2 s6 all-center">
-       <div class="image{%if result.election.status == 'done'%} round low{%endif%}">
-        <img src="{{url.static}}{{value.file_url}}" alt="">
+       <div class="image round low">
+        <img src="{{url.static}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
@@ -378,11 +378,15 @@
     </div>
     <div class="info flex f-column s-row justify-center">
      {%if site.currentlang == 'en'%}
+     <h6>{{value.en_title}}</h6>
      <span>{{value.en_name}}</span>
      <span>{{value.en_fame}}</span>
+     <span>{{value.year}}</span>
      {%else%}
+     <h6>{{value.title}}</h6>
      <span>{{value.name}}</span>
      <span>{{value.fame}}</span>
+     <span>{{value.jalali_year|fitNumber}}</span>
      {%endif%}
     </div>
    </a>
