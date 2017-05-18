@@ -19,6 +19,7 @@ body{color:#333;background-color:#f4f4f4}
 
 .top-two .top-two-container{margin-bottom:2em}
 .top-two .top-two-container .image{max-width:15em}
+.ltr .top-two .top-two-container .first.candidate img,.rtl .top-two .top-two-container .second.candidate img{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
 
 .top-two .status-bar-box{position:relative}
 .top-two .status-bar{height:5em;border:3px solid #eeeff0;background-color:#fff}

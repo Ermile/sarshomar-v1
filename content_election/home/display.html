@@ -373,7 +373,13 @@
 {%for key, value in result.time_line%}
    <a href="{%if site.currentlang == 'en'%}{{value.en_url}}{%else%}{{value.fa_url}}{%endif%}">
     <div class="image round low">
-     <img src="{{url.static}}{{value.file_url}}" alt="">
+
+    {%if value.win_url%}
+     <img src="{{url.static}}{{value.win_url}}" alt="">
+    {%else%}
+     <img src="{{url.static}}images/election/unknown.png" alt='{%trans "Unknown"%}'>
+    {%endif%}
+
     </div>
     <div class="info flex f-column s-row justify-center">
      {%if site.currentlang == 'en'%}
