@@ -17,6 +17,12 @@
 
 
 {%block content%}
+
+{%if url.tld == 'dev' %}
+  {{block('comment')}}
+{%endif%}
+
+
  <div class="box-top unselectable">
   {%if site.currentlang == 'en' and result.election.en_title%}
    <h1 class="election-title">{%trans "Results of"%} {{result.election.en_title}}</h1>
@@ -421,4 +427,30 @@
  </div>
 
 {%endif%}
+{%endblock%}
+
+
+
+{% block comment %}
+<form method="post" class="df">
+  <div class="f">
+    <label for="name" class="c1">{%trans "Your Name"%}</label>
+    <input type="text" name="name" placeholder='{%trans "Your name"%}' class="c2">
+  </div>
+  <div class="f">
+    <label for="mobile" class="c1">{%trans "Your mobile number"%}</label>
+    <input type="text" name="mobile" placeholder='{%trans "Your mobile number"%}' class="c2">
+  </div>
+  <div class="f">
+    <label for="mobile" class="c1">{%trans "Your comment"%}</label>
+    <textarea name="comment" placeholder='{%trans "Your Comment"%}' required class="c2" ></textarea>
+  </div>
+  <div class="f">
+    <div class="c1"></div>
+    <input type="submit" value='{%trans "Send"%}' class="c2">
+  </div>
+</form>
+
+{{result.comment|dump}}
+
 {%endblock%}

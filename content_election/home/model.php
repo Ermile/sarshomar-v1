@@ -124,6 +124,8 @@ class model extends \content_election\main\model
 					}
 				}
 			}
+
+			$result['comment'] = $this->get_comment($_args);
 			// var_dump($result);exit();
 			return $result;
 		}

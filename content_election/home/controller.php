@@ -12,6 +12,7 @@ class controller extends \content_election\main\controller
 		if($id = $this->model()->check_url($url))
 		{
 			$this->get("load", "load")->ALL("/.*/");
+			$this->post('comment')->ALL("/^iran\/president\/\d+$/");
 		}
 		else
 		{
@@ -37,8 +38,7 @@ class controller extends \content_election\main\controller
 			$this->get('home', 'home')->ALL("/^iran\/president$/");
 			$this->get('candida', 'candida')->ALL("/^iran\/president\/candida$/");
 
-			$this->get('comment', 'comment')->ALL("/^iran\/president\/\d+\/comment$/");
-			$this->post('comment')->ALL("/^iran\/president\/\d+\/comment$/");
+			// $this->get('comment', 'comment')->ALL("/^iran\/president\/\d+\/comment$/");
 
 			if(preg_match("/^iran\/president\/candida$/", $url))
 			{
