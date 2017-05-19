@@ -24,7 +24,7 @@
     {%for key, value in result%}
      <div class="f">
       <div class="c1 all-center">
-       <span>{{value.year|fitNumber}}</span>
+       <a href="{{value.en_url}}"><span>{{value.year|fitNumber}}</span></a>
       </div>
 
       <div class="c1 s6 all-center">
@@ -66,7 +66,7 @@
     {%for key, value in result%}
      <div class="f">
       <div class="c1 all-center">
-       <span>{{value.jalali_year|fitNumber}}</span>
+       <a href="{{value.fa_url}}"><span>{{value.jalali_year|fitNumber}}</span></a>
       </div>
 
       <div class="c1 s6 all-center">
