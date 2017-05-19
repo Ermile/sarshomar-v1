@@ -11,10 +11,9 @@ class controller extends \content_election\main\controller
 		parent::_route();
 
 		$this->access('election:admin:admin', 'block');
-
 		if(\lib\utility::get("fix_file"))
 		{
-			$query = "SELECT candidas.*, elections.* FROM candidas  LEFT JOIN elections ON elections.id = candidas.election_id";
+			$query = "SELECT candidas.*, elections.*, candidas.id AS `xid` FROM candidas  LEFT JOIN elections ON elections.id = candidas.election_id";
 			$candida = \lib\db::get($query, null, false, 'election');
 			foreach ($candida as $key => $value)
 			{
@@ -85,6 +84,10 @@ class controller extends \content_election\main\controller
 		{
 			$new_file_url = '/files/election/unacceptable.jpg';
 		}
+		elseif($name === 'other' || $family === 'other' || $fame === 'other')
+		{
+			$new_file_url = '/files/election/other.jpg';
+		}
 
 		$xx = root. 'public_html' . $new_file_url;
 		var_dump($old_file_url, $xx);
@@ -92,7 +95,7 @@ class controller extends \content_election\main\controller
 		$moved = \lib\utility\file::copy($old_file_url, $xx);
 		if($moved)
 		{
-			\lib\db::query("UPDATE candidas SET $_type = '$new_file_url' where id = $_data[id] LIMIT 1", 'election' );
+			\lib\db::query("UPDATE candidas SET $_type = '$new_file_url' where id = $_data[xid] LIMIT 1", 'election' );
 			$this->change++;
 		}
 	}
