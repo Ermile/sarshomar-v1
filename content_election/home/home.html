@@ -20,21 +20,42 @@
 {%block all%}
  <div class="container unselectable">
   <div class="election-tbl">
+
+
+
+
    {%if site.currentlang == 'en'%}
+     <div class="f th">
+
+      <div class="c1 all-center">{%trans "Year"%}</div>
+      <div class="c1 s6 all-center">{%trans "Turnout"%}</div>
+      <div class="c1 s6 all-center"></div>
+      <div class="c2 s6 all-center">{%trans "President elected"%}</div>
+      <div class="c all-center">{%trans "Percentage"%}</div>
+      <div class="c1 s6 all-center">{%trans "Popular vote"%}</div>
+
+     </div>
+
     {%for key, value in result%}
      <div class="f">
-      <div class="c1 all-center">
+      <div class="c1 all-center year">
        <a href="{{value.en_url}}"><span>{{value.year|fitNumber}}</span></a>
       </div>
 
+      <div class="c1 s6 all-center turnout">
+       <span>{{value.work_present|number_format|fitNumber}}%</span>
+      </div>
+
       <div class="c1 s6 all-center">
-       <div class="image round low">
-       {%if value.win_url%}
-        <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
-       {%else%}
-        <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
-       {%endif%}
-       </div>
+        <a href="{{value.en_url}}">
+         <div class="image round low">
+         {%if value.win_url%}
+          <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
+         {%else%}
+          <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
+         {%endif%}
+         </div>
+        </a>
       </div>
 
       <div class="c2 s6 vertical-center">
@@ -42,9 +63,9 @@
        <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</h4>
       </div>
 
-      <div class="c5 all-center">
+      <div class="c all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-value">{%if value.win_present is defined and value.win_present%}{{value.win_present|fitNumber}}%{%else%}{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:{{value.win_present}}%"></div>
         </div>
@@ -52,31 +73,43 @@
       </div>
 
       <div class="c1 s6 all-center">
-       <span>{{value.work_present|number_format|fitNumber}}%</span>
-      </div>
-      <div class="c1 s6 all-center">
        <span>{{value.win_present_all|number_format|fitNumber}}%</span>
       </div>
-      <div class="c1 s6 all-center text-center">
-       <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
-      </div>
+
      </div>
     {%endfor%}
+
    {%else%}
+
+     <div class="f th">
+      <div class="c1 all-center">{%trans "Year"%}</div>
+      <div class="c1 s6 all-center">{%trans "Turnout"%}</div>
+      <div class="c1 s6 all-center"></div>
+      <div class="c2 s6 all-center">{%trans "President elected"%}</div>
+      <div class="c all-center">{%trans "Percentage"%}</div>
+      <div class="c1 s6 all-center">{%trans "Popular vote"%}</div>
+     </div>
+
     {%for key, value in result%}
      <div class="f">
-      <div class="c1 all-center">
+      <div class="c1 all-center year">
        <a href="{{value.fa_url}}"><span>{{value.jalali_year|fitNumber}}</span></a>
       </div>
 
+      <div class="c1 s6 all-center turnout">
+       <span>{{value.work_present|number_format|fitNumber}}%</span>
+      </div>
+
       <div class="c1 s6 all-center">
-       <div class="image round low">
-       {%if value.win_url%}
-        <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.name}} {{value.fame}}'>
-       {%else%}
-        <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
-       {%endif%}
-       </div>
+        <a href="{{value.fa_url}}">
+         <div class="image round low">
+         {%if value.win_url%}
+          <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.name}} {{value.fame}}'>
+         {%else%}
+          <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
+         {%endif%}
+         </div>
+        </a>
       </div>
 
       <div class="c2 s6 vertical-center">
@@ -84,27 +117,30 @@
        <h4 class="last-name">{%if value.fame%}{{value.fame}}{%elseif value.family%}{{value.family}}{%else%}-{%endif%}</h4>
       </div>
 
-      <div class="c5 all-center">
+      <div class="c all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-value">{%if value.win_present is defined and value.win_present%}{{value.win_present|fitNumber}}%{%else%}{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:{{value.win_present}}%"></div>
         </div>
        </div>
       </div>
 
-      <div class="c1 s6 all-center">
-       <span>{{value.work_present|number_format|fitNumber}}%</span>
-      </div>
-      <div class="c1 s6 all-center">
-       <span>{{value.win_present_all|number_format|fitNumber}}%</span>
-      </div>
       <div class="c1 s6 all-center text-center">
        <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
       </div>
+
+{%if false%}
+      <div class="c1 s6 all-center">
+       <span>{{value.win_present_all|number_format|fitNumber}}%</span>
+      </div>
+{%endif%}
      </div>
+
     {%endfor%}
    {%endif%}
+
+
   </div>
  </div>
 {%endblock%}
