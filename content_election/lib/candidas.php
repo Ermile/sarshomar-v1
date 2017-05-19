@@ -277,12 +277,11 @@ class candidas
 
 	public static function get_list_all($_cat)
 	{
-		return false;
+
 		$query =
 		"
 			SELECT
 				candidas.*,
-				results.total,
 				(
 					SELECT ((results.total * 100) / elections.voted)
 					FROM results
@@ -299,17 +298,16 @@ class candidas
 					AND results.candida_id = candidas.id
 					AND results.status = 'enable'
 					LIMIT 1
-				) AS `win_present_all`,
+				) AS `win_present_all`
 			FROM
 				candidas
-			LEFT JOIN elections ON elections.id = candidas.election_id
-			LEFT JOIN results ON results.election_id = elections.id
+			INNER JOIN elections ON elections.id = candidas.election_id
 			WHERE
-				elections.cat = $_cat AND
+				elections.cat = '$_cat' AND
 				candidas.status = 'active'
 			";
 		$result = \lib\db::get($query, null, false, 'election');
-		var_dump($result);exit();
+		// var_dump($result);exit();
 		return $result;
 
 	}
