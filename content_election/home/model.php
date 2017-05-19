@@ -84,17 +84,22 @@ class model extends \content_election\main\model
 			$result['result_by_city'] = \content_election\lib\resultbyplaces::get_election($election_id);
 			if(isset($result['election']['status']) && $result['election']['status'] != 'awaiting')
 			{
-
-				if(isset($result['result'][0]))
+				if(isset($result['result'][0]['total']) && isset($result['result'][1]['total']) && $result['result'][1]['total'] === $result['result'][0]['total']  && $result['result'][1]['total'] === '0')
 				{
-					$result['rival'][0] = $result['result'][0];
+					// no thing!
 				}
-
-				if(isset($result['result'][1]))
+				else
 				{
-					$result['rival'][1] = $result['result'][1];
-				}
+					if(isset($result['result'][0]))
+					{
+						$result['rival'][0] = $result['result'][0];
+					}
 
+					if(isset($result['result'][1]))
+					{
+						$result['rival'][1] = $result['result'][1];
+					}
+				}
 			}
 			// var_dump($result);exit();
 			return $result;
