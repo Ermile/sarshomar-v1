@@ -1,5 +1,7 @@
 <?php
 namespace content_election\home;
+use \lib\utility;
+use \lib\debug;
 
 class model extends \content_election\main\model
 {
@@ -135,6 +137,102 @@ class model extends \content_election\main\model
 		$cat = 'president';
 		$result = \content_election\lib\candidas::get_list_all($cat);
 		return $result;
+	}
+
+
+	/**
+	 * Gets the comment.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function get_comment($_args)
+	{
+
+	}
+
+
+	/**
+	 * Posts a comment.
+	 */
+	public function post_comment($_args)
+	{
+		$name    = utility::post('name');
+		$mobile  = utility::post('mobile');
+		$comment = utility::post('comment');
+
+		$log_meta =
+		[
+			'data' => null,
+			'meta' =>
+			[
+				'input'   => utility::post(),
+				'session' => $_SESSION,
+			],
+		];
+
+		$url         = (isset($_args->match->url[0][0])) ? $_args->match->url[0][0] : false;
+		$election_id = false;
+
+		if($url)
+		{
+			$url = str_replace('/comment', '', $url);
+			$election_id = $this->check_url($url);
+		}
+
+		if(!$election_id)
+		{
+			$election_id = 'NULL';
+		}
+
+		$user_id = 'NULL';
+		$mobile  = \lib\utility\filter::mobile($mobile);
+
+		if($mobile)
+		{
+			// check existing mobile
+			$exists_user = \lib\db\users::get_by_mobile($mobile);
+			// register if the mobile is valid
+			if(!$exists_user || empty($exists_user))
+			{
+				// signup user by site_guest
+				$user_id = \lib\db\users::signup(['ignore' => true, 'mobile' => $mobile ,'type' => 'inspection', 'port' => 'site_guest', 'displayname' => $name]);
+				// save log by caller 'user:send:contact:register:by:mobile'
+				\lib\db\logs::set('user:send:contact:register:by:mobile:in:election', $user_id, $log_meta);
+			}
+		}
+
+		if(!$mobile)
+		{
+			$mobile = 'NULL';
+		}
+
+
+		$query =
+		"
+		INSERT INTO comments
+		SET
+			comments.user_id = $user_id,
+			comments.post_id = $election_id,
+			comments.author  = '$name',
+			comments.email   = NULL,
+			comments.mobile  = '$mobile',
+			comments.url     = NULL,
+			comments.content = '$comment',
+			comments.meta    = NULL
+			-- comments.visitor_id =
+		";
+		$insert = \lib\db::query($query, 'election');
+		if($insert)
+		{
+			\lib\db\logs::set('user:send:contact', $user_id, $log_meta);
+			debug::true(T_("Thank You For contacting us"));
+		}
+		else
+		{
+			\lib\db\logs::set('user:send:contact:fail', $user_id, $log_meta);
+			debug::error(T_("We could'nt save the contact"));
+		}
+
 	}
 }
 ?>

@@ -68,5 +68,11 @@ class view extends \content_election\main\view
 	{
 		$this->data->result = $_args->api_callback;
 	}
+
+
+	public function view_comment($_args)
+	{
+
+	}
 }
 ?>

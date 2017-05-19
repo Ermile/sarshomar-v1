@@ -36,10 +36,17 @@ class controller extends \content_election\main\controller
 
 			$this->get('home', 'home')->ALL("/^iran\/president$/");
 			$this->get('candida', 'candida')->ALL("/^iran\/president\/candida$/");
+
+			$this->get('comment', 'comment')->ALL("/^iran\/president\/\d+\/comment$/");
+			$this->post('comment')->ALL("/^iran\/president\/\d+\/comment$/");
+
 			if(preg_match("/^iran\/president\/candida$/", $url))
 			{
 				$this->display_name = 'content_election\home\candida.html';
-
+			}
+			elseif(preg_match("/^iran\/president\/\d+\/comment$/", $url))
+			{
+				$this->display_name = 'content_election\home\comment.html';
 			}
 			else
 			{

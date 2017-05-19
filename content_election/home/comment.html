@@ -1,0 +1,30 @@
+{%extends display.mvc%}
+
+{% block content %}
+<form method="post" class="df">
+	<div class="f">
+		<label for="name" class="c1">{%trans "Your Name"%}</label>
+		<input type="text" name="name" placeholder='{%trans "Your name"%}' class="c2">
+	</div>
+	<div class="f">
+		<label for="mobile" class="c1">{%trans "Your mobile number"%}</label>
+		<input type="text" name="mobile" placeholder='{%trans "Your mobile number"%}' class="c2">
+	</div>
+	<div class="f">
+		<label for="mobile" class="c1">{%trans "Your comment"%}</label>
+		<textarea name="comment" placeholder='{%trans "Your Comment"%}' required class="c2" ></textarea>
+	</div>
+	<div class="f">
+		<div class="c1"></div>
+		<input type="submit" value='{%trans "Send"%}' class="c2">
+	</div>
+</form>
+
+<!-- {{result|dump}} -->
+{%endblock%}
+
+{%block head_css%}
+ {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
+ <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
+ <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
+{%endblock%}
