@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-05-19 20:30+0430\n"
-"PO-Revision-Date: 2017-05-19 20:31+0430\n"
+"POT-Creation-Date: 2017-05-19 23:00+0430\n"
+"PO-Revision-Date: 2017-05-19 23:02+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: ../../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -93,7 +93,6 @@ msgstr "تایید"
 
 #: saloos/lib/permission.php:80
 #, fuzzy
-#| msgid "Can not access to load this poll"
 msgid "Can not access to it"
 msgstr "دسترسی به این نظرسنجی امکان‌پذیر نیست"
 
@@ -728,7 +727,6 @@ msgstr "شما ابتدا باید وارد سیستم شوید!"
 
 #: saloos/saloos-addons/content_cp/home/controller.php:50
 #, fuzzy
-#| msgid "Can not access to load this poll"
 msgid "Can not access to cp"
 msgstr "دسترسی به این نظرسنجی امکان‌پذیر نیست"
 
@@ -4041,10 +4039,12 @@ msgid "Please fill in the field"
 msgstr "لطفا موارد مورد نیاز را پر کنید"
 
 #: sarshomar/content/contact/model.php:124
+#: sarshomar/content_election/home/model.php:265
 msgid "Thank You For contacting us"
 msgstr "از تماس شما متشکریم"
 
 #: sarshomar/content/contact/model.php:129
+#: sarshomar/content_election/home/model.php:270
 msgid "We could'nt save the contact"
 msgstr "مشکلی در ذخیره‌سازی مخاطب پیش آمد"
 
@@ -4338,6 +4338,7 @@ msgstr "نظرسنجی بعدی"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/ask.php:469
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:472
+#: sarshomar/content_election/data/report/model.php:256
 msgid "Updated"
 msgstr "بروز شد"
 
@@ -6174,10 +6175,7 @@ msgid "Sarshomar's gift belongs to you for completing your profile"
 msgstr ""
 "ورود شما به جامعه سرشمار را تبریک می‌گوییم🌹\n"
 "\n"
-"شما در قرعه‌کشی آیفون در جشن بزرگ نیمه شعبان شرکت داده می‌شوید;)\n"
-"\n"
-"🎁 هم‌چنین ۱۰ هزار تومان اعتبار هدیه برای استفاده از سرشمار در حساب‌کاربری شما شارژ "
-"شد"
+"🎁 مبلغ ۱۰ هزار تومان اعتبار هدیه برای استفاده از سرشمار در حساب‌کاربری شما شارژ شد"
 
 #: sarshomar/content_api/v1/tag/search/tools/search.php:18
 msgid "Search faild"
@@ -6235,7 +6233,6 @@ msgstr "خطا در افزودن انتخابات"
 #: sarshomar/content_election/data/report/model.php:114
 #: sarshomar/content_election/data/result/model.php:191
 #, fuzzy
-#| msgid "result added"
 msgid "Result added"
 msgstr "نتایج اضافه شد"
 
@@ -6246,7 +6243,6 @@ msgstr ""
 
 #: sarshomar/content_election/data/report/model.php:166
 #, fuzzy
-#| msgid "report updated"
 msgid "Report updated"
 msgstr "گزارش بروز شد"
 
@@ -6261,6 +6257,26 @@ msgstr "گزارش اضافه شد"
 #: sarshomar/content_election/data/report/model.php:208
 msgid "Error in adding report"
 msgstr ""
+
+#: sarshomar/content_election/data/report/model.php:260
+msgid "Can not update"
+msgstr ""
+
+#: sarshomar/content_election/home/model.php:243
+msgid "Text too large!"
+msgstr ""
+
+#: sarshomar/content_election/home/view.php:15
+msgid "Iranian president election result"
+msgstr "نتایج انتخابات ریاست جمهوری ایران"
+
+#: sarshomar/content_election/home/view.php:16
+msgid "Live and complete result of iran election after revolution until now."
+msgstr "نتایج زنده و کامل انتخابات ریاست جمهوری ایران از انقلاب تاکنون"
+
+#: sarshomar/content_election/home/view.php:16
+msgid "Live result of iran 12 president election"
+msgstr "نتایج لحظه‌ای دوازدهمین انتخابات ریاست جمهوری ایران"
 
 #: sarshomar/content_election/manifest.php:6
 msgid "Allow to add the election, candida and edit it"
@@ -7334,19 +7350,16 @@ msgstr "تایید کردن"
 
 #: sarshomar/includes/languages/trans_addons.php:262
 #, fuzzy
-#| msgid "Error Logs"
 msgid "Server Logs"
 msgstr "لاگ خطاها"
 
 #: sarshomar/includes/languages/trans_addons.php:263
 #, fuzzy
-#| msgid "AccessToken"
 msgid "Access logs"
 msgstr "AccessToken"
 
 #: sarshomar/includes/languages/trans_addons.php:264
 #, fuzzy
-#| msgid "Errorlogs"
 msgid "Error logs"
 msgstr "لاگ خطاها"
 
@@ -7364,13 +7377,11 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:560
 #, fuzzy
-#| msgid "esfand"
 msgid "esfahan"
 msgstr "اسفند"
 
 #: sarshomar/includes/languages/trans_addons.php:561
 #, fuzzy
-#| msgid "oxin alborz"
 msgid "alborz"
 msgstr "اکسین البرز"
 
@@ -7384,7 +7395,6 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:564
 #, fuzzy
-#| msgid "naft tehran"
 msgid "tehran"
 msgstr "نفت تهران"
 
@@ -7406,7 +7416,6 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:569
 #, fuzzy
-#| msgid "esteghlal khuzestan"
 msgid "khuzestan"
 msgstr "استقلال خوزستان"
 
@@ -7424,7 +7433,6 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:573
 #, fuzzy
-#| msgid "farsi"
 msgid "fars"
 msgstr "فارسی"
 
@@ -7438,13 +7446,11 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:576
 #, fuzzy
-#| msgid "mes kerman"
 msgid "kerman"
 msgstr "مس کرمان"
 
 #: sarshomar/includes/languages/trans_addons.php:577
 #, fuzzy
-#| msgid "mes kerman"
 msgid "kermanshah"
 msgstr "مس کرمان"
 
@@ -7458,7 +7464,7 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:580
 msgid "gilan"
-msgstr ""
+msgstr "گیلان"
 
 #: sarshomar/includes/languages/trans_addons.php:581
 msgid "lorestan"
@@ -7466,13 +7472,11 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:582
 #, fuzzy
-#| msgid "nassaji mazandaran"
 msgid "mazandaran"
 msgstr "نساجی مازندران"
 
 #: sarshomar/includes/languages/trans_addons.php:583
 #, fuzzy
-#| msgid "market"
 msgid "markazi"
 msgstr "بازار"
 
@@ -7490,7 +7494,6 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_addons.php:592
 #, fuzzy
-#| msgid "Hello!"
 msgid "Hello"
 msgstr "سلام!"
 
@@ -10035,13 +10038,11 @@ msgstr "به‌روزرسانی شماره‌ها"
 
 #: sarshomar/includes/languages/trans_twig.php:759
 #, fuzzy
-#| msgid "Successfull"
 msgid "Successful"
 msgstr "موفقیت‌آمیز"
 
 #: sarshomar/includes/languages/trans_twig.php:760
 #, fuzzy
-#| msgid "Last week"
 msgid "Last Week"
 msgstr "هفته آینده"
 
@@ -10926,7 +10927,6 @@ msgstr "کد ملی"
 
 #: sarshomar/includes/languages/trans_twig.php:1075
 #, fuzzy
-#| msgid "Publish date"
 msgid "Brith date"
 msgstr "تاریخ انتشار"
 
@@ -10936,7 +10936,6 @@ msgstr "کد انتخاباتی"
 
 #: sarshomar/includes/languages/trans_twig.php:1077
 #, fuzzy
-#| msgid "File"
 msgid "File_url"
 msgstr "فایل"
 
@@ -11010,7 +11009,6 @@ msgstr "آدرس فایل در صورت پیروزی"
 
 #: sarshomar/includes/languages/trans_twig.php:1096
 #, fuzzy
-#| msgid "Cancel"
 msgid "cancel"
 msgstr "انصراف"
 
@@ -11112,7 +11110,6 @@ msgstr "عنوان به انگلیسی"
 
 #: sarshomar/includes/languages/trans_twig.php:1128
 #, fuzzy
-#| msgid "Cash"
 msgid "Cashs"
 msgstr "موجودی"
 
@@ -11126,7 +11123,6 @@ msgstr "زنان رای اولی"
 
 #: sarshomar/includes/languages/trans_twig.php:1131
 #, fuzzy
-#| msgid "End Time"
 msgid "End time"
 msgstr "زمان پایان"
 
@@ -11144,37 +11140,31 @@ msgstr "لیست انتخابات"
 
 #: sarshomar/includes/languages/trans_twig.php:1137
 #, fuzzy
-#| msgid "Hidden result"
 msgid "add result"
 msgstr "مخفی‌سازی نتایج"
 
 #: sarshomar/includes/languages/trans_twig.php:1138
 #, fuzzy
-#| msgid "Hidden result"
 msgid "add city result"
 msgstr "مخفی‌سازی نتایج"
 
 #: sarshomar/includes/languages/trans_twig.php:1139
 #, fuzzy
-#| msgid "End"
 msgid "En"
 msgstr "پایان"
 
 #: sarshomar/includes/languages/trans_twig.php:1140
 #, fuzzy
-#| msgid "Fax"
 msgid "Fa"
 msgstr "فکس"
 
 #: sarshomar/includes/languages/trans_twig.php:1141
 #, fuzzy
-#| msgid "report"
 msgid "Add report"
 msgstr "گزارش"
 
 #: sarshomar/includes/languages/trans_twig.php:1142
 #, fuzzy
-#| msgid "Add poll"
 msgid "Add place"
 msgstr "افزودن نظرسنجی"
 
@@ -11184,7 +11174,6 @@ msgstr "انتخابات جاری"
 
 #: sarshomar/includes/languages/trans_twig.php:1146
 #, fuzzy
-#| msgid "Report"
 msgid "Report list"
 msgstr "گزارش"
 
@@ -11194,7 +11183,6 @@ msgstr "تاریخ"
 
 #: sarshomar/includes/languages/trans_twig.php:1149
 #, fuzzy
-#| msgid "third level"
 msgid "level"
 msgstr "سطح سه"
 
@@ -11208,31 +11196,27 @@ msgstr ""
 
 #: sarshomar/includes/languages/trans_twig.php:1152
 #, fuzzy
-#| msgid "vote"
 msgid "voted"
 msgstr "رای"
 
 #: sarshomar/includes/languages/trans_twig.php:1154
 #, fuzzy
-#| msgid "Exit from the result"
 msgid "Edit report resutl"
 msgstr "خروج از نتایج"
 
 #: sarshomar/includes/languages/trans_twig.php:1155
 #, fuzzy
-#| msgid "Add new poll"
 msgid "Add new report"
 msgstr "افزودن نظرسنجی جدید"
 
 #: sarshomar/includes/languages/trans_twig.php:1158
 #, fuzzy
-#| msgid "Click to view"
 msgid "Click to edit"
 msgstr "برای مشاهده کلیک کنید"
 
 #: sarshomar/includes/languages/trans_twig.php:1159
 msgid "Level"
-msgstr ""
+msgstr "مرحله"
 
 #: sarshomar/includes/languages/trans_twig.php:1160
 msgid "Number"
@@ -11252,7 +11236,6 @@ msgstr "همه‌ی نامزدهای انتخابات ریاست جمهوری ا
 
 #: sarshomar/includes/languages/trans_twig.php:1170
 #, fuzzy
-#| msgid "unknown"
 msgid "Unknown"
 msgstr "نامشخص"
 
@@ -11582,13 +11565,11 @@ msgstr "جایزه برای هر نفر"
 
 #: sarshomar/includes/languages/trans_twig.php:1284
 #, fuzzy
-#| msgid "glasses"
 msgid "Class"
 msgstr "عینک"
 
 #: sarshomar/includes/languages/trans_twig.php:1285
 #, fuzzy
-#| msgid "(The poll is :status)"
 msgid "The poll class"
 msgstr "(نظرسنجی :status)"
 

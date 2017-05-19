@@ -139,6 +139,16 @@ body{color:#333;background-color:#f4f4f4}
 .all-center,.vertical-center{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:-moz-box;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;-moz-box-pack:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;-moz-box-align:center;align-items:center}
 .vertical-center{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;flex-direction:column}
 
+.chart{direction:ltr}
+.chart *, .map *{font-family:IRANSans,Tahoma,sans-serif!important}
+.rtl .chart{text-align:right}
+.rtl .chart .highcharts-tooltip{direction:rtl}
+.highcharts-title{fill:#434348;font-weight:700}
+a[href*="amcharts.com"]{display:none!important}
+.chartbox{margin-bottom:50px;}
+.chartbox .chart{height:300px;}
+.chartbox h2{padding: 1em 2em;font-weight:bold}
+
 
 @media all and (min-width: 1200px) {
   .timeline-box .timeline .image{width:7em;height:7em}
@@ -159,3 +169,5 @@ body{color:#333;background-color:#f4f4f4}
  .timeline-box a .info span{font-size:1.2em}
  .timeline-box .timeline .image{width:10em;height:10em;margin-bottom:1em}
 }
+
+
