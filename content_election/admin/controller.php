@@ -16,11 +16,11 @@ class controller extends \content_election\main\controller
 		{
 			$query = "SELECT candidas.*, elections.* FROM candidas  LEFT JOIN elections ON elections.id = candidas.election_id";
 			$candida = \lib\db::get($query, null, false, 'election');
-			// var_dump($candida);exit();
 			foreach ($candida as $key => $value)
 			{
 				if(isset($value['file_url']))
 				{
+
 					$this->move_file($value, 'file_url');
 				}
 
@@ -43,12 +43,12 @@ class controller extends \content_election\main\controller
 
 	public function move_file($_data, $_type)
 	{
-		// $base         = root."public_html/files/election";
+		$base         = root."public_html/files/election";
 
-		// if(!\lib\utility\file::exists($base))
-		// {
-		// 	\lib\utility\file::makeDir($base);
-		// }
+		if(!\lib\utility\file::exists($base))
+		{
+			\lib\utility\file::makeDir($base);
+		}
 
 		$new_file_url = "";
 
@@ -80,7 +80,7 @@ class controller extends \content_election\main\controller
 		$ext          = explode('.', $ext);
 		$ext          = end($ext);
 		$new_file_url .= '.'. $ext;
-		$old_file_url = root. "public_html/static/images/election/". $_data[$_type];
+		$old_file_url = root. "public_html/static/". $_data[$_type];
 		if($name === 'unacceptable' || $family === 'unacceptable' || $fame === 'unacceptable')
 		{
 			$new_file_url = '/files/election/unacceptable.jpg';
