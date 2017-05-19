@@ -107,7 +107,7 @@ class model extends \content_election\main\model
 	 */
 	public function get_home($_args)
 	{
-		$time_line = \content_election\lib\results::get_time_line('president', true);
+		$time_line = \content_election\lib\results::home_page('president', true);
 		return $time_line;
 	}
 }

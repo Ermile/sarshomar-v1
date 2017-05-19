@@ -468,5 +468,48 @@ class results
 		$result = \lib\db::get($query, null, false, 'election');
 		return $result;
 	}
+
+	/**
+	 * home page result
+	 *
+	 * @param      <type>  $_cat   The cat
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function home_page($_cat)
+	{
+		$query =
+		"
+			SELECT
+				elections.*,
+				(
+					SELECT ((results.total * 100) / elections.voted)
+					FROM results
+					WHERE results.election_id = elections.id
+					AND results.candida_id = candidas.id
+					AND results.status = 'enable'
+					LIMIT 1
+				) AS `win_present`,
+				((elections.voted * 100) / elections.eligible) AS `work_present`,
+				(
+					SELECT ((results.total * 100) / elections.eligible)
+					FROM results
+					WHERE results.election_id = elections.id
+					AND results.candida_id = candidas.id
+					AND results.status = 'enable'
+					LIMIT 1
+				) AS `win_present_all`,
+				candidas.*
+			FROM
+				elections
+			LEFT JOIN candidas ON candidas.id = elections.win
+			WHERE
+				elections.cat = '$_cat'
+			ORDER BY elections.election_date ASC
+		";
+		$result = \lib\db::get($query, null, false, 'election');
+		// var_dump($result);exit();
+		return $result;
+	}
 }
 ?>
