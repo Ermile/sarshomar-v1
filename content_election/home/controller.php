@@ -34,8 +34,17 @@ class controller extends \content_election\main\controller
 					break;
 			}
 
-			$this->get('home', 'home')->ALL("/iran\/president/");
-			$this->display_name = 'content_election\home\home.html';
+			$this->get('home', 'home')->ALL("/^iran\/president$/");
+			$this->get('candida', 'candida')->ALL("/^iran\/president\/candida$/");
+			if(preg_match("/^iran\/president\/candida$/", $url))
+			{
+				$this->display_name = 'content_election\home\candida.html';
+
+			}
+			else
+			{
+				$this->display_name = 'content_election\home\home.html';
+			}
 		}
 	}
 }

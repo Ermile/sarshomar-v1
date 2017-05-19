@@ -48,7 +48,23 @@ class view extends \content_election\main\view
 	}
 
 
+	/**
+	 * view candida
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
 	public function view_home($_args)
+	{
+		$this->data->result = $_args->api_callback;
+	}
+
+
+	/**
+	 * view candida
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function view_candida($_args)
 	{
 		$this->data->result = $_args->api_callback;
 	}

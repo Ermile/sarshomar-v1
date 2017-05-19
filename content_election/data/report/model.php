@@ -24,8 +24,11 @@ class model extends \content_election\main\model
 			$result['election'] = $result['election'][0];
 		}
 
-		$result['candida']  = \content_election\lib\candidas::search(null, ['election_id' => $id, 'pagenation' => false, 'sort' => 'family', 'order' => 'asc']);
-		$result['report']   = \content_election\lib\reports::search(null, ['election_id' => $id, 'pagenation' => false, 'sort' => 'id', 'order' => 'asc']);
+		$result['candida']  = \content_election\lib\candidas::search(null,
+			['election_id' => $id, 'pagenation' => false, 'sort' => 'family', 'order' => 'asc']);
+		$result['report']   = \content_election\lib\reports::search(null,
+			['election_id' => $id, 'pagenation' => false, 'sort' => 'id', 'order' => 'asc']);
+
 		return $result;
 	}
 

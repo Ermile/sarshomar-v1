@@ -37,10 +37,13 @@ class model extends \content_election\main\model
 
 			$total = array_column($vote, 'total');
 			$total = array_sum($total);
-
+			if(!$total)
+			{
+				$total = 1;
+			}
 			foreach ($vote as $key => $value)
 			{
-				$vote[$key]['percent'] = @round((intval($value['total']) * 100) / $total, 3);
+				$vote[$key]['percent'] = round((intval($value['total']) * 100) / $total, 3);
 			}
 			$result['result']  = $vote;
 			$senario           = \content_election\lib\results::get_senario($election_id);
@@ -107,13 +110,31 @@ class model extends \content_election\main\model
 
 	}
 
+
 	/**
-	 * { item_description }
+	 * Gets the home.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 *
+	 * @return     <type>  The home.
 	 */
 	public function get_home($_args)
 	{
 		$time_line = \content_election\lib\results::home_page('president', true);
 		return $time_line;
+	}
+
+
+	/**
+	 * Gets the candida.
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function get_candida($_args)
+	{
+		$cat = 'president';
+		$result = \content_election\lib\candidas::get_list_all($cat);
+		return $result;
 	}
 }
 ?>

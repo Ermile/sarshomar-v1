@@ -89,7 +89,7 @@ class candidas
 			// for manual pagenation set the statrt_limit and end limit
 			"start_limit"    => 0,
 			// for manual pagenation set the statrt_limit and end limit
-			"end_limit"      => 10,
+			"end_limit"      => 100,
 			// the the last record inserted to post table
 			"get_last"       => false,
 			// default order by DESC you can change to DESC
@@ -272,6 +272,46 @@ class candidas
 
 			return $result;
 		}
+	}
+
+
+	public static function get_list_all($_cat)
+	{
+		return false;
+		$query =
+		"
+			SELECT
+				candidas.*,
+				results.total,
+				(
+					SELECT ((results.total * 100) / elections.voted)
+					FROM results
+					WHERE results.election_id = elections.id
+					AND results.candida_id = candidas.id
+					AND results.status = 'enable'
+					LIMIT 1
+				) AS `win_present`,
+				((elections.voted * 100) / elections.eligible) AS `work_present`,
+				(
+					SELECT ((results.total * 100) / elections.eligible)
+					FROM results
+					WHERE results.election_id = elections.id
+					AND results.candida_id = candidas.id
+					AND results.status = 'enable'
+					LIMIT 1
+				) AS `win_present_all`,
+			FROM
+				candidas
+			LEFT JOIN elections ON elections.id = candidas.election_id
+			LEFT JOIN results ON results.election_id = elections.id
+			WHERE
+				elections.cat = $_cat AND
+				candidas.status = 'active'
+			";
+		$result = \lib\db::get($query, null, false, 'election');
+		var_dump($result);exit();
+		return $result;
+
 	}
 
 }
