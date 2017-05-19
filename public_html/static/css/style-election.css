@@ -99,8 +99,8 @@ body{color:#333;background-color:#f4f4f4}
 
 #chartdiv{height:300px;width:100%;direction:ltr}
 
-.timeline-box{position:relative;margin-bottom:5rem}
-.timeline-box::before{position:absolute;top:25%;right:0;bottom:0; left:0;width:100%;height:3px;margin:auto;margin-top:0rem;content:'';background-color:#666}
+.timeline-box{position:relative;margin-bottom:5rem;padding:0 7em}
+.timeline-box::before{position:absolute;top:25%;right:0;bottom:0; left:0;width:100%;height:3px;margin:auto;margin-top:0rem;content:'';background-color:#00667a}
 .timeline-box a{text-align:center;color:#333;font-weight:700}
 .timeline-box a .info{margin-top:1rem}
 .timeline-box a .info h6{display:none}
@@ -147,6 +147,7 @@ body{color:#333;background-color:#f4f4f4}
  .top-two .top-two-container .candidate .data{padding:0 1rem}
  .top-two .top-two-container .candidate .data h4{font-size:1.4em}
  .image.round.medium{border:.25em solid #fff}
+ .timeline-box{padding:0 2em}
  .timeline-box a:not(:last-of-type){margin-bottom:4rem}
  .timeline-box::before{top:0;width:3px;height:100%}
  .timeline-box a .info{background-color:#fff;width:90%;margin:0 auto;z-index:7;position:relative;border-radius:3px;box-shadow:0 0 10px 2px #ddd;padding:1rem}
