@@ -9,6 +9,8 @@
 
 
 {%block content%}
+ {% set dlUrl %}{{url.protocol}}://dl.{{url.raw}}{% endset %}
+
  {%if site.currentlang == 'en'%}
   {%set election_title%}{{result.election.en_title}}{%endset%}
  {%else%}
@@ -17,55 +19,59 @@
 
  <div class="box-top">
   {%if site.currentlang == 'en' and result.election.en_title%}
-   <h2>{{result.election.en_title}}</h2>
+   <h1 class="election-title">{%trans "Results of"%} {{result.election.en_title}}</h1>
   {%elseif site.currentlang == 'fa' and result.election.title%}
-   <h2>{{result.election.title}}</h2>
+   <h1 class="election-title">{%trans "Results of"%} {{result.election.title}}</h1>
   {%endif%}
+
   {{block('live')}}
   {{block('winner')}}
   {{block('rivals')}}
   {{block('electionUpdate')}}
  </div>
+
  <div class="container">
   {{block('candidates')}}
   {{block('result')}}
   {{block('province_result')}}
   {{block('city_result')}}
  </div>
-  {{block('time_line')}}
+
+ {{block('time_line')}}
 {%endblock%}
 
 
 
 {%block winner%}
-{%if result.election.status == 'done' and result.election.win%}
- {%for key, value in result.candida%}
- {%if value.id == result.election.win%}
-  {%if site.currentlang == 'en'%}
-  {%set winner%}{{value.en_name}} {{value.en_fame}}{%endset%}
-  {%else%}
-  {%set winner%}{{value.name}} {{value.fame}}{%endset%}
-  {%endif%}
+ {%if result.election.status == 'done' and result.election.win%}
+  {%for key, value in result.candida%}
+   {%if value.id == result.election.win%}
 
-  <div class="container">
-   <div class="top-one">
-    <div class="image round medium">
-     {%if value.win_url%}
-      <img src="{{url.static}}{{value.win_url}}" alt="{{winner}}">
-     {%elseif result.candida[result.election.win - 1]['file_url_2']%}
-      <img src="{{url.static}}{{value.file_url_2}}" alt="{{winner}}">
-     {%else%}
-      <img src="{{url.static}}{{value.file_url}}" alt="{{winner}}">
-     {%endif%}
+    {%if site.currentlang == 'en'%}
+     {%set winner%}{{value.en_name}} {{value.en_fame}}{%endset%}
+    {%else%}
+     {%set winner%}{{value.name}} {{value.fame}}{%endset%}
+    {%endif%}
+
+    <div class="container">
+     <div class="top-one">
+      <div class="image round medium">
+       {%if value.win_url%}
+        <img src="{{dlUrl}}{{value.win_url}}" alt="{{winner}}">
+       {%elseif result.candida[result.election.win - 1]['file_url_2']%}
+        <img src="{{dlUrl}}{{value.file_url_2}}" alt="{{winner}}">
+       {%else%}
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{winner}}">
+       {%endif%}
+      </div>
+      <h2 class="winner-name">{{winner}}</h2>
+      <h2 class="winner-title">{%trans "President-elect of"%} {{election_title}}</h2>
+     </div>
     </div>
-    <h2>{{winner}}</h2>
-    <h3>{%trans "President-elect of"%} {{election_title}}</h3>
-   </div>
-  </div>
 
+   {%endif%}
+  {%endfor%}
  {%endif%}
- {%endfor%}
-{%endif%}
 {%endblock%}
 
 
@@ -84,23 +90,23 @@
      {% if result.rival[0]['file_url'] %}
 
 
-     <div class="image round medium"><img src="{%if result.rival[0]['file_url_2']%}{{url.static}}{{result.rival[0]['file_url_2']}}{%else%}{{url.static}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
+     <div class="image round medium"><img src="{%if result.rival[0]['file_url_2']%}{{dlUrl}}{{result.rival[0]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[0]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[0]['en_name']}} {{result.rival[0]['en_fame']}}{%else%}{{result.rival[0]['name']}} {{result.rival[0]['fame']}}{%endif%}"></div>
      {% endif %}
      <div class="data flex f-column align-center justify-end">
 
       {% if site.currentlang == 'en' %}
        {% if result.rival[0]['en_fame'] %}
-        <h4>{{result.rival[0]['en_fame']}}</h4>
+        <h3>{{result.rival[0]['en_fame']}}</h3>
        {% elseif result.rival[0]['en_family'] %}
-        <h4>{{result.rival[0]['en_family']}}</h4>
+        <h3>{{result.rival[0]['en_family']}}</h3>
        {% else %}
-        <h4>-</h4>
+        <h3>-</h3>
        {% endif %}
       {% else %}
        {% if result.rival[0]['fame'] %}
-        <h4>{{result.rival[0]['fame']}}</h4>
+        <h3>{{result.rival[0]['fame']}}</h3>
        {% else %}
-        <h4>{{result.rival[0]['family']}}</h4>
+        <h3>{{result.rival[0]['family']}}</h3>
        {% endif %}
       {% endif %}
 
@@ -114,17 +120,17 @@
      <div class="data flex f-column align-center justify-end">
       {% if site.currentlang == 'en' %}
        {% if result.rival[1]['en_fame'] %}
-        <h4>{{result.rival[1]['en_fame']}}</h4>
+        <h3>{{result.rival[1]['en_fame']}}</h3>
        {% elseif result.rival[1]['en_family'] %}
-        <h4>{{result.rival[1]['en_family']}}</h4>
+        <h3>{{result.rival[1]['en_family']}}</h3>
        {% else %}
-        <h4>-</h4>
+        <h3>-</h3>
        {% endif %}
       {% else %}
        {% if result.rival[1]['fame'] %}
-        <h4>{{result.rival[1]['fame']}}</h4>
+        <h3>{{result.rival[1]['fame']}}</h3>
        {% else %}
-        <h4>{{result.rival[1]['family']}}</h4>
+        <h3>{{result.rival[1]['family']}}</h3>
        {% endif %}
       {% endif %}
 
@@ -137,7 +143,7 @@
 
 
      {% if result.rival[1]['file_url'] %}
-      <div class="image round medium"><img src="{%if result.rival[1]['file_url_2']%}{{url.static}}{{result.rival[1]['file_url_2']}}{%else%}{{url.static}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
+      <div class="image round medium"><img src="{%if result.rival[1]['file_url_2']%}{{dlUrl}}{{result.rival[1]['file_url_2']}}{%else%}{{dlUrl}}{{result.rival[1]['file_url']}}{%endif%}" alt="{%if site.currentlang == 'en'%}{{result.rival[1]['en_name']}} {{result.rival[1]['en_fame']}}{%else%}{{result.rival[1]['name']}} {{result.rival[1]['fame']}}{%endif%}"></div>
      {% endif %}
     </div>
    </div>
@@ -203,15 +209,17 @@
      <div class="f">
       <div class="c2 s6 all-center">
        <div class="image round low">
-        <img src="{{url.static}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
        {%if value.en_name == ' '%}
        {%else%}
-       <h5 class="first-name">{%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}</h5>
+        <h4 class="first-name">
+         {%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}
+        </h4>
        {%endif%}
-       <h5 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h5>
+       <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h4>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -229,17 +237,17 @@
      <div class="f">
       <div class="c2 s6 all-center">
        <div class="image round low">
-        <img src="{{url.static}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
        {%if value.name == ' '%}
        {%else%}
-        <h5 class="first-name">
+        <h4 class="first-name">
          {%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}
-        </h5>
+        </h4>
        {%endif%}
-       <h5 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h5>
+       <h4 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h4>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -271,17 +279,17 @@
      <div class="f">
       <div class="c2 s6 all-center">
        <div class="image round low">
-        <img src="{{url.static}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.en_name}} {%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
        {%if value.en_name == ' '%}
        {%else%}
-        <h5 class="first-name">
+        <h4 class="first-name">
          {%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}
-        </h5>
+        </h4>
        {%endif%}
-       <h5 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h5>
+       <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h4>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -299,17 +307,17 @@
      <div class="f">
       <div class="c2 s6 all-center">
        <div class="image round low">
-        <img src="{{url.static}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
+        <img src="{{dlUrl}}{{value.file_url}}" alt="{{value.name}} {%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}">
        </div>
       </div>
       <div class="c2 s6 vertical-center">
        {%if value.name == ' '%}
        {%else%}
-        <h5 class="first-name">
+        <h4 class="first-name">
         {%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}
-        </h5>
+        </h4>
        {%endif%}
-       <h5 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h5>
+       <h4 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h4>
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
@@ -397,23 +405,23 @@
     <div class="image round low">
 
     {%if value.win_url%}
-     <img src="{{url.static}}{{value.win_url}}" alt="">
+     <img src="{{dlUrl}}{{value.win_url}}" alt="">
     {%else%}
-     <img src="{{url.static}}images/election/unknown.png" alt='{%trans "Unknown"%}'>
+     <img src="{{dlUrl}}images/election/unknown.png" alt='{%trans "Unknown"%}'>
     {%endif%}
 
     </div>
     <div class="info flex f-column s-row justify-center">
      {%if site.currentlang == 'en'%}
-     <h6>{{value.en_title}}</h6>
-     <span>{{value.en_name}}</span>
-     <span>{{value.en_fame}}</span>
-     <span>{{value.year}}</span>
+     <h3>{{value.en_title}}</h3>
+     <h4>{{value.en_name}}</h4>
+     <h4>{{value.en_fame}}</h4>
+     <h4>{{value.year}}</h4>
      {%else%}
-     <h6>{{value.title}}</h6>
-     <span>{{value.name}}</span>
-     <span>{{value.fame}}</span>
-     <span>{{value.jalali_year|fitNumber}}</span>
+     <h3>{{value.title}}</h3>
+     <h4>{{value.name}}</h4>
+     <h4>{{value.fame}}</h4>
+     <h4>{{value.jalali_year|fitNumber}}</h4>
      {%endif%}
     </div>
    </a>

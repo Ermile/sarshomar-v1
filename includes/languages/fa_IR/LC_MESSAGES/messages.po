@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-05-16 17:59+0430\n"
-"PO-Revision-Date: 2017-05-16 17:59+0430\n"
+"POT-Creation-Date: 2017-05-19 16:49+0430\n"
+"PO-Revision-Date: 2017-05-19 16:49+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -91,6 +91,12 @@ msgstr "خطا"
 msgid "submit"
 msgstr "تایید"
 
+#: saloos/lib/permission.php:80
+#, fuzzy
+#| msgid "Can not access to load this poll"
+msgid "Can not access to it"
+msgstr "دسترسی به این نظرسنجی امکان‌پذیر نیست"
+
 #: saloos/lib/utility.php:280
 msgid ":status password, try another"
 msgstr "کلمه عبور :status، عبارت دیگری را امتحان کنید"
@@ -98,14 +104,14 @@ msgstr "کلمه عبور :status، عبارت دیگری را امتحان کن
 #: saloos/lib/utility.php:332
 #: saloos/saloos-addons/includes/languages/trans_addons.php:216
 #: sarshomar/includes/languages/trans_addons.php:216
-#: sarshomar/includes/languages/trans_twig.php:1754
+#: sarshomar/includes/languages/trans_twig.php:1756
 msgid "year"
 msgstr "سال"
 
 #: saloos/lib/utility.php:333
 #: saloos/saloos-addons/includes/languages/trans_addons.php:215
 #: sarshomar/includes/languages/trans_addons.php:215
-#: sarshomar/includes/languages/trans_twig.php:1937
+#: sarshomar/includes/languages/trans_twig.php:1939
 msgid "month"
 msgstr "ماه"
 
@@ -136,7 +142,7 @@ msgstr "دقیقه"
 #: saloos/lib/utility.php:338
 #: saloos/saloos-addons/includes/languages/trans_addons.php:292
 #: sarshomar/includes/languages/trans_addons.php:295
-#: sarshomar/includes/languages/trans_twig.php:1427
+#: sarshomar/includes/languages/trans_twig.php:1429
 msgid "second"
 msgstr "دوم"
 
@@ -287,77 +293,77 @@ msgid ""
 "already done"
 msgstr "عملیات پرداخت با موفقیت انجام شد و تایید پرداخت تراکنش با موفقیت انجام شد"
 
-#: saloos/lib/utility/permission.php:162
+#: saloos/lib/utility/permission--.php:162
 #: saloos/saloos-addons/includes/languages/trans_addons.php:426
 #: sarshomar/includes/languages/trans_addons.php:429
 msgid "You can't add new"
 msgstr "شما نمی‌توانید اضافه کنید"
 
-#: saloos/lib/utility/permission.php:166
+#: saloos/lib/utility/permission--.php:166
 msgid "You can't edit"
 msgstr "شما اجازه ویرایش ندارید"
 
-#: saloos/lib/utility/permission.php:170
+#: saloos/lib/utility/permission--.php:170
 #: saloos/saloos-addons/includes/languages/trans_addons.php:428
 #: sarshomar/includes/languages/trans_addons.php:431
 msgid "You can't delete"
 msgstr "شما نمی‌توانید حذف کنید"
 
-#: saloos/lib/utility/permission.php:177
+#: saloos/lib/utility/permission--.php:177
 #: saloos/saloos-addons/includes/languages/trans_addons.php:430
 #: sarshomar/includes/languages/trans_addons.php:433
 msgid "Because of your permission"
 msgstr "به‌دلیل سطح‌دسترسی‌ شما"
 
-#: saloos/lib/utility/permission.php:184
+#: saloos/lib/utility/permission--.php:184
 #: saloos/saloos-addons/includes/languages/trans_addons.php:431
 #: sarshomar/includes/languages/trans_addons.php:434
 msgid "You can't access to this page!"
 msgstr "شما نمی‌توانید به این صفحه دسترسی داشته باشید!"
 
-#: saloos/lib/utility/sms.php:32
+#: saloos/lib/utility/sms.php:33
 #: saloos/saloos-addons/includes/languages/trans_addons.php:476
 #: sarshomar/includes/languages/trans_addons.php:479
 msgid "We can't give service to this number"
 msgstr "متاسفانه توانایی ارائه خدمات به این شماره را نداریم"
 
-#: saloos/lib/utility/sms.php:33
+#: saloos/lib/utility/sms.php:34
 msgid "now we only support Iran!"
 msgstr "در حال حاضر ما فقط به شماره های ایران سرویس می دهیم!"
 
-#: saloos/lib/utility/sms.php:41
+#: saloos/lib/utility/sms.php:44 saloos/lib/utility/sms.php:50
 msgid "This sms service is unavailable"
 msgstr "سرویس پیامک قابل دسترس نیست"
 
-#: saloos/lib/utility/sms.php:116
+#: saloos/lib/utility/sms.php:125
 #: saloos/saloos-addons/includes/languages/trans_addons.php:528
 #: sarshomar/includes/languages/trans_addons.php:531
 msgid "Your verification code is"
 msgstr "کد اعتبارسنجی شما"
 
-#: saloos/lib/utility/sms.php:120
+#: saloos/lib/utility/sms.php:129
 msgid "Your recovery code is"
 msgstr "کد بازیابی کلمه عبور شما"
 
-#: saloos/lib/utility/sms.php:124
+#: saloos/lib/utility/sms.php:133
 #: saloos/saloos-addons/includes/languages/trans_addons.php:527
 #: sarshomar/includes/languages/trans_addons.php:530
 msgid "You account is verified successfully"
 msgstr "اعتبارسنجی اکانت شما با موفقیت به انجام رسید"
 
-#: saloos/lib/utility/sms.php:128
+#: saloos/lib/utility/sms.php:137
 #: saloos/saloos-addons/includes/languages/trans_addons.php:529
 #: sarshomar/includes/languages/trans_addons.php:532
 msgid "Your password is changed successfully"
 msgstr "گذرواژه شما با موفقیت تغییر یافت"
 
-#: saloos/lib/utility/sms.php:203
+#: saloos/lib/utility/sms.php:212
 #: saloos/saloos-addons/includes/languages/trans_addons.php:480
 #: sarshomar/includes/languages/trans_addons.php:483
 msgid " to "
 msgstr " به "
 
-#: saloos/lib/utility/sms.php:210
+#: saloos/lib/utility/sms.php:219
 #: saloos/saloos-addons/includes/languages/trans_addons.php:478
 #: sarshomar/includes/languages/trans_addons.php:481
 msgid "Please set apikey and linenumber"
@@ -720,7 +726,13 @@ msgstr "خطا در تایید اعتبار کد!"
 msgid "first of all, you must login to system!"
 msgstr "شما ابتدا باید وارد سیستم شوید!"
 
-#: saloos/saloos-addons/content_cp/home/controller.php:65
+#: saloos/saloos-addons/content_cp/home/controller.php:50
+#, fuzzy
+#| msgid "Can not access to load this poll"
+msgid "Can not access to cp"
+msgstr "دسترسی به این نظرسنجی امکان‌پذیر نیست"
+
+#: saloos/saloos-addons/content_cp/home/controller.php:80
 msgid "Not found!"
 msgstr "یافت نشد"
 
@@ -817,7 +829,7 @@ msgid "Use book to define important parts to use in posts"
 msgstr "کتاب‌های خود را در این بخش وارد کنید"
 
 #: saloos/saloos-addons/content_cp/manifest.php:42
-#: sarshomar/includes/languages/trans_twig.php:1379
+#: sarshomar/includes/languages/trans_twig.php:1381
 msgid "Books"
 msgstr "کتاب‌ها"
 
@@ -1043,7 +1055,7 @@ msgstr "حذف شده"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:12
 #: sarshomar/includes/cls/database/sarshomar/translation.php:8
-#: sarshomar/includes/languages/trans_twig.php:1066
+#: sarshomar/includes/languages/trans_twig.php:1147
 msgid "id"
 msgstr "کد"
 
@@ -1371,7 +1383,7 @@ msgstr "زمان بندی شده"
 #: sarshomar/includes/cls/database/sarshomar/translation.php:132
 #: sarshomar/includes/cls/database/sarshomar/translation.php:244
 #: sarshomar/includes/cls/database/sarshomar/translation.php:286
-#: sarshomar/includes/languages/trans_twig.php:1740
+#: sarshomar/includes/languages/trans_twig.php:1742
 msgid "language"
 msgstr "زبان"
 
@@ -1455,7 +1467,7 @@ msgstr "کاربران"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:121
 #: sarshomar/includes/cls/database/sarshomar/translation.php:379
-#: sarshomar/includes/languages/trans_twig.php:1096
+#: sarshomar/includes/languages/trans_twig.php:1095
 msgid "active"
 msgstr "فعال"
 
@@ -1485,7 +1497,7 @@ msgstr "فیلتر"
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:126
 #: sarshomar/includes/cls/database/sarshomar/translation.php:395
 #: sarshomar/includes/cls/database/sarshomar/translation.php:398
-#: sarshomar/includes/languages/trans_twig.php:1983
+#: sarshomar/includes/languages/trans_twig.php:1985
 msgid "mobile"
 msgstr "موبایل"
 
@@ -1507,13 +1519,13 @@ msgstr "بازدیدکنندگان"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:138
 #: sarshomar/includes/cls/database/sarshomar/translation.php:328
-#: sarshomar/includes/languages/trans_twig.php:1561
+#: sarshomar/includes/languages/trans_twig.php:1563
 msgid "yes"
 msgstr "بله"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:139
 #: sarshomar/includes/cls/database/sarshomar/translation.php:329
-#: sarshomar/includes/languages/trans_twig.php:1670
+#: sarshomar/includes/languages/trans_twig.php:1672
 msgid "no"
 msgstr "خیر"
 
@@ -1530,7 +1542,7 @@ msgid "referer"
 msgstr "ارجاع‌دهنده"
 
 #: saloos/saloos-addons/includes/cls/database/saloos/translation.php:144
-#: sarshomar/includes/languages/trans_twig.php:1422
+#: sarshomar/includes/languages/trans_twig.php:1424
 msgid "robot"
 msgstr "ربات"
 
@@ -2264,7 +2276,7 @@ msgstr "فایل‌ها"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:48
 #: sarshomar/includes/languages/trans_addons.php:48
-#: sarshomar/includes/languages/trans_twig.php:1274
+#: sarshomar/includes/languages/trans_twig.php:1276
 msgid "Tags"
 msgstr "کلیدواژه‌ها"
 
@@ -2406,7 +2418,7 @@ msgstr "قدرت گرفته از"
 #: saloos/saloos-addons/includes/languages/trans_addons.php:78
 #: saloos/saloos-addons/lib/mvc/viewes/constructor.php:40
 #: sarshomar/includes/languages/trans_addons.php:78
-#: sarshomar/includes/languages/trans_twig.php:1400
+#: sarshomar/includes/languages/trans_twig.php:1402
 msgid "Saloos"
 msgstr "سالوس"
 
@@ -2549,7 +2561,7 @@ msgstr "مطمئنید؟ بعد از حذف امکان  بازگشت وجود ن
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create_preview.php:53
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create_select.php:97
 #: sarshomar/includes/languages/trans_addons.php:113
-#: sarshomar/includes/languages/trans_twig.php:1390
+#: sarshomar/includes/languages/trans_twig.php:1392
 msgid "Cancel"
 msgstr "انصراف"
 
@@ -2605,7 +2617,7 @@ msgstr "اجازه یا عدم اجازه به کاربر برای مشاهده 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:125
 #: sarshomar/content_u/add/view.php:20
 #: sarshomar/includes/languages/trans_addons.php:125
-#: sarshomar/includes/languages/trans_twig.php:1191
+#: sarshomar/includes/languages/trans_twig.php:1193
 msgid "Add"
 msgstr "افزودن"
 
@@ -2798,7 +2810,7 @@ msgstr "بعد از همه تغییرات شما باید بر روی این د�
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:162
 #: sarshomar/includes/languages/trans_addons.php:162
-#: sarshomar/includes/languages/trans_twig.php:1099
+#: sarshomar/includes/languages/trans_twig.php:1098
 msgid "Update"
 msgstr "بروزرسانی"
 
@@ -2955,7 +2967,7 @@ msgstr "حذف رکورد"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:202
 #: sarshomar/includes/languages/trans_addons.php:202
-#: sarshomar/includes/languages/trans_twig.php:1343
+#: sarshomar/includes/languages/trans_twig.php:1345
 msgid "Display Name"
 msgstr "نام برای نمایش عمومی"
 
@@ -3161,7 +3173,7 @@ msgstr "بازسازی نقشه سایت"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:254
 #: sarshomar/includes/languages/trans_addons.php:254
-#: sarshomar/includes/languages/trans_twig.php:1796
+#: sarshomar/includes/languages/trans_twig.php:1798
 msgid "social networks"
 msgstr "شبکه‌های اجتماعی"
 
@@ -3374,7 +3386,7 @@ msgstr "ایران"
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:315
 #: sarshomar/includes/languages/trans_addons.php:318
-#: sarshomar/includes/languages/trans_twig.php:1515
+#: sarshomar/includes/languages/trans_twig.php:1517
 msgid "iran"
 msgstr "ایران"
 
@@ -3470,7 +3482,7 @@ msgstr "بازدیدکنندگان"
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:241
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:43
 #: sarshomar/includes/languages/trans_addons.php:339
-#: sarshomar/includes/languages/trans_twig.php:1201
+#: sarshomar/includes/languages/trans_twig.php:1203
 msgid "Profile"
 msgstr "پروفایل"
 
@@ -3631,7 +3643,7 @@ msgstr "بین ۵ تا ۴۰ کاراکتر. در انتخاب کلمه عبور 
 
 #: saloos/saloos-addons/includes/languages/trans_addons.php:392
 #: sarshomar/includes/languages/trans_addons.php:395
-#: sarshomar/includes/languages/trans_twig.php:1888
+#: sarshomar/includes/languages/trans_twig.php:1890
 msgid "book"
 msgstr "کتاب"
 
@@ -4044,7 +4056,7 @@ msgstr "شما روبات هستید"
 msgid "User yes"
 msgstr ""
 
-#: sarshomar/content/enter/model.php:185 sarshomar/content/enter/model.php:347
+#: sarshomar/content/enter/model.php:185 sarshomar/content/enter/model.php:349
 msgid "You are blocked"
 msgstr "شما مسدود شده‌اید"
 
@@ -4059,11 +4071,11 @@ msgstr "نام کاربری اشتباه است"
 msgid "User not found"
 msgstr "کاربر یافت نشد"
 
-#: sarshomar/content/enter/model.php:325
+#: sarshomar/content/enter/model.php:327
 msgid "Please contact to us to help you in enter in site"
 msgstr "لطفا برای رفع مشکل خود برای ورود به سایت با ما تماس بگیرید"
 
-#: sarshomar/content/enter/model.php:352
+#: sarshomar/content/enter/model.php:354
 msgid "Invalid step"
 msgstr "مرحله نامعتبر"
 
@@ -4124,7 +4136,7 @@ msgstr "در صورتی که پین کد را اشتباه وارد کنید، �
 #: sarshomar/content/enter/tools/verify.php:125
 #: sarshomar/content/saloos_tg/sarshomar_bot/controller.php:175
 #: sarshomar/content/saloos_tg/sarshomarbot/controller.php:175
-#: sarshomar/includes/languages/trans_twig.php:1305
+#: sarshomar/includes/languages/trans_twig.php:1307
 msgid "Undefined"
 msgstr "تعریف‌نشده"
 
@@ -4208,7 +4220,7 @@ msgstr "برای پاسخ به سوالات باید وارد سایت شوید"
 
 #: sarshomar/content/poll/model.php:252
 #: sarshomar/content_admin/knowledge/model.php:86
-#: sarshomar/content_api/v1/home/tools/ready.php:171
+#: sarshomar/content_api/v1/home/tools/ready.php:169
 #: sarshomar/content_api/v1/poll/search/tools/search.php:204
 #: sarshomar/content_api/v1/poll/status/tools/set.php:77
 #: sarshomar/content_api/v1/poll/status/tools/set.php:125
@@ -4257,7 +4269,7 @@ msgid "glance"
 msgstr "نگاه مختصر"
 
 #: sarshomar/content/poll/view.php:102
-#: sarshomar/includes/languages/trans_twig.php:1951
+#: sarshomar/includes/languages/trans_twig.php:1953
 msgid "age range"
 msgstr "محدوده سنی"
 
@@ -4268,7 +4280,7 @@ msgid "gender"
 msgstr "جنسیت"
 
 #: sarshomar/content/poll/view.php:104
-#: sarshomar/includes/languages/trans_twig.php:2051
+#: sarshomar/includes/languages/trans_twig.php:2053
 msgid "marital status"
 msgstr "وضعیت تاهل"
 
@@ -4310,7 +4322,7 @@ msgstr "نظرسنجی یافت نشد!"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_cancel.php:34
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/ask.php:191
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_cancel.php:34
-#: sarshomar/includes/languages/trans_twig.php:1098
+#: sarshomar/includes/languages/trans_twig.php:1097
 msgid "Save"
 msgstr "ذخیره"
 
@@ -4363,7 +4375,7 @@ msgstr "با ارسال /cancel در هر مرحله فرآیند ثبت را ل
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:166
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create_emoji.php:93
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create_select.php:107
-#: sarshomar/includes/languages/trans_twig.php:1318
+#: sarshomar/includes/languages/trans_twig.php:1320
 msgid "Create new poll"
 msgstr "ایجاد نظرسنجی جدید"
 
@@ -4388,7 +4400,7 @@ msgstr "میپسندید؟"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/callback_query/create.php:86
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/create.back.php:80
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/create.php:86
-#: sarshomar/includes/languages/trans_twig.php:1209
+#: sarshomar/includes/languages/trans_twig.php:1211
 msgid "Please type your answer"
 msgstr "لطفا پاسخ خود را تایپ کنید"
 
@@ -4453,7 +4465,7 @@ msgstr ""
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:8
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:207
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/menu.php:27
-#: sarshomar/includes/languages/trans_twig.php:1320
+#: sarshomar/includes/languages/trans_twig.php:1322
 msgid "Ask me"
 msgstr "از من بپرس"
 
@@ -4463,7 +4475,7 @@ msgstr "از من بپرس"
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/callback_query/help/commands.php:12
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/handle.php:221
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_dashboard.php:26
-#: sarshomar/includes/languages/trans_twig.php:1319
+#: sarshomar/includes/languages/trans_twig.php:1321
 msgid "My polls"
 msgstr "نظرسنجی‌های من"
 
@@ -5011,7 +5023,7 @@ msgstr "تعداد انسان‌های فعال در سرشمار تا همین 
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:375
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:375
-#: sarshomar/includes/languages/trans_twig.php:1419
+#: sarshomar/includes/languages/trans_twig.php:1421
 msgid "now"
 msgstr "الان"
 
@@ -5024,13 +5036,13 @@ msgstr "ربات"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/inline_query.php:400
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/inline_query.php:400
-#: sarshomar/includes/languages/trans_twig.php:1420
+#: sarshomar/includes/languages/trans_twig.php:1422
 msgid "now_detail"
 msgstr "الان_با_جزئیات"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/inline_keyboard.php:87
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/inline_keyboard.php:87
-#: sarshomar/includes/languages/trans_twig.php:1199
+#: sarshomar/includes/languages/trans_twig.php:1201
 msgid "Answer"
 msgstr "پاسخ"
 
@@ -5084,7 +5096,7 @@ msgstr "پاسخ معتبر:"
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/make_view/message.php:244
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:227
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/make_view/message.php:244
-#: sarshomar/includes/languages/trans_twig.php:1111
+#: sarshomar/includes/languages/trans_twig.php:1109
 msgid "Invalid"
 msgstr "نامعتبر"
 
@@ -5222,7 +5234,7 @@ msgstr "چند گزینه‌ای"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_create.php:176
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/step_create.php:175
-#: sarshomar/includes/languages/trans_twig.php:1239
+#: sarshomar/includes/languages/trans_twig.php:1241
 msgid "Like"
 msgstr "لایک"
 
@@ -5443,12 +5455,12 @@ msgid "Graduate"
 msgstr "فارغ‌التحصیل"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:113
-#: sarshomar/includes/languages/trans_twig.php:1251
+#: sarshomar/includes/languages/trans_twig.php:1253
 msgid "Degree"
 msgstr "مدرک تحصیلی"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:118
-#: sarshomar/includes/languages/trans_twig.php:1252
+#: sarshomar/includes/languages/trans_twig.php:1254
 msgid "Under diploma"
 msgstr "زیردیپلم"
 
@@ -5459,7 +5471,7 @@ msgstr "دیپلم"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:126
 #: sarshomar/includes/cls/database/sarshomar/translation.php:96
-#: sarshomar/includes/languages/trans_twig.php:1253
+#: sarshomar/includes/languages/trans_twig.php:1255
 msgid "2 year college"
 msgstr "فوق دیپلم"
 
@@ -5489,31 +5501,31 @@ msgstr "-۱۳"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:159
 #: sarshomar/includes/cls/database/sarshomar/translation.php:102
-#: sarshomar/includes/languages/trans_twig.php:1256
+#: sarshomar/includes/languages/trans_twig.php:1258
 msgid "14-17"
 msgstr "۱۴-۱۷"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:163
 #: sarshomar/includes/cls/database/sarshomar/translation.php:103
-#: sarshomar/includes/languages/trans_twig.php:1257
+#: sarshomar/includes/languages/trans_twig.php:1259
 msgid "18-24"
 msgstr "۱۸-۲۴"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:167
 #: sarshomar/includes/cls/database/sarshomar/translation.php:104
-#: sarshomar/includes/languages/trans_twig.php:1258
+#: sarshomar/includes/languages/trans_twig.php:1260
 msgid "25-30"
 msgstr "۲۵-۳۰"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:171
 #: sarshomar/includes/cls/database/sarshomar/translation.php:105
-#: sarshomar/includes/languages/trans_twig.php:1259
+#: sarshomar/includes/languages/trans_twig.php:1261
 msgid "31-44"
 msgstr "۳۱-۴۴"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/step_profile.php:175
 #: sarshomar/includes/cls/database/sarshomar/translation.php:106
-#: sarshomar/includes/languages/trans_twig.php:1260
+#: sarshomar/includes/languages/trans_twig.php:1262
 msgid "45-59"
 msgstr "۴۵-۵۹"
 
@@ -5559,7 +5571,7 @@ msgstr "مجموع"
 
 #: sarshomar/content/saloos_tg/sarshomar_bot/commands/utility.php:460
 #: sarshomar/content/saloos_tg/sarshomarbot/commands/utility.php:473
-#: sarshomar/includes/languages/trans_twig.php:1421
+#: sarshomar/includes/languages/trans_twig.php:1423
 msgid "Active"
 msgstr "فعال"
 
@@ -5781,11 +5793,11 @@ msgstr "پارامتر temp_token نامعتبر است"
 msgid "Access denied to the poll (This is not your poll)"
 msgstr "دسترسی به نظرسنجی امکان پذیر نیست(این نظرسنجی شما نیست)"
 
-#: sarshomar/content_api/v1/home/tools/ready.php:146
+#: sarshomar/content_api/v1/home/tools/ready.php:145
 msgid "(The poll is :status)"
 msgstr "(نظرسنجی :status)"
 
-#: sarshomar/content_api/v1/home/tools/ready.php:162
+#: sarshomar/content_api/v1/home/tools/ready.php:160
 msgid "Access denied to load this poll :msg"
 msgstr "دسترسی برای بارگذاری این نظرسنجی امکان پذیر نیست. :msg"
 
@@ -6300,7 +6312,7 @@ msgid "Amount not found"
 msgstr "مقدار یافت نشد"
 
 #: sarshomar/content_u/billing/model.php:227
-#: sarshomar/includes/languages/trans_twig.php:2058
+#: sarshomar/includes/languages/trans_twig.php:2060
 msgid "toman"
 msgstr "تومان"
 
@@ -6362,7 +6374,7 @@ msgid "Remain"
 msgstr "باقی‌مانده"
 
 #: sarshomar/content_u/home/view.php:146
-#: sarshomar/includes/languages/trans_twig.php:1326
+#: sarshomar/includes/languages/trans_twig.php:1328
 msgid "Answered"
 msgstr "پاسخ‌داده‌شده"
 
@@ -6499,7 +6511,7 @@ msgid "The profile data was update"
 msgstr "داده پروفایل آپدیت شد"
 
 #: sarshomar/content_u/security/view.php:9
-#: sarshomar/includes/languages/trans_twig.php:1395
+#: sarshomar/includes/languages/trans_twig.php:1397
 msgid "Security"
 msgstr "امنیتی"
 
@@ -6668,22 +6680,22 @@ msgid "filters"
 msgstr "فیلترها"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:84
-#: sarshomar/includes/lib/utility/stat_polls.php:283
+#: sarshomar/includes/lib/utility/stat_polls.php:307
 msgid "male"
 msgstr "مرد"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:85
-#: sarshomar/includes/lib/utility/stat_polls.php:287
+#: sarshomar/includes/lib/utility/stat_polls.php:311
 msgid "female"
 msgstr "زن"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:86
-#: sarshomar/includes/languages/trans_twig.php:1949
+#: sarshomar/includes/languages/trans_twig.php:1951
 msgid "single"
 msgstr "مجرد"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:87
-#: sarshomar/includes/languages/trans_twig.php:1942
+#: sarshomar/includes/languages/trans_twig.php:1944
 msgid "married"
 msgstr "متاهل"
 
@@ -6692,27 +6704,27 @@ msgid "mid"
 msgstr "متوسط"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:91
-#: sarshomar/includes/languages/trans_twig.php:1571
+#: sarshomar/includes/languages/trans_twig.php:1573
 msgid "illiterate"
 msgstr "بی‌سواد"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:92
-#: sarshomar/includes/languages/trans_twig.php:1683
+#: sarshomar/includes/languages/trans_twig.php:1685
 msgid "undergraduate"
 msgstr "درحال تحصیل"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:93
-#: sarshomar/includes/languages/trans_twig.php:1845
+#: sarshomar/includes/languages/trans_twig.php:1847
 msgid "graduate"
 msgstr "فارغ‌التحصیل"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:94
-#: sarshomar/includes/languages/trans_twig.php:1751
+#: sarshomar/includes/languages/trans_twig.php:1753
 msgid "under diploma"
 msgstr "زیردیپلم"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:95
-#: sarshomar/includes/languages/trans_twig.php:1707
+#: sarshomar/includes/languages/trans_twig.php:1709
 msgid "diploma"
 msgstr "دیپلم"
 
@@ -6725,7 +6737,7 @@ msgid "master"
 msgstr "کارشناسی‌ارشد"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:99
-#: sarshomar/includes/languages/trans_twig.php:1695
+#: sarshomar/includes/languages/trans_twig.php:1697
 msgid "phd"
 msgstr "دکتری"
 
@@ -6740,12 +6752,12 @@ msgid "employee"
 msgstr "کارمند"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:109
-#: sarshomar/includes/languages/trans_twig.php:1576
+#: sarshomar/includes/languages/trans_twig.php:1578
 msgid "unemployed"
 msgstr "بیکار"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:110
-#: sarshomar/includes/languages/trans_twig.php:1549
+#: sarshomar/includes/languages/trans_twig.php:1551
 msgid "retired"
 msgstr "بازنشسته"
 
@@ -6754,7 +6766,7 @@ msgid "unemployee"
 msgstr "بیکار"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:112
-#: sarshomar/includes/languages/trans_twig.php:1936
+#: sarshomar/includes/languages/trans_twig.php:1938
 msgid "owner"
 msgstr "صاحب‌خانه"
 
@@ -6763,7 +6775,7 @@ msgid "tenant"
 msgstr "مستاجر"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:114
-#: sarshomar/includes/languages/trans_twig.php:1570
+#: sarshomar/includes/languages/trans_twig.php:1572
 msgid "homeless"
 msgstr "بی‌خانمان"
 
@@ -6776,7 +6788,7 @@ msgid "internetusage"
 msgstr "میزان استفاده از اینترنت"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:120
-#: sarshomar/includes/languages/trans_twig.php:1978
+#: sarshomar/includes/languages/trans_twig.php:1980
 msgid "degree"
 msgstr "مدرک تحصیلی"
 
@@ -6810,7 +6822,7 @@ msgid "province"
 msgstr "استان"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:128
-#: sarshomar/includes/languages/trans_twig.php:1805
+#: sarshomar/includes/languages/trans_twig.php:1807
 msgid "city"
 msgstr "شهر"
 
@@ -6823,7 +6835,7 @@ msgid "housestatus"
 msgstr "وضعیت منزل"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:131
-#: sarshomar/includes/languages/trans_twig.php:1708
+#: sarshomar/includes/languages/trans_twig.php:1710
 msgid "religion"
 msgstr "مذهب"
 
@@ -6851,7 +6863,7 @@ msgid "site"
 msgstr "سایت"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:185
-#: sarshomar/includes/languages/trans_twig.php:1624
+#: sarshomar/includes/languages/trans_twig.php:1626
 msgid "telegram"
 msgstr "تلگرام"
 
@@ -7070,7 +7082,7 @@ msgid "skip"
 msgstr "ردکردن"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:275
-#: sarshomar/includes/languages/trans_twig.php:1971
+#: sarshomar/includes/languages/trans_twig.php:1973
 msgid "view"
 msgstr "نمایش"
 
@@ -7153,7 +7165,7 @@ msgid "budget"
 msgstr "بودجه"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:346
-#: sarshomar/includes/languages/trans_twig.php:1592
+#: sarshomar/includes/languages/trans_twig.php:1594
 msgid "finished"
 msgstr "پایان یافته"
 
@@ -7250,17 +7262,17 @@ msgid "block"
 msgstr "مسدود شده"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:384
-#: sarshomar/includes/languages/trans_twig.php:1407
+#: sarshomar/includes/languages/trans_twig.php:1409
 msgid "guest"
 msgstr "مهمان"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:385
-#: sarshomar/includes/languages/trans_twig.php:1506
+#: sarshomar/includes/languages/trans_twig.php:1508
 msgid "android"
 msgstr "اندروید"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:386
-#: sarshomar/includes/languages/trans_twig.php:1522
+#: sarshomar/includes/languages/trans_twig.php:1524
 msgid "instagram"
 msgstr "اینستاگرام"
 
@@ -7269,7 +7281,7 @@ msgid "google"
 msgstr "گوگل"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:388
-#: sarshomar/includes/languages/trans_twig.php:1934
+#: sarshomar/includes/languages/trans_twig.php:1936
 msgid "linkedin"
 msgstr "لینکدین"
 
@@ -7278,17 +7290,17 @@ msgid "github"
 msgstr "گیت‌ها"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:390
-#: sarshomar/includes/languages/trans_twig.php:1865
+#: sarshomar/includes/languages/trans_twig.php:1867
 msgid "facebook"
 msgstr "فیسبوک"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:391
-#: sarshomar/includes/languages/trans_twig.php:1634
+#: sarshomar/includes/languages/trans_twig.php:1636
 msgid "twitter"
 msgstr "توییتر"
 
 #: sarshomar/includes/cls/database/sarshomar/translation.php:392
-#: sarshomar/includes/languages/trans_twig.php:1546
+#: sarshomar/includes/languages/trans_twig.php:1548
 msgid "ios"
 msgstr "آی‌اواس"
 
@@ -10876,297 +10888,301 @@ msgstr "پاسخ JSON معتبری نیست"
 msgid "Candida List"
 msgstr "لیست نامزدها"
 
-#: sarshomar/includes/languages/trans_twig.php:1067
+#: sarshomar/includes/languages/trans_twig.php:1066
 msgid "election"
 msgstr "انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1068
+#: sarshomar/includes/languages/trans_twig.php:1067
 msgid "En Name"
 msgstr "نام به انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1069
+#: sarshomar/includes/languages/trans_twig.php:1068
 msgid "Family"
 msgstr "خانواده "
 
-#: sarshomar/includes/languages/trans_twig.php:1070
+#: sarshomar/includes/languages/trans_twig.php:1069
 msgid "En Family"
 msgstr "نام خانوادگی به انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1071
+#: sarshomar/includes/languages/trans_twig.php:1070
 msgid "Father"
 msgstr "پدر"
 
-#: sarshomar/includes/languages/trans_twig.php:1072
+#: sarshomar/includes/languages/trans_twig.php:1071
 msgid "En Father"
 msgstr "پدر به انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1073
+#: sarshomar/includes/languages/trans_twig.php:1072
 msgid "Fame"
 msgstr "شهرت"
 
-#: sarshomar/includes/languages/trans_twig.php:1074
+#: sarshomar/includes/languages/trans_twig.php:1073
 msgid "En Fame"
 msgstr "شهرت به انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1075
+#: sarshomar/includes/languages/trans_twig.php:1074
 msgid "Nationalcode"
 msgstr "کد ملی"
 
-#: sarshomar/includes/languages/trans_twig.php:1076
+#: sarshomar/includes/languages/trans_twig.php:1075
 #, fuzzy
 #| msgid "Publish date"
 msgid "Brith date"
 msgstr "تاریخ انتشار"
 
-#: sarshomar/includes/languages/trans_twig.php:1077
+#: sarshomar/includes/languages/trans_twig.php:1076
 msgid "Election code"
 msgstr "کد انتخاباتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1078
+#: sarshomar/includes/languages/trans_twig.php:1077
 #, fuzzy
 #| msgid "File"
 msgid "File_url"
 msgstr "فایل"
 
-#: sarshomar/includes/languages/trans_twig.php:1079
+#: sarshomar/includes/languages/trans_twig.php:1078
 msgid "File_url_2"
 msgstr "آدرس فایل ۲"
 
-#: sarshomar/includes/languages/trans_twig.php:1080
+#: sarshomar/includes/languages/trans_twig.php:1079
 msgid "Win url"
 msgstr ""
 
-#: sarshomar/includes/languages/trans_twig.php:1081
+#: sarshomar/includes/languages/trans_twig.php:1080
 msgid "Edit candida data"
 msgstr "خطا در اطلاعات نامزد"
 
-#: sarshomar/includes/languages/trans_twig.php:1082
+#: sarshomar/includes/languages/trans_twig.php:1081
 msgid "Add new candida"
 msgstr "افزودن نامزد جدید"
 
-#: sarshomar/includes/languages/trans_twig.php:1083
+#: sarshomar/includes/languages/trans_twig.php:1082
 msgid "election_id"
 msgstr "شناسه‌ی انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1084
+#: sarshomar/includes/languages/trans_twig.php:1083
 msgid "name"
 msgstr "نام"
 
-#: sarshomar/includes/languages/trans_twig.php:1085
+#: sarshomar/includes/languages/trans_twig.php:1084
 msgid "en_name"
 msgstr "نام به انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1086
+#: sarshomar/includes/languages/trans_twig.php:1085
 msgid "family"
 msgstr "خانواده"
 
-#: sarshomar/includes/languages/trans_twig.php:1087
+#: sarshomar/includes/languages/trans_twig.php:1086
 msgid "fame"
 msgstr "شهرت"
 
-#: sarshomar/includes/languages/trans_twig.php:1088
+#: sarshomar/includes/languages/trans_twig.php:1087
 msgid "birthdate"
 msgstr "تاریخ تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1089
+#: sarshomar/includes/languages/trans_twig.php:1088
 msgid "Birth date"
 msgstr "تاریخ تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1090
+#: sarshomar/includes/languages/trans_twig.php:1089
 msgid "nationalcode"
 msgstr "کد ملی"
 
-#: sarshomar/includes/languages/trans_twig.php:1091
+#: sarshomar/includes/languages/trans_twig.php:1090
 msgid "National code"
 msgstr "کد ملی"
 
-#: sarshomar/includes/languages/trans_twig.php:1092
+#: sarshomar/includes/languages/trans_twig.php:1091
 msgid "electioncode"
 msgstr "کد انتخاباتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1093
+#: sarshomar/includes/languages/trans_twig.php:1092
 msgid "file_url"
 msgstr "آدرس فایل"
 
-#: sarshomar/includes/languages/trans_twig.php:1094
+#: sarshomar/includes/languages/trans_twig.php:1093
 msgid "file_url_2"
 msgstr "آدرس فایل ۲"
 
-#: sarshomar/includes/languages/trans_twig.php:1095
+#: sarshomar/includes/languages/trans_twig.php:1094
 msgid "win_url"
 msgstr "آدرس فایل در صورت پیروزی"
 
-#: sarshomar/includes/languages/trans_twig.php:1097
+#: sarshomar/includes/languages/trans_twig.php:1096
 #, fuzzy
 #| msgid "Cancel"
 msgid "cancel"
 msgstr "انصراف"
 
-#: sarshomar/includes/languages/trans_twig.php:1102
+#: sarshomar/includes/languages/trans_twig.php:1101
 msgid "Admin Election"
 msgstr "ادمین انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1103
+#: sarshomar/includes/languages/trans_twig.php:1102
 msgid "Election"
 msgstr "انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1104
+#: sarshomar/includes/languages/trans_twig.php:1103
 msgid "Candida"
 msgstr "نامزد"
 
-#: sarshomar/includes/languages/trans_twig.php:1107
+#: sarshomar/includes/languages/trans_twig.php:1106
 msgid "Election list"
 msgstr "انتخابات به‌روزرسانی شد"
 
-#: sarshomar/includes/languages/trans_twig.php:1108
-msgid "En Title"
-msgstr "عنوان به انگلیسی"
-
-#: sarshomar/includes/languages/trans_twig.php:1109
+#: sarshomar/includes/languages/trans_twig.php:1107
 msgid "Eligible"
 msgstr "واجد شرایط"
 
-#: sarshomar/includes/languages/trans_twig.php:1110
+#: sarshomar/includes/languages/trans_twig.php:1108
 msgid "Voted"
 msgstr "رای داده"
 
-#: sarshomar/includes/languages/trans_twig.php:1112
+#: sarshomar/includes/languages/trans_twig.php:1110
 msgid "Cash"
 msgstr "موجودی"
 
-#: sarshomar/includes/languages/trans_twig.php:1113
+#: sarshomar/includes/languages/trans_twig.php:1111
 msgid "Branchs"
 msgstr "شعب"
 
-#: sarshomar/includes/languages/trans_twig.php:1114
+#: sarshomar/includes/languages/trans_twig.php:1112
 msgid "First vote male count"
 msgstr "تعداد مردان رای اولی"
 
-#: sarshomar/includes/languages/trans_twig.php:1115
+#: sarshomar/includes/languages/trans_twig.php:1113
 msgid "First vote female count"
 msgstr "تعداد زنان رای اولی"
 
-#: sarshomar/includes/languages/trans_twig.php:1116
+#: sarshomar/includes/languages/trans_twig.php:1114
 msgid "Signuped"
 msgstr "ثبت نام کرده"
 
-#: sarshomar/includes/languages/trans_twig.php:1117
+#: sarshomar/includes/languages/trans_twig.php:1115
 msgid "Candida count"
 msgstr "تعداد نامزدها"
 
-#: sarshomar/includes/languages/trans_twig.php:1118
+#: sarshomar/includes/languages/trans_twig.php:1116
 msgid "Start time"
 msgstr "زمان شروع"
 
-#: sarshomar/includes/languages/trans_twig.php:1119
+#: sarshomar/includes/languages/trans_twig.php:1117
 msgid "End_time"
 msgstr "زمان پایان"
 
-#: sarshomar/includes/languages/trans_twig.php:1120
+#: sarshomar/includes/languages/trans_twig.php:1118
 msgid "Election date"
 msgstr "تاریخ انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1121
+#: sarshomar/includes/languages/trans_twig.php:1119
 msgid "Jalali year"
 msgstr "سال جلالی"
 
-#: sarshomar/includes/languages/trans_twig.php:1122
+#: sarshomar/includes/languages/trans_twig.php:1120
 msgid "Year"
 msgstr "سال"
 
-#: sarshomar/includes/languages/trans_twig.php:1123
+#: sarshomar/includes/languages/trans_twig.php:1121
 msgid "En url"
 msgstr "آدرس صفحه‌ی انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1124
+#: sarshomar/includes/languages/trans_twig.php:1122
 msgid "Fa url"
 msgstr "آدرس صفحه‌ی فارسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1125
+#: sarshomar/includes/languages/trans_twig.php:1123
 msgid "Cat"
 msgstr "دسته‌بندی"
 
-#: sarshomar/includes/languages/trans_twig.php:1126
+#: sarshomar/includes/languages/trans_twig.php:1124
 msgid "Win"
 msgstr "برنده"
 
-#: sarshomar/includes/languages/trans_twig.php:1127
+#: sarshomar/includes/languages/trans_twig.php:1125
 msgid "Edit election data"
 msgstr "ویرایش اطلاعات انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1128
+#: sarshomar/includes/languages/trans_twig.php:1126
 msgid "Add new election"
 msgstr "افزودن انتخابات جدید"
 
-#: sarshomar/includes/languages/trans_twig.php:1129
+#: sarshomar/includes/languages/trans_twig.php:1127
+msgid "En Title"
+msgstr "عنوان به انگلیسی"
+
+#: sarshomar/includes/languages/trans_twig.php:1128
 #, fuzzy
 #| msgid "Cash"
 msgid "Cashs"
 msgstr "موجودی"
 
-#: sarshomar/includes/languages/trans_twig.php:1130
+#: sarshomar/includes/languages/trans_twig.php:1129
 msgid "First vote male"
 msgstr "مردان رای اولی"
 
-#: sarshomar/includes/languages/trans_twig.php:1131
+#: sarshomar/includes/languages/trans_twig.php:1130
 msgid "First vote female"
 msgstr "زنان رای اولی"
 
-#: sarshomar/includes/languages/trans_twig.php:1132
+#: sarshomar/includes/languages/trans_twig.php:1131
 #, fuzzy
 #| msgid "End Time"
 msgid "End time"
 msgstr "زمان پایان"
 
-#: sarshomar/includes/languages/trans_twig.php:1133
+#: sarshomar/includes/languages/trans_twig.php:1132
 msgid "running"
 msgstr "درحال‌اجرا"
 
-#: sarshomar/includes/languages/trans_twig.php:1134
+#: sarshomar/includes/languages/trans_twig.php:1133
 msgid "done"
 msgstr "پایان‌یافته"
 
-#: sarshomar/includes/languages/trans_twig.php:1137
+#: sarshomar/includes/languages/trans_twig.php:1136
 msgid "Election List"
 msgstr "لیست انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1138
-msgid "add en_url"
-msgstr ""
-
-#: sarshomar/includes/languages/trans_twig.php:1139
-msgid "add fa_url"
-msgstr ""
-
-#: sarshomar/includes/languages/trans_twig.php:1140
+#: sarshomar/includes/languages/trans_twig.php:1137
 #, fuzzy
 #| msgid "Hidden result"
 msgid "add result"
 msgstr "مخفی‌سازی نتایج"
 
-#: sarshomar/includes/languages/trans_twig.php:1141
+#: sarshomar/includes/languages/trans_twig.php:1138
 #, fuzzy
 #| msgid "Hidden result"
 msgid "add city result"
 msgstr "مخفی‌سازی نتایج"
 
-#: sarshomar/includes/languages/trans_twig.php:1142
+#: sarshomar/includes/languages/trans_twig.php:1139
+#, fuzzy
+#| msgid "End"
+msgid "En"
+msgstr "پایان"
+
+#: sarshomar/includes/languages/trans_twig.php:1140
+#, fuzzy
+#| msgid "Fax"
+msgid "Fa"
+msgstr "فکس"
+
+#: sarshomar/includes/languages/trans_twig.php:1141
 #, fuzzy
 #| msgid "report"
 msgid "Add report"
 msgstr "گزارش"
 
-#: sarshomar/includes/languages/trans_twig.php:1143
+#: sarshomar/includes/languages/trans_twig.php:1142
 #, fuzzy
 #| msgid "Add poll"
 msgid "Add place"
 msgstr "افزودن نظرسنجی"
 
-#: sarshomar/includes/languages/trans_twig.php:1144
+#: sarshomar/includes/languages/trans_twig.php:1143
 msgid "Running Election"
 msgstr "انتخابات جاری"
 
-#: sarshomar/includes/languages/trans_twig.php:1147
+#: sarshomar/includes/languages/trans_twig.php:1146
 #, fuzzy
 #| msgid "Report"
 msgid "Report list"
@@ -11231,502 +11247,512 @@ msgid "father"
 msgstr "پدر"
 
 #: sarshomar/includes/languages/trans_twig.php:1169
-msgid "President-elect of"
-msgstr "رئیس‌جمهور منتخب"
+msgid "Results of"
+msgstr "نتایج"
 
 #: sarshomar/includes/languages/trans_twig.php:1170
-msgid "Live Converage"
-msgstr "پوشش زنده"
+msgid "President-elect of"
+msgstr "رئیس‌جمهور منتخب"
 
 #: sarshomar/includes/languages/trans_twig.php:1171
 msgid "Last Update"
 msgstr "آخرین به‌روزرسانی"
 
 #: sarshomar/includes/languages/trans_twig.php:1172
+msgid "Live"
+msgstr ""
+
+#: sarshomar/includes/languages/trans_twig.php:1173
 msgid "Candidates Votes on Provinces"
 msgstr "آراء نامزدها در استان‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1173
+#: sarshomar/includes/languages/trans_twig.php:1174
 msgid "Candidates Votes on Cities"
 msgstr "آراء نامزد‌ها در شهرها"
 
-#: sarshomar/includes/languages/trans_twig.php:1174
+#: sarshomar/includes/languages/trans_twig.php:1175
 msgid "City"
 msgstr "شهر"
 
-#: sarshomar/includes/languages/trans_twig.php:1179
+#: sarshomar/includes/languages/trans_twig.php:1176
+#, fuzzy
+#| msgid "unknown"
+msgid "Unknown"
+msgstr "نامشخص"
+
+#: sarshomar/includes/languages/trans_twig.php:1181
 msgid "Admin Dashboard"
 msgstr "داشبورد ادمین"
 
-#: sarshomar/includes/languages/trans_twig.php:1180
+#: sarshomar/includes/languages/trans_twig.php:1182
 msgid "Add Data"
 msgstr "افزودن داده"
 
-#: sarshomar/includes/languages/trans_twig.php:1181
+#: sarshomar/includes/languages/trans_twig.php:1183
 msgid "View Election"
 msgstr "مشاهده‌ی انتخابات"
 
-#: sarshomar/includes/languages/trans_twig.php:1184
+#: sarshomar/includes/languages/trans_twig.php:1186
 msgid "Synced"
 msgstr "همگام‌سازی شده"
 
-#: sarshomar/includes/languages/trans_twig.php:1185
+#: sarshomar/includes/languages/trans_twig.php:1187
 msgid "Syncing"
 msgstr "در حال همگام‌سازی"
 
-#: sarshomar/includes/languages/trans_twig.php:1186
+#: sarshomar/includes/languages/trans_twig.php:1188
 msgid "Add Poll"
 msgstr "افزودن نظرسنجی"
 
-#: sarshomar/includes/languages/trans_twig.php:1187
+#: sarshomar/includes/languages/trans_twig.php:1189
 msgid "Save it"
 msgstr "ذخیره کن"
 
-#: sarshomar/includes/languages/trans_twig.php:1188
+#: sarshomar/includes/languages/trans_twig.php:1190
 msgid "Next Step"
 msgstr "مرحله بعد"
 
-#: sarshomar/includes/languages/trans_twig.php:1192
+#: sarshomar/includes/languages/trans_twig.php:1194
 msgid "Show my poll"
 msgstr "نمایش نظرسنجی من"
 
-#: sarshomar/includes/languages/trans_twig.php:1195
+#: sarshomar/includes/languages/trans_twig.php:1197
 msgid "Multiple Choice"
 msgstr "چند گزینه­ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1196
+#: sarshomar/includes/languages/trans_twig.php:1198
 msgid "Range / Star"
 msgstr "محدوده یا ستاره‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1197
+#: sarshomar/includes/languages/trans_twig.php:1199
 msgid "Title of question"
 msgstr "عنوان سوال"
 
-#: sarshomar/includes/languages/trans_twig.php:1198
+#: sarshomar/includes/languages/trans_twig.php:1200
 msgid "Score"
 msgstr "امتیاز"
 
-#: sarshomar/includes/languages/trans_twig.php:1200
+#: sarshomar/includes/languages/trans_twig.php:1202
 msgid "text given from user"
 msgstr "متن دریافتی از کاربر"
 
-#: sarshomar/includes/languages/trans_twig.php:1202
+#: sarshomar/includes/languages/trans_twig.php:1204
 msgid "Search in Profiles"
 msgstr "جستجو در پروفایل‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1203
+#: sarshomar/includes/languages/trans_twig.php:1205
 msgid "Options has score"
 msgstr "گزینه‌های داری امتیاز"
 
-#: sarshomar/includes/languages/trans_twig.php:1204
+#: sarshomar/includes/languages/trans_twig.php:1206
 msgid "Advance score"
 msgstr "امتیازدهی تخصصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1205
+#: sarshomar/includes/languages/trans_twig.php:1207
 msgid "Allow user to sort answers"
 msgstr "به کاربران اجازه چینش پاسخ‌ها را بده"
 
-#: sarshomar/includes/languages/trans_twig.php:1206
+#: sarshomar/includes/languages/trans_twig.php:1208
 msgid "One Choice"
 msgstr "تک‌گزینه‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1207
+#: sarshomar/includes/languages/trans_twig.php:1209
 msgid "Multi Choice"
 msgstr "چندگزینه‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1208
+#: sarshomar/includes/languages/trans_twig.php:1210
 msgid "Ordering"
 msgstr "مرتب‌سازی"
 
-#: sarshomar/includes/languages/trans_twig.php:1210
+#: sarshomar/includes/languages/trans_twig.php:1212
 msgid "Allow to type other answer"
 msgstr "اجازه به تایپ گزینه سایر"
 
-#: sarshomar/includes/languages/trans_twig.php:1211
+#: sarshomar/includes/languages/trans_twig.php:1213
 msgid "Branding"
 msgstr "برندینگ"
 
-#: sarshomar/includes/languages/trans_twig.php:1212
+#: sarshomar/includes/languages/trans_twig.php:1214
 msgid "URL"
 msgstr "نشانی اینترنتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1213
+#: sarshomar/includes/languages/trans_twig.php:1215
 msgid "Choice Range"
 msgstr "محدوده انتخاب"
 
-#: sarshomar/includes/languages/trans_twig.php:1214
+#: sarshomar/includes/languages/trans_twig.php:1216
 msgid "Randomize sort options"
 msgstr "مرتب‌سازی تصادفی گزینه‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1215
+#: sarshomar/includes/languages/trans_twig.php:1217
 msgid "Hidden result"
 msgstr "مخفی‌سازی نتایج"
 
-#: sarshomar/includes/languages/trans_twig.php:1216
+#: sarshomar/includes/languages/trans_twig.php:1218
 msgid "Has correct option"
 msgstr "دارای پاسخ صحیح"
 
-#: sarshomar/includes/languages/trans_twig.php:1217
+#: sarshomar/includes/languages/trans_twig.php:1219
 msgid "Time"
 msgstr "زمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1218
+#: sarshomar/includes/languages/trans_twig.php:1220
 msgid "Text Format"
 msgstr "نوع متن"
 
-#: sarshomar/includes/languages/trans_twig.php:1219
+#: sarshomar/includes/languages/trans_twig.php:1221
 msgid "Any Text"
 msgstr "هر متنی"
 
-#: sarshomar/includes/languages/trans_twig.php:1220
+#: sarshomar/includes/languages/trans_twig.php:1222
 msgid "Phone Number"
 msgstr "شماره تلفن"
 
-#: sarshomar/includes/languages/trans_twig.php:1221
+#: sarshomar/includes/languages/trans_twig.php:1223
 msgid "Website"
 msgstr "وب‌سایت"
 
-#: sarshomar/includes/languages/trans_twig.php:1222
+#: sarshomar/includes/languages/trans_twig.php:1224
 msgid "Custom"
 msgstr "سفارشی"
 
-#: sarshomar/includes/languages/trans_twig.php:1223
+#: sarshomar/includes/languages/trans_twig.php:1225
 msgid "Regular"
 msgstr "رگولار"
 
-#: sarshomar/includes/languages/trans_twig.php:1224
+#: sarshomar/includes/languages/trans_twig.php:1226
 msgid "Something"
 msgstr "چیزی"
 
-#: sarshomar/includes/languages/trans_twig.php:1225
+#: sarshomar/includes/languages/trans_twig.php:1227
 msgid "File Format"
 msgstr "نوع فایل"
 
-#: sarshomar/includes/languages/trans_twig.php:1226
+#: sarshomar/includes/languages/trans_twig.php:1228
 msgid "Any File"
 msgstr "هر فایلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1227
+#: sarshomar/includes/languages/trans_twig.php:1229
 msgid "Document"
 msgstr "سند متنی"
 
-#: sarshomar/includes/languages/trans_twig.php:1228
+#: sarshomar/includes/languages/trans_twig.php:1230
 msgid "Photo"
 msgstr "عکس"
 
-#: sarshomar/includes/languages/trans_twig.php:1229
+#: sarshomar/includes/languages/trans_twig.php:1231
 msgid "Video"
 msgstr "ویدیو"
 
-#: sarshomar/includes/languages/trans_twig.php:1230
+#: sarshomar/includes/languages/trans_twig.php:1232
 msgid "Audio"
 msgstr "صوتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1231
+#: sarshomar/includes/languages/trans_twig.php:1233
 msgid "PDF"
 msgstr "پی‌دی‌اف"
 
-#: sarshomar/includes/languages/trans_twig.php:1232
+#: sarshomar/includes/languages/trans_twig.php:1234
 msgid "Word"
 msgstr "ورد"
 
-#: sarshomar/includes/languages/trans_twig.php:1233
+#: sarshomar/includes/languages/trans_twig.php:1235
 msgid "Excel"
 msgstr "اکسل"
 
-#: sarshomar/includes/languages/trans_twig.php:1234
+#: sarshomar/includes/languages/trans_twig.php:1236
 msgid "PowerPoint"
 msgstr "پاورپوینت"
 
-#: sarshomar/includes/languages/trans_twig.php:1235
+#: sarshomar/includes/languages/trans_twig.php:1237
 msgid "Text"
 msgstr "متن ساده"
 
-#: sarshomar/includes/languages/trans_twig.php:1236
+#: sarshomar/includes/languages/trans_twig.php:1238
 msgid "File Size"
 msgstr "حجم فایل"
 
-#: sarshomar/includes/languages/trans_twig.php:1237
+#: sarshomar/includes/languages/trans_twig.php:1239
 msgid "Range Number"
 msgstr "محدوده اعداد"
 
-#: sarshomar/includes/languages/trans_twig.php:1238
+#: sarshomar/includes/languages/trans_twig.php:1240
 msgid "Star"
 msgstr "ستاره"
 
-#: sarshomar/includes/languages/trans_twig.php:1240
+#: sarshomar/includes/languages/trans_twig.php:1242
 msgid "Number Size"
 msgstr "اندازه اعداد"
 
-#: sarshomar/includes/languages/trans_twig.php:1241
+#: sarshomar/includes/languages/trans_twig.php:1243
 msgid "Star size"
 msgstr "تعداد ستاره"
 
-#: sarshomar/includes/languages/trans_twig.php:1242
+#: sarshomar/includes/languages/trans_twig.php:1244
 msgid "Fit to best size"
 msgstr "مناسب برای بهترین اندازه"
 
-#: sarshomar/includes/languages/trans_twig.php:1243
+#: sarshomar/includes/languages/trans_twig.php:1245
 msgid "Remove File"
 msgstr "حذف فایل"
 
-#: sarshomar/includes/languages/trans_twig.php:1244
+#: sarshomar/includes/languages/trans_twig.php:1246
 msgid "Apply"
 msgstr "اعمال‌کردن"
 
-#: sarshomar/includes/languages/trans_twig.php:1247
+#: sarshomar/includes/languages/trans_twig.php:1249
 msgid "Private"
 msgstr "خصوصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1248
+#: sarshomar/includes/languages/trans_twig.php:1250
 msgid "Education"
 msgstr "تحصیلات"
 
-#: sarshomar/includes/languages/trans_twig.php:1249
+#: sarshomar/includes/languages/trans_twig.php:1251
 msgid "Marrital"
 msgstr "وضعیت تاهل"
 
-#: sarshomar/includes/languages/trans_twig.php:1250
+#: sarshomar/includes/languages/trans_twig.php:1252
 msgid "Employed"
 msgstr "شاغل"
 
-#: sarshomar/includes/languages/trans_twig.php:1254
+#: sarshomar/includes/languages/trans_twig.php:1256
 msgid "Age Range"
 msgstr "محدوده سنی"
 
-#: sarshomar/includes/languages/trans_twig.php:1255
+#: sarshomar/includes/languages/trans_twig.php:1257
 msgid "Under 13"
 msgstr "-۱۳"
 
-#: sarshomar/includes/languages/trans_twig.php:1261
+#: sarshomar/includes/languages/trans_twig.php:1263
 msgid "Above 60"
 msgstr "+۶۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1262
+#: sarshomar/includes/languages/trans_twig.php:1264
 msgid "Number of people"
 msgstr "تعداد افراد"
 
-#: sarshomar/includes/languages/trans_twig.php:1263
+#: sarshomar/includes/languages/trans_twig.php:1265
 msgid "Passwords"
 msgstr "کلمه‌های عبور"
 
-#: sarshomar/includes/languages/trans_twig.php:1264
+#: sarshomar/includes/languages/trans_twig.php:1266
 msgid "Members"
 msgstr "اعضا"
 
-#: sarshomar/includes/languages/trans_twig.php:1265
+#: sarshomar/includes/languages/trans_twig.php:1267
 msgid "Poll password"
 msgstr "کلمه‌ی عبور نظرسنجی"
 
-#: sarshomar/includes/languages/trans_twig.php:1266
+#: sarshomar/includes/languages/trans_twig.php:1268
 msgid "members"
 msgstr "اعضا"
 
-#: sarshomar/includes/languages/trans_twig.php:1267
+#: sarshomar/includes/languages/trans_twig.php:1269
 msgid "Send by SMS"
 msgstr "ارسال با پیامک"
 
-#: sarshomar/includes/languages/trans_twig.php:1268
+#: sarshomar/includes/languages/trans_twig.php:1270
 msgid "SMS Text"
 msgstr "متن پیامک"
 
-#: sarshomar/includes/languages/trans_twig.php:1271
+#: sarshomar/includes/languages/trans_twig.php:1273
 msgid "Sub Category"
 msgstr "شاخه"
 
-#: sarshomar/includes/languages/trans_twig.php:1272
+#: sarshomar/includes/languages/trans_twig.php:1274
 msgid "Child Category"
 msgstr "زیرشاخه"
 
-#: sarshomar/includes/languages/trans_twig.php:1273
+#: sarshomar/includes/languages/trans_twig.php:1275
 msgid "Article"
 msgstr "مقاله"
 
-#: sarshomar/includes/languages/trans_twig.php:1275
+#: sarshomar/includes/languages/trans_twig.php:1277
 msgid "Prize to every one"
 msgstr "جایزه برای هر نفر"
 
-#: sarshomar/includes/languages/trans_twig.php:1276
+#: sarshomar/includes/languages/trans_twig.php:1278
 #, fuzzy
 #| msgid "glasses"
 msgid "Class"
 msgstr "عینک"
 
-#: sarshomar/includes/languages/trans_twig.php:1277
+#: sarshomar/includes/languages/trans_twig.php:1279
 #, fuzzy
 #| msgid "(The poll is :status)"
 msgid "The poll class"
 msgstr "(نظرسنجی :status)"
 
-#: sarshomar/includes/languages/trans_twig.php:1278
+#: sarshomar/includes/languages/trans_twig.php:1280
 msgid "Hide Results"
 msgstr "مخفی‌سازی نتایج"
 
-#: sarshomar/includes/languages/trans_twig.php:1279
+#: sarshomar/includes/languages/trans_twig.php:1281
 msgid "Show Results"
 msgstr "نمایش نتایج"
 
-#: sarshomar/includes/languages/trans_twig.php:1280
+#: sarshomar/includes/languages/trans_twig.php:1282
 msgid "Price"
 msgstr "قیمت"
 
-#: sarshomar/includes/languages/trans_twig.php:1281
+#: sarshomar/includes/languages/trans_twig.php:1283
 msgid "Toman"
 msgstr "تومان"
 
-#: sarshomar/includes/languages/trans_twig.php:1282
+#: sarshomar/includes/languages/trans_twig.php:1284
 msgid "Register Question"
 msgstr "ثبت سوال"
 
-#: sarshomar/includes/languages/trans_twig.php:1283
+#: sarshomar/includes/languages/trans_twig.php:1285
 msgid "Society"
 msgstr "جامعه"
 
-#: sarshomar/includes/languages/trans_twig.php:1284
+#: sarshomar/includes/languages/trans_twig.php:1286
 msgid "Total Price"
 msgstr "قیمت کل"
 
-#: sarshomar/includes/languages/trans_twig.php:1285
+#: sarshomar/includes/languages/trans_twig.php:1287
 msgid "Balance"
 msgstr "اعتبار"
 
-#: sarshomar/includes/languages/trans_twig.php:1286
+#: sarshomar/includes/languages/trans_twig.php:1288
 msgid "Charge Account"
 msgstr "شارژ حساب"
 
-#: sarshomar/includes/languages/trans_twig.php:1287
+#: sarshomar/includes/languages/trans_twig.php:1289
 msgid "Publish it"
 msgstr "منتشر کن"
 
-#: sarshomar/includes/languages/trans_twig.php:1288
+#: sarshomar/includes/languages/trans_twig.php:1290
 msgid "Draft it"
 msgstr "پیش‌نویس کن"
 
-#: sarshomar/includes/languages/trans_twig.php:1293
+#: sarshomar/includes/languages/trans_twig.php:1295
 msgid "$"
 msgstr "$"
 
-#: sarshomar/includes/languages/trans_twig.php:1294
+#: sarshomar/includes/languages/trans_twig.php:1296
 msgid "Your Money"
 msgstr "پول شما"
 
-#: sarshomar/includes/languages/trans_twig.php:1295
+#: sarshomar/includes/languages/trans_twig.php:1297
 msgid "Your Gift"
 msgstr "هدیه شما"
 
-#: sarshomar/includes/languages/trans_twig.php:1296
+#: sarshomar/includes/languages/trans_twig.php:1298
 msgid "Your Credit"
 msgstr "اعتبار شما"
 
-#: sarshomar/includes/languages/trans_twig.php:1297
+#: sarshomar/includes/languages/trans_twig.php:1299
 msgid "Charge your account"
 msgstr "شارژ حساب کاربری"
 
-#: sarshomar/includes/languages/trans_twig.php:1298
+#: sarshomar/includes/languages/trans_twig.php:1300
 msgid "Choose a gateway and enter an amount to charge your account"
 msgstr "درگاه پرداخت خود را انتخاب کنید و میزان شارژ حساب کاربری خود را وارد کنید"
 
-#: sarshomar/includes/languages/trans_twig.php:1299
+#: sarshomar/includes/languages/trans_twig.php:1301
 msgid "Amount"
 msgstr "مقدار"
 
-#: sarshomar/includes/languages/trans_twig.php:1300
+#: sarshomar/includes/languages/trans_twig.php:1302
 msgid "Confirm"
 msgstr "تایید"
 
-#: sarshomar/includes/languages/trans_twig.php:1301
+#: sarshomar/includes/languages/trans_twig.php:1303
 msgid "Promo code"
 msgstr "کد تخفیف"
 
-#: sarshomar/includes/languages/trans_twig.php:1302
+#: sarshomar/includes/languages/trans_twig.php:1304
 msgid "If you have a promo code, please enter it below to receive your credit."
 msgstr "اگر کد تخفیف دارید، برای دریافت اعتبار در کادر زیر وارد کنید."
 
-#: sarshomar/includes/languages/trans_twig.php:1306
+#: sarshomar/includes/languages/trans_twig.php:1308
 msgid "Your profile is not complete!"
 msgstr "نمایه شما کامل نیست!"
 
-#: sarshomar/includes/languages/trans_twig.php:1307
+#: sarshomar/includes/languages/trans_twig.php:1309
 msgid "Please complete your profile"
 msgstr "لطفا حساب کاربری خود را تکمیل کنید"
 
-#: sarshomar/includes/languages/trans_twig.php:1308
+#: sarshomar/includes/languages/trans_twig.php:1310
 msgid "Thank you for completing profile"
 msgstr "تشکر برای تکمیل نمایه"
 
-#: sarshomar/includes/languages/trans_twig.php:1309
+#: sarshomar/includes/languages/trans_twig.php:1311
 msgid "Default language"
 msgstr "زبان پیش‌فرض"
 
-#: sarshomar/includes/languages/trans_twig.php:1310
+#: sarshomar/includes/languages/trans_twig.php:1312
 msgid "Set default language"
 msgstr "تنظیم زبان پیش‌فرض"
 
-#: sarshomar/includes/languages/trans_twig.php:1311
+#: sarshomar/includes/languages/trans_twig.php:1313
 msgid "Delete Account"
 msgstr "حذف حساب‌کاربری"
 
-#: sarshomar/includes/languages/trans_twig.php:1312
+#: sarshomar/includes/languages/trans_twig.php:1314
 msgid "Sync with Instagram"
 msgstr "همگام‌سازی با اینستاگرام"
 
-#: sarshomar/includes/languages/trans_twig.php:1313
+#: sarshomar/includes/languages/trans_twig.php:1315
 msgid "Referred People"
 msgstr "افراد معرفی‌شده"
 
-#: sarshomar/includes/languages/trans_twig.php:1314
+#: sarshomar/includes/languages/trans_twig.php:1316
 msgid "None"
 msgstr "هیچ"
 
-#: sarshomar/includes/languages/trans_twig.php:1315
+#: sarshomar/includes/languages/trans_twig.php:1317
 msgid "Published Polls"
 msgstr "نظرسنجی‌های منتشر‌شده"
 
-#: sarshomar/includes/languages/trans_twig.php:1316
+#: sarshomar/includes/languages/trans_twig.php:1318
 msgid "Likes"
 msgstr "پسندها"
 
-#: sarshomar/includes/languages/trans_twig.php:1317
+#: sarshomar/includes/languages/trans_twig.php:1319
 msgid "Activities Report"
 msgstr "گزارش فعالیت‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1321
+#: sarshomar/includes/languages/trans_twig.php:1323
 msgid "Credit"
 msgstr "اعتبار"
 
-#: sarshomar/includes/languages/trans_twig.php:1322
+#: sarshomar/includes/languages/trans_twig.php:1324
 msgid "Recent Activities"
 msgstr "فعالیت‌های اخیر"
 
-#: sarshomar/includes/languages/trans_twig.php:1323
+#: sarshomar/includes/languages/trans_twig.php:1325
 msgid "You've had no activities yet"
 msgstr "شما تاکنون فعالیتی نداشته‌اید"
 
-#: sarshomar/includes/languages/trans_twig.php:1324
+#: sarshomar/includes/languages/trans_twig.php:1326
 msgid "Question Answered"
 msgstr "سوالات پاسخ‌داده‌شده"
 
-#: sarshomar/includes/languages/trans_twig.php:1325
+#: sarshomar/includes/languages/trans_twig.php:1327
 msgid "Remained"
 msgstr "باقی‌مانده"
 
-#: sarshomar/includes/languages/trans_twig.php:1331
+#: sarshomar/includes/languages/trans_twig.php:1333
 msgid "Old PIN"
 msgstr "پین قدیمی"
 
-#: sarshomar/includes/languages/trans_twig.php:1332
+#: sarshomar/includes/languages/trans_twig.php:1334
 msgid "New PIN"
 msgstr "پین جدید"
 
-#: sarshomar/includes/languages/trans_twig.php:1333
+#: sarshomar/includes/languages/trans_twig.php:1335
 msgid "Set PIN"
 msgstr "تنظیم پین"
 
-#: sarshomar/includes/languages/trans_twig.php:1334
+#: sarshomar/includes/languages/trans_twig.php:1336
 msgid "Connect another account"
 msgstr "اتصال به یک حساب کاربری دیگر"
 
-#: sarshomar/includes/languages/trans_twig.php:1335
+#: sarshomar/includes/languages/trans_twig.php:1337
 msgid ""
 "Connect to your Twitter and Github accounts with Sarshomar. We only use this "
 "information to verify your account. We'll never spam you, post on your behalf or "
@@ -11736,2683 +11762,2683 @@ msgstr ""
 "برای اعتبارسنجی شما استفاده می‌کنیم. ما هیچ‌گاه کارهای نادرستی مثل ارسال هرزنامه یا "
 "انتشار مطلب از طرف شما را انجام نخواهیم داد."
 
-#: sarshomar/includes/languages/trans_twig.php:1336
+#: sarshomar/includes/languages/trans_twig.php:1338
 msgid "Personal"
 msgstr "شخصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1337
+#: sarshomar/includes/languages/trans_twig.php:1339
 msgid "Job"
 msgstr "شغل"
 
-#: sarshomar/includes/languages/trans_twig.php:1338
+#: sarshomar/includes/languages/trans_twig.php:1340
 msgid "Location"
 msgstr "مکان"
 
-#: sarshomar/includes/languages/trans_twig.php:1339
+#: sarshomar/includes/languages/trans_twig.php:1341
 msgid "Favorites"
 msgstr "علاقمندی‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1340
+#: sarshomar/includes/languages/trans_twig.php:1342
 msgid "Profile Photo"
 msgstr "تصویر پروفایل"
 
-#: sarshomar/includes/languages/trans_twig.php:1341
+#: sarshomar/includes/languages/trans_twig.php:1343
 msgid "First Name"
 msgstr "نام"
 
-#: sarshomar/includes/languages/trans_twig.php:1342
+#: sarshomar/includes/languages/trans_twig.php:1344
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: sarshomar/includes/languages/trans_twig.php:1344
+#: sarshomar/includes/languages/trans_twig.php:1346
 msgid "Birth Year"
 msgstr "سال تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1345
+#: sarshomar/includes/languages/trans_twig.php:1347
 msgid "Birth Month"
 msgstr "ماه تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1346
+#: sarshomar/includes/languages/trans_twig.php:1348
 msgid "Birthday"
 msgstr "تاریخ تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1347
+#: sarshomar/includes/languages/trans_twig.php:1349
 msgid "UI Language"
 msgstr "زبان رابط کاربری"
 
-#: sarshomar/includes/languages/trans_twig.php:1348
+#: sarshomar/includes/languages/trans_twig.php:1350
 msgid "Please Select One Item"
 msgstr "لطفا یک گزینه را انتخاب کنید"
 
-#: sarshomar/includes/languages/trans_twig.php:1349
+#: sarshomar/includes/languages/trans_twig.php:1351
 msgid "Education Type"
 msgstr "نوع تحصیل"
 
-#: sarshomar/includes/languages/trans_twig.php:1350
+#: sarshomar/includes/languages/trans_twig.php:1352
 msgid "Academic"
 msgstr "دانشگاهی"
 
-#: sarshomar/includes/languages/trans_twig.php:1351
+#: sarshomar/includes/languages/trans_twig.php:1353
 msgid "Howzeh"
 msgstr "حوزوی"
 
-#: sarshomar/includes/languages/trans_twig.php:1352
+#: sarshomar/includes/languages/trans_twig.php:1354
 msgid "Course"
 msgstr "رشته"
 
-#: sarshomar/includes/languages/trans_twig.php:1353
+#: sarshomar/includes/languages/trans_twig.php:1355
 msgid "Howzeh Degree"
 msgstr "مدرک حوزوی"
 
-#: sarshomar/includes/languages/trans_twig.php:1354
+#: sarshomar/includes/languages/trans_twig.php:1356
 msgid "Howzeh Course"
 msgstr "دوره‌ی حوزوی"
 
-#: sarshomar/includes/languages/trans_twig.php:1355
+#: sarshomar/includes/languages/trans_twig.php:1357
 msgid "Education City"
 msgstr "شهر محل تحصیل"
 
-#: sarshomar/includes/languages/trans_twig.php:1356
+#: sarshomar/includes/languages/trans_twig.php:1358
 msgid "Employment Status"
 msgstr "وضعیت شغلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1357
+#: sarshomar/includes/languages/trans_twig.php:1359
 msgid "Industry"
 msgstr "صنعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1358
+#: sarshomar/includes/languages/trans_twig.php:1360
 msgid "Company"
 msgstr "شرکت"
 
-#: sarshomar/includes/languages/trans_twig.php:1359
+#: sarshomar/includes/languages/trans_twig.php:1361
 msgid "Job City"
 msgstr "شهر محل‌کار"
 
-#: sarshomar/includes/languages/trans_twig.php:1360
+#: sarshomar/includes/languages/trans_twig.php:1362
 msgid "Job Title"
 msgstr "عنوان شغلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1361
+#: sarshomar/includes/languages/trans_twig.php:1363
 msgid "Birth"
 msgstr "تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1362
+#: sarshomar/includes/languages/trans_twig.php:1364
 msgid "Birth Country"
 msgstr "کشور محل تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1363
+#: sarshomar/includes/languages/trans_twig.php:1365
 msgid "Birth Province"
 msgstr "استان محل تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1364
+#: sarshomar/includes/languages/trans_twig.php:1366
 msgid "Birth City"
 msgstr "شهر محل تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1365
+#: sarshomar/includes/languages/trans_twig.php:1367
 msgid "Current"
 msgstr "فعلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1366
+#: sarshomar/includes/languages/trans_twig.php:1368
 msgid "Village"
 msgstr "روستا"
 
-#: sarshomar/includes/languages/trans_twig.php:1367
+#: sarshomar/includes/languages/trans_twig.php:1369
 msgid "House Status"
 msgstr "وضعیت منزل"
 
-#: sarshomar/includes/languages/trans_twig.php:1368
+#: sarshomar/includes/languages/trans_twig.php:1370
 msgid "Owner"
 msgstr "صاحب"
 
-#: sarshomar/includes/languages/trans_twig.php:1369
+#: sarshomar/includes/languages/trans_twig.php:1371
 msgid "Tenant"
 msgstr "مستاجر"
 
-#: sarshomar/includes/languages/trans_twig.php:1370
+#: sarshomar/includes/languages/trans_twig.php:1372
 msgid "Homeless"
 msgstr "بی‌خانمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1371
+#: sarshomar/includes/languages/trans_twig.php:1373
 msgid "Girl Child"
 msgstr "دختربچه"
 
-#: sarshomar/includes/languages/trans_twig.php:1372
+#: sarshomar/includes/languages/trans_twig.php:1374
 msgid "Boy Child"
 msgstr "پسربچه"
 
-#: sarshomar/includes/languages/trans_twig.php:1373
+#: sarshomar/includes/languages/trans_twig.php:1375
 msgid "Internet Usage"
 msgstr "میزان استفاده از اینترنت"
 
-#: sarshomar/includes/languages/trans_twig.php:1374
+#: sarshomar/includes/languages/trans_twig.php:1376
 msgid "Low"
 msgstr "کم"
 
-#: sarshomar/includes/languages/trans_twig.php:1375
+#: sarshomar/includes/languages/trans_twig.php:1377
 msgid "Mid"
 msgstr "متوسط"
 
-#: sarshomar/includes/languages/trans_twig.php:1376
+#: sarshomar/includes/languages/trans_twig.php:1378
 msgid "High"
 msgstr "زیاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1377
+#: sarshomar/includes/languages/trans_twig.php:1379
 msgid "Skills"
 msgstr "مهارت‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1378
+#: sarshomar/includes/languages/trans_twig.php:1380
 msgid "Languages"
 msgstr "زبان‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1380
+#: sarshomar/includes/languages/trans_twig.php:1382
 msgid "Writers"
 msgstr "نویسنده‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1381
+#: sarshomar/includes/languages/trans_twig.php:1383
 msgid "Films"
 msgstr "فیلم‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1382
+#: sarshomar/includes/languages/trans_twig.php:1384
 msgid "Actors"
 msgstr "بازیگران"
 
-#: sarshomar/includes/languages/trans_twig.php:1383
+#: sarshomar/includes/languages/trans_twig.php:1385
 msgid "Genre"
 msgstr "ژانر سینمایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1384
+#: sarshomar/includes/languages/trans_twig.php:1386
 msgid "Musics"
 msgstr "موسیقی‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1385
+#: sarshomar/includes/languages/trans_twig.php:1387
 msgid "Artists"
 msgstr "خواننده‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1386
+#: sarshomar/includes/languages/trans_twig.php:1388
 msgid "Sports"
 msgstr "ورزش‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1387
+#: sarshomar/includes/languages/trans_twig.php:1389
 msgid "Sportmans"
 msgstr "ورزشکاران"
 
-#: sarshomar/includes/languages/trans_twig.php:1388
+#: sarshomar/includes/languages/trans_twig.php:1390
 msgid "Habbits"
 msgstr "علاقمندی‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1389
+#: sarshomar/includes/languages/trans_twig.php:1391
 msgid "Devices"
 msgstr "دستگاه‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1396
+#: sarshomar/includes/languages/trans_twig.php:1398
 msgid "Action"
 msgstr "اکشن"
 
-#: sarshomar/includes/languages/trans_twig.php:1397
+#: sarshomar/includes/languages/trans_twig.php:1399
 msgid "IP Address"
 msgstr "آدرس آی‌پی"
 
-#: sarshomar/includes/languages/trans_twig.php:1401
+#: sarshomar/includes/languages/trans_twig.php:1403
 msgid "Sarshomar start jumping"
 msgstr "سرشمار در حال پریدن است"
 
-#: sarshomar/includes/languages/trans_twig.php:1402
+#: sarshomar/includes/languages/trans_twig.php:1404
 msgid "Call Sarshomar"
 msgstr "سرشمار رو صدا کن"
 
-#: sarshomar/includes/languages/trans_twig.php:1403
+#: sarshomar/includes/languages/trans_twig.php:1405
 msgid "Sarshomar is inteligent"
 msgstr "سرشمار باهوش است"
 
-#: sarshomar/includes/languages/trans_twig.php:1404
+#: sarshomar/includes/languages/trans_twig.php:1406
 msgid "poll"
 msgstr "نظرسنجی"
 
-#: sarshomar/includes/languages/trans_twig.php:1405
+#: sarshomar/includes/languages/trans_twig.php:1407
 msgid "polls"
 msgstr "نظرسنجی‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1406
+#: sarshomar/includes/languages/trans_twig.php:1408
 msgid "Guest"
 msgstr "مهمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1408
+#: sarshomar/includes/languages/trans_twig.php:1410
 msgid "Sarshomar Admin1"
 msgstr "مدیر 1 سرشمار"
 
-#: sarshomar/includes/languages/trans_twig.php:1409
+#: sarshomar/includes/languages/trans_twig.php:1411
 msgid "Sarshomar Writer1"
 msgstr "نویسنده 1 سرشمار"
 
-#: sarshomar/includes/languages/trans_twig.php:1410
+#: sarshomar/includes/languages/trans_twig.php:1412
 msgid "Guest Session"
 msgstr "وضعیت مهمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1411
+#: sarshomar/includes/languages/trans_twig.php:1413
 msgid "site_guest"
 msgstr "مهمان سایت"
 
-#: sarshomar/includes/languages/trans_twig.php:1412
+#: sarshomar/includes/languages/trans_twig.php:1414
 msgid "api_guest"
 msgstr "مهمان رابط برنامه‌نویسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1413
+#: sarshomar/includes/languages/trans_twig.php:1415
 msgid "telegram_guest"
 msgstr "مهمان تلگرام"
 
-#: sarshomar/includes/languages/trans_twig.php:1414
+#: sarshomar/includes/languages/trans_twig.php:1416
 msgid "android_guest"
 msgstr "مهمان اندروید"
 
-#: sarshomar/includes/languages/trans_twig.php:1415
+#: sarshomar/includes/languages/trans_twig.php:1417
 msgid "site guest"
 msgstr "مهمان سایت"
 
-#: sarshomar/includes/languages/trans_twig.php:1416
+#: sarshomar/includes/languages/trans_twig.php:1418
 msgid "api guest"
 msgstr "مهمان ای‌پی‌آی"
 
-#: sarshomar/includes/languages/trans_twig.php:1417
+#: sarshomar/includes/languages/trans_twig.php:1419
 msgid "telegram guest"
 msgstr "مهمان تلگرام"
 
-#: sarshomar/includes/languages/trans_twig.php:1418
+#: sarshomar/includes/languages/trans_twig.php:1420
 msgid "android guest"
 msgstr "مهمان اندروید"
 
-#: sarshomar/includes/languages/trans_twig.php:1423
+#: sarshomar/includes/languages/trans_twig.php:1425
 msgid "Robot"
 msgstr "ربات"
 
-#: sarshomar/includes/languages/trans_twig.php:1424
+#: sarshomar/includes/languages/trans_twig.php:1426
 msgid "bot"
 msgstr "ربات"
 
-#: sarshomar/includes/languages/trans_twig.php:1425
+#: sarshomar/includes/languages/trans_twig.php:1427
 msgid "Bot"
 msgstr "ربات"
 
-#: sarshomar/includes/languages/trans_twig.php:1426
+#: sarshomar/includes/languages/trans_twig.php:1428
 msgid "first"
 msgstr "اولین"
 
-#: sarshomar/includes/languages/trans_twig.php:1428
+#: sarshomar/includes/languages/trans_twig.php:1430
 msgid "third"
 msgstr "سومین"
 
-#: sarshomar/includes/languages/trans_twig.php:1429
+#: sarshomar/includes/languages/trans_twig.php:1431
 msgid "4th"
 msgstr "۴ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1430
+#: sarshomar/includes/languages/trans_twig.php:1432
 msgid "5th"
 msgstr "۵ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1431
+#: sarshomar/includes/languages/trans_twig.php:1433
 msgid "6th"
 msgstr "۶ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1432
+#: sarshomar/includes/languages/trans_twig.php:1434
 msgid "7th"
 msgstr "۷ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1433
+#: sarshomar/includes/languages/trans_twig.php:1435
 msgid "8th"
 msgstr "۸ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1434
+#: sarshomar/includes/languages/trans_twig.php:1436
 msgid "9th"
 msgstr "۹ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1435
+#: sarshomar/includes/languages/trans_twig.php:1437
 msgid "10th"
 msgstr "۱۰ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1436
+#: sarshomar/includes/languages/trans_twig.php:1438
 msgid "11th"
 msgstr "۱۱ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1437
+#: sarshomar/includes/languages/trans_twig.php:1439
 msgid "12th"
 msgstr "۱۲ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1438
+#: sarshomar/includes/languages/trans_twig.php:1440
 msgid "13th"
 msgstr "۱۳ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1439
+#: sarshomar/includes/languages/trans_twig.php:1441
 msgid "14th"
 msgstr "۱۴ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1440
+#: sarshomar/includes/languages/trans_twig.php:1442
 msgid "15th"
 msgstr "۱۵ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1441
+#: sarshomar/includes/languages/trans_twig.php:1443
 msgid "16th"
 msgstr "۱۶ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1442
+#: sarshomar/includes/languages/trans_twig.php:1444
 msgid "17th"
 msgstr "۱۷ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1443
+#: sarshomar/includes/languages/trans_twig.php:1445
 msgid "18th"
 msgstr "۱۸ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1444
+#: sarshomar/includes/languages/trans_twig.php:1446
 msgid "19th"
 msgstr "۱۹ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1445
+#: sarshomar/includes/languages/trans_twig.php:1447
 msgid "20th"
 msgstr "۲۰ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1446
+#: sarshomar/includes/languages/trans_twig.php:1448
 msgid "21st"
 msgstr "۲۱ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1447
+#: sarshomar/includes/languages/trans_twig.php:1449
 msgid "22nd"
 msgstr "۲۲ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1448
+#: sarshomar/includes/languages/trans_twig.php:1450
 msgid "23rd"
 msgstr "۲۳ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1449
+#: sarshomar/includes/languages/trans_twig.php:1451
 msgid "24th"
 msgstr "۲۴ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1450
+#: sarshomar/includes/languages/trans_twig.php:1452
 msgid "25th"
 msgstr "۲۵ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1451
+#: sarshomar/includes/languages/trans_twig.php:1453
 msgid "26th"
 msgstr "۲۶ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1452
+#: sarshomar/includes/languages/trans_twig.php:1454
 msgid "27th"
 msgstr "۲۷ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1453
+#: sarshomar/includes/languages/trans_twig.php:1455
 msgid "28th"
 msgstr "۲۸ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1454
+#: sarshomar/includes/languages/trans_twig.php:1456
 msgid "29th"
 msgstr "۲۹ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1455
+#: sarshomar/includes/languages/trans_twig.php:1457
 msgid "30th"
 msgstr "۳۰ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1456
+#: sarshomar/includes/languages/trans_twig.php:1458
 msgid "31st"
 msgstr "۳۱ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1457
+#: sarshomar/includes/languages/trans_twig.php:1459
 msgid "32nd"
 msgstr "۳۲ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1458
+#: sarshomar/includes/languages/trans_twig.php:1460
 msgid "33rd"
 msgstr "۳۳ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1459
+#: sarshomar/includes/languages/trans_twig.php:1461
 msgid "34th"
 msgstr "۳۴ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1460
+#: sarshomar/includes/languages/trans_twig.php:1462
 msgid "35th"
 msgstr "۳۵ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1461
+#: sarshomar/includes/languages/trans_twig.php:1463
 msgid "36th"
 msgstr "۳۶ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1462
+#: sarshomar/includes/languages/trans_twig.php:1464
 msgid "37th"
 msgstr "۳۷ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1463
+#: sarshomar/includes/languages/trans_twig.php:1465
 msgid "38th"
 msgstr "۳۸ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1464
+#: sarshomar/includes/languages/trans_twig.php:1466
 msgid "39th"
 msgstr "۳۹ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1465
+#: sarshomar/includes/languages/trans_twig.php:1467
 msgid "40th"
 msgstr "۴۰ام"
 
-#: sarshomar/includes/languages/trans_twig.php:1466
+#: sarshomar/includes/languages/trans_twig.php:1468
 msgid "one"
 msgstr "1"
 
-#: sarshomar/includes/languages/trans_twig.php:1467
+#: sarshomar/includes/languages/trans_twig.php:1469
 msgid "two"
 msgstr "2"
 
-#: sarshomar/includes/languages/trans_twig.php:1468
+#: sarshomar/includes/languages/trans_twig.php:1470
 msgid "three"
 msgstr "3"
 
-#: sarshomar/includes/languages/trans_twig.php:1469
+#: sarshomar/includes/languages/trans_twig.php:1471
 msgid "four"
 msgstr "4"
 
-#: sarshomar/includes/languages/trans_twig.php:1470
+#: sarshomar/includes/languages/trans_twig.php:1472
 msgid "1940 and earlier"
 msgstr "1940 و قبل تر"
 
-#: sarshomar/includes/languages/trans_twig.php:1471
+#: sarshomar/includes/languages/trans_twig.php:1473
 msgid "1320 and earlier"
 msgstr "۲۰ و قبل‌تر"
 
-#: sarshomar/includes/languages/trans_twig.php:1472
+#: sarshomar/includes/languages/trans_twig.php:1474
 msgid "five or more"
 msgstr "۵ و بیشتر"
 
-#: sarshomar/includes/languages/trans_twig.php:1473
+#: sarshomar/includes/languages/trans_twig.php:1475
 msgid "primary school"
 msgstr "ابتدایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1474
+#: sarshomar/includes/languages/trans_twig.php:1476
 msgid "operator"
 msgstr "اپراتور"
 
-#: sarshomar/includes/languages/trans_twig.php:1475
+#: sarshomar/includes/languages/trans_twig.php:1477
 msgid "bus"
 msgstr "اتوبوس"
 
-#: sarshomar/includes/languages/trans_twig.php:1476
+#: sarshomar/includes/languages/trans_twig.php:1478
 msgid "car racing"
 msgstr "اتومبیل‌رانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1477
+#: sarshomar/includes/languages/trans_twig.php:1479
 msgid "rent"
 msgstr "اجاره‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1478
+#: sarshomar/includes/languages/trans_twig.php:1480
 msgid "society"
 msgstr "اجتماعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1479
+#: sarshomar/includes/languages/trans_twig.php:1481
 msgid "parties"
 msgstr "احزاب"
 
-#: sarshomar/includes/languages/trans_twig.php:1480
+#: sarshomar/includes/languages/trans_twig.php:1482
 msgid "news"
 msgstr "اخبار"
 
-#: sarshomar/includes/languages/trans_twig.php:1481
+#: sarshomar/includes/languages/trans_twig.php:1483
 msgid "moral and spiritual"
 msgstr "اخلاق و روحیات"
 
-#: sarshomar/includes/languages/trans_twig.php:1482
+#: sarshomar/includes/languages/trans_twig.php:1484
 msgid "ordibehesht"
 msgstr "اردیبهشت"
 
-#: sarshomar/includes/languages/trans_twig.php:1483
+#: sarshomar/includes/languages/trans_twig.php:1485
 msgid "arjan fars"
 msgstr "ارژن شیراز"
 
-#: sarshomar/includes/languages/trans_twig.php:1484
+#: sarshomar/includes/languages/trans_twig.php:1486
 msgid "europe"
 msgstr "اروپا"
 
-#: sarshomar/includes/languages/trans_twig.php:1485
+#: sarshomar/includes/languages/trans_twig.php:1487
 msgid "marriage"
 msgstr "ازدواج"
 
-#: sarshomar/includes/languages/trans_twig.php:1486
+#: sarshomar/includes/languages/trans_twig.php:1488
 msgid "riding"
 msgstr "اسب‌سواری"
 
-#: sarshomar/includes/languages/trans_twig.php:1487
+#: sarshomar/includes/languages/trans_twig.php:1489
 msgid "spanish "
 msgstr "اسپانیایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1488
+#: sarshomar/includes/languages/trans_twig.php:1490
 msgid "australia"
 msgstr "استرالیا"
 
-#: sarshomar/includes/languages/trans_twig.php:1489
+#: sarshomar/includes/languages/trans_twig.php:1491
 msgid "esteghlal"
 msgstr "استقلال"
 
-#: sarshomar/includes/languages/trans_twig.php:1490
+#: sarshomar/includes/languages/trans_twig.php:1492
 msgid "esteghlal ahvaz"
 msgstr "استقلال اهواز"
 
-#: sarshomar/includes/languages/trans_twig.php:1491
+#: sarshomar/includes/languages/trans_twig.php:1493
 msgid "esteghlal khuzestan"
 msgstr "استقلال خوزستان"
 
-#: sarshomar/includes/languages/trans_twig.php:1492
+#: sarshomar/includes/languages/trans_twig.php:1494
 msgid "esfand"
 msgstr "اسفند"
 
-#: sarshomar/includes/languages/trans_twig.php:1493
+#: sarshomar/includes/languages/trans_twig.php:1495
 msgid "squash "
 msgstr "اسکواش"
 
-#: sarshomar/includes/languages/trans_twig.php:1494
+#: sarshomar/includes/languages/trans_twig.php:1496
 msgid "skiing"
 msgstr "اسکی"
 
-#: sarshomar/includes/languages/trans_twig.php:1495
+#: sarshomar/includes/languages/trans_twig.php:1497
 msgid "water skiing"
 msgstr "اسکی روی آب"
 
-#: sarshomar/includes/languages/trans_twig.php:1496
+#: sarshomar/includes/languages/trans_twig.php:1498
 msgid "islam"
 msgstr "اسلام"
 
-#: sarshomar/includes/languages/trans_twig.php:1497
+#: sarshomar/includes/languages/trans_twig.php:1499
 msgid "overweight"
 msgstr "اضافه وزن"
 
-#: sarshomar/includes/languages/trans_twig.php:1498
+#: sarshomar/includes/languages/trans_twig.php:1500
 msgid "religious beliefs"
 msgstr "اعتقادات دینی"
 
-#: sarshomar/includes/languages/trans_twig.php:1499
+#: sarshomar/includes/languages/trans_twig.php:1501
 msgid "not believe"
 msgstr "اعتقادی ندارم"
 
-#: sarshomar/includes/languages/trans_twig.php:1500
+#: sarshomar/includes/languages/trans_twig.php:1502
 msgid "management"
 msgstr "اقتصاد و مدیریت"
 
-#: sarshomar/includes/languages/trans_twig.php:1501
+#: sarshomar/includes/languages/trans_twig.php:1503
 msgid "business"
 msgstr "اقتصادی"
 
-#: sarshomar/includes/languages/trans_twig.php:1502
+#: sarshomar/includes/languages/trans_twig.php:1504
 msgid "oxin alborz"
 msgstr "اکسین البرز"
 
-#: sarshomar/includes/languages/trans_twig.php:1503
+#: sarshomar/includes/languages/trans_twig.php:1505
 msgid "action"
 msgstr "اکشن"
 
-#: sarshomar/includes/languages/trans_twig.php:1504
+#: sarshomar/includes/languages/trans_twig.php:1506
 msgid "security"
 msgstr "امنیت"
 
-#: sarshomar/includes/languages/trans_twig.php:1505
+#: sarshomar/includes/languages/trans_twig.php:1507
 msgid "routines"
 msgstr "امور روزمره"
 
-#: sarshomar/includes/languages/trans_twig.php:1507
+#: sarshomar/includes/languages/trans_twig.php:1509
 msgid "energy"
 msgstr "انرژی"
 
-#: sarshomar/includes/languages/trans_twig.php:1508
+#: sarshomar/includes/languages/trans_twig.php:1510
 msgid "few"
 msgstr "انگشت‌شمار"
 
-#: sarshomar/includes/languages/trans_twig.php:1509
+#: sarshomar/includes/languages/trans_twig.php:1511
 msgid "english"
 msgstr "انگلیسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1510
+#: sarshomar/includes/languages/trans_twig.php:1512
 msgid "blood donation"
 msgstr "اهدای خون"
 
-#: sarshomar/includes/languages/trans_twig.php:1511
+#: sarshomar/includes/languages/trans_twig.php:1513
 msgid "organ donation"
 msgstr "اهدای عضو"
 
-#: sarshomar/includes/languages/trans_twig.php:1512
+#: sarshomar/includes/languages/trans_twig.php:1514
 msgid "important"
 msgstr "اهمیت دارد"
 
-#: sarshomar/includes/languages/trans_twig.php:1513
+#: sarshomar/includes/languages/trans_twig.php:1515
 msgid "not important"
 msgstr "اهمیت ندارد"
 
-#: sarshomar/includes/languages/trans_twig.php:1514
+#: sarshomar/includes/languages/trans_twig.php:1516
 msgid "adsl"
 msgstr "ای‌دی‌اس‌ال"
 
-#: sarshomar/includes/languages/trans_twig.php:1516
+#: sarshomar/includes/languages/trans_twig.php:1518
 msgid "iran khodro"
 msgstr "ایران خودرو"
 
-#: sarshomar/includes/languages/trans_twig.php:1517
+#: sarshomar/includes/languages/trans_twig.php:1519
 msgid "iranjavan bushehr"
 msgstr "ایران‌جوان بوشهر"
 
-#: sarshomar/includes/languages/trans_twig.php:1518
+#: sarshomar/includes/languages/trans_twig.php:1520
 msgid "irancell"
 msgstr "ایرانسل"
 
-#: sarshomar/includes/languages/trans_twig.php:1519
+#: sarshomar/includes/languages/trans_twig.php:1521
 msgid "internet"
 msgstr "اینترنت"
 
-#: sarshomar/includes/languages/trans_twig.php:1520
+#: sarshomar/includes/languages/trans_twig.php:1522
 msgid "mobile data"
 msgstr "اینترنت تلفن‌همراه"
 
-#: sarshomar/includes/languages/trans_twig.php:1521
+#: sarshomar/includes/languages/trans_twig.php:1523
 msgid "eshopping"
 msgstr "اینترنتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1523
+#: sarshomar/includes/languages/trans_twig.php:1525
 msgid "water"
 msgstr "آب"
 
-#: sarshomar/includes/languages/trans_twig.php:1524
+#: sarshomar/includes/languages/trans_twig.php:1526
 msgid "boiling water"
 msgstr "آب جوش"
 
-#: sarshomar/includes/languages/trans_twig.php:1525
+#: sarshomar/includes/languages/trans_twig.php:1527
 msgid "aban"
 msgstr "آبان"
 
-#: sarshomar/includes/languages/trans_twig.php:1526
+#: sarshomar/includes/languages/trans_twig.php:1528
 msgid "fruit juice"
 msgstr "آب‌میوه"
 
-#: sarshomar/includes/languages/trans_twig.php:1527
+#: sarshomar/includes/languages/trans_twig.php:1529
 msgid "blue"
 msgstr "آبی"
 
-#: sarshomar/includes/languages/trans_twig.php:1528
+#: sarshomar/includes/languages/trans_twig.php:1530
 msgid "location"
 msgstr "مکان"
 
-#: sarshomar/includes/languages/trans_twig.php:1529
+#: sarshomar/includes/languages/trans_twig.php:1531
 msgid "azar"
 msgstr "آذر"
 
-#: sarshomar/includes/languages/trans_twig.php:1530
+#: sarshomar/includes/languages/trans_twig.php:1532
 msgid "azarakhsh bandarabbas"
 msgstr "آذرخش بندرعباس"
 
-#: sarshomar/includes/languages/trans_twig.php:1531
+#: sarshomar/includes/languages/trans_twig.php:1533
 msgid "azeri"
 msgstr "آذری"
 
-#: sarshomar/includes/languages/trans_twig.php:1532
+#: sarshomar/includes/languages/trans_twig.php:1534
 msgid "free"
 msgstr "آزاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1533
+#: sarshomar/includes/languages/trans_twig.php:1535
 msgid "islamic azad"
 msgstr "آزاد اسلامی"
 
-#: sarshomar/includes/languages/trans_twig.php:1534
+#: sarshomar/includes/languages/trans_twig.php:1536
 msgid "asia"
 msgstr "آسیا"
 
-#: sarshomar/includes/languages/trans_twig.php:1535
+#: sarshomar/includes/languages/trans_twig.php:1537
 msgid "cooking"
 msgstr "آشپزی"
 
-#: sarshomar/includes/languages/trans_twig.php:1536
+#: sarshomar/includes/languages/trans_twig.php:1538
 msgid "sunny"
 msgstr "آفتابی"
 
-#: sarshomar/includes/languages/trans_twig.php:1537
+#: sarshomar/includes/languages/trans_twig.php:1539
 msgid "africa"
 msgstr "آفریقا"
 
-#: sarshomar/includes/languages/trans_twig.php:1538
+#: sarshomar/includes/languages/trans_twig.php:1540
 msgid "sir"
 msgstr "آقا"
 
-#: sarshomar/includes/languages/trans_twig.php:1539
+#: sarshomar/includes/languages/trans_twig.php:1541
 msgid "deutsch "
 msgstr "آلمانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1540
+#: sarshomar/includes/languages/trans_twig.php:1542
 msgid "pollution"
 msgstr "آلودگی"
 
-#: sarshomar/includes/languages/trans_twig.php:1541
+#: sarshomar/includes/languages/trans_twig.php:1543
 msgid "aluminium arak"
 msgstr "آلومینیوم اراک"
 
-#: sarshomar/includes/languages/trans_twig.php:1542
+#: sarshomar/includes/languages/trans_twig.php:1544
 msgid "america"
 msgstr "آمریکا"
 
-#: sarshomar/includes/languages/trans_twig.php:1543
+#: sarshomar/includes/languages/trans_twig.php:1545
 msgid "north america"
 msgstr "آمریکای جنوبی"
 
-#: sarshomar/includes/languages/trans_twig.php:1544
+#: sarshomar/includes/languages/trans_twig.php:1546
 msgid "south america"
 msgstr "آمریکای شمالی"
 
-#: sarshomar/includes/languages/trans_twig.php:1545
+#: sarshomar/includes/languages/trans_twig.php:1547
 msgid "education"
 msgstr "تحصیلات"
 
-#: sarshomar/includes/languages/trans_twig.php:1547
+#: sarshomar/includes/languages/trans_twig.php:1549
 msgid "baadraan tehran"
 msgstr "بادران تهران"
 
-#: sarshomar/includes/languages/trans_twig.php:1548
+#: sarshomar/includes/languages/trans_twig.php:1550
 msgid "market"
 msgstr "بازار"
 
-#: sarshomar/includes/languages/trans_twig.php:1550
+#: sarshomar/includes/languages/trans_twig.php:1552
 msgid "game"
 msgstr "بازی"
 
-#: sarshomar/includes/languages/trans_twig.php:1551
+#: sarshomar/includes/languages/trans_twig.php:1553
 msgid "online game"
 msgstr "بازی آنلاین"
 
-#: sarshomar/includes/languages/trans_twig.php:1552
+#: sarshomar/includes/languages/trans_twig.php:1554
 msgid "baguette"
 msgstr "باگت"
 
-#: sarshomar/includes/languages/trans_twig.php:1553
+#: sarshomar/includes/languages/trans_twig.php:1555
 msgid "above 60"
 msgstr "بالای ۶۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1554
+#: sarshomar/includes/languages/trans_twig.php:1556
 msgid "bank"
 msgstr "بانک"
 
-#: sarshomar/includes/languages/trans_twig.php:1555
+#: sarshomar/includes/languages/trans_twig.php:1557
 msgid "badminton"
 msgstr "بدمینتون"
 
-#: sarshomar/includes/languages/trans_twig.php:1556
+#: sarshomar/includes/languages/trans_twig.php:1558
 msgid "barbari"
 msgstr "بربری"
 
-#: sarshomar/includes/languages/trans_twig.php:1557
+#: sarshomar/includes/languages/trans_twig.php:1559
 msgid "some days"
 msgstr "برخی ایام"
 
-#: sarshomar/includes/languages/trans_twig.php:1558
+#: sarshomar/includes/languages/trans_twig.php:1560
 msgid "suburban"
 msgstr "برون‌شهری"
 
-#: sarshomar/includes/languages/trans_twig.php:1559
+#: sarshomar/includes/languages/trans_twig.php:1561
 msgid "beige"
 msgstr "بژ"
 
-#: sarshomar/includes/languages/trans_twig.php:1560
+#: sarshomar/includes/languages/trans_twig.php:1562
 msgid "basketball"
 msgstr "بسکتبال"
 
-#: sarshomar/includes/languages/trans_twig.php:1562
+#: sarshomar/includes/languages/trans_twig.php:1564
 msgid "purple"
 msgstr "بنفش"
 
-#: sarshomar/includes/languages/trans_twig.php:1563
+#: sarshomar/includes/languages/trans_twig.php:1565
 msgid "spring"
 msgstr "بهار"
 
-#: sarshomar/includes/languages/trans_twig.php:1564
+#: sarshomar/includes/languages/trans_twig.php:1566
 msgid "bahman"
 msgstr "بهمن"
 
-#: sarshomar/includes/languages/trans_twig.php:1565
+#: sarshomar/includes/languages/trans_twig.php:1567
 msgid "rarely"
 msgstr "به‌ندرت"
 
-#: sarshomar/includes/languages/trans_twig.php:1566
+#: sarshomar/includes/languages/trans_twig.php:1568
 msgid "stock"
 msgstr "بورس"
 
-#: sarshomar/includes/languages/trans_twig.php:1567
+#: sarshomar/includes/languages/trans_twig.php:1569
 msgid "boxing"
 msgstr "بوکس"
 
-#: sarshomar/includes/languages/trans_twig.php:1568
+#: sarshomar/includes/languages/trans_twig.php:1570
 msgid "german bundesliga"
 msgstr "بوندسلیگا آلمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1569
+#: sarshomar/includes/languages/trans_twig.php:1571
 msgid "uninterested"
 msgstr "بی علاقه"
 
-#: sarshomar/includes/languages/trans_twig.php:1572
+#: sarshomar/includes/languages/trans_twig.php:1574
 msgid "more than 9h"
 msgstr "بیش از ۹ ساعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1573
+#: sarshomar/includes/languages/trans_twig.php:1575
 msgid "more than 10"
 msgstr "بیش از ده‌بار"
 
-#: sarshomar/includes/languages/trans_twig.php:1574
+#: sarshomar/includes/languages/trans_twig.php:1576
 msgid "more than 190"
 msgstr "بیشتر از ۱۹۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1575
+#: sarshomar/includes/languages/trans_twig.php:1577
 msgid "disinterest"
 msgstr "بی‌علاقگی"
 
-#: sarshomar/includes/languages/trans_twig.php:1577
+#: sarshomar/includes/languages/trans_twig.php:1579
 msgid "sickness"
 msgstr "بیماری"
 
-#: sarshomar/includes/languages/trans_twig.php:1578
+#: sarshomar/includes/languages/trans_twig.php:1580
 msgid "insurance"
 msgstr "بیمه"
 
-#: sarshomar/includes/languages/trans_twig.php:1579
+#: sarshomar/includes/languages/trans_twig.php:1581
 msgid "between 150 and 160"
 msgstr "بین ۱۵۰ تا ۱۶۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1580
+#: sarshomar/includes/languages/trans_twig.php:1582
 msgid "between 160 and 170"
 msgstr "بین ۱۶۰ تا ۱۷۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1581
+#: sarshomar/includes/languages/trans_twig.php:1583
 msgid "between 170 and 190"
 msgstr "بین ۱۷۰ تا ۱۹۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1582
+#: sarshomar/includes/languages/trans_twig.php:1584
 msgid "between 5-6h"
 msgstr "بین ۵ تا ۶ ساعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1583
+#: sarshomar/includes/languages/trans_twig.php:1585
 msgid "between 6-7h"
 msgstr "بین ۶ تا ۷ ساعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1584
+#: sarshomar/includes/languages/trans_twig.php:1586
 msgid "between 7-8h"
 msgstr "بین ۷ تا ۸ ساعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1585
+#: sarshomar/includes/languages/trans_twig.php:1587
 msgid "between 8-9h"
 msgstr "بین ۸ تا ۹ ساعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1586
+#: sarshomar/includes/languages/trans_twig.php:1588
 msgid "world"
 msgstr "بین المللی"
 
-#: sarshomar/includes/languages/trans_twig.php:1587
+#: sarshomar/includes/languages/trans_twig.php:1589
 msgid "international"
 msgstr "بین‌المللی"
 
-#: sarshomar/includes/languages/trans_twig.php:1588
+#: sarshomar/includes/languages/trans_twig.php:1590
 msgid "widow"
 msgstr "بیوه"
 
-#: sarshomar/includes/languages/trans_twig.php:1589
+#: sarshomar/includes/languages/trans_twig.php:1591
 msgid "pop"
 msgstr "پاپ"
 
-#: sarshomar/includes/languages/trans_twig.php:1590
+#: sarshomar/includes/languages/trans_twig.php:1592
 msgid "pars khodro"
 msgstr "پارس خودرو"
 
-#: sarshomar/includes/languages/trans_twig.php:1591
+#: sarshomar/includes/languages/trans_twig.php:1593
 msgid "pars jam"
 msgstr "پارس‌جنوبی جم"
 
-#: sarshomar/includes/languages/trans_twig.php:1593
+#: sarshomar/includes/languages/trans_twig.php:1595
 msgid "autumn"
 msgstr "پاییز"
 
-#: sarshomar/includes/languages/trans_twig.php:1594
+#: sarshomar/includes/languages/trans_twig.php:1596
 msgid "padideh"
 msgstr "پدیده"
 
-#: sarshomar/includes/languages/trans_twig.php:1595
+#: sarshomar/includes/languages/trans_twig.php:1597
 msgid "portuguese "
 msgstr "پرتقالی"
 
-#: sarshomar/includes/languages/trans_twig.php:1596
+#: sarshomar/includes/languages/trans_twig.php:1598
 msgid "press tv"
 msgstr "پرس تی‌وی"
 
-#: sarshomar/includes/languages/trans_twig.php:1597
+#: sarshomar/includes/languages/trans_twig.php:1599
 msgid "persepolis"
 msgstr "پرسپولیس"
 
-#: sarshomar/includes/languages/trans_twig.php:1598
+#: sarshomar/includes/languages/trans_twig.php:1600
 msgid "medical"
 msgstr "پزشکی"
 
-#: sarshomar/includes/languages/trans_twig.php:1599
+#: sarshomar/includes/languages/trans_twig.php:1601
 msgid "boy"
 msgstr "پسر"
 
-#: sarshomar/includes/languages/trans_twig.php:1600
+#: sarshomar/includes/languages/trans_twig.php:1602
 msgid "regretful"
 msgstr "پشیمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1601
+#: sarshomar/includes/languages/trans_twig.php:1603
 msgid "skin hair beauty"
 msgstr "پوست، مو و زیبایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1602
+#: sarshomar/includes/languages/trans_twig.php:1604
 msgid "payam nour"
 msgstr "پیام‌نور"
 
-#: sarshomar/includes/languages/trans_twig.php:1603
+#: sarshomar/includes/languages/trans_twig.php:1605
 msgid "pre university"
 msgstr "پیش‌دانشگاهی"
 
-#: sarshomar/includes/languages/trans_twig.php:1604
+#: sarshomar/includes/languages/trans_twig.php:1606
 msgid "paykan"
 msgstr "پیکان"
 
-#: sarshomar/includes/languages/trans_twig.php:1605
+#: sarshomar/includes/languages/trans_twig.php:1607
 msgid "tracking"
 msgstr "پیگیری می‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1606
+#: sarshomar/includes/languages/trans_twig.php:1608
 msgid "not tracking"
 msgstr "پیگیری نمی‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1607
+#: sarshomar/includes/languages/trans_twig.php:1609
 msgid "summer"
 msgstr "تابستان"
 
-#: sarshomar/includes/languages/trans_twig.php:1608
+#: sarshomar/includes/languages/trans_twig.php:1610
 msgid "somewhat"
 msgstr "تاحدودی"
 
-#: sarshomar/includes/languages/trans_twig.php:1609
+#: sarshomar/includes/languages/trans_twig.php:1611
 msgid "history"
 msgstr "تاریخ"
 
-#: sarshomar/includes/languages/trans_twig.php:1610
+#: sarshomar/includes/languages/trans_twig.php:1612
 msgid "tasisat daryaei"
 msgstr "تاسیسات دریایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1611
+#: sarshomar/includes/languages/trans_twig.php:1613
 msgid "taftoon"
 msgstr "تافتون"
 
-#: sarshomar/includes/languages/trans_twig.php:1612
+#: sarshomar/includes/languages/trans_twig.php:1614
 msgid "taxi"
 msgstr "تاکسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1613
+#: sarshomar/includes/languages/trans_twig.php:1615
 msgid "talia"
 msgstr "تالیا"
 
-#: sarshomar/includes/languages/trans_twig.php:1614
+#: sarshomar/includes/languages/trans_twig.php:1616
 msgid "tamin ejtemaei"
 msgstr "تامین اجتماعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1615
+#: sarshomar/includes/languages/trans_twig.php:1617
 msgid "tractor sazi"
 msgstr "تراکتورسازی"
 
-#: sarshomar/includes/languages/trans_twig.php:1616
+#: sarshomar/includes/languages/trans_twig.php:1618
 msgid "scary"
 msgstr "ترسناک"
 
-#: sarshomar/includes/languages/trans_twig.php:1617
+#: sarshomar/includes/languages/trans_twig.php:1619
 msgid "sour"
 msgstr "ترش"
 
-#: sarshomar/includes/languages/trans_twig.php:1618
+#: sarshomar/includes/languages/trans_twig.php:1620
 msgid "turkish"
 msgstr "ترکی"
 
-#: sarshomar/includes/languages/trans_twig.php:1619
+#: sarshomar/includes/languages/trans_twig.php:1621
 msgid "family decide"
 msgstr "تصمیم خانواده"
 
-#: sarshomar/includes/languages/trans_twig.php:1620
+#: sarshomar/includes/languages/trans_twig.php:1622
 msgid "the number of bank account"
 msgstr "تعداد حساب بانکی"
 
-#: sarshomar/includes/languages/trans_twig.php:1621
+#: sarshomar/includes/languages/trans_twig.php:1623
 msgid "fun"
 msgstr "تفریحی"
 
-#: sarshomar/includes/languages/trans_twig.php:1622
+#: sarshomar/includes/languages/trans_twig.php:1624
 msgid "technology"
 msgstr "تکنولوژی"
 
-#: sarshomar/includes/languages/trans_twig.php:1623
+#: sarshomar/includes/languages/trans_twig.php:1625
 msgid "taekwondo"
 msgstr "تکواندو"
 
-#: sarshomar/includes/languages/trans_twig.php:1625
+#: sarshomar/includes/languages/trans_twig.php:1627
 msgid "tv"
 msgstr "تلویزیون"
 
-#: sarshomar/includes/languages/trans_twig.php:1626
+#: sarshomar/includes/languages/trans_twig.php:1628
 msgid "fitness"
 msgstr "تناسب اندام"
 
-#: sarshomar/includes/languages/trans_twig.php:1627
+#: sarshomar/includes/languages/trans_twig.php:1629
 msgid "social norms"
 msgstr "تناسب با عرف جامعه"
 
-#: sarshomar/includes/languages/trans_twig.php:1628
+#: sarshomar/includes/languages/trans_twig.php:1630
 msgid "spicy"
 msgstr "تند"
 
-#: sarshomar/includes/languages/trans_twig.php:1629
+#: sarshomar/includes/languages/trans_twig.php:1631
 msgid "tennis"
 msgstr "تنیس"
 
-#: sarshomar/includes/languages/trans_twig.php:1630
+#: sarshomar/includes/languages/trans_twig.php:1632
 msgid "table tennis"
 msgstr "تنیس روی میز"
 
-#: sarshomar/includes/languages/trans_twig.php:1631
+#: sarshomar/includes/languages/trans_twig.php:1633
 msgid "attention"
 msgstr "توجه می‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1632
+#: sarshomar/includes/languages/trans_twig.php:1634
 msgid "not attention"
 msgstr "توجه نمی‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1633
+#: sarshomar/includes/languages/trans_twig.php:1635
 msgid "birth"
 msgstr "تولد"
 
-#: sarshomar/includes/languages/trans_twig.php:1635
+#: sarshomar/includes/languages/trans_twig.php:1637
 msgid "tir"
 msgstr "تیر"
 
-#: sarshomar/includes/languages/trans_twig.php:1636
+#: sarshomar/includes/languages/trans_twig.php:1638
 msgid "team"
 msgstr "تیم"
 
-#: sarshomar/includes/languages/trans_twig.php:1637
+#: sarshomar/includes/languages/trans_twig.php:1639
 msgid "theater"
 msgstr "تئاتر"
 
-#: sarshomar/includes/languages/trans_twig.php:1638
+#: sarshomar/includes/languages/trans_twig.php:1640
 msgid "wealth"
 msgstr "ثروت"
 
-#: sarshomar/includes/languages/trans_twig.php:1639
+#: sarshomar/includes/languages/trans_twig.php:1641
 msgid "java"
 msgstr "جاوا"
 
-#: sarshomar/includes/languages/trans_twig.php:1640
+#: sarshomar/includes/languages/trans_twig.php:1642
 msgid "surgery"
 msgstr "جراحی"
 
-#: sarshomar/includes/languages/trans_twig.php:1641
+#: sarshomar/includes/languages/trans_twig.php:1643
 msgid "criminal"
 msgstr "جنایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1642
+#: sarshomar/includes/languages/trans_twig.php:1644
 msgid "judo"
 msgstr "جودو"
 
-#: sarshomar/includes/languages/trans_twig.php:1643
+#: sarshomar/includes/languages/trans_twig.php:1645
 msgid "camping"
 msgstr "چادرزدن"
 
-#: sarshomar/includes/languages/trans_twig.php:1644
+#: sarshomar/includes/languages/trans_twig.php:1646
 msgid "obese"
 msgstr "چاق"
 
-#: sarshomar/includes/languages/trans_twig.php:1645
+#: sarshomar/includes/languages/trans_twig.php:1647
 msgid "tea"
 msgstr "چای"
 
-#: sarshomar/includes/languages/trans_twig.php:1646
+#: sarshomar/includes/languages/trans_twig.php:1648
 msgid "left"
 msgstr "چپ دست"
 
-#: sarshomar/includes/languages/trans_twig.php:1647
+#: sarshomar/includes/languages/trans_twig.php:1649
 msgid "eye"
 msgstr "چشم"
 
-#: sarshomar/includes/languages/trans_twig.php:1648
+#: sarshomar/includes/languages/trans_twig.php:1650
 msgid "ophthalmologist"
 msgstr "چشم‌پزشک"
 
-#: sarshomar/includes/languages/trans_twig.php:1649
+#: sarshomar/includes/languages/trans_twig.php:1651
 msgid "celebrity"
 msgstr "چهره‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1650
+#: sarshomar/includes/languages/trans_twig.php:1652
 msgid "hejamat"
 msgstr "حجامت"
 
-#: sarshomar/includes/languages/trans_twig.php:1651
+#: sarshomar/includes/languages/trans_twig.php:1653
 msgid "bank account"
 msgstr "حساب بانکی"
 
-#: sarshomar/includes/languages/trans_twig.php:1652
+#: sarshomar/includes/languages/trans_twig.php:1654
 msgid "melli haffari ahvaz"
 msgstr "حفاری اهواز"
 
-#: sarshomar/includes/languages/trans_twig.php:1653
+#: sarshomar/includes/languages/trans_twig.php:1655
 msgid "human rights"
 msgstr "حقوق بشر"
 
-#: sarshomar/includes/languages/trans_twig.php:1654
+#: sarshomar/includes/languages/trans_twig.php:1656
 msgid "transport"
 msgstr "حمل و نقل"
 
-#: sarshomar/includes/languages/trans_twig.php:1655
+#: sarshomar/includes/languages/trans_twig.php:1657
 msgid "howze"
 msgstr "حوزوی"
 
-#: sarshomar/includes/languages/trans_twig.php:1656
+#: sarshomar/includes/languages/trans_twig.php:1658
 msgid "gray"
 msgstr "خاکستری"
 
-#: sarshomar/includes/languages/trans_twig.php:1657
+#: sarshomar/includes/languages/trans_twig.php:1659
 msgid "lady"
 msgstr "خانم"
 
-#: sarshomar/includes/languages/trans_twig.php:1658
+#: sarshomar/includes/languages/trans_twig.php:1660
 msgid "home friends"
 msgstr "خانه دوستان و آشنایان"
 
-#: sarshomar/includes/languages/trans_twig.php:1659
+#: sarshomar/includes/languages/trans_twig.php:1661
 msgid "middle east"
 msgstr "خاورمیانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1660
+#: sarshomar/includes/languages/trans_twig.php:1662
 msgid "khordad"
 msgstr "خرداد"
 
-#: sarshomar/includes/languages/trans_twig.php:1661
+#: sarshomar/includes/languages/trans_twig.php:1663
 msgid "buy"
 msgstr "خرید"
 
-#: sarshomar/includes/languages/trans_twig.php:1662
+#: sarshomar/includes/languages/trans_twig.php:1664
 msgid "private insurance"
 msgstr "خصوصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1663
+#: sarshomar/includes/languages/trans_twig.php:1665
 msgid "sleep"
 msgstr "خواب"
 
-#: sarshomar/includes/languages/trans_twig.php:1664
+#: sarshomar/includes/languages/trans_twig.php:1666
 msgid "good"
 msgstr "خوبه"
 
-#: sarshomar/includes/languages/trans_twig.php:1665
+#: sarshomar/includes/languages/trans_twig.php:1667
 msgid "car"
 msgstr "خودرو"
 
-#: sarshomar/includes/languages/trans_twig.php:1666
+#: sarshomar/includes/languages/trans_twig.php:1668
 msgid "personal"
 msgstr "خودروی شخصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1667
+#: sarshomar/includes/languages/trans_twig.php:1669
 msgid "personal car"
 msgstr "خودروی شخصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1668
+#: sarshomar/includes/languages/trans_twig.php:1670
 msgid "khooneh be khooneh"
 msgstr "خونه‌به‌خونه"
 
-#: sarshomar/includes/languages/trans_twig.php:1669
+#: sarshomar/includes/languages/trans_twig.php:1671
 msgid "kheybar khorramabad"
 msgstr "خیبر خرم آباد"
 
-#: sarshomar/includes/languages/trans_twig.php:1671
+#: sarshomar/includes/languages/trans_twig.php:1673
 msgid "charity"
 msgstr "خیریه"
 
-#: sarshomar/includes/languages/trans_twig.php:1672
+#: sarshomar/includes/languages/trans_twig.php:1674
 msgid "long time ago"
 msgstr "خیلی وقت پیش"
 
-#: sarshomar/includes/languages/trans_twig.php:1673
+#: sarshomar/includes/languages/trans_twig.php:1675
 msgid "too much"
 msgstr "خیلی‌زیاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1674
+#: sarshomar/includes/languages/trans_twig.php:1676
 msgid "very little"
 msgstr "خیلی‌کم"
 
-#: sarshomar/includes/languages/trans_twig.php:1675
+#: sarshomar/includes/languages/trans_twig.php:1677
 msgid "have"
 msgstr "دارم"
 
-#: sarshomar/includes/languages/trans_twig.php:1676
+#: sarshomar/includes/languages/trans_twig.php:1678
 msgid "medicine"
 msgstr "دارو"
 
-#: sarshomar/includes/languages/trans_twig.php:1677
+#: sarshomar/includes/languages/trans_twig.php:1679
 msgid "azad university"
 msgstr "دانشگاه آزاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1678
+#: sarshomar/includes/languages/trans_twig.php:1680
 msgid "collegiate"
 msgstr "دانشگاهی"
 
-#: sarshomar/includes/languages/trans_twig.php:1679
+#: sarshomar/includes/languages/trans_twig.php:1681
 msgid "high school"
 msgstr "دبیرستان"
 
-#: sarshomar/includes/languages/trans_twig.php:1680
+#: sarshomar/includes/languages/trans_twig.php:1682
 msgid "dabiri tabriz"
 msgstr "دبیری تبریز"
 
-#: sarshomar/includes/languages/trans_twig.php:1681
+#: sarshomar/includes/languages/trans_twig.php:1683
 msgid "tobacco"
 msgstr "دخانیات"
 
-#: sarshomar/includes/languages/trans_twig.php:1682
+#: sarshomar/includes/languages/trans_twig.php:1684
 msgid "girl"
 msgstr "دختر"
 
-#: sarshomar/includes/languages/trans_twig.php:1684
+#: sarshomar/includes/languages/trans_twig.php:1686
 msgid "ongoing"
 msgstr "در حال خدمت"
 
-#: sarshomar/includes/languages/trans_twig.php:1685
+#: sarshomar/includes/languages/trans_twig.php:1687
 msgid "pay costs"
 msgstr "در صورت پرداخت هزینه"
 
-#: sarshomar/includes/languages/trans_twig.php:1686
+#: sarshomar/includes/languages/trans_twig.php:1688
 msgid "drama"
 msgstr "درام"
 
-#: sarshomar/includes/languages/trans_twig.php:1687
+#: sarshomar/includes/languages/trans_twig.php:1689
 msgid "therapeutic"
 msgstr "درمانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1688
+#: sarshomar/includes/languages/trans_twig.php:1690
 msgid "not get"
 msgstr "دریافت نمی‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1689
+#: sarshomar/includes/languages/trans_twig.php:1691
 msgid "hand"
 msgstr "دست"
 
-#: sarshomar/includes/languages/trans_twig.php:1690
+#: sarshomar/includes/languages/trans_twig.php:1692
 msgid "defence"
 msgstr "دفاعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1691
+#: sarshomar/includes/languages/trans_twig.php:1693
 msgid "times"
 msgstr "دفعات انجام"
 
-#: sarshomar/includes/languages/trans_twig.php:1692
+#: sarshomar/includes/languages/trans_twig.php:1694
 msgid "pay times"
 msgstr "دفعات پرداخت"
 
-#: sarshomar/includes/languages/trans_twig.php:1693
+#: sarshomar/includes/languages/trans_twig.php:1695
 msgid "the skin and beauty doctor"
 msgstr "دکتر پوست، مو و زیبایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1694
+#: sarshomar/includes/languages/trans_twig.php:1696
 msgid "doctorate"
 msgstr "دکتری"
 
-#: sarshomar/includes/languages/trans_twig.php:1696
+#: sarshomar/includes/languages/trans_twig.php:1698
 msgid "low-alcohol beer"
 msgstr "دلستر"
 
-#: sarshomar/includes/languages/trans_twig.php:1697
+#: sarshomar/includes/languages/trans_twig.php:1699
 msgid "why"
 msgstr "دلیل"
 
-#: sarshomar/includes/languages/trans_twig.php:1698
+#: sarshomar/includes/languages/trans_twig.php:1700
 msgid "dentist"
 msgstr "دندانپزشک"
 
-#: sarshomar/includes/languages/trans_twig.php:1699
+#: sarshomar/includes/languages/trans_twig.php:1701
 msgid "tooth"
 msgstr "دهان و دندان"
 
-#: sarshomar/includes/languages/trans_twig.php:1700
+#: sarshomar/includes/languages/trans_twig.php:1702
 msgid "decade"
 msgstr "دهه"
 
-#: sarshomar/includes/languages/trans_twig.php:1701
+#: sarshomar/includes/languages/trans_twig.php:1703
 msgid "bike"
 msgstr "دوچرخه‌"
 
-#: sarshomar/includes/languages/trans_twig.php:1702
+#: sarshomar/includes/languages/trans_twig.php:1704
 msgid "cycling"
 msgstr "دوچرخه‌سواری"
 
-#: sarshomar/includes/languages/trans_twig.php:1703
+#: sarshomar/includes/languages/trans_twig.php:1705
 msgid "dough"
 msgstr "دوغ"
 
-#: sarshomar/includes/languages/trans_twig.php:1704
+#: sarshomar/includes/languages/trans_twig.php:1706
 msgid "government"
 msgstr "دولت"
 
-#: sarshomar/includes/languages/trans_twig.php:1705
+#: sarshomar/includes/languages/trans_twig.php:1707
 msgid "governmental"
 msgstr "دولتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1706
+#: sarshomar/includes/languages/trans_twig.php:1708
 msgid "dey"
 msgstr "دی"
 
-#: sarshomar/includes/languages/trans_twig.php:1709
+#: sarshomar/includes/languages/trans_twig.php:1711
 msgid "zob ahan"
 msgstr "ذوب‌آهن"
 
-#: sarshomar/includes/languages/trans_twig.php:1710
+#: sarshomar/includes/languages/trans_twig.php:1712
 msgid "convenience"
 msgstr "راحتی و آسایش"
 
-#: sarshomar/includes/languages/trans_twig.php:1711
+#: sarshomar/includes/languages/trans_twig.php:1713
 msgid "radio"
 msgstr "رادیو"
 
-#: sarshomar/includes/languages/trans_twig.php:1712
+#: sarshomar/includes/languages/trans_twig.php:1714
 msgid "right"
 msgstr "راست دست"
 
-#: sarshomar/includes/languages/trans_twig.php:1713
+#: sarshomar/includes/languages/trans_twig.php:1715
 msgid "satisfied"
 msgstr "راضی"
 
-#: sarshomar/includes/languages/trans_twig.php:1714
+#: sarshomar/includes/languages/trans_twig.php:1716
 msgid "rock"
 msgstr "راک"
 
-#: sarshomar/includes/languages/trans_twig.php:1715
+#: sarshomar/includes/languages/trans_twig.php:1717
 msgid "rugby"
 msgstr "راگبی"
 
-#: sarshomar/includes/languages/trans_twig.php:1716
+#: sarshomar/includes/languages/trans_twig.php:1718
 msgid "rah ahan"
 msgstr "راه‌آهن"
 
-#: sarshomar/includes/languages/trans_twig.php:1717
+#: sarshomar/includes/languages/trans_twig.php:1719
 msgid "middle school"
 msgstr "راهنمایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1718
+#: sarshomar/includes/languages/trans_twig.php:1720
 msgid "traffic police"
 msgstr "راهنمایی و رانندگی"
 
-#: sarshomar/includes/languages/trans_twig.php:1719
+#: sarshomar/includes/languages/trans_twig.php:1721
 msgid "rightel"
 msgstr "رایتل"
 
-#: sarshomar/includes/languages/trans_twig.php:1720
+#: sarshomar/includes/languages/trans_twig.php:1722
 msgid "quatrain"
 msgstr "رباعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1721
+#: sarshomar/includes/languages/trans_twig.php:1723
 msgid "rap"
 msgstr "رپ"
 
-#: sarshomar/includes/languages/trans_twig.php:1722
+#: sarshomar/includes/languages/trans_twig.php:1724
 msgid "media"
 msgstr "رسانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1723
+#: sarshomar/includes/languages/trans_twig.php:1725
 msgid "compliance with laws and regulations"
 msgstr "رعایت قوانین و مقررات"
 
-#: sarshomar/includes/languages/trans_twig.php:1724
+#: sarshomar/includes/languages/trans_twig.php:1726
 msgid "gone"
 msgstr "رفتم"
 
-#: sarshomar/includes/languages/trans_twig.php:1725
+#: sarshomar/includes/languages/trans_twig.php:1727
 msgid "dance"
 msgstr "رقص"
 
-#: sarshomar/includes/languages/trans_twig.php:1726
+#: sarshomar/includes/languages/trans_twig.php:1728
 msgid "nover"
 msgstr "رمان و داستان"
 
-#: sarshomar/includes/languages/trans_twig.php:1727
+#: sarshomar/includes/languages/trans_twig.php:1729
 msgid "color"
 msgstr "رنگ"
 
-#: sarshomar/includes/languages/trans_twig.php:1728
+#: sarshomar/includes/languages/trans_twig.php:1730
 msgid "psychology"
 msgstr "روانشناسی و تربیتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1729
+#: sarshomar/includes/languages/trans_twig.php:1731
 msgid "daily"
 msgstr "روزانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1730
+#: sarshomar/includes/languages/trans_twig.php:1732
 msgid "newspaper"
 msgstr "روزنامه"
 
-#: sarshomar/includes/languages/trans_twig.php:1731
+#: sarshomar/includes/languages/trans_twig.php:1733
 msgid "village"
 msgstr "روستا"
 
-#: sarshomar/includes/languages/trans_twig.php:1732
+#: sarshomar/includes/languages/trans_twig.php:1734
 msgid "rural"
 msgstr "روستایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1733
+#: sarshomar/includes/languages/trans_twig.php:1735
 msgid "russian"
 msgstr "روسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1734
+#: sarshomar/includes/languages/trans_twig.php:1736
 msgid "tracking method"
 msgstr "روش پیگیری"
 
-#: sarshomar/includes/languages/trans_twig.php:1735
+#: sarshomar/includes/languages/trans_twig.php:1737
 msgid "math and physics"
 msgstr "ریاضی و فیزیک"
 
-#: sarshomar/includes/languages/trans_twig.php:1736
+#: sarshomar/includes/languages/trans_twig.php:1738
 msgid "dust"
 msgstr "ریزگردها"
 
-#: sarshomar/includes/languages/trans_twig.php:1737
+#: sarshomar/includes/languages/trans_twig.php:1739
 msgid "president"
 msgstr "رئیس‌جمهور"
 
-#: sarshomar/includes/languages/trans_twig.php:1738
+#: sarshomar/includes/languages/trans_twig.php:1740
 msgid "hirudo medicinalis"
 msgstr "زالودرمانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1739
+#: sarshomar/includes/languages/trans_twig.php:1741
 msgid "parturition"
 msgstr "زایمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1741
+#: sarshomar/includes/languages/trans_twig.php:1743
 msgid "l2"
 msgstr "زبان دوم"
 
-#: sarshomar/includes/languages/trans_twig.php:1742
+#: sarshomar/includes/languages/trans_twig.php:1744
 msgid "l1"
 msgstr "زبان نخست"
 
-#: sarshomar/includes/languages/trans_twig.php:1743
+#: sarshomar/includes/languages/trans_twig.php:1745
 msgid "yellow"
 msgstr "زرد"
 
-#: sarshomar/includes/languages/trans_twig.php:1744
+#: sarshomar/includes/languages/trans_twig.php:1746
 msgid "winter"
 msgstr "زمستان"
 
-#: sarshomar/includes/languages/trans_twig.php:1745
+#: sarshomar/includes/languages/trans_twig.php:1747
 msgid "consumption"
 msgstr "زمینه مصرف"
 
-#: sarshomar/includes/languages/trans_twig.php:1746
+#: sarshomar/includes/languages/trans_twig.php:1748
 msgid "lot"
 msgstr "زیاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1747
+#: sarshomar/includes/languages/trans_twig.php:1749
 msgid "appearance"
 msgstr "زیبایی ظاهری"
 
-#: sarshomar/includes/languages/trans_twig.php:1748
+#: sarshomar/includes/languages/trans_twig.php:1750
 msgid "beauty"
 msgstr "زیبایی و شیک‌بودن"
 
-#: sarshomar/includes/languages/trans_twig.php:1749
+#: sarshomar/includes/languages/trans_twig.php:1751
 msgid "olive"
 msgstr "زیتونی"
 
-#: sarshomar/includes/languages/trans_twig.php:1750
+#: sarshomar/includes/languages/trans_twig.php:1752
 msgid "under 13"
 msgstr "زیر ۱۳"
 
-#: sarshomar/includes/languages/trans_twig.php:1752
+#: sarshomar/includes/languages/trans_twig.php:1754
 msgid "genre"
 msgstr "ژانر"
 
-#: sarshomar/includes/languages/trans_twig.php:1753
+#: sarshomar/includes/languages/trans_twig.php:1755
 msgid "gymnastics"
 msgstr "ژیمناستیک"
 
-#: sarshomar/includes/languages/trans_twig.php:1755
+#: sarshomar/includes/languages/trans_twig.php:1757
 msgid "last year"
 msgstr "سال اخیر"
 
-#: sarshomar/includes/languages/trans_twig.php:1756
+#: sarshomar/includes/languages/trans_twig.php:1758
 msgid "year shamsi"
 msgstr "سال شمسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1757
+#: sarshomar/includes/languages/trans_twig.php:1759
 msgid "yearly"
 msgstr "سالیانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1758
+#: sarshomar/includes/languages/trans_twig.php:1760
 msgid "saipa football team"
 msgstr "سایپا"
 
-#: sarshomar/includes/languages/trans_twig.php:1759
+#: sarshomar/includes/languages/trans_twig.php:1761
 msgid "saipa"
 msgstr "سایپا"
 
-#: sarshomar/includes/languages/trans_twig.php:1760
+#: sarshomar/includes/languages/trans_twig.php:1762
 msgid "news sites"
 msgstr "سایت‌های خبری"
 
-#: sarshomar/includes/languages/trans_twig.php:1761
+#: sarshomar/includes/languages/trans_twig.php:1763
 msgid "green"
 msgstr "سبز"
 
-#: sarshomar/includes/languages/trans_twig.php:1762
+#: sarshomar/includes/languages/trans_twig.php:1764
 msgid "lifestyle"
 msgstr "سبک زندگی"
 
-#: sarshomar/includes/languages/trans_twig.php:1763
+#: sarshomar/includes/languages/trans_twig.php:1765
 msgid "sepahan"
 msgstr "سپاهان"
 
-#: sarshomar/includes/languages/trans_twig.php:1764
+#: sarshomar/includes/languages/trans_twig.php:1766
 msgid "sepidrood rasht"
 msgstr "سپیدرود رشت"
 
-#: sarshomar/includes/languages/trans_twig.php:1765
+#: sarshomar/includes/languages/trans_twig.php:1767
 msgid "soldiering"
 msgstr "سربازی"
 
-#: sarshomar/includes/languages/trans_twig.php:1766
+#: sarshomar/includes/languages/trans_twig.php:1768
 msgid "velocity"
 msgstr "سرعت"
 
-#: sarshomar/includes/languages/trans_twig.php:1767
+#: sarshomar/includes/languages/trans_twig.php:1769
 msgid "investment"
 msgstr "سرمایه‌گذاری"
 
-#: sarshomar/includes/languages/trans_twig.php:1768
+#: sarshomar/includes/languages/trans_twig.php:1770
 msgid "italian serie a"
 msgstr "سری آ ایتالیا"
 
-#: sarshomar/includes/languages/trans_twig.php:1769
+#: sarshomar/includes/languages/trans_twig.php:1771
 msgid "caesarean"
 msgstr "سزارین"
 
-#: sarshomar/includes/languages/trans_twig.php:1770
+#: sarshomar/includes/languages/trans_twig.php:1772
 msgid "fourth level"
 msgstr "سطح چهار"
 
-#: sarshomar/includes/languages/trans_twig.php:1771
+#: sarshomar/includes/languages/trans_twig.php:1773
 msgid "second level"
 msgstr "سطح دو"
 
-#: sarshomar/includes/languages/trans_twig.php:1772
+#: sarshomar/includes/languages/trans_twig.php:1774
 msgid "third level"
 msgstr "سطح سه"
 
-#: sarshomar/includes/languages/trans_twig.php:1773
+#: sarshomar/includes/languages/trans_twig.php:1775
 msgid "first level"
 msgstr "سطح یک"
 
-#: sarshomar/includes/languages/trans_twig.php:1774
+#: sarshomar/includes/languages/trans_twig.php:1776
 msgid "travel"
 msgstr "سفر"
 
-#: sarshomar/includes/languages/trans_twig.php:1775
+#: sarshomar/includes/languages/trans_twig.php:1777
 msgid "outside iran"
 msgstr "خارج ایران"
 
-#: sarshomar/includes/languages/trans_twig.php:1776
+#: sarshomar/includes/languages/trans_twig.php:1778
 msgid "white"
 msgstr "سفید"
 
-#: sarshomar/includes/languages/trans_twig.php:1777
+#: sarshomar/includes/languages/trans_twig.php:1779
 msgid "health"
 msgstr "سلامت"
 
-#: sarshomar/includes/languages/trans_twig.php:1778
+#: sarshomar/includes/languages/trans_twig.php:1780
 msgid "salamat"
 msgstr "سلامت"
 
-#: sarshomar/includes/languages/trans_twig.php:1779
+#: sarshomar/includes/languages/trans_twig.php:1781
 msgid "persian traditional"
 msgstr "سنتی ایرانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1780
+#: sarshomar/includes/languages/trans_twig.php:1782
 msgid "sangak"
 msgstr "سنگک"
 
-#: sarshomar/includes/languages/trans_twig.php:1781
+#: sarshomar/includes/languages/trans_twig.php:1783
 msgid "politic"
 msgstr "سیاست"
 
-#: sarshomar/includes/languages/trans_twig.php:1782
+#: sarshomar/includes/languages/trans_twig.php:1784
 msgid "political"
 msgstr "سیاسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1783
+#: sarshomar/includes/languages/trans_twig.php:1785
 msgid "black"
 msgstr "سیاه"
 
-#: sarshomar/includes/languages/trans_twig.php:1784
+#: sarshomar/includes/languages/trans_twig.php:1786
 msgid "siah jamegan"
 msgstr "سیاه‌جامگان"
 
-#: sarshomar/includes/languages/trans_twig.php:1785
+#: sarshomar/includes/languages/trans_twig.php:1787
 msgid "operating system"
 msgstr "سیستم عامل"
 
-#: sarshomar/includes/languages/trans_twig.php:1786
+#: sarshomar/includes/languages/trans_twig.php:1788
 msgid "cinema"
 msgstr "سینما"
 
-#: sarshomar/includes/languages/trans_twig.php:1787
+#: sarshomar/includes/languages/trans_twig.php:1789
 msgid "succulence"
 msgstr "شادابی"
 
-#: sarshomar/includes/languages/trans_twig.php:1788
+#: sarshomar/includes/languages/trans_twig.php:1790
 msgid "employed"
 msgstr "شاغل"
 
-#: sarshomar/includes/languages/trans_twig.php:1789
+#: sarshomar/includes/languages/trans_twig.php:1791
 msgid "social network"
 msgstr "شبکه اجتماعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1790
+#: sarshomar/includes/languages/trans_twig.php:1792
 msgid "irib5"
 msgstr "شبکه پنج"
 
-#: sarshomar/includes/languages/trans_twig.php:1791
+#: sarshomar/includes/languages/trans_twig.php:1793
 msgid "irib4"
 msgstr "شبکه چهار"
 
-#: sarshomar/includes/languages/trans_twig.php:1792
+#: sarshomar/includes/languages/trans_twig.php:1794
 msgid "news channel"
 msgstr "شبکه خبر"
 
-#: sarshomar/includes/languages/trans_twig.php:1793
+#: sarshomar/includes/languages/trans_twig.php:1795
 msgid "irib2"
 msgstr "شبکه دو"
 
-#: sarshomar/includes/languages/trans_twig.php:1794
+#: sarshomar/includes/languages/trans_twig.php:1796
 msgid "irib3"
 msgstr "شبکه سه"
 
-#: sarshomar/includes/languages/trans_twig.php:1795
+#: sarshomar/includes/languages/trans_twig.php:1797
 msgid "irib1"
 msgstr "شبکه یک"
 
-#: sarshomar/includes/languages/trans_twig.php:1797
+#: sarshomar/includes/languages/trans_twig.php:1799
 msgid "camel"
 msgstr "شتر"
 
-#: sarshomar/includes/languages/trans_twig.php:1798
+#: sarshomar/includes/languages/trans_twig.php:1800
 msgid "company"
 msgstr "شرکت خودروسازی"
 
-#: sarshomar/includes/languages/trans_twig.php:1799
+#: sarshomar/includes/languages/trans_twig.php:1801
 msgid "companies"
 msgstr "شرکت‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1800
+#: sarshomar/includes/languages/trans_twig.php:1802
 msgid "last 6 month"
 msgstr "شش‌ماه اخیر"
 
-#: sarshomar/includes/languages/trans_twig.php:1801
+#: sarshomar/includes/languages/trans_twig.php:1803
 msgid "poem"
 msgstr "شعر"
 
-#: sarshomar/includes/languages/trans_twig.php:1802
+#: sarshomar/includes/languages/trans_twig.php:1804
 msgid "poetry"
 msgstr "شعر، ادب و هنر"
 
-#: sarshomar/includes/languages/trans_twig.php:1803
+#: sarshomar/includes/languages/trans_twig.php:1805
 msgid "shamsi hijri calendar"
 msgstr "شمسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1804
+#: sarshomar/includes/languages/trans_twig.php:1806
 msgid "swimming"
 msgstr "شنا"
 
-#: sarshomar/includes/languages/trans_twig.php:1806
+#: sarshomar/includes/languages/trans_twig.php:1808
 msgid "shahrdari saveh"
 msgstr "شهرداری ساوه"
 
-#: sarshomar/includes/languages/trans_twig.php:1807
+#: sarshomar/includes/languages/trans_twig.php:1809
 msgid "shahrvand sari"
 msgstr "شهروند ساری"
 
-#: sarshomar/includes/languages/trans_twig.php:1808
+#: sarshomar/includes/languages/trans_twig.php:1810
 msgid "urban"
 msgstr "شهری"
 
-#: sarshomar/includes/languages/trans_twig.php:1809
+#: sarshomar/includes/languages/trans_twig.php:1811
 msgid "shahrivar"
 msgstr "شهریور"
 
-#: sarshomar/includes/languages/trans_twig.php:1810
+#: sarshomar/includes/languages/trans_twig.php:1812
 msgid "salty"
 msgstr "شور"
 
-#: sarshomar/includes/languages/trans_twig.php:1811
+#: sarshomar/includes/languages/trans_twig.php:1813
 msgid "milk"
 msgstr "شیر"
 
-#: sarshomar/includes/languages/trans_twig.php:1812
+#: sarshomar/includes/languages/trans_twig.php:1814
 msgid "sweet"
 msgstr "شیرین"
 
-#: sarshomar/includes/languages/trans_twig.php:1813
+#: sarshomar/includes/languages/trans_twig.php:1815
 msgid "saba qom"
 msgstr "صبای قم"
 
-#: sarshomar/includes/languages/trans_twig.php:1814
+#: sarshomar/includes/languages/trans_twig.php:1816
 msgid "breakfast"
 msgstr "صبحانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1815
+#: sarshomar/includes/languages/trans_twig.php:1817
 msgid "sadaqah"
 msgstr "صدقه"
 
-#: sarshomar/includes/languages/trans_twig.php:1816
+#: sarshomar/includes/languages/trans_twig.php:1818
 msgid "industrial and power plants"
 msgstr "صنایع و نیروگاه‌ها"
 
-#: sarshomar/includes/languages/trans_twig.php:1817
+#: sarshomar/includes/languages/trans_twig.php:1819
 msgid "sanat naft abadan"
 msgstr "صنعت نفت آبادان"
 
-#: sarshomar/includes/languages/trans_twig.php:1818
+#: sarshomar/includes/languages/trans_twig.php:1820
 msgid "pink"
 msgstr "صورتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1819
+#: sarshomar/includes/languages/trans_twig.php:1821
 msgid "iranian traditional medicine"
 msgstr "طب‌سنتی ایرانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1820
+#: sarshomar/includes/languages/trans_twig.php:1822
 msgid "natural"
 msgstr "طبیعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1821
+#: sarshomar/includes/languages/trans_twig.php:1823
 msgid "tarh o toseeh alvand"
 msgstr "طرح و توسعه الوند"
 
-#: sarshomar/includes/languages/trans_twig.php:1822
+#: sarshomar/includes/languages/trans_twig.php:1824
 msgid "taste"
 msgstr "طعم"
 
-#: sarshomar/includes/languages/trans_twig.php:1823
+#: sarshomar/includes/languages/trans_twig.php:1825
 msgid "divorced"
 msgstr "طلاق گرفته"
 
-#: sarshomar/includes/languages/trans_twig.php:1824
+#: sarshomar/includes/languages/trans_twig.php:1826
 msgid "diet"
 msgstr "عادت"
 
-#: sarshomar/includes/languages/trans_twig.php:1825
+#: sarshomar/includes/languages/trans_twig.php:1827
 msgid "romantic"
 msgstr "عاشقانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1826
+#: sarshomar/includes/languages/trans_twig.php:1828
 msgid "arabic"
 msgstr "عربی"
 
-#: sarshomar/includes/languages/trans_twig.php:1827
+#: sarshomar/includes/languages/trans_twig.php:1829
 msgid "interested"
 msgstr "علاقمند"
 
-#: sarshomar/includes/languages/trans_twig.php:1828
+#: sarshomar/includes/languages/trans_twig.php:1830
 msgid "favorite"
 msgstr "علاقمندی"
 
-#: sarshomar/includes/languages/trans_twig.php:1829
+#: sarshomar/includes/languages/trans_twig.php:1831
 msgid "interest"
 msgstr "علاقمندی"
 
-#: sarshomar/includes/languages/trans_twig.php:1830
+#: sarshomar/includes/languages/trans_twig.php:1832
 msgid "not interested"
 msgstr "علاقه ندارم"
 
-#: sarshomar/includes/languages/trans_twig.php:1831
+#: sarshomar/includes/languages/trans_twig.php:1833
 msgid "science"
 msgstr "علمی"
 
-#: sarshomar/includes/languages/trans_twig.php:1832
+#: sarshomar/includes/languages/trans_twig.php:1834
 msgid "industrial"
 msgstr "علمی و صنعتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1833
+#: sarshomar/includes/languages/trans_twig.php:1835
 msgid "applied science technology"
 msgstr "علمی‌کاربردی"
 
-#: sarshomar/includes/languages/trans_twig.php:1834
+#: sarshomar/includes/languages/trans_twig.php:1836
 msgid "humanities"
 msgstr "علوم انسانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1835
+#: sarshomar/includes/languages/trans_twig.php:1837
 msgid "science and religion"
 msgstr "علوم و معارف‌اسلامی"
 
-#: sarshomar/includes/languages/trans_twig.php:1836
+#: sarshomar/includes/languages/trans_twig.php:1838
 msgid "general"
 msgstr "عمومی"
 
-#: sarshomar/includes/languages/trans_twig.php:1837
+#: sarshomar/includes/languages/trans_twig.php:1839
 msgid "factors"
 msgstr "عوامل"
 
-#: sarshomar/includes/languages/trans_twig.php:1838
+#: sarshomar/includes/languages/trans_twig.php:1840
 msgid "glasses"
 msgstr "عینک"
 
-#: sarshomar/includes/languages/trans_twig.php:1839
+#: sarshomar/includes/languages/trans_twig.php:1841
 msgid "food"
 msgstr "غذا"
 
-#: sarshomar/includes/languages/trans_twig.php:1840
+#: sarshomar/includes/languages/trans_twig.php:1842
 msgid "sonnet"
 msgstr "غزل"
 
-#: sarshomar/includes/languages/trans_twig.php:1841
+#: sarshomar/includes/languages/trans_twig.php:1843
 msgid "underwater diving"
 msgstr "غواصی"
 
-#: sarshomar/includes/languages/trans_twig.php:1842
+#: sarshomar/includes/languages/trans_twig.php:1844
 msgid "non governmental"
 msgstr "غیرانتقاعی"
 
-#: sarshomar/includes/languages/trans_twig.php:1843
+#: sarshomar/includes/languages/trans_twig.php:1845
 msgid "non govermental"
 msgstr "غیردولتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1844
+#: sarshomar/includes/languages/trans_twig.php:1846
 msgid "farsi"
 msgstr "فارسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1846
+#: sarshomar/includes/languages/trans_twig.php:1848
 msgid "fajr sepasi"
 msgstr "فجرسپاسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1847
+#: sarshomar/includes/languages/trans_twig.php:1849
 msgid "french"
 msgstr "فرانسوی"
 
-#: sarshomar/includes/languages/trans_twig.php:1848
+#: sarshomar/includes/languages/trans_twig.php:1850
 msgid "child"
 msgstr "فرزند"
 
-#: sarshomar/includes/languages/trans_twig.php:1849
+#: sarshomar/includes/languages/trans_twig.php:1851
 msgid "farsh mashhad"
 msgstr "فرش‌آرا"
 
-#: sarshomar/includes/languages/trans_twig.php:1850
+#: sarshomar/includes/languages/trans_twig.php:1852
 msgid "no time"
 msgstr "فرصت نکردن"
 
-#: sarshomar/includes/languages/trans_twig.php:1851
+#: sarshomar/includes/languages/trans_twig.php:1853
 msgid "no matter"
 msgstr "فرقی نمی‌کند"
 
-#: sarshomar/includes/languages/trans_twig.php:1852
+#: sarshomar/includes/languages/trans_twig.php:1854
 msgid "culture"
 msgstr "فرهنگی"
 
-#: sarshomar/includes/languages/trans_twig.php:1853
+#: sarshomar/includes/languages/trans_twig.php:1855
 msgid "farvardin"
 msgstr "فروردین"
 
-#: sarshomar/includes/languages/trans_twig.php:1854
+#: sarshomar/includes/languages/trans_twig.php:1856
 msgid "fast food"
 msgstr "فست‌فود"
 
-#: sarshomar/includes/languages/trans_twig.php:1855
+#: sarshomar/includes/languages/trans_twig.php:1857
 msgid "season"
 msgstr "فصل"
 
-#: sarshomar/includes/languages/trans_twig.php:1856
+#: sarshomar/includes/languages/trans_twig.php:1858
 msgid "not think"
 msgstr "فکر نکردم"
 
-#: sarshomar/includes/languages/trans_twig.php:1857
+#: sarshomar/includes/languages/trans_twig.php:1859
 msgid "vocational"
 msgstr "فنی و حرفه‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1858
+#: sarshomar/includes/languages/trans_twig.php:1860
 msgid "football"
 msgstr "فوتبال"
 
-#: sarshomar/includes/languages/trans_twig.php:1859
+#: sarshomar/includes/languages/trans_twig.php:1861
 msgid "american football"
 msgstr "فوتبال آمریکایی"
 
-#: sarshomar/includes/languages/trans_twig.php:1860
+#: sarshomar/includes/languages/trans_twig.php:1862
 msgid "futsal"
 msgstr "فوتسال"
 
-#: sarshomar/includes/languages/trans_twig.php:1861
+#: sarshomar/includes/languages/trans_twig.php:1863
 msgid "associate degree"
 msgstr "فوق‌دیپلم"
 
-#: sarshomar/includes/languages/trans_twig.php:1862
+#: sarshomar/includes/languages/trans_twig.php:1864
 msgid "foolad"
 msgstr "فولاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1863
+#: sarshomar/includes/languages/trans_twig.php:1865
 msgid "foolad yazd"
 msgstr "فولاد یزد"
 
-#: sarshomar/includes/languages/trans_twig.php:1864
+#: sarshomar/includes/languages/trans_twig.php:1866
 msgid "cyan"
 msgstr "فیروزه‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1866
+#: sarshomar/includes/languages/trans_twig.php:1868
 msgid "movie"
 msgstr "فیلم"
 
-#: sarshomar/includes/languages/trans_twig.php:1867
+#: sarshomar/includes/languages/trans_twig.php:1869
 msgid "watching movie"
 msgstr "فیلم دیدن"
 
-#: sarshomar/includes/languages/trans_twig.php:1868
+#: sarshomar/includes/languages/trans_twig.php:1870
 msgid "continent"
 msgstr "قاره"
 
-#: sarshomar/includes/languages/trans_twig.php:1869
+#: sarshomar/includes/languages/trans_twig.php:1871
 msgid "form"
 msgstr "قالب"
 
-#: sarshomar/includes/languages/trans_twig.php:1870
+#: sarshomar/includes/languages/trans_twig.php:1872
 msgid "law"
 msgstr "قانون"
 
-#: sarshomar/includes/languages/trans_twig.php:1871
+#: sarshomar/includes/languages/trans_twig.php:1873
 msgid "boating "
 msgstr "قایق‌رانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1872
+#: sarshomar/includes/languages/trans_twig.php:1874
 msgid "red"
 msgstr "قرمز"
 
-#: sarshomar/includes/languages/trans_twig.php:1873
+#: sarshomar/includes/languages/trans_twig.php:1875
 msgid "ode"
 msgstr "قصیده"
 
-#: sarshomar/includes/languages/trans_twig.php:1874
+#: sarshomar/includes/languages/trans_twig.php:1876
 msgid "train"
 msgstr "قطار"
 
-#: sarshomar/includes/languages/trans_twig.php:1875
+#: sarshomar/includes/languages/trans_twig.php:1877
 msgid "cut"
 msgstr "قطع کردند"
 
-#: sarshomar/includes/languages/trans_twig.php:1876
+#: sarshomar/includes/languages/trans_twig.php:1878
 msgid "ghatee"
 msgstr "قطعه"
 
-#: sarshomar/includes/languages/trans_twig.php:1877
+#: sarshomar/includes/languages/trans_twig.php:1879
 msgid "islamic calendar"
 msgstr "قمری"
 
-#: sarshomar/includes/languages/trans_twig.php:1878
+#: sarshomar/includes/languages/trans_twig.php:1880
 msgid "coffee"
 msgstr "قهوه"
 
-#: sarshomar/includes/languages/trans_twig.php:1879
+#: sarshomar/includes/languages/trans_twig.php:1881
 msgid "brown"
 msgstr "قهوه‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:1880
+#: sarshomar/includes/languages/trans_twig.php:1882
 msgid "price"
 msgstr "قیمت"
 
-#: sarshomar/includes/languages/trans_twig.php:1881
+#: sarshomar/includes/languages/trans_twig.php:1883
 msgid "karate"
 msgstr "کاراته"
 
-#: sarshomar/includes/languages/trans_twig.php:1882
+#: sarshomar/includes/languages/trans_twig.php:1884
 msgid "kar-o danesh"
 msgstr "کاردانش"
 
-#: sarshomar/includes/languages/trans_twig.php:1883
+#: sarshomar/includes/languages/trans_twig.php:1885
 msgid "bachelor degree"
 msgstr "کارشناسی"
 
-#: sarshomar/includes/languages/trans_twig.php:1884
+#: sarshomar/includes/languages/trans_twig.php:1886
 msgid "master degree"
 msgstr "کارشناسی ارشد"
 
-#: sarshomar/includes/languages/trans_twig.php:1885
+#: sarshomar/includes/languages/trans_twig.php:1887
 msgid "masters degree"
 msgstr "کارشناسی‌ارشد"
 
-#: sarshomar/includes/languages/trans_twig.php:1886
+#: sarshomar/includes/languages/trans_twig.php:1888
 msgid "government employees"
 msgstr "کارکنان دولت"
 
-#: sarshomar/includes/languages/trans_twig.php:1887
+#: sarshomar/includes/languages/trans_twig.php:1889
 msgid "iran provincial channels"
 msgstr "کانال‌های استانی ایران"
 
-#: sarshomar/includes/languages/trans_twig.php:1889
+#: sarshomar/includes/languages/trans_twig.php:1891
 msgid "library"
 msgstr "کتابخانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1890
+#: sarshomar/includes/languages/trans_twig.php:1892
 msgid "which one"
 msgstr "کدوم بهتره"
 
-#: sarshomar/includes/languages/trans_twig.php:1891
+#: sarshomar/includes/languages/trans_twig.php:1893
 msgid "give"
 msgstr "کردم"
 
-#: sarshomar/includes/languages/trans_twig.php:1892
+#: sarshomar/includes/languages/trans_twig.php:1894
 msgid "did"
 msgstr "کردم"
 
-#: sarshomar/includes/languages/trans_twig.php:1893
+#: sarshomar/includes/languages/trans_twig.php:1895
 msgid "kurdish"
 msgstr "کردی"
 
-#: sarshomar/includes/languages/trans_twig.php:1894
+#: sarshomar/includes/languages/trans_twig.php:1896
 msgid "kerman motor"
 msgstr "کرمان موتور"
 
-#: sarshomar/includes/languages/trans_twig.php:1895
+#: sarshomar/includes/languages/trans_twig.php:1897
 msgid "cricket"
 msgstr "کریکت"
 
-#: sarshomar/includes/languages/trans_twig.php:1896
+#: sarshomar/includes/languages/trans_twig.php:1898
 msgid "agriculture"
 msgstr "کشاورزی"
 
-#: sarshomar/includes/languages/trans_twig.php:1897
+#: sarshomar/includes/languages/trans_twig.php:1899
 msgid "wrestling"
 msgstr "کشتی"
 
-#: sarshomar/includes/languages/trans_twig.php:1898
+#: sarshomar/includes/languages/trans_twig.php:1900
 msgid "made in"
 msgstr "کشور سازنده"
 
-#: sarshomar/includes/languages/trans_twig.php:1899
+#: sarshomar/includes/languages/trans_twig.php:1901
 msgid "classic"
 msgstr "کلاسیک"
 
-#: sarshomar/includes/languages/trans_twig.php:1900
+#: sarshomar/includes/languages/trans_twig.php:1902
 msgid "cloob"
 msgstr "کلوب"
 
-#: sarshomar/includes/languages/trans_twig.php:1901
+#: sarshomar/includes/languages/trans_twig.php:1903
 msgid "little"
 msgstr "کم"
 
-#: sarshomar/includes/languages/trans_twig.php:1902
+#: sarshomar/includes/languages/trans_twig.php:1904
 msgid "more or less"
 msgstr "کم و بیش"
 
-#: sarshomar/includes/languages/trans_twig.php:1903
+#: sarshomar/includes/languages/trans_twig.php:1905
 msgid "lack of green space"
 msgstr "کمبود فضای سبز"
 
-#: sarshomar/includes/languages/trans_twig.php:1904
+#: sarshomar/includes/languages/trans_twig.php:1906
 msgid "underweight"
 msgstr "کمبود وزن"
 
-#: sarshomar/includes/languages/trans_twig.php:1905
+#: sarshomar/includes/languages/trans_twig.php:1907
 msgid "less than 150"
 msgstr "کمتر از ۱۵۰"
 
-#: sarshomar/includes/languages/trans_twig.php:1906
+#: sarshomar/includes/languages/trans_twig.php:1908
 msgid "comedy"
 msgstr "کمدی"
 
-#: sarshomar/includes/languages/trans_twig.php:1907
+#: sarshomar/includes/languages/trans_twig.php:1909
 msgid "congress"
 msgstr "کنگره"
 
-#: sarshomar/includes/languages/trans_twig.php:1908
+#: sarshomar/includes/languages/trans_twig.php:1910
 msgid "kung fu"
 msgstr "کونگ‌فو"
 
-#: sarshomar/includes/languages/trans_twig.php:1909
+#: sarshomar/includes/languages/trans_twig.php:1911
 msgid "quality"
 msgstr "کیفیت و جنس"
 
-#: sarshomar/includes/languages/trans_twig.php:1910
+#: sarshomar/includes/languages/trans_twig.php:1912
 msgid "sometimes"
 msgstr "گاهی اوقات"
 
-#: sarshomar/includes/languages/trans_twig.php:1911
+#: sarshomar/includes/languages/trans_twig.php:1913
 msgid "cow and calf"
 msgstr "گاو و گوساله"
 
-#: sarshomar/includes/languages/trans_twig.php:1912
+#: sarshomar/includes/languages/trans_twig.php:1914
 msgid "past"
 msgstr "گذشته"
 
-#: sarshomar/includes/languages/trans_twig.php:1913
+#: sarshomar/includes/languages/trans_twig.php:1915
 msgid "got"
 msgstr "گرفتم"
 
-#: sarshomar/includes/languages/trans_twig.php:1914
+#: sarshomar/includes/languages/trans_twig.php:1916
 msgid "group"
 msgstr "گروه"
 
-#: sarshomar/includes/languages/trans_twig.php:1915
+#: sarshomar/includes/languages/trans_twig.php:1917
 msgid "bahman group"
 msgstr "گروه بهمن"
 
-#: sarshomar/includes/languages/trans_twig.php:1916
+#: sarshomar/includes/languages/trans_twig.php:1918
 msgid "gostaresh foulad"
 msgstr "گسترش فولاد"
 
-#: sarshomar/includes/languages/trans_twig.php:1917
+#: sarshomar/includes/languages/trans_twig.php:1919
 msgid "flower"
 msgstr "گل"
 
-#: sarshomar/includes/languages/trans_twig.php:1918
+#: sarshomar/includes/languages/trans_twig.php:1920
 msgid "gulf"
 msgstr "گلف"
 
-#: sarshomar/includes/languages/trans_twig.php:1919
+#: sarshomar/includes/languages/trans_twig.php:1921
 msgid "gol gohar sirjan"
 msgstr "گل‌گهر سیرجان"
 
-#: sarshomar/includes/languages/trans_twig.php:1920
+#: sarshomar/includes/languages/trans_twig.php:1922
 msgid "sheep"
 msgstr "گوسفند"
 
-#: sarshomar/includes/languages/trans_twig.php:1921
+#: sarshomar/includes/languages/trans_twig.php:1923
 msgid "listen"
 msgstr "گوش می‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1922
+#: sarshomar/includes/languages/trans_twig.php:1924
 msgid "not listen"
 msgstr "گوش نمی‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1923
+#: sarshomar/includes/languages/trans_twig.php:1925
 msgid "meat"
 msgstr "گوشت"
 
-#: sarshomar/includes/languages/trans_twig.php:1924
+#: sarshomar/includes/languages/trans_twig.php:1926
 msgid "medicinal plants"
 msgstr "گیاهان دارویی"
 
-#: sarshomar/includes/languages/trans_twig.php:1925
+#: sarshomar/includes/languages/trans_twig.php:1927
 msgid "giti pasand"
 msgstr "گیتی‌پسند"
 
-#: sarshomar/includes/languages/trans_twig.php:1926
+#: sarshomar/includes/languages/trans_twig.php:1928
 msgid "thin"
 msgstr "لاغر"
 
-#: sarshomar/includes/languages/trans_twig.php:1927
+#: sarshomar/includes/languages/trans_twig.php:1929
 msgid "spanish primera division"
 msgstr "لالیگا اسپانیا"
 
-#: sarshomar/includes/languages/trans_twig.php:1928
+#: sarshomar/includes/languages/trans_twig.php:1930
 msgid "accent"
 msgstr "لهجه و گویش‌های محلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1929
+#: sarshomar/includes/languages/trans_twig.php:1931
 msgid "lavash"
 msgstr "لواش"
 
-#: sarshomar/includes/languages/trans_twig.php:1930
+#: sarshomar/includes/languages/trans_twig.php:1932
 msgid "french ligue 1"
 msgstr "لیگ ۱ فرانسه"
 
-#: sarshomar/includes/languages/trans_twig.php:1931
+#: sarshomar/includes/languages/trans_twig.php:1933
 msgid "azadegan league"
 msgstr "لیگ آزادگان"
 
-#: sarshomar/includes/languages/trans_twig.php:1932
+#: sarshomar/includes/languages/trans_twig.php:1934
 msgid "english premier league"
 msgstr "لیگ برتر انگلستان"
 
-#: sarshomar/includes/languages/trans_twig.php:1933
+#: sarshomar/includes/languages/trans_twig.php:1935
 msgid "persian gulf pro league"
 msgstr "لیگ برتر ایران"
 
-#: sarshomar/includes/languages/trans_twig.php:1935
+#: sarshomar/includes/languages/trans_twig.php:1937
 msgid "machine sazi tabriz"
 msgstr "ماشین‌سازی تبریز"
 
-#: sarshomar/includes/languages/trans_twig.php:1938
+#: sarshomar/includes/languages/trans_twig.php:1940
 msgid "last month"
 msgstr "ماه اخیر"
 
-#: sarshomar/includes/languages/trans_twig.php:1939
+#: sarshomar/includes/languages/trans_twig.php:1941
 msgid "satellite "
 msgstr "ماهواره"
 
-#: sarshomar/includes/languages/trans_twig.php:1940
+#: sarshomar/includes/languages/trans_twig.php:1942
 msgid "fish and aquatic"
 msgstr "ماهی و آبزیان"
 
-#: sarshomar/includes/languages/trans_twig.php:1941
+#: sarshomar/includes/languages/trans_twig.php:1943
 msgid "monthly"
 msgstr "ماهیانه"
 
-#: sarshomar/includes/languages/trans_twig.php:1943
+#: sarshomar/includes/languages/trans_twig.php:1945
 msgid "metro"
 msgstr "مترو"
 
-#: sarshomar/includes/languages/trans_twig.php:1944
+#: sarshomar/includes/languages/trans_twig.php:1946
 msgid "fit"
 msgstr "متناسب"
 
-#: sarshomar/includes/languages/trans_twig.php:1945
+#: sarshomar/includes/languages/trans_twig.php:1947
 msgid "average"
 msgstr "متوسط"
 
-#: sarshomar/includes/languages/trans_twig.php:1946
+#: sarshomar/includes/languages/trans_twig.php:1948
 msgid "primary high school"
 msgstr "متوسطه اول"
 
-#: sarshomar/includes/languages/trans_twig.php:1947
+#: sarshomar/includes/languages/trans_twig.php:1949
 msgid "secondry high school"
 msgstr "متوسطه دوم"
 
-#: sarshomar/includes/languages/trans_twig.php:1948
+#: sarshomar/includes/languages/trans_twig.php:1950
 msgid "masnavi"
 msgstr "مثنوی"
 
-#: sarshomar/includes/languages/trans_twig.php:1950
+#: sarshomar/includes/languages/trans_twig.php:1952
 msgid "parliament"
 msgstr "مجلس"
 
-#: sarshomar/includes/languages/trans_twig.php:1952
+#: sarshomar/includes/languages/trans_twig.php:1954
 msgid "height range"
 msgstr "محدوده قد"
 
-#: sarshomar/includes/languages/trans_twig.php:1953
+#: sarshomar/includes/languages/trans_twig.php:1955
 msgid "weight range"
 msgstr "محدوده وزنی"
 
-#: sarshomar/includes/languages/trans_twig.php:1954
+#: sarshomar/includes/languages/trans_twig.php:1956
 msgid "residence"
 msgstr "محل اسکان"
 
-#: sarshomar/includes/languages/trans_twig.php:1955
+#: sarshomar/includes/languages/trans_twig.php:1957
 msgid "folk"
 msgstr "محلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1956
+#: sarshomar/includes/languages/trans_twig.php:1958
 msgid "environment"
 msgstr "محیط‌زیست"
 
-#: sarshomar/includes/languages/trans_twig.php:1957
+#: sarshomar/includes/languages/trans_twig.php:1959
 msgid "disagree"
 msgstr "مخالف"
 
-#: sarshomar/includes/languages/trans_twig.php:1958
+#: sarshomar/includes/languages/trans_twig.php:1960
 msgid "fashion"
 msgstr "مد و لباس"
 
-#: sarshomar/includes/languages/trans_twig.php:1959
+#: sarshomar/includes/languages/trans_twig.php:1961
 msgid "degree of education"
 msgstr "مدرک تحصیلی"
 
-#: sarshomar/includes/languages/trans_twig.php:1960
+#: sarshomar/includes/languages/trans_twig.php:1962
 msgid "modiran khodro"
 msgstr "مدیران خودرو"
 
-#: sarshomar/includes/languages/trans_twig.php:1961
+#: sarshomar/includes/languages/trans_twig.php:1963
 msgid "organizational"
 msgstr "مراکز اسکان سازمانی"
 
-#: sarshomar/includes/languages/trans_twig.php:1962
+#: sarshomar/includes/languages/trans_twig.php:1964
 msgid "ordered"
 msgstr "مرتب"
 
-#: sarshomar/includes/languages/trans_twig.php:1963
+#: sarshomar/includes/languages/trans_twig.php:1965
 msgid "mordad"
 msgstr "مرداد"
 
-#: sarshomar/includes/languages/trans_twig.php:1964
+#: sarshomar/includes/languages/trans_twig.php:1966
 msgid "poultry"
 msgstr "مرغ و طیور"
 
-#: sarshomar/includes/languages/trans_twig.php:1965
+#: sarshomar/includes/languages/trans_twig.php:1967
 msgid "mes rafsanjan"
 msgstr "مس رفسنجان"
 
-#: sarshomar/includes/languages/trans_twig.php:1966
+#: sarshomar/includes/languages/trans_twig.php:1968
 msgid "mes sungun"
 msgstr "مس سونگون"
 
-#: sarshomar/includes/languages/trans_twig.php:1967
+#: sarshomar/includes/languages/trans_twig.php:1969
 msgid "mes kerman"
 msgstr "مس کرمان"
 
-#: sarshomar/includes/languages/trans_twig.php:1968
+#: sarshomar/includes/languages/trans_twig.php:1970
 msgid "house"
 msgstr "مسکن"
 
-#: sarshomar/includes/languages/trans_twig.php:1969
+#: sarshomar/includes/languages/trans_twig.php:1971
 msgid "christ"
 msgstr "مسیحیت"
 
-#: sarshomar/includes/languages/trans_twig.php:1970
+#: sarshomar/includes/languages/trans_twig.php:1972
 msgid "jobs"
 msgstr "مشاغل"
 
-#: sarshomar/includes/languages/trans_twig.php:1972
+#: sarshomar/includes/languages/trans_twig.php:1974
 msgid "use"
 msgstr "مصرف می‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1973
+#: sarshomar/includes/languages/trans_twig.php:1975
 msgid "not use"
 msgstr "مصرف نمی‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1974
+#: sarshomar/includes/languages/trans_twig.php:1976
 msgid "latest study"
 msgstr "مطالعه آخرین کتاب"
 
-#: sarshomar/includes/languages/trans_twig.php:1975
+#: sarshomar/includes/languages/trans_twig.php:1977
 msgid "exemption"
 msgstr "معافیت"
 
-#: sarshomar/includes/languages/trans_twig.php:1976
+#: sarshomar/includes/languages/trans_twig.php:1978
 msgid "moghavemat alborz"
 msgstr "مقاومت البرز"
 
-#: sarshomar/includes/languages/trans_twig.php:1977
+#: sarshomar/includes/languages/trans_twig.php:1979
 msgid "primary"
 msgstr "مقدمات"
 
-#: sarshomar/includes/languages/trans_twig.php:1979
+#: sarshomar/includes/languages/trans_twig.php:1981
 msgid "selection criteria"
 msgstr "ملاک انتخاب"
 
-#: sarshomar/includes/languages/trans_twig.php:1980
+#: sarshomar/includes/languages/trans_twig.php:1982
 msgid "malavan"
 msgstr "ملوان"
 
-#: sarshomar/includes/languages/trans_twig.php:1981
+#: sarshomar/includes/languages/trans_twig.php:1983
 msgid "mehr"
 msgstr "مهر"
 
-#: sarshomar/includes/languages/trans_twig.php:1982
+#: sarshomar/includes/languages/trans_twig.php:1984
 msgid "agree"
 msgstr "موافق"
 
-#: sarshomar/includes/languages/trans_twig.php:1984
+#: sarshomar/includes/languages/trans_twig.php:1986
 msgid "motorcycling "
 msgstr "موتورسواری"
 
-#: sarshomar/includes/languages/trans_twig.php:1985
+#: sarshomar/includes/languages/trans_twig.php:1987
 msgid "motorcycle"
 msgstr "موتورسیکلت"
 
-#: sarshomar/includes/languages/trans_twig.php:1986
+#: sarshomar/includes/languages/trans_twig.php:1988
 msgid "music"
 msgstr "موسیقی"
 
-#: sarshomar/includes/languages/trans_twig.php:1987
+#: sarshomar/includes/languages/trans_twig.php:1989
 msgid "scared"
 msgstr "می‌ترسم"
 
-#: sarshomar/includes/languages/trans_twig.php:1988
+#: sarshomar/includes/languages/trans_twig.php:1990
 msgid "eat"
 msgstr "می‌خورم"
 
-#: sarshomar/includes/languages/trans_twig.php:1989
+#: sarshomar/includes/languages/trans_twig.php:1991
 msgid "pay"
 msgstr "می‌دهم"
 
-#: sarshomar/includes/languages/trans_twig.php:1990
+#: sarshomar/includes/languages/trans_twig.php:1992
 msgid "amount"
 msgstr "میزان"
 
-#: sarshomar/includes/languages/trans_twig.php:1991
+#: sarshomar/includes/languages/trans_twig.php:1993
 msgid "usage"
 msgstr "میزان استفاده"
 
-#: sarshomar/includes/languages/trans_twig.php:1992
+#: sarshomar/includes/languages/trans_twig.php:1994
 msgid "listening"
 msgstr "میزان گوش‌دادن"
 
-#: sarshomar/includes/languages/trans_twig.php:1993
+#: sarshomar/includes/languages/trans_twig.php:1995
 msgid "do"
 msgstr "می‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:1994
+#: sarshomar/includes/languages/trans_twig.php:1996
 msgid "gregorian calendar"
 msgstr "میلادی"
 
-#: sarshomar/includes/languages/trans_twig.php:1995
+#: sarshomar/includes/languages/trans_twig.php:1997
 msgid "drink"
 msgstr "می‌نوشم"
 
-#: sarshomar/includes/languages/trans_twig.php:1996
+#: sarshomar/includes/languages/trans_twig.php:1998
 msgid "orange"
 msgstr "نارنجی"
 
-#: sarshomar/includes/languages/trans_twig.php:1997
+#: sarshomar/includes/languages/trans_twig.php:1999
 msgid "brand"
 msgstr "نام تجاری"
 
-#: sarshomar/includes/languages/trans_twig.php:1998
+#: sarshomar/includes/languages/trans_twig.php:2000
 msgid "engaged"
 msgstr "نامزد"
 
-#: sarshomar/includes/languages/trans_twig.php:1999
+#: sarshomar/includes/languages/trans_twig.php:2001
 msgid "bread"
 msgstr "نان"
 
-#: sarshomar/includes/languages/trans_twig.php:2000
+#: sarshomar/includes/languages/trans_twig.php:2002
 msgid "not decided"
 msgstr "نتوستم تصمیم بگیرم"
 
-#: sarshomar/includes/languages/trans_twig.php:2001
+#: sarshomar/includes/languages/trans_twig.php:2003
 msgid "connection"
 msgstr "نحوه اتصال"
 
-#: sarshomar/includes/languages/trans_twig.php:2002
+#: sarshomar/includes/languages/trans_twig.php:2004
 msgid "not have"
 msgstr "ندارم"
 
-#: sarshomar/includes/languages/trans_twig.php:2003
+#: sarshomar/includes/languages/trans_twig.php:2005
 msgid "have not"
 msgstr "ندارم"
 
-#: sarshomar/includes/languages/trans_twig.php:2004
+#: sarshomar/includes/languages/trans_twig.php:2006
 msgid "not gone"
 msgstr "نرفتم"
 
-#: sarshomar/includes/languages/trans_twig.php:2005
+#: sarshomar/includes/languages/trans_twig.php:2007
 msgid "nassaji mazandaran"
 msgstr "نساجی مازندران"
 
-#: sarshomar/includes/languages/trans_twig.php:2006
+#: sarshomar/includes/languages/trans_twig.php:2008
 msgid "nescafe"
 msgstr "نسکافه"
 
-#: sarshomar/includes/languages/trans_twig.php:2007
+#: sarshomar/includes/languages/trans_twig.php:2009
 msgid "military service"
 msgstr "نظام‌وظیفه"
 
-#: sarshomar/includes/languages/trans_twig.php:2008
+#: sarshomar/includes/languages/trans_twig.php:2010
 msgid "military"
 msgstr "نظامی"
 
-#: sarshomar/includes/languages/trans_twig.php:2009
+#: sarshomar/includes/languages/trans_twig.php:2011
 msgid "opinion"
 msgstr "نظر"
 
-#: sarshomar/includes/languages/trans_twig.php:2010
+#: sarshomar/includes/languages/trans_twig.php:2012
 msgid "naft tehran"
 msgstr "نفت تهران"
 
-#: sarshomar/includes/languages/trans_twig.php:2011
+#: sarshomar/includes/languages/trans_twig.php:2013
 msgid "naft masjed soleyman"
 msgstr "نفت مسجدسلیمان"
 
-#: sarshomar/includes/languages/trans_twig.php:2012
+#: sarshomar/includes/languages/trans_twig.php:2014
 msgid "silver"
 msgstr "نقره‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:2013
+#: sarshomar/includes/languages/trans_twig.php:2015
 msgid "not give"
 msgstr "نکردم"
 
-#: sarshomar/includes/languages/trans_twig.php:2014
+#: sarshomar/includes/languages/trans_twig.php:2016
 msgid "did not"
 msgstr "نکردم"
 
-#: sarshomar/includes/languages/trans_twig.php:2015
+#: sarshomar/includes/languages/trans_twig.php:2017
 msgid "did not get"
 msgstr "نگرفتم"
 
-#: sarshomar/includes/languages/trans_twig.php:2016
+#: sarshomar/includes/languages/trans_twig.php:2018
 msgid "electronic trust icon"
 msgstr "نماد اعتماد الکترونیکی"
 
-#: sarshomar/includes/languages/trans_twig.php:2017
+#: sarshomar/includes/languages/trans_twig.php:2019
 msgid "not eat"
 msgstr "نمی‌خورم"
 
-#: sarshomar/includes/languages/trans_twig.php:2018
+#: sarshomar/includes/languages/trans_twig.php:2020
 msgid "not pay"
 msgstr "نمی‌دهم"
 
-#: sarshomar/includes/languages/trans_twig.php:2019
+#: sarshomar/includes/languages/trans_twig.php:2021
 msgid "do not"
 msgstr "نمی‌کنم"
 
-#: sarshomar/includes/languages/trans_twig.php:2020
+#: sarshomar/includes/languages/trans_twig.php:2022
 msgid "not drink"
 msgstr "نمی‌نوشم"
 
-#: sarshomar/includes/languages/trans_twig.php:2021
+#: sarshomar/includes/languages/trans_twig.php:2023
 msgid "soda"
 msgstr "نوشابه"
 
-#: sarshomar/includes/languages/trans_twig.php:2022
+#: sarshomar/includes/languages/trans_twig.php:2024
 msgid "potable"
 msgstr "نوشیدنی"
 
-#: sarshomar/includes/languages/trans_twig.php:2023
+#: sarshomar/includes/languages/trans_twig.php:2025
 msgid "beverage"
 msgstr "نوشیدنی"
 
-#: sarshomar/includes/languages/trans_twig.php:2024
+#: sarshomar/includes/languages/trans_twig.php:2026
 msgid "kind"
 msgstr "نوع"
 
-#: sarshomar/includes/languages/trans_twig.php:2025
+#: sarshomar/includes/languages/trans_twig.php:2027
 msgid "university type"
 msgstr "نوع دانشگاه"
 
-#: sarshomar/includes/languages/trans_twig.php:2026
+#: sarshomar/includes/languages/trans_twig.php:2028
 msgid "armed forces"
 msgstr "نیروهای مسلح"
 
-#: sarshomar/includes/languages/trans_twig.php:2027
+#: sarshomar/includes/languages/trans_twig.php:2029
 msgid "new poetry"
 msgstr "نیمایی"
 
-#: sarshomar/includes/languages/trans_twig.php:2028
+#: sarshomar/includes/languages/trans_twig.php:2030
 msgid "hockey"
 msgstr "هاکی"
 
-#: sarshomar/includes/languages/trans_twig.php:2029
+#: sarshomar/includes/languages/trans_twig.php:2031
 msgid "hotel"
 msgstr "هتل و مهمانپذیر"
 
-#: sarshomar/includes/languages/trans_twig.php:2030
+#: sarshomar/includes/languages/trans_twig.php:2032
 msgid "whenever putty"
 msgstr "هر وقت بتونم"
 
-#: sarshomar/includes/languages/trans_twig.php:2031
+#: sarshomar/includes/languages/trans_twig.php:2033
 msgid "cost"
 msgstr "هزینه"
 
-#: sarshomar/includes/languages/trans_twig.php:2032
+#: sarshomar/includes/languages/trans_twig.php:2034
 msgid "weekly"
 msgstr "هفتگی"
 
-#: sarshomar/includes/languages/trans_twig.php:2033
+#: sarshomar/includes/languages/trans_twig.php:2035
 msgid "last week"
 msgstr "هفته اخیر"
 
-#: sarshomar/includes/languages/trans_twig.php:2034
+#: sarshomar/includes/languages/trans_twig.php:2036
 msgid "hamrah aval"
 msgstr "همراه‌اول"
 
-#: sarshomar/includes/languages/trans_twig.php:2035
+#: sarshomar/includes/languages/trans_twig.php:2037
 msgid "always"
 msgstr "همیشه"
 
-#: sarshomar/includes/languages/trans_twig.php:2036
+#: sarshomar/includes/languages/trans_twig.php:2038
 msgid "handball"
 msgstr "هندبال"
 
-#: sarshomar/includes/languages/trans_twig.php:2037
+#: sarshomar/includes/languages/trans_twig.php:2039
 msgid "martial arts"
 msgstr "هنرهای رزمی"
 
-#: sarshomar/includes/languages/trans_twig.php:2038
+#: sarshomar/includes/languages/trans_twig.php:2040
 msgid "art"
 msgstr "هنری"
 
-#: sarshomar/includes/languages/trans_twig.php:2039
+#: sarshomar/includes/languages/trans_twig.php:2041
 msgid "feeling danger"
 msgstr "هنگام احساس خطر"
 
-#: sarshomar/includes/languages/trans_twig.php:2040
+#: sarshomar/includes/languages/trans_twig.php:2042
 msgid "airplane"
 msgstr "هواپیما"
 
-#: sarshomar/includes/languages/trans_twig.php:2041
+#: sarshomar/includes/languages/trans_twig.php:2043
 msgid "water polo"
 msgstr "واترپلو"
 
-#: sarshomar/includes/languages/trans_twig.php:2042
+#: sarshomar/includes/languages/trans_twig.php:2044
 msgid "volleyball"
 msgstr "والیبال"
 
-#: sarshomar/includes/languages/trans_twig.php:2043
+#: sarshomar/includes/languages/trans_twig.php:2045
 msgid "bank loans"
 msgstr "وام بانکی"
 
-#: sarshomar/includes/languages/trans_twig.php:2044
+#: sarshomar/includes/languages/trans_twig.php:2046
 msgid "wimax"
 msgstr "وایمکس"
 
-#: sarshomar/includes/languages/trans_twig.php:2045
+#: sarshomar/includes/languages/trans_twig.php:2047
 msgid "web browsing"
 msgstr "وب‌گردی"
 
-#: sarshomar/includes/languages/trans_twig.php:2046
+#: sarshomar/includes/languages/trans_twig.php:2048
 msgid "professional athlete"
 msgstr "ورزشکار حرفه‌ای"
 
-#: sarshomar/includes/languages/trans_twig.php:2047
+#: sarshomar/includes/languages/trans_twig.php:2049
 msgid "sport"
 msgstr "ورزش"
 
-#: sarshomar/includes/languages/trans_twig.php:2048
+#: sarshomar/includes/languages/trans_twig.php:2050
 msgid "vehicles"
 msgstr "وسایل نقلیه"
 
-#: sarshomar/includes/languages/trans_twig.php:2049
+#: sarshomar/includes/languages/trans_twig.php:2051
 msgid "social and family status"
 msgstr "وضعیت اجتماعی و خانوادگی"
 
-#: sarshomar/includes/languages/trans_twig.php:2050
+#: sarshomar/includes/languages/trans_twig.php:2052
 msgid "employement status"
 msgstr "وضعیت اشتغال"
 
-#: sarshomar/includes/languages/trans_twig.php:2052
+#: sarshomar/includes/languages/trans_twig.php:2054
 msgid "graduation status"
 msgstr "وضعیت تحصیلی"
 
-#: sarshomar/includes/languages/trans_twig.php:2053
+#: sarshomar/includes/languages/trans_twig.php:2055
 msgid "financial situation"
 msgstr "وضعیت مالی"
 
-#: sarshomar/includes/languages/trans_twig.php:2054
+#: sarshomar/includes/languages/trans_twig.php:2056
 msgid "windows phone"
 msgstr "ویندوزفون"
 
-#: sarshomar/includes/languages/trans_twig.php:2055
+#: sarshomar/includes/languages/trans_twig.php:2057
 msgid "subsidies"
 msgstr "یارانه"
 
-#: sarshomar/includes/languages/trans_twig.php:2056
+#: sarshomar/includes/languages/trans_twig.php:2058
 msgid "yasin pishro qom"
 msgstr "یاسین‌پیشرو قم"
 
-#: sarshomar/includes/languages/trans_twig.php:2057
+#: sarshomar/includes/languages/trans_twig.php:2059
 msgid "jewish"
 msgstr "یهودیت"
 
@@ -14939,6 +14965,9 @@ msgstr "سلام دوست گرامی"
 #: sarshomar/includes/mvc/view.php:89
 msgid "Case Study"
 msgstr "مورد مطالعه"
+
+#~ msgid "Live Converage"
+#~ msgstr "پوشش زنده"
 
 #, fuzzy
 #~| msgid "Candidates List"
@@ -16274,9 +16303,6 @@ msgstr "مورد مطالعه"
 #~ msgid "Start"
 #~ msgstr "شروع"
 
-#~ msgid "End"
-#~ msgstr "پایان"
-
 #~ msgid "Option 1"
 #~ msgstr "گزینه ۱"
 
@@ -16429,9 +16455,6 @@ msgstr "مورد مطالعه"
 
 #~ msgid "Extract twig trans func in saloos addon"
 #~ msgstr "بیرون کشیدن متن های قابل ترجمه توئیگ از افزونه‌های سالوس"
-
-#~ msgid "Fax"
-#~ msgstr "فکس"
 
 #~ msgid "Close"
 #~ msgstr "بستن"
