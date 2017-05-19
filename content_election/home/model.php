@@ -147,7 +147,18 @@ class model extends \content_election\main\model
 	 */
 	public function get_comment($_args)
 	{
+		$url         = (isset($_args->match->url[0][0])) ? $_args->match->url[0][0] : false;
+		$election_id = false;
 
+		if($url)
+		{
+			$url = str_replace('/comment', '', $url);
+			$election_id = $this->check_url($url);
+		}
+		$query = "SELECT * FROM comments WHERE status = 'approved' ";
+		$result = \lib\db::get($query, null, false, 'election');
+		// var_dump($result);exit();
+		return $result;
 	}
 
 
@@ -206,6 +217,12 @@ class model extends \content_election\main\model
 			$mobile = 'NULL';
 		}
 
+		if(mb_strlen($comment) > 1000)
+		{
+			\lib\db\logs::set('comment:in:election:too:large', $user_id, $log_meta);
+			debug::error(T_("Text too large!"), 'comment');
+			return false;
+		}
 
 		$query =
 		"
