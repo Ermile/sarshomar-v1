@@ -3,7 +3,8 @@
 
 {%if report_list%}
 <h1>{%trans "Report list"%}</h1>
-	<div class="f">
+<div class="dt">
+	<div class="f th">
 		<div>{%trans "id" %}</div>
 		<div>{%trans "election" %}</div>
 		<div>{%trans "desc" %}</div>
@@ -27,6 +28,7 @@
 			<div>{{value.invalid}}</div>
 		</div>
 	{%endfor%}
+</div>
 {%endif%}
 
 {%if edit_report%}

@@ -5,14 +5,15 @@
 	<h1>{% trans "Report list"%} {{list.election.title}}</h1>
 
 	{%if list%}
-	<div class="f">
+   <div class="dt">
+	<div class="f th">
 		<div>{%trans "Click to edit" %}</div>
 		<div>{%trans "Date" %}</div>
-		<div>{%trans "Level" %}</div>
-		<div>{%trans "Number" %}</div>
-		<div>{%trans "Cash" %}</div>
-		<div>{%trans "Voted" %}</div>
-		<div>{%trans "Invalid" %}</div>
+		<div>مرحله اعلام نتایج</div>
+		<div>اطلاعیه شماره</div>
+		<div>تعداد صندوق‌ها</div>
+		<div>آرای اخذ شده</div>
+		<div>تعداد باطله</div>
 	</div>
 		{%for key, value in list.report%}
 		<div class="f">
@@ -25,46 +26,61 @@
 			<div>{{value.invalid|number_format|fitNumber}}</div>
 		</div>
 		{%endfor%}
+	</div>
 	{%endif%}
-		<br>
-		<div class="f">
-			<label for="date" class="c2">{%trans "date"%}</label>
-			<input id="date" type="text" class="c2" name="date" placeholder='{%trans "Date" %}' value='{{"now"|jdate("Y-m-d", false, false)}}'>
-		</div>
-		<div class="f">
-			<label for="level" class="c2" >{%trans "level"%}</label>
-			<input id="level"  class="c2" type="text" name="level" placeholder='{%trans "Level" %}'>
-		</div>
-		<div class="f">
-			<label for="number" class="c2" >{%trans "number"%}</label>
-			<input id="number" class="c2"  type="number" name="number" placeholder='{%trans "Number" %}'>
-		</div>
-		<div class="f">
-			<label for="cash" class="c2" >{%trans "cash"%}</label>
-			<input id="cash"  class="c2" type="number" name="cash" placeholder='{%trans "Cash" %}'>
-		</div>
-		<div class="f">
-			<label for="voted" class="c2" >{%trans "voted"%}</label>
-			<input id="voted" class="c2"  type="number" name="voted" placeholder='{%trans "Voted" %}'>
-		</div>
-		<div class="f">
-			<label for="invalid" class="c2" >{%trans "invalid"%}</label>
-			<input id="invalid" class="c2"  type="number" name="invalid" placeholder='{%trans "Invalid" %}'>
-		</div>
+
+	<br><hr>
+	<h2>ورود داده‌های کاندیداها جدید</h2>
+   <div>
+	<div class="f th">
+		<label for="date" class="c2">{%trans "date"%}</label>
+		<label for="level" class="c2" >مرحله اعلام نتایج</label>
+		<label for="number" class="c2" >اطلاعیه شماره</label>
+		<label for="cash" class="c2" >تعداد صندوق‌ها</label>
+		<label for="voted" class="c2" >آرای اخذ شده</label>
+		<label for="invalid" class="c2">تعداد باطله</label>
+	</div>
 
 
+	<div class="f gutters">
+		<div class="c2">
+			<input id="date" type="text" name="date" placeholder='{%trans "Date" %}' value='{{"now"|date("Y-m-d H:i")}}'>
+		</div>
+		<div class="c2">
+			<input id="level"  type="text" name="level" placeholder='مرحله اعلام نتایج'>
+		</div>
+		<div class="c2">
+			<input id="number" type="number" name="number" placeholder='اطلاعیه شماره'>
+		</div>
+		<div class="c2">
+			<input id="cash"  type="number" name="cash" placeholder='تعداد صندوق‌ها'>
+		</div>
+		<div class="c2">
+			<input id="voted" type="number" name="voted" placeholder='آرای اخذ شده'>
+		</div>
+		<div class="c2">
+			<input id="invalid" type="number" name="invalid" placeholder='تعداد باطله'>
+		</div>
+
+	</div>
+   </div>
+
+
+
+	<h2>ورود داده‌های کاندیداها</h2>
 	{%for key, value in list.candida%}
 	<div class="f">
-		<div class="c2">{{value.name}}</div>
-		<div class="c2">{{value.family}}</div>
-		<div class="c1"><img height="64" width="64" src="{{url.static}}{{value.file_url}}"></div>
+		<div class="c2">{{value.name}} {{value.family}}</div>
 		<div class="c3">
 			<input type="number" name="total_{{value.id}}">
 		</div>
+		<div class="c1"><img height="48" width="48" src="{{url.root}}{{value.file_url}}"></div>
 	</div>
 	{%endfor%}
 	<div class="f">
+		<div class="c4">
 		<input type="submit" value='{%trans "Save"%}' >
+		</div>
 	</div>
 </form>
 

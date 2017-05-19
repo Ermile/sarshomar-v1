@@ -37,9 +37,9 @@
 		<div class="c">{{value.birthdate|jdate("Y-m-d")}}</div>
 		<div class="c">{{value.electioncode|fitNumber}}</div>
 		<div class="c">{{value.desc}}</div>
-		<div class="c">{% if value.file_url %}<img height="100" width="100" src="{{url.static}}{{value.file_url}}">{% else %}<b>-</b>{% endif %}</div>
-		<div class="c">{% if value.file_url_2 %}<img height="100" width="100" src="{{url.static}}{{value.file_url_2}}">{% else %}<b>-</b>{% endif %}</div>
-		<div class="c">{% if value.win_url %}<img height="100" width="100" src="{{url.static}}{{value.win_url}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.file_url %}<img height="100" width="100" src="{{url.root}}{{value.file_url}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.file_url_2 %}<img height="100" width="100" src="{{url.root}}{{value.file_url_2}}">{% else %}<b>-</b>{% endif %}</div>
+		<div class="c">{% if value.win_url %}<img height="100" width="100" src="{{url.root}}{{value.win_url}}">{% else %}<b>-</b>{% endif %}</div>
 	</div>
 		{%endfor%}
 </div>
