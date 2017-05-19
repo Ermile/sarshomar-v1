@@ -282,6 +282,7 @@ class candidas
 		"
 			SELECT
 				candidas.*,
+				elections.*,
 				(
 					SELECT ((results.total * 100) / elections.voted)
 					FROM results
@@ -305,6 +306,7 @@ class candidas
 			WHERE
 				elections.cat = '$_cat' AND
 				candidas.status = 'active'
+			ORDER BY win_present DESC
 			";
 		$result = \lib\db::get($query, null, false, 'election');
 		// var_dump($result);exit();
