@@ -1605,6 +1605,21 @@ function admin_line(_option, _smoothedLine)
 }
 
 
+function elComparison(_option)
+{
+
+
+	// add each graph if exist
+	$.each(_trans, function($val, $title)
+	{
+		createChartGraphs(_chartData, _type+ '_'+ $val, $title, $val);
+	});
+
+
+	return _option;
+}
+
+
 /**
  * pre defined color pallet
  * @param  {[type]} _index [description]

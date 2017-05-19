@@ -38,6 +38,9 @@
  <div class="container unselectable">
   {{block('candidates')}}
   {{block('result')}}
+{%if url.tld == 'dev'%}
+  {{block('comparison')}}
+{%endif%}
   {{block('province_result')}}
   {{block('city_result')}}
  </div>
@@ -188,9 +191,12 @@
 {%if result.election.status == 'running'%}
  <div class="election-update unselectable">
   <div class="live"><i></i><span class="title">{%trans "Live"%}</span></div>
+{%if false%}
   <div class="election-update-time">
    <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]|tdate()}}'>{{result.result[0]['report_date']|tdate()}}</span>
   </div>
+{%endif%}
+
  </div>
 {%endif%}
 {%endblock%}
@@ -332,6 +338,24 @@
    {%endfor%}
   </div>
 {%endif%}
+{%endblock%}
+
+
+
+{%block comparison%}
+<div class="chartbox election-tbl">
+
+  {%if site.currentlang == 'en' and result.election.en_title%}
+   <h2>{%trans "Comparison result of"%} {{result.election.en_title}}</h2>
+  {%elseif site.currentlang == 'fa' and result.election.title%}
+   <h2>نتایج مقایسه‌ای روند اعلام نتایج {{result.election.title}}</h2>
+  {%endif%}
+
+
+  <div class="chart" data-vals='{{result.senario | raw}}' data-format='elComparison' data-trans='vote'>
+
+  </div>
+</div>
 {%endblock%}
 
 
