@@ -119,7 +119,7 @@ body{color:#333;background-color:#f4f4f4}
 .election-tbl .last-name{font-size:1.8em;font-weight:700;text-align:center}
 .rtl .election-tbl .last-name{font-size:2em}
 
-/*.election-tbl .image{width:7em;height:7em}*/
+.election-tbl .image{max-width:10em}
 .ltr .election-tbl .image img{-moz-transform:scaleX(-1);-o-transform:scaleX(-1);-webkit-transform:scaleX(-1);-ms-transform:scaleX(-1);transform:scaleX(-1);-webkit-filter:FlipH;filter:FlipH;-ms-filter:FlipH}
 .election-tbl .image.round.low{border:1px solid #f4f4f4;box-shadow:none}
 
