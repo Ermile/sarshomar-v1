@@ -95,6 +95,11 @@ class controller extends \content\main\controller
 				$this->redirector($this->url('root'). '/fa/election/iran/president/1396')->redirect();
 				return;
 				break;
+
+			case 'e':
+				$this->redirector($this->url('root'). '/fa/election/iran/president')->redirect();
+				return;
+				break;
 			default:
 				break;
 		}
