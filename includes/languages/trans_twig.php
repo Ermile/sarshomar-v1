@@ -1167,13 +1167,16 @@ private function transtext()
 
 	//----------------------------------------------content_election\home\display.html
 	echo T_("Results of");                                                            // Line 24
-	echo T_("President-elect of");                                                    // Line 68
-	echo T_("Last Update");                                                           // Line 185
-	echo T_("Live");                                                                  // Line 196
-	echo T_("Candidates Votes on Provinces");                                         // Line 344
-	echo T_("Candidates Votes on Cities");                                            // Line 368
+	echo T_("President-elect of");                                                    // Line 67
+	echo T_("Live");                                                                  // Line 184
+	echo T_("Last Update");                                                           // Line 186
+	echo T_("Candidates Votes on Provinces");                                         // Line 335
+	echo T_("Candidates Votes on Cities");                                            // Line 359
 	echo T_("City");                                                                  // Line 347
-	echo T_("Unknown");                                                               // Line 410
+	echo T_("Unknown");                                                               // Line 77
+
+	//-------------------------------------------------content_election\home\home.html
+	echo T_("Presidents of Islamic Republic of Iran");                                // Line 11
 
 	//-------------------------------------------content_election\main\layout.bak.html
 
