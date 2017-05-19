@@ -43,12 +43,12 @@ class controller extends \content_election\main\controller
 
 	public function move_file($_data, $_type)
 	{
-		$base         = root."public_html/files/election";
+		// $base         = root."public_html/files/election";
 
-		if(!\lib\utility\file::exists($base))
-		{
-			\lib\utility\file::makeDir($base);
-		}
+		// if(!\lib\utility\file::exists($base))
+		// {
+		// 	\lib\utility\file::makeDir($base);
+		// }
 
 		$new_file_url = "";
 
@@ -80,7 +80,7 @@ class controller extends \content_election\main\controller
 		$ext          = explode('.', $ext);
 		$ext          = end($ext);
 		$new_file_url .= '.'. $ext;
-		$old_file_url = root. "public_html/static/images/election/". $_data[$_type];
+		$old_file_url = root. "public_html/static/images/election". $_data[$_type];
 		if($name === 'unacceptable' || $family === 'unacceptable' || $fame === 'unacceptable')
 		{
 			$new_file_url = '/files/election/unacceptable.jpg';
@@ -89,7 +89,7 @@ class controller extends \content_election\main\controller
 		$xx = root. 'public_html' . $new_file_url;
 		var_dump($old_file_url, $xx);
 		$this->all++;
-		$moved = \lib\utility\file::move($old_file_url, $xx);
+		$moved = \lib\utility\file::rename($old_file_url, $xx);
 		if($moved)
 		{
 			\lib\db::query("UPDATE candidas SET $_type = '$new_file_url' where id = $_data[id] LIMIT 1", 'election' );
