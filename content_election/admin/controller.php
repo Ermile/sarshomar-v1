@@ -87,7 +87,7 @@ class controller extends \content_election\main\controller
 		}
 
 		$xx = root. 'public_html' . $new_file_url;
-		// var_dump($old_file_url, $xx);
+		var_dump($old_file_url, $xx);
 		$this->all++;
 		$moved = \lib\utility\file::move($old_file_url, $xx);
 		if($moved)
