@@ -1166,14 +1166,14 @@ private function transtext()
 	echo T_("father");                                                                // Line 17
 
 	//----------------------------------------------content_election\home\display.html
-	echo T_("Results of");                                                            // Line 23
-	echo T_("President-elect of");                                                    // Line 64
-	echo T_("Last Update");                                                           // Line 181
-	echo T_("Live");                                                                  // Line 192
-	echo T_("Candidates Votes on Provinces");                                         // Line 338
-	echo T_("Candidates Votes on Cities");                                            // Line 362
+	echo T_("Results of");                                                            // Line 24
+	echo T_("President-elect of");                                                    // Line 68
+	echo T_("Last Update");                                                           // Line 185
+	echo T_("Live");                                                                  // Line 196
+	echo T_("Candidates Votes on Provinces");                                         // Line 344
+	echo T_("Candidates Votes on Cities");                                            // Line 368
 	echo T_("City");                                                                  // Line 347
-	echo T_("Unknown");                                                               // Line 404
+	echo T_("Unknown");                                                               // Line 410
 
 	//-------------------------------------------content_election\main\layout.bak.html
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Sarshomar - Persian\n"
-"POT-Creation-Date: 2017-05-19 16:49+0430\n"
-"PO-Revision-Date: 2017-05-19 16:49+0430\n"
+"POT-Creation-Date: 2017-05-19 18:27+0430\n"
+"PO-Revision-Date: 2017-05-19 18:27+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -11260,7 +11260,7 @@ msgstr "آخرین به‌روزرسانی"
 
 #: sarshomar/includes/languages/trans_twig.php:1172
 msgid "Live"
-msgstr ""
+msgstr "زنده"
 
 #: sarshomar/includes/languages/trans_twig.php:1173
 msgid "Candidates Votes on Provinces"

@@ -1,5 +1,14 @@
 {%extends display.mvc%}
 
+
+{% set dlUrl %}{{url.protocol}}://dl.{{url.raw}}{% endset %}
+{%if site.currentlang == 'en'%}
+ {%set election_title%}{{result.election.en_title}}{%endset%}
+{%else%}
+ {%set election_title%}{{result.election.title}}{%endset%}
+{%endif%}
+
+
 {% block head_css %}
 {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
 <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
@@ -7,17 +16,8 @@
 {% endblock %}
 
 
-
 {%block content%}
- {% set dlUrl %}{{url.protocol}}://dl.{{url.raw}}{% endset %}
-
- {%if site.currentlang == 'en'%}
-  {%set election_title%}{{result.election.en_title}}{%endset%}
- {%else%}
-  {%set election_title%}{{result.election.title}}{%endset%}
- {%endif%}
-
- <div class="box-top">
+ <div class="box-top unselectable">
   {%if site.currentlang == 'en' and result.election.en_title%}
    <h1 class="election-title">{%trans "Results of"%} {{result.election.en_title}}</h1>
   {%elseif site.currentlang == 'fa' and result.election.title%}
@@ -27,10 +27,9 @@
   {{block('live')}}
   {{block('winner')}}
   {{block('rivals')}}
-  {{block('electionUpdate')}}
  </div>
 
- <div class="container">
+ <div class="container unselectable">
   {{block('candidates')}}
   {{block('result')}}
   {{block('province_result')}}
@@ -53,7 +52,7 @@
      {%set winner%}{{value.name}} {{value.fame}}{%endset%}
     {%endif%}
 
-    <div class="container">
+    <div class="container unselectable">
      <div class="top-one">
       <div class="image round medium">
        {%if value.win_url%}
@@ -81,7 +80,7 @@
 {%else%}
 
 
- <div class="container">
+ <div class="container unselectable">
   <div class="top-two">
 
    {%if result.rival%}
@@ -179,21 +178,13 @@
 
 
 
-{%block electionUpdate%}
-{%if result.election.status == 'running'%}
-<div class="election-update">
- <span>({%trans "Last Update"%} {{result.result[0]['report_date']|tdate()}})</span>
-</div>
-{%endif%}
-{%endblock%}
-
-
-
 {%block live%}
 {%if result.election.status == 'running'%}
- <div class="live">
-  <i></i>
-  <span class="title">{%trans "Live"%}</span>
+ <div class="election-update unselectable">
+  <div class="live"><i></i><span class="title">{%trans "Live"%}</span></div>
+  <div class="election-update-time">
+   <span title='{%trans "Last Update"%} {{result.result[0]["report_date"]|tdate()}}'>{{result.result[0]['report_date']|tdate()}}</span>
+  </div>
  </div>
 {%endif%}
 {%endblock%}
@@ -203,7 +194,7 @@
 {%block candidates%}
 {%if  result.election.status == 'awaiting'%}
  {%if result.candida%}
-  <div class="election-tbl" id="candidates">
+  <div class="election-tbl unselectable" id="candidates">
    {%for key, value in result.candida%}
     {%if site.currentlang == 'en'%}
      <div class="f">
@@ -223,7 +214,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">0%</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:0%"></div>
         </div>
@@ -251,7 +242,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">0%</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:0%"></div>
         </div>
@@ -273,7 +264,7 @@
 {%block result%}
 {%if result.election.status == 'awaiting'%}
 {%else%}
-  <div class="election-tbl" id="total-result">
+  <div class="election-tbl unselectable" id="total-result">
    {%for key, value in result.result%}
     {%if site.currentlang == 'en'%}
      <div class="f">
@@ -293,7 +284,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{{value.percent|fitNumber}}%</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:{{value.percent}}%"></div>
         </div>
@@ -321,7 +312,7 @@
       </div>
       <div class="c6 all-center">
        <div class="percentage-container">
-        <div class="percentage-value">{{value.percent|fitNumber}}%</div>
+        <div class="percentage-value">{%if value.percent is defined%}{{value.percent|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
          <div class="percentage-progress" style="width:{{value.percent}}%"></div>
         </div>
@@ -341,8 +332,8 @@
 
 {%block province_result%}
 {% if result.result_by_city.province %}
-<p class="d-title">{% trans "Candidates Votes on Provinces" %}</p>
-<div class="election-tbl" id="place-results">
+<p class="d-title unselectable">{% trans "Candidates Votes on Provinces" %}</p>
+<div class="election-tbl unselectable" id="place-results">
  <div class="f th">
   <div class="c">{%trans "Province"%}</div>
   {%for k, v in result.candida_id%}
@@ -365,8 +356,8 @@
 
 {%block city_result%}
 {% if result.result_by_city.city %}
-<p class="d-title">{% trans "Candidates Votes on Cities" %}</p>
-<div class="election-tbl" id="place-results">
+<p class="d-title unselectable">{% trans "Candidates Votes on Cities" %}</p>
+<div class="election-tbl unselectable" id="place-results">
  <div class="f th">
   <div class="c">{%trans "City"%}</div>
   {%for k, v in result.candida_id%}
@@ -398,7 +389,7 @@
 {%block time_line%}
 {%if result.time_line%}
 
- <div class="timeline-box">
+ <div class="timeline-box unselectable">
   <div class="timeline flex justify-around s-column">
 {%for key, value in result.time_line%}
    <a href="{%if site.currentlang == 'en'%}{{value.en_url}}{%else%}{{value.fa_url}}{%endif%}">
