@@ -12,7 +12,7 @@ body{color:#333;background-color:#f4f4f4}
 
 .box-top{margin-bottom:5em;padding:5em 0;border-top:3px solid #eeeff0;border-bottom:3px solid #eeeff0;background-image:url(../images/election/asanoha.png)}
 
-.election-title{font-weight:700;margin:0;text-align:center}
+.election-title,.page-title{font-weight:700;margin:0;text-align:center}
 .election-title+.container{margin-top:1rem}
 
 .top-one{text-align:center}

@@ -1,11 +1,110 @@
 {%extends display.mvc%}
 
-{% block content %}
-<!-- {{result|dump}} -->
-{%endblock%}
-
 {%block head_css%}
  {%set codeUrl%}{%if url.tld == 'dev'%}http://code.ermile.dev/css/{%else%}https://code.ermile.com/css/{%endif%}{%endset%}
  <link rel="stylesheet"       href="{{codeUrl}}ermile-10.1.0.css">
  <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
+{%endblock%}
+
+{%block content%}
+ <div class="box-top unselectable">
+  <h1 class="page-title">{%trans "Presidents of Islamic Republic of Iran"%}</h1>
+ </div>
+ {{block('all')}}
+{%endblock%}
+
+{%block top%}
+<div class="box-top unselectable"></div>
+{%endblock%}
+
+{%block all%}
+ <div class="container unselectable">
+  <div class="election-tbl">
+   {%if site.currentlang == 'en'%}
+    {%for key, value in result%}
+     <div class="f">
+      <div class="c1 all-center">
+       <span>{{value.year|fitNumber}}</span>
+      </div>
+
+      <div class="c1 s6 all-center">
+       <div class="image round low">
+       {%if value.win_url%}
+        <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
+       {%else%}
+        <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
+       {%endif%}
+       </div>
+      </div>
+
+      <div class="c2 s6 vertical-center">
+       <h4 class="first-name">{%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}</h4>
+       <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</h4>
+      </div>
+
+      <div class="c5 all-center">
+       <div class="percentage-container">
+        <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-bar">
+         <div class="percentage-progress" style="width:{{value.win_present}}%"></div>
+        </div>
+       </div>
+      </div>
+
+      <div class="c1 s6 all-center">
+       <span>{{value.work_present|number_format|fitNumber}}%</span>
+      </div>
+      <div class="c1 s6 all-center">
+       <span>{{value.win_present_all|number_format|fitNumber}}%</span>
+      </div>
+      <div class="c1 s6 all-center">
+       <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
+      </div>
+     </div>
+    {%endfor%}
+   {%else%}
+    {%for key, value in result%}
+     <div class="f">
+      <div class="c1 all-center">
+       <span>{{value.jalali_year|fitNumber}}</span>
+      </div>
+
+      <div class="c1 s6 all-center">
+       <div class="image round low">
+       {%if value.win_url%}
+        <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.name}} {{value.fame}}'>
+       {%else%}
+        <img src='{{dlUrl}}/files/election/unknown.png' alt='{%trans "Unknown"%}'>
+       {%endif%}
+       </div>
+      </div>
+
+      <div class="c2 s6 vertical-center">
+       <h4 class="first-name">{%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}</h4>
+       <h4 class="last-name">{%if value.fame%}{{value.fame}}{%elseif value.family%}{{value.family}}{%else%}-{%endif%}</h4>
+      </div>
+
+      <div class="c5 all-center">
+       <div class="percentage-container">
+        <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
+        <div class="percentage-bar">
+         <div class="percentage-progress" style="width:{{value.win_present}}%"></div>
+        </div>
+       </div>
+      </div>
+
+      <div class="c1 s6 all-center">
+       <span>{{value.work_present|number_format|fitNumber}}%</span>
+      </div>
+      <div class="c1 s6 all-center">
+       <span>{{value.win_present_all|number_format|fitNumber}}%</span>
+      </div>
+      <div class="c1 s6 all-center">
+       <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
+      </div>
+     </div>
+    {%endfor%}
+   {%endif%}
+  </div>
+ </div>
 {%endblock%}
