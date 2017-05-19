@@ -437,13 +437,22 @@ class results
 	 *
 	 * @param      <type>  $_election_id  The election identifier
 	 */
-	public static function get_time_line($_election_id)
+	public static function get_time_line($_election_id, $_select_cat = false)
 	{
-		if(!$_election_id || !is_numeric($_election_id))
+		if(!$_election_id)
 		{
 			return false;
 		}
 
+		if($_select_cat && $_election_id)
+		{
+			$cat = 	" elections.cat = '$_election_id' ";
+		}
+		else
+		{
+			$cat = 	" elections.cat = (SELECT cat FROM elections WHERE id = $_election_id LIMIT 1) ";
+
+		}
 		$query =
 		"
 			SELECT
@@ -453,10 +462,9 @@ class results
 				elections
 			LEFT JOIN candidas ON candidas.id = elections.win
 			WHERE
-				elections.cat = (SELECT cat FROM elections WHERE id = $_election_id LIMIT 1)
+				$cat
 			ORDER BY elections.election_date ASC
 		";
-
 		$result = \lib\db::get($query, null, false, 'election');
 		return $result;
 	}

@@ -14,6 +14,7 @@ class controller extends \content_election\main\controller
 		}
 		else
 		{
+			$this->get('home', 'home')->ALL();
 			$this->display_name = 'content_election\home\home.html';
 		}
 	}

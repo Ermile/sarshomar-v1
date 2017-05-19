@@ -99,6 +99,16 @@ class model extends \content_election\main\model
 			// var_dump($result);exit();
 			return $result;
 		}
+
+	}
+
+	/**
+	 * { item_description }
+	 */
+	public function get_home($_args)
+	{
+		$time_line = \content_election\lib\results::get_time_line('president', true);
+		return $time_line;
 	}
 }
 ?>

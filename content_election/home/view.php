@@ -46,5 +46,11 @@ class view extends \content_election\main\view
 		$result = $_args->api_callback;
 		$this->data->result = $result;
 	}
+
+
+	public function view_home($_args)
+	{
+		$this->data->result = $_args->api_callback;
+	}
 }
 ?>
