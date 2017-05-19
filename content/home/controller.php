@@ -37,6 +37,64 @@ class controller extends \content\main\controller
 				return;
 				break;
 
+			// election result
+			case 'e58':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1358')->redirect();
+				return;
+				break;
+
+			case 'e60':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1360')->redirect();
+				return;
+				break;
+
+			case 'e602':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1360/2')->redirect();
+				return;
+				break;
+
+			case 'e64':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1364')->redirect();
+				return;
+				break;
+
+			case 'e68':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1368')->redirect();
+				return;
+				break;
+
+			case 'e72':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1372')->redirect();
+				return;
+				break;
+			case 'e76':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1376')->redirect();
+				return;
+				break;
+			case 'e80':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1380')->redirect();
+				return;
+				break;
+			case 'e84':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1384')->redirect();
+				return;
+				break;
+			case 'e842':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1384/2')->redirect();
+				return;
+				break;
+			case 'e88':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1388')->redirect();
+				return;
+				break;
+			case 'e92':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1392')->redirect();
+				return;
+				break;
+			case 'e96':
+				$this->redirector($this->url('root'). '/fa/election/iran/president/1396')->redirect();
+				return;
+				break;
 			default:
 				break;
 		}
