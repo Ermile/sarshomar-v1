@@ -71,6 +71,10 @@
 
 
 {%block rivals%}
+{%if result.election.status == 'awaiting'%}
+{%else%}
+
+
  <div class="container">
   <div class="top-two">
 
@@ -162,6 +166,9 @@
 {%endif%}
   </div>
  </div>
+
+
+{%endif%}
 {%endblock%}
 
 
@@ -188,7 +195,7 @@
 
 
 {%block candidates%}
-{%if result.result%}{%else%}
+{%if  result.election.status == 'awaiting'%}
  {%if result.candida%}
   <div class="election-tbl" id="candidates">
    {%for key, value in result.candida%}
@@ -248,7 +255,8 @@
 
 
 {%block result%}
-{%if result.result%}
+{%if result.election.status == 'awaiting'%}
+{%else%}
   <div class="election-tbl" id="total-result">
    {%for key, value in result.result%}
     {%if site.currentlang == 'en'%}
