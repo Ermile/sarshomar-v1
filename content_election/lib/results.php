@@ -454,8 +454,9 @@ class results
 			LEFT JOIN candidas ON candidas.id = elections.win
 			WHERE
 				elections.cat = (SELECT cat FROM elections WHERE id = $_election_id LIMIT 1)
-			ORDER BY elections.jalali_year ASC
+			ORDER BY elections.election_date ASC
 		";
+
 		$result = \lib\db::get($query, null, false, 'election');
 		return $result;
 	}

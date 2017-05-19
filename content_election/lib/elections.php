@@ -109,7 +109,7 @@ class elections
 			// for example in get_count mode we needless to limit and pagenation
 			// default limit of record is 15
 			// set the limit = null and pagenation = false to get all record whitout limit
-			"limit"          => 15,
+			"limit"          => 150,
 			// for manual pagenation set the statrt_limit and end limit
 			"start_limit"    => 0,
 			// for manual pagenation set the statrt_limit and end limit
