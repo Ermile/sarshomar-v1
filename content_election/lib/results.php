@@ -148,7 +148,8 @@ class results
 					results.*,
 					elections.title,
 					candidas.*,
-					reports.*
+					reports.*,
+					results.id AS `result_id`
 				FROM
 					results
 				INNER JOIN candidas ON candidas.id = results.candida_id

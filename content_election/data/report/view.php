@@ -47,5 +47,16 @@ class view extends \content_election\main\view
 		$this->data->report_list = $_args->api_callback;
 
 	}
+
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      <type>  $_args  The arguments
+	 */
+	public function view_report_vote($_args)
+	{
+		$this->data->result = $_args->api_callback;
+	}
 }
 ?>

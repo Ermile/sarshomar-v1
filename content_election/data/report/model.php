@@ -208,5 +208,57 @@ class model extends \content_election\main\model
 			debug::error(T_("Error in adding report"));
 		}
 	}
+
+
+	public function get_report_vote($_args)
+	{
+		$result = [];
+		$result['report'] = $this->get_report($_args);
+		if(isset($result['report']['id']))
+		{
+			$result['vote'] = \content_election\lib\results::search(null,['report_id' => $result['report']['id']]);
+		}
+		return $result;
+	}
+
+
+	public function post_report_vote($_args)
+	{
+		$id                = utility::post('id') ? utility::post('id') : null;
+		$update            = [];
+		$update['date']    = utility::post('date') ? utility::post('date') : null;
+		$update['level']   = utility::post('level') ? utility::post('level') : null;
+		$update['number']  = utility::post('number') ? utility::post('number') : null;
+		$update['cash']    = utility::post('cash') ? utility::post('cash') : null;
+		$update['voted']   = utility::post('voted') ? utility::post('voted') : null;
+		$update['invalid'] = utility::post('invalid') ? utility::post('invalid') : null;
+		$update['status']  = utility::post('status') ? utility::post('status') : null;
+
+		$update = array_filter($update);
+		if(!empty($update))
+		{
+			\content_election\lib\reports::update($update, $id);
+		}
+		$post = utility::post();
+		foreach ($post as $key => $value)
+		{
+			if(preg_match("/^total\_(\d+)$/", $key, $split))
+			{
+				if(isset($split[1]) && $value)
+				{
+					\content_election\lib\results::update(['total' => $value], $split[1]);
+				}
+			}
+		}
+
+		if(debug::$status)
+		{
+			debug::true(T_("Updated"));
+		}
+		else
+		{
+			debug::error(T_("Can not update"));
+		}
+	}
 }
 ?>

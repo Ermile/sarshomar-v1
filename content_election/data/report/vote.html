@@ -1,0 +1,43 @@
+{%extends display.election%}
+{%block content%}
+
+<form method="post" class="df" >
+	<h1>{% trans "Report list"%} {{result.election.title}}</h1>
+	{%for key, value in result.report%}
+		<div class="f">
+			<label for="{{key}}" class="c1">{%trans key%}</label>
+			<input type="text" name="{{key}}" id="{{key}}" value="{{value}}" class="c2">
+		</div>
+	{%endfor%}
+
+	<br><hr>
+	<h2>ورود داده‌های کاندیداها جدید</h2>
+   <div>
+	<div class="f th">
+		<label for="date" class="c2">{%trans "date"%}</label>
+		<label for="level" class="c2" >مرحله اعلام نتایج</label>
+		<label for="number" class="c2" >اطلاعیه شماره</label>
+		<label for="cash" class="c2" >تعداد صندوق‌ها</label>
+		<label for="voted" class="c2" >آرای اخذ شده</label>
+		<label for="invalid" class="c2">تعداد باطله</label>
+	</div>
+
+	<h2>ورود داده‌های کاندیداها</h2>
+	{%for key, value in result.vote%}
+	<div class="f">
+		<div class="c2">{{value.name}} {{value.family}}</div>
+		<div class="c3">
+			<input type="number" name="total_{{value.result_id}}" value="{{value.total}}" >
+		</div>
+		<div class="c1"><img height="48" width="48" src="{{url.root}}{{value.file_url}}"></div>
+	</div>
+	{%endfor%}
+	<div class="f">
+		<div class="c4">
+			<button>{%trans "Edit"%}</button>
+		</div>
+	</div>
+</form>
+
+{%endblock%}
+
