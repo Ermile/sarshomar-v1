@@ -207,7 +207,9 @@
        </div>
       </div>
       <div class="c2 s6 vertical-center">
-       <h5 class="first-name">{{value.en_name}}</h5>
+       <h5 class="first-name">
+       {%if value.en_family == value.en_fame%}{{value.en_name}}{%else%}{{value.en_name}} {{value.en_family}}{%endif%}
+       </h5>
        <h5 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%else%}{{value.en_family}}{%endif%}</h5>
       </div>
       <div class="c6 all-center">
@@ -230,7 +232,9 @@
        </div>
       </div>
       <div class="c2 s6 vertical-center">
-       <h5 class="first-name">{{value.name}}</h5>
+       <h5 class="first-name">
+         {%if value.family == value.fame%}{{value.name}}{%else%}{{value.name}} {{value.family}}{%endif%}
+       </h5>
        <h5 class="last-name">{%if value.fame%}{{value.fame}}{%else%}{{value.family}}{%endif%}</h5>
       </div>
       <div class="c6 all-center">
