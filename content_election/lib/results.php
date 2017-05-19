@@ -505,7 +505,7 @@ class results
 			LEFT JOIN candidas ON candidas.id = elections.win
 			WHERE
 				elections.cat = '$_cat'
-			ORDER BY elections.election_date ASC
+			ORDER BY elections.election_date DESC
 		";
 		$result = \lib\db::get($query, null, false, 'election');
 		// var_dump($result);exit();
