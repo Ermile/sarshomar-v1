@@ -1,13 +1,12 @@
 {%extends display.election%}
 {%block content%}
 
-<form method="post" class="df">
+<form method="post" class="df" data-clear>
 	<h1>{% trans "Report list"%} {{list.election.title}}</h1>
 
 	{%if list%}
    <div class="dt">
 	<div class="f th">
-		<div>{%trans "Click to edit" %}</div>
 		<div>{%trans "Date" %}</div>
 		<div>مرحله اعلام نتایج</div>
 		<div>اطلاعیه شماره</div>
@@ -17,8 +16,7 @@
 	</div>
 		{%for key, value in list.report%}
 		<div class="f">
-			<div><a href="{{url.base}}/election/data/report/edit={{value.id}}">{%trans "Edit"%}</a></div>
-			<div>{{value.date|jdate("Y-m-d")}}</div>
+			<div><a href="{{url.base}}/election/data/report/edit={{value.id}}">{{value.date | fitNumber}}</a></div>
 			<div>{{value.level}}</div>
 			<div>{{value.number|number_format|fitNumber}}</div>
 			<div>{{value.cash|number_format|fitNumber}}</div>
@@ -79,7 +77,7 @@
 	{%endfor%}
 	<div class="f">
 		<div class="c4">
-		<input type="submit" value='{%trans "Save"%}' >
+			<button>{%trans "Save"%}</button>
 		</div>
 	</div>
 </form>
