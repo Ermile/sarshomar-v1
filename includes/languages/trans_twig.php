@@ -1165,6 +1165,10 @@ private function transtext()
 	//---------------------------------------content_election\data\result\display.html
 	echo T_("father");                                                                // Line 17
 
+	//----------------------------------------------content_election\home\candida.html
+	echo T_("All Candidates of Presidential Elections of Islamic Republic of Iran");  // Line 11
+	echo T_("Unknown");                                                               // Line 77
+
 	//----------------------------------------------content_election\home\display.html
 	echo T_("Results of");                                                            // Line 24
 	echo T_("President-elect of");                                                    // Line 67
@@ -1173,7 +1177,6 @@ private function transtext()
 	echo T_("Candidates Votes on Provinces");                                         // Line 335
 	echo T_("Candidates Votes on Cities");                                            // Line 359
 	echo T_("City");                                                                  // Line 347
-	echo T_("Unknown");                                                               // Line 77
 
 	//-------------------------------------------------content_election\home\home.html
 	echo T_("Presidents of Islamic Republic of Iran");                                // Line 11
