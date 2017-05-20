@@ -39,12 +39,14 @@
    <div class="f th">
     <div class="c1 all-center"></div>
     <div class="c1 all-center">{%trans "Year"%}</div>
-    <div class="c1"></div>
-    <div class="c2 all-center">{%trans "Candidate"%}</div>
-    <div class="c4 all-center">{%trans "Percentage"%}</div>
+    <div class="c1 all-center">{%trans "Turnout"%}</div>
+    <div class="c3 all-center">{%trans "Candidate"%}</div>
+    <div class="c6 all-center">{%trans "Percentage"%}</div>
+    {%if false%}
     <div class="c1 all-center"></div>
     <div class="c1 all-center"></div>
     <div class="c1 all-center">{%trans "Votes"%}</div>
+    {%endif%}
    </div>
    {%if site.currentlang == 'en'%}
     {%for key, value in result%}
@@ -53,6 +55,10 @@
 
       <div class="c1 all-center">
        <span>{{value.year|fitNumber}}</span>
+      </div>
+
+      <div class="c1 s6 all-center">
+       <span>{{value.work_present|number_format|fitNumber}}%</span>
       </div>
 
       <div class="c1 s6 all-center">
@@ -70,7 +76,7 @@
        <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</h4>
       </div>
 
-      <div class="c4 all-center">
+      <div class="c6 all-center">
        <div class="percentage-container">
         <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
@@ -79,15 +85,14 @@
        </div>
       </div>
 
-      <div class="c1 s6 all-center">
-       <span>{{value.work_present|number_format|fitNumber}}%</span>
-      </div>
+      {%if false%}
       <div class="c1 s6 all-center">
        <span>{{value.win_present_all|number_format|fitNumber}}%</span>
       </div>
       <div class="c1 s6 all-center text-center">
        <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
       </div>
+      {%endif%}
      </div>
     {%endfor%}
    {%else%}
@@ -97,6 +102,10 @@
 
       <div class="c1 all-center">
        <span>{{value.jalali_year|fitNumber}}</span>
+      </div>
+
+      <div class="c1 s6 all-center">
+       <span>{{value.work_present|number_format|fitNumber}}%</span>
       </div>
 
       <div class="c1 s6 all-center">
@@ -114,7 +123,7 @@
        <h4 class="last-name">{%if value.fame%}{{value.fame}}{%elseif value.family%}{{value.family}}{%else%}-{%endif%}</h4>
       </div>
 
-      <div class="c4 all-center">
+      <div class="c6 all-center">
        <div class="percentage-container">
         <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
@@ -123,15 +132,14 @@
        </div>
       </div>
 
-      <div class="c1 s6 all-center">
-       <span>{{value.work_present|number_format|fitNumber}}%</span>
-      </div>
+      {%if false%}
       <div class="c1 s6 all-center">
        <span>{{value.win_present_all|number_format|fitNumber}}%</span>
       </div>
       <div class="c1 s6 all-center text-center">
        <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
       </div>
+      {%endif%}
      </div>
     {%endfor%}
    {%endif%}
