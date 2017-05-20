@@ -76,6 +76,23 @@ class model extends \mvc\model
 		$sitemap->addItem('benefits/valid-population', '0.7', 'weekly');
 		$sitemap->addItem('benefits/knowledge-base', '0.7', 'weekly');
 
+		$sitemap->addItem('election', '0.2', 'monthly');
+		$sitemap->addItem('election/iran', '0.3', 'monthly');
+		$sitemap->addItem('election/iran/president', '0.4', 'monthly');
+		$sitemap->addItem('election/iran/president/1396', '1', 'hourly');
+		$sitemap->addItem('election/iran/president/1392', '0.8', 'weekly');
+		$sitemap->addItem('election/iran/president/1388', '0.8', 'weekly');
+		$sitemap->addItem('election/iran/president/1384/2', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1384', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1380', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1376', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1372', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1368', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1364', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1360/2', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1360', '0.7', 'weekly');
+		$sitemap->addItem('election/iran/president/1358', '0.7', 'weekly');
+
 
 
 
@@ -118,6 +135,24 @@ class model extends \mvc\model
 		$sitemap->addItem('fa/target/universities-and-research-institutes', '0.8', 'weekly');
 		$sitemap->addItem('fa/target/agencies', '0.8', 'weekly');
 		$sitemap->addItem('fa/target/developers-and-webmasters', '0.8', 'weekly');
+
+
+		$sitemap->addItem('fa/election', '0.2', 'monthly');
+		$sitemap->addItem('fa/election/iran', '0.3', 'monthly');
+		$sitemap->addItem('fa/election/iran/president', '0.4', 'monthly');
+		$sitemap->addItem('fa/election/iran/president/1396', '1', 'hourly');
+		$sitemap->addItem('fa/election/iran/president/1392', '0.8', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1388', '0.8', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1384/2', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1384', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1380', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1376', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1372', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1368', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1364', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1360/2', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1360', '0.7', 'weekly');
+		$sitemap->addItem('fa/election/iran/president/1358', '0.7', 'weekly');
 
 
 
