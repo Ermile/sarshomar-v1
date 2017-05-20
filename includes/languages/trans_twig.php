@@ -85,7 +85,7 @@ private function transtext()
 	echo T_("Enjoy Sarshomar's comprehensive and valuable knowledge as a valid source in line with your broad objectives");// Line 43
 
 	//-------------------------------------------------------content\home\display.html
-	echo T_("Presidents of Islamic Republic of Iran");                                // Line 11
+	echo T_("Presidents of Islamic Republic of Iran");                                // Line 12
 	echo T_("Sarshomar Knowledge");                                                   // Line 15
 
 	//--------------------------------------------------content\knowledge\display.html
@@ -1105,7 +1105,7 @@ private function transtext()
 
 	//------------------------------------content_election\admin\election\display.html
 	echo T_("Election list");                                                         // Line 5
-	echo T_("Eligible");                                                              // Line 133
+	echo T_("Eligible");                                                              // Line 149
 	echo T_("Voted");                                                                 // Line 78
 	echo T_("Invalid");                                                               // Line 82
 	echo T_("Cash");                                                                  // Line 152
@@ -1118,7 +1118,7 @@ private function transtext()
 	echo T_("End_time");                                                              // Line 21
 	echo T_("Election date");                                                         // Line 122
 	echo T_("Jalali year");                                                           // Line 126
-	echo T_("Year");                                                                  // Line 86
+	echo T_("Year");                                                                  // Line 102
 	echo T_("En url");                                                                // Line 134
 	echo T_("Fa url");                                                                // Line 138
 	echo T_("Cat");                                                                   // Line 142
@@ -1167,7 +1167,9 @@ private function transtext()
 
 	//----------------------------------------------content_election\home\candida.html
 	echo T_("All Candidates of Presidential Elections of Islamic Republic of Iran");  // Line 11
-	echo T_("Unknown");                                                               // Line 112
+	echo T_("Candidate");                                                             // Line 26
+	echo T_("Percentage");                                                            // Line 106
+	echo T_("Unknown");                                                               // Line 128
 
 	//----------------------------------------------content_election\home\comment.html
 	echo T_("Your Name");                                                             // Line 497
@@ -1187,11 +1189,12 @@ private function transtext()
 	echo T_("City");                                                                  // Line 347
 
 	//-------------------------------------------------content_election\home\home.html
-	echo T_("Turnout");                                                               // Line 87
-	echo T_("President elected");                                                     // Line 89
-	echo T_("Percentage");                                                            // Line 90
-	echo T_("Popular vote");                                                          // Line 91
-	echo T_("Percent of total eligible");                                             // Line 103
+	echo T_("All Elections");                                                         // Line 26
+	echo T_("All Candidates");                                                        // Line 27
+	echo T_("Turnout");                                                               // Line 103
+	echo T_("President elected");                                                     // Line 105
+	echo T_("Popular vote");                                                          // Line 107
+	echo T_("Percent of total eligible");                                             // Line 119
 
 	//-------------------------------------------content_election\main\layout.bak.html
 

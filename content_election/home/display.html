@@ -22,6 +22,8 @@
   {{block('comment')}}
 {%endif%}
 
+{{block('header')}}
+
 
  <div class="box-top unselectable">
   {%if site.currentlang == 'en' and result.election.en_title%}
@@ -45,6 +47,21 @@
 
  {{block('time_line')}}
  {{block('taglist')}}
+{%endblock%}
+
+{%block header%}
+<header class="flex justify-between">
+ {%if site.currentlang == 'en'%}
+  <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-en.svg"></a>
+ {%else%}
+  <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-fa.svg"></a>
+ {%endif%}
+
+ <nav class="flex align-center">
+  <a href="{{url.base}}/e">{%trans "All Elections"%}</a>
+  <a href="{{url.base}}/election/iran/president/candida">{%trans "All Candidates"%}</a>
+ </nav>
+</header>
 {%endblock%}
 
 

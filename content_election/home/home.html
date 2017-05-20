@@ -7,10 +7,26 @@
 {%endblock%}
 
 {%block content%}
+ {{block('header')}}
  <div class="box-top unselectable">
   <h1 class="page-title">{%trans "Presidents of Islamic Republic of Iran"%}</h1>
  </div>
  {{block('all')}}
+{%endblock%}
+
+{%block header%}
+<header class="flex justify-between">
+ {%if site.currentlang == 'en'%}
+  <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-en.svg"></a>
+ {%else%}
+  <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-fa.svg"></a>
+ {%endif%}
+
+ <nav class="flex align-center">
+  <a href="{{url.base}}/e">{%trans "All Elections"%}</a>
+  <a href="{{url.base}}/election/iran/president/candida">{%trans "All Candidates"%}</a>
+ </nav>
+</header>
 {%endblock%}
 
 {%block top%}
