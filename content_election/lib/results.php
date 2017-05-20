@@ -458,6 +458,7 @@ class results
 		"
 			SELECT
 				elections.*,
+				elections.en_url AS `election_en_url`,
 				candidas.*
 			FROM
 				elections
@@ -483,6 +484,7 @@ class results
 		"
 			SELECT
 				elections.*,
+				elections.en_url AS `election_en_url`,
 				(
 					SELECT ((results.total * 100) / elections.voted)
 					FROM results

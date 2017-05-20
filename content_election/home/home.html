@@ -22,8 +22,6 @@
   <div class="election-tbl">
 
 
-
-
    {%if site.currentlang == 'en'%}
      <div class="f th">
 
@@ -39,7 +37,7 @@
     {%for key, value in result%}
      <div class="f">
       <div class="c1 all-center year">
-       <a href="{{value.en_url}}"><span>{{value.year|fitNumber}}</span></a>
+       <a href="{{value.election_en_url}}"><span>{{value.year|fitNumber}}</span></a>
       </div>
 
       <div class="c1 s6 all-center turnout">
@@ -47,7 +45,7 @@
       </div>
 
       <div class="c1 s6 all-center">
-        <a href="{{value.en_url}}">
+        <a href="{{value.election_en_url}}">
          <div class="image round low">
          {%if value.win_url%}
           <img src='{{dlUrl}}{{value.win_url}}' alt='{{value.en_name}} {{value.en_fame}}'>
