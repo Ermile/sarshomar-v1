@@ -154,6 +154,10 @@ a[href*="amcharts.com"]{display:none!important}
 .chartbox .chart{height:300px;}
 .chartbox h2{padding: 1em 2em;font-weight:bold}
 
+.taglist{width:90%;margin:0 auto;}
+.taglist span{padding:1em;background-color:#efefef;display:inline-block;transition:0.3s;cursor:default;margin:2px}
+.taglist span:hover{background-color:#ddd;}
+
 
 @media all and (min-width: 1200px) {
   .timeline-box .timeline .image{width:7em;height:7em}
@@ -161,7 +165,8 @@ a[href*="amcharts.com"]{display:none!important}
 
 @media all and (max-width: 767px) {
  .container{min-width:initial}
- .election-title{font-size:2em}
+ .election-title{font-size:2em; padding:0 0.5em}
+ .box-top{padding:2em 0;}
  .winner-name{font-size:2.5em}
  .wwinner-title{font-size:1.4em}
  .top-two .top-two-container .candidate .data{padding:0 1rem}
@@ -173,6 +178,7 @@ a[href*="amcharts.com"]{display:none!important}
  .timeline-box a .info{background-color:#fff;width:90%;margin:0 auto;z-index:7;position:relative;border-radius:3px;box-shadow:0 0 10px 2px #ddd;padding:1rem}
  .timeline-box a .info span{font-size:1.2em}
  .timeline-box .timeline .image{width:10em;height:10em;margin-bottom:1em}
+ .taglist{display:none;}
 }
 
 
