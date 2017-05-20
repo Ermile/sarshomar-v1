@@ -53,19 +53,27 @@ class model extends \content_election\main\model
 
 			foreach ($senario as $key => $value)
 			{
-				$xkey = $value['name'] . ' ' . $value['family']. '(' . $value['fame'] . ')';
-
-				if(isset($temp_senario[$value['date']]))
+				// $xkey = $value['name'] . ' ' . $value['family']. '(' . $value['fame'] . ')';
+				$xkey = $value['fame'];
+				if(!$xkey)
 				{
-					$temp_senario[$value['date']][$xkey] = $value['total'];
+					$xkey = $value['family'];
+				}
+
+				if(isset($temp_senario[$value['report_id']]))
+				{
+					$temp_senario[$value['report_id']][$xkey] = (int)$value['total'];
+					$temp_senario[$value['report_id']]['total'] += (int)$value['total'];
 				}
 				else
 				{
-					$temp_senario[$value['date']] =
+					$temp_senario[$value['report_id']] =
 					[
-						'title' => $value['level'] . '_' . $value['number'] ,
+						// 'title' => $value['level'] . '_' . $value['number'] ,
+						'title' => $value['level'],
 						'date'  => (isset($value['date'])) ? $value['date'] : null,
-						$xkey   =>  $value['total'],
+						$xkey   =>  (int)$value['total'],
+						'total' => $value['total'],
 					];
 				}
 
@@ -98,8 +106,43 @@ class model extends \content_election\main\model
 				// ];
 			}
 
+			// change to percentage
+			$temp_senario = array_values($temp_senario);
+			foreach ($temp_senario as $id => $report)
+			{
+				$myTotal = 0;
+				if(isset($report['total']))
+				{
+					$myTotal = $report['total'];
+				}
+
+				foreach ($report as $key => $value)
+				{
+					switch ($key)
+					{
+						case 'total':
+						case 'title':
+						case 'date':
+							// do nothing
+							break;
+
+						default:
+							$temp_senario[$id][$key] = round($value * 100 / $myTotal , 2);
+							break;
+					}
+				}
+			}
+
 			// var_dump($temp_senario);exit();
-			$result['senario'] = json_encode($temp_senario, JSON_UNESCAPED_UNICODE);
+			if(count($temp_senario) > 1)
+			{
+				$result['senario'] = json_encode($temp_senario, JSON_UNESCAPED_UNICODE);
+
+			}
+			else
+			{
+				$result['senario'] = null;
+			}
 
 			$time_line = \content_election\lib\results::get_time_line($election_id);
 			$result['time_line'] = $time_line;

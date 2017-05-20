@@ -38,9 +38,7 @@
  <div class="container unselectable">
   {{block('candidates')}}
   {{block('result')}}
-{%if url.tld == 'dev'%}
   {{block('comparison')}}
-{%endif%}
   {{block('province_result')}}
   {{block('city_result')}}
  </div>
@@ -343,6 +341,7 @@
 
 
 {%block comparison%}
+{%if result.senario%}
 <div class="chartbox election-tbl">
 
   {%if site.currentlang == 'en' and result.election.en_title%}
@@ -356,6 +355,7 @@
 
   </div>
 </div>
+{%endif%}
 {%endblock%}
 
 

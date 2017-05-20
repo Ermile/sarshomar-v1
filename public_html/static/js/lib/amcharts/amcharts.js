@@ -1015,7 +1015,7 @@ function createChartGraphs(_chartData, _group, _title, _value, _balloon)
  */
 function getBestColorForGroup(_group)
 {
-	console.log(_group);
+	// console.log(_group);
 	var myColor = null;
 	// ["#83c3e1", "#e97197", "#e7e7e7"];
 	switch(_group)
@@ -1607,13 +1607,82 @@ function admin_line(_option, _smoothedLine)
 
 function elComparison(_option)
 {
-
+	$graphList = _option.dataProvider[0];
 
 	// add each graph if exist
-	$.each(_trans, function($val, $title)
+	$.each($graphList, function(_key, _val)
 	{
-		createChartGraphs(_chartData, _type+ '_'+ $val, $title, $val);
+		if(_key == 'title' || _key == 'date' || _key == 'total')
+		{
+			// do nothing
+		}
+		else
+		{
+			// function createChartGraphs(_chartData, _group, _title, _value, _balloon)
+
+			$myGraph =
+			{
+				"bullet": "round",
+				"lineThickness": 1,
+				"bulletSize": 5,
+				"bulletBorderAlpha": 3,
+				"bulletColor": "#FFFFFF",
+				"useLineColorForBulletBorder": true,
+				"bulletBorderThickness": 1,
+				"fillAlphas": 0,
+				"lineAlpha": 1,
+
+				"valueField": _key,
+				"title": _key,
+				// "labelText": "[[value]]",
+				"clustered": false,
+				"labelFunction": function(item)
+				{
+					return fitNumber(Math.abs(item.values.value));
+				},
+				"balloonFunction": function(item)
+				{
+					return item.graph.title + "<br/><b>"  + fitNumber(Math.abs(item.values.value)) + "%</b>";
+				}
+			};
+			if(_key == 'unacceptable' || _key == 'باطله')
+			{
+				$myGraph.hidden = true;
+			}
+
+			_option.graphs.push($myGraph);
+		}
 	});
+
+
+	// show all data on hover of column
+	_option.chartCursor =
+	{
+		"valueBalloonsEnabled": true,
+		"categoryBalloonColor":"#e7a429",
+		"cursorColor":"#00667a",
+		"cursorAlpha": 0.05,
+		"fullWidth": true,
+		"zoomable": false,
+		"oneBalloonOnly": true,
+		"categoryBalloonFunction": function(value)
+		{
+			return fitNumber(value, false);
+		},
+	};
+
+	_option.legend =
+	{
+		"horizontalGap": 50,
+		"useGraphSettings": true,
+		"position": "top",
+		// "equalWidths": false,
+		"valueAlign": "left",
+
+		"markerSize": 10
+	};
+	_option.categoryField = "title";
+
 
 
 	return _option;
