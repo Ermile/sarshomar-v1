@@ -35,6 +35,8 @@
      </div>
 
     {%for key, value in result%}
+    <div class="tr">
+     <div class="tp" style="width:{{value.win_present_all}}%"></div>
      <div class="f">
       <div class="c1 all-center year">
        <a href="{{value.election_en_url}}"><span>{{value.year|fitNumber}}</span></a>
@@ -75,6 +77,7 @@
       </div>
 
      </div>
+    </div>
     {%endfor%}
 
    {%else%}
@@ -89,6 +92,8 @@
      </div>
 
     {%for key, value in result%}
+    <div class="tr">
+     <div class="tp" style="width:{{value.win_present_all}}%"></div>
      <div class="f">
       <div class="c1 all-center year">
        <a href="{{value.fa_url}}"><span>{{value.jalali_year|fitNumber}}</span></a>
@@ -134,7 +139,7 @@
       </div>
 {%endif%}
      </div>
-
+    </div>
     {%endfor%}
    {%endif%}
 
