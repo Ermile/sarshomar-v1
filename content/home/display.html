@@ -3,7 +3,9 @@
 {%block content%}
   <div class="main homepage">
   {{block('homeTop1')}}
-  {{block('homeTop2')}}
+  <h2 class="special-heading bigger">{%trans "Presidents of Islamic Republic of Iran"%}</h2>
+  {{block('homeElectionTimeline')}}
+  {%if false%}{{block('homeTop2')}}{%endif%}
 
    <div class="customers-container">
 
@@ -149,4 +151,307 @@
 
    </div>
 {%endif%}
+{%endblock%}
+
+
+
+
+{%block homeElectionTimeline%}
+ {%if site.currentlang == 'en'%}
+  <div class="timeline-box unselectable">
+    <div class="timeline flex justify-around s-column">
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1358-sayyed_abolhassan_banisadr-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1980</h3>
+          <h4>Sayyed Abolhassan</h4>
+          <h4>Banisadr</h4>
+          <h4>1980</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1360-mohammad_ali_rajai-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1981</h3>
+          <h4>Mohammad Ali</h4>
+          <h4>Rajai</h4>
+          <h4>1981</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1360-seyyed_ali_hosseini_khamene(khamenei)-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1981</h3>
+          <h4>Seyyed Ali</h4>
+          <h4>Khamenei</h4>
+          <h4>1360</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1364-seyyed_ali_hosseini_khamene(khamenei)-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1985</h3>
+          <h4>Seyyed Ali</h4>
+          <h4>Khamenei</h4>
+          <h4>1985</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1368-akbar_hashemi_bahramani(hashemi_rafsanjani)-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1989</h3>
+          <h4>Akbar</h4>
+          <h4>Hashemi Rafsanjani</h4>
+          <h4>1989</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1372-akbar_hashemi_bahramani(hashemi_rafsanjani)-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1993</h3>
+          <h4>Akbar</h4>
+          <h4>Hashemi Rafsanjani</h4>
+          <h4>1993</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1376-seyyed_mohammad_khatami-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 1997</h3>
+          <h4>Seyyed Mohammad</h4>
+          <h4>Khatami</h4>
+          <h4>1997</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1380-seyyed_mohammad_khatami-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 2001</h3>
+          <h4>Seyyed Mohammad</h4>
+          <h4>Khatami</h4>
+          <h4>2001</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/unknown.png" alt="Unknown">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 2005</h3>
+          <h4></h4>
+          <h4></h4>
+          <h4>2005</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1384-mahmoud_ahmadinejad-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 2005</h3>
+          <h4>Mahmoud</h4>
+          <h4>Ahmadinejad</h4>
+          <h4>2005</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1388-mahmoud_ahmadinejad-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 2009</h3>
+          <h4>Mahmoud</h4>
+          <h4>Ahmadinejad</h4>
+          <h4>2009</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1392-hassan_rouhani-winner.jpg" alt="">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 2013</h3>
+          <h4>Hassan</h4>
+          <h4>Rouhani</h4>
+          <h4>2013</h4>
+        </div>
+      </a>
+      <a href="">
+        <div class="image round low">
+          <img src="https://dl.sarshomar.com/files/election/iran-president-1396-hassan_rouhani.jpg" alt="Hassan Rouhani">
+        </div>
+        <div class="info flex f-column s-row justify-center">
+          <h3>Iranian presidential election, 2017</h3>
+          <h4>Hassan</h4>
+          <h4>Rouhani</h4>
+          <h4>2017</h4>
+        </div>
+      </a>
+    </div>
+  </div>
+ {%else%}
+  <div class="timeline-box unselectable">
+   <div class="timeline flex justify-around s-column">
+    <a href="iran/president/1358">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1358-sayyed_abolhassan_banisadr-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>اولین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>سید ابوالحسن</h4>
+      <h4>بنی&zwnj;صدر</h4>
+      <h4>۱۳۵۸</h4>
+     </div>
+    </a>
+    <a href="iran/president/1360">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1360-mohammad_ali_rajai-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>دومین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>محمدعلی</h4>
+      <h4>رجایی</h4>
+      <h4>۱۳۶۰</h4>
+     </div>
+    </a>
+    <a href="iran/president/1360/2">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1360-seyyed_ali_hosseini_khamene(khamenei)-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>سومین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>سید علی</h4>
+      <h4>خامنه&zwnj;ای</h4>
+      <h4>۱۳۶۰</h4>
+     </div>
+    </a>
+    <a href="iran/president/1364">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1364-seyyed_ali_hosseini_khamene(khamenei)-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>چهارمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>سید علی</h4>
+      <h4>خامنه&zwnj;ای</h4>
+      <h4>۱۳۶۴</h4>
+     </div>
+    </a>
+    <a href="iran/president/1368">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1368-akbar_hashemi_bahramani(hashemi_rafsanjani)-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>پنجمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>اکبر</h4>
+      <h4>هاشمی رفسنجانی</h4>
+      <h4>۱۳۶۸</h4>
+     </div>
+    </a>
+    <a href="iran/president/1372">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1372-akbar_hashemi_bahramani(hashemi_rafsanjani)-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>ششمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>اکبر</h4>
+      <h4>هاشمی رفسنجانی</h4>
+      <h4>۱۳۷۲</h4>
+     </div>
+    </a>
+    <a href="iran/president/1376">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1376-seyyed_mohammad_khatami-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>هفتمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>سید محمد</h4>
+      <h4>خاتمی</h4>
+      <h4>۱۳۷۶</h4>
+     </div>
+    </a>
+    <a href="iran/president/1380">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1380-seyyed_mohammad_khatami-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>هشتمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>سید محمد</h4>
+      <h4>خاتمی</h4>
+      <h4>۱۳۸۰</h4>
+     </div>
+    </a>
+    <a href="iran/president/1384">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/unknown.png" alt="Unknown">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>نهمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران - دور اول</h3>
+      <h4></h4>
+      <h4></h4>
+      <h4>۱۳۸۴</h4>
+     </div>
+    </a>
+    <a href="iran/president/1384/2">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1384-mahmoud_ahmadinejad-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>نهمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران - دور دوم</h3>
+      <h4>محمود</h4>
+      <h4>احمدی&zwnj;نژاد</h4>
+      <h4>۱۳۸۴</h4>
+     </div>
+    </a>
+    <a href="iran/president/1388">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1388-mahmoud_ahmadinejad-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>دهمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>محمود</h4>
+      <h4>احمدی&zwnj;نژاد</h4>
+      <h4>۱۳۸۸</h4>
+     </div>
+    </a>
+    <a href="iran/president/1392">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1392-hassan_rouhani-winner.jpg" alt="">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>یازدهمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>حسن</h4>
+      <h4>روحانی</h4>
+      <h4>۱۳۹۲</h4>
+     </div>
+    </a>
+    <a href="iran/president/1396">
+     <div class="image round low">
+      <img src="https://dl.sarshomar.com/files/election/iran-president-1396-hassan_rouhani.jpg" alt="حسن روحانی">
+     </div>
+     <div class="info flex f-column s-row justify-center">
+      <h3>دوازدهمین دوره&zwnj;ی انتخابات ریاست جمهوری اسلامی ایران</h3>
+      <h4>حسن</h4>
+      <h4>روحانی</h4>
+      <h4>۱۳۹۶</h4>
+     </div>
+    </a>
+   </div>
+  </div>
+ {%endif%}
 {%endblock%}
