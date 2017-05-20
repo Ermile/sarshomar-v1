@@ -2453,8 +2453,8 @@ input.rangeSlider{display:none}
 body[data-page="gift"] .in div{text-align:center}
 
 /* election timeline */
-.timeline-box{position:relative;margin:5rem auto;padding:0 7em}
-.timeline-box::before{position:absolute;top:25%;right:0;bottom:0; left:0;width:100%;height:3px;margin:auto;margin-top:0rem;content:'';background-color:#00667a}
+.timeline-box{position:relative;margin:7em auto}
+.timeline-box::before{position:absolute;top:25%;right:0;bottom:0; left:0;width:100%;height:2px;margin:auto;margin-top:0rem;content:'';background-color:#00667a}
 .timeline-box a{text-align:center;color:#333;font-weight:700}
 .timeline-box a .info{margin-top:1rem}
 .timeline-box a .info h3{display:none}

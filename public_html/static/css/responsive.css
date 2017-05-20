@@ -507,12 +507,8 @@ nav.breadcrumb{display:none}
 .s-align-content-between{-webkit-align-content:space-between!important;-ms-flex-line-pack:justify!important;align-content:space-between!important}
 .s-align-content-around{-webkit-align-content:space-around!important;-ms-flex-line-pack:distribute!important;align-content:space-around!important}
 .s-align-content-stretch{-webkit-align-content:stretch!important;-ms-flex-line-pack:stretch!important;align-content:stretch!important}
-.timeline-box{padding:0 2em}
- .timeline-box a:not(:last-of-type){margin-bottom:4rem}
- .timeline-box::before{top:0;width:3px;height:100%}
- .timeline-box a .info{background-color:#fff;width:90%;margin:0 auto;z-index:7;position:relative;border-radius:3px;box-shadow:0 0 10px 2px #ddd;padding:1rem}
- .timeline-box a .info span{font-size:1.2em}
- .timeline-box .timeline .image{width:10em;height:10em;margin-bottom:1em}
+.timeline-box{display:none}
+.special-heading.election-title{display:none}
 }
 
 
