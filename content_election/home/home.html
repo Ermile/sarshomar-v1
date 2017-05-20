@@ -72,8 +72,8 @@
        </div>
       </div>
 
-      <div class="c1 s6 all-center">
-       <span>{{value.win_present_all|number_format|fitNumber}}%</span>
+      <div class="c1 s6 all-center text-center">
+       <span title='{%trans "Eligible"%} {{value.eligible|number_format|fitNumber}}'>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
       </div>
 
      </div>
@@ -130,7 +130,7 @@
       </div>
 
       <div class="c1 s6 all-center text-center">
-       <span>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
+       <span title='{%trans "Eligible"%} {{value.eligible|number_format|fitNumber}}'>{{value.voted|number_format|fitNumber}} {%trans "Votes"%}</span>
       </div>
 
 {%if false%}
