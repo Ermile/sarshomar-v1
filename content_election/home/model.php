@@ -127,7 +127,14 @@ class model extends \content_election\main\model
 							break;
 
 						default:
-							$temp_senario[$id][$key] = round($value * 100 / $myTotal , 2);
+							if($myTotal)
+							{
+								$temp_senario[$id][$key] = round($value * 100 / $myTotal , 2);
+							}
+							else
+							{
+								$temp_senario[$id][$key] = 0;
+							}
 							break;
 					}
 				}
