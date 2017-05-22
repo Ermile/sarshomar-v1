@@ -1,12 +1,6 @@
 {%extends display.back%}
 
 
-{%block head_css%}
-{{parent()}}
- <link rel="stylesheet"       href="{{url.static}}{{'css/style-election.css' | filemtime(true)}}">
-{%endblock%}
-
-
 {%block sidenav%}
 {%if perm('admin:view')%}
     <li><a href="{{url.base}}/election/admin"><i class='icon-laptop'></i> <span>{% trans "Admin Dashboard" %}</span></a></li>
