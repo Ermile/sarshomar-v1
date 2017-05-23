@@ -9,7 +9,7 @@ class view extends \mvc\view
 	 */
 	function pushState()
 	{
-		exit();
+		// exit();
 	}
 }
 ?>
