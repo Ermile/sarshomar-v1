@@ -187,6 +187,7 @@ a[href*="amcharts.com"]{display:none!important}
  .wwinner-title{font-size:1.4em}
  .top-two .top-two-container .candidate .data{padding:0 1rem}
  .top-two .top-two-container .candidate .data h3{font-size:1.4em}
+ .top-two .status-bar .first .percentage, .top-two .status-bar .second .percentage{font-size:2em;margin-top:-1rem}
  .image.round.medium{border:.25em solid #fff}
  .timeline-box{padding:0 2em}
  .timeline-box a:not(:last-of-type){margin-bottom:4rem}
