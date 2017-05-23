@@ -2460,7 +2460,7 @@ body[data-page="gift"] .in div{text-align:center}
 .timeline-box a .info h3{display:none}
 .timeline-box a .info h4{font-size:1em;font-weight:700;line-height:1.1;margin:0;padding:.25rem}
 .timeline-box .timeline .image{width:5em;height:5em;z-index:2}
-.special-heading.election-title{font-weight:700}
+.special-heading.election-title{font-weight:700;margin-top:2rem}
 
 .image{position:relative;display:inline-block;overflow:hidden;vertical-align:middle}
 .image::before{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;content:''}
