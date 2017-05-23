@@ -14,7 +14,7 @@ private function transtext()
 	echo T_("Please enter valid mobile number. `:val` is incorrect");                 // Line 24
 	echo T_("Email");                                                                 // Line 207
 	echo T_("Your Message");                                                          // Line 31
-	echo T_("Send");                                                                  // Line 510
+	echo T_("Send");                                                                  // Line 527
 	echo T_("How to contact Sarshomar");                                              // Line 39
 	echo T_("Sarshomar");                                                             // Line 8 Seperate
 	echo T_("#614, Omranieh");                                                        // Line 68
@@ -1100,8 +1100,8 @@ private function transtext()
 
 	//---------------------------------------------content_election\admin\display.html
 	echo T_("Admin Election");                                                        // Line 5
-	echo T_("Election");                                                              // Line 13
-	echo T_("Candida");                                                               // Line 14
+	echo T_("Election");                                                              // Line 7
+	echo T_("Candida");                                                               // Line 8
 
 	//------------------------------------content_election\admin\election\display.html
 	echo T_("Election list");                                                         // Line 5
@@ -1166,32 +1166,32 @@ private function transtext()
 	echo T_("father");                                                                // Line 17
 
 	//----------------------------------------------content_election\home\candida.html
-	echo T_("All Candidates of Presidential Elections of Islamic Republic of Iran");  // Line 11
-	echo T_("Candidate");                                                             // Line 26
+	echo T_("All Candidates of Presidential Elections of Islamic Republic of Iran");  // Line 12
+	echo T_("All Elections");                                                         // Line 26
+	echo T_("All Candidates");                                                        // Line 27
+	echo T_("Turnout");                                                               // Line 103
+	echo T_("Candidate");                                                             // Line 43
 	echo T_("Percentage");                                                            // Line 106
 	echo T_("Unknown");                                                               // Line 128
 
 	//----------------------------------------------content_election\home\comment.html
-	echo T_("Your Name");                                                             // Line 497
-	echo T_("Your name");                                                             // Line 498
-	echo T_("Your mobile number");                                                    // Line 502
-	echo T_("Your comment");                                                          // Line 505
-	echo T_("Your Comment");                                                          // Line 506
+	echo T_("Your Name");                                                             // Line 514
+	echo T_("Your name");                                                             // Line 515
+	echo T_("Your mobile number");                                                    // Line 519
+	echo T_("Your comment");                                                          // Line 522
+	echo T_("Your Comment");                                                          // Line 523
 
 	//----------------------------------------------content_election\home\display.html
-	echo T_("Results of");                                                            // Line 30
-	echo T_("President-elect of");                                                    // Line 75
-	echo T_("Live");                                                                  // Line 192
-	echo T_("Last Update");                                                           // Line 195
-	echo T_("Comparison result of");                                                  // Line 349
-	echo T_("Candidates Votes on Provinces");                                         // Line 366
-	echo T_("Candidates Votes on Cities");                                            // Line 390
+	echo T_("Results of");                                                            // Line 32
+	echo T_("President-elect of");                                                    // Line 92
+	echo T_("Live");                                                                  // Line 209
+	echo T_("Last Update");                                                           // Line 212
+	echo T_("Comparison result of");                                                  // Line 366
+	echo T_("Candidates Votes on Provinces");                                         // Line 383
+	echo T_("Candidates Votes on Cities");                                            // Line 407
 	echo T_("City");                                                                  // Line 347
 
 	//-------------------------------------------------content_election\home\home.html
-	echo T_("All Elections");                                                         // Line 26
-	echo T_("All Candidates");                                                        // Line 27
-	echo T_("Turnout");                                                               // Line 103
 	echo T_("President elected");                                                     // Line 105
 	echo T_("Popular vote");                                                          // Line 107
 	echo T_("Percent of total eligible");                                             // Line 119
@@ -1199,9 +1199,9 @@ private function transtext()
 	//-------------------------------------------content_election\main\layout.bak.html
 
 	//-----------------------------------------------content_election\main\layout.html
-	echo T_("Admin Dashboard");                                                       // Line 12
-	echo T_("Add Data");                                                              // Line 17
-	echo T_("View Election");                                                         // Line 19
+	echo T_("Admin Dashboard");                                                       // Line 6
+	echo T_("Add Data");                                                              // Line 11
+	echo T_("View Election");                                                         // Line 13
 
 	//-------------------------------------------------------content_u\add\layout.html
 	echo T_("Synced");                                                                // Line 14
