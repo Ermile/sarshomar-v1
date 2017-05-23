@@ -183,7 +183,7 @@ a[href*="amcharts.com"]{display:none!important}
 @media all and (max-width: 767px) {
  .container{min-width:initial}
  .election-title{font-size:2em; padding:0 0.5em}
- .box-top{padding:2em 0;}
+ .box-top{padding:10em 1em 2em}
  .winner-name{font-size:2.5em}
  .wwinner-title{font-size:1.4em}
  .top-two .top-two-container .candidate .data{padding:0 1rem}
@@ -198,6 +198,7 @@ a[href*="amcharts.com"]{display:none!important}
  .timeline-box .timeline .image{width:10em;height:10em;margin-bottom:1em}
  .taglist{display:none;}
  .election-tbl .f.th>[class*='c']{text-align:center}
+ header .logo{margin-bottom:.5em}
 }
 
 

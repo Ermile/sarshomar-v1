@@ -15,7 +15,7 @@
 {%endblock%}
 
 {%block header%}
-<header class="flex justify-between">
+<header class="flex justify-between s-column s-align-center">
  {%if site.currentlang == 'en'%}
   <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-en.svg"></a>
  {%else%}
@@ -37,11 +37,11 @@
  <div class="container unselectable">
   <div class="election-tbl">
    <div class="f th">
-    <div class="c1 all-center"></div>
-    <div class="c1 all-center">{%trans "Year"%}</div>
-    <div class="c1 all-center">{%trans "Turnout"%}</div>
-    <div class="c3 all-center">{%trans "Candidate"%}</div>
-    <div class="c6 all-center">{%trans "Percentage"%}</div>
+    <div class="c1 s0 all-center"></div>
+    <div class="c1 s2 all-center">{%trans "Year"%}</div>
+    <div class="c1 s3 all-center">{%trans "Turnout"%}</div>
+    <div class="c3 s3 all-center">{%trans "Candidate"%}</div>
+    <div class="c6 s4 all-center">{%trans "Percentage"%}</div>
     {%if false%}
     <div class="c1 all-center"></div>
     <div class="c1 all-center"></div>
@@ -51,13 +51,13 @@
    {%if site.currentlang == 'en'%}
     {%for key, value in result%}
      <div class="f">
-      <div class="c1 all-center">{{(key+1)|fitNumber}}</div>
+      <div class="c1 s4 all-center">{{(key+1)|fitNumber}}</div>
 
-      <div class="c1 all-center">
+      <div class="c1 s4 all-center">
        <span>{{value.year|fitNumber}}</span>
       </div>
 
-      <div class="c1 s6 all-center">
+      <div class="c1 s4 all-center">
        <span>{{value.work_present|number_format|fitNumber}}%</span>
       </div>
 
@@ -76,7 +76,7 @@
        <h4 class="last-name">{%if value.en_fame%}{{value.en_fame}}{%elseif value.en_family%}{{value.en_family}}{%else%}-{%endif%}</h4>
       </div>
 
-      <div class="c6 all-center">
+      <div class="c6 s12 all-center">
        <div class="percentage-container">
         <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
@@ -98,13 +98,13 @@
    {%else%}
     {%for key, value in result%}
      <div class="f">
-      <div class="c1 all-center">{{(key+1)|fitNumber}}</div>
+      <div class="c1 s4 all-center">{{(key+1)|fitNumber}}</div>
 
-      <div class="c1 all-center">
+      <div class="c1 s4 all-center">
        <span>{{value.jalali_year|fitNumber}}</span>
       </div>
 
-      <div class="c1 s6 all-center">
+      <div class="c1 s4 all-center">
        <span>{{value.work_present|number_format|fitNumber}}%</span>
       </div>
 
@@ -123,7 +123,7 @@
        <h4 class="last-name">{%if value.fame%}{{value.fame}}{%elseif value.family%}{{value.family}}{%else%}-{%endif%}</h4>
       </div>
 
-      <div class="c6 all-center">
+      <div class="c6 s12 all-center">
        <div class="percentage-container">
         <div class="percentage-value">{%if value.win_present is defined%}{{value.win_present|fitNumber}}%{%else%}-{%endif%}</div>
         <div class="percentage-bar">
