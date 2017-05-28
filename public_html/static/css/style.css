@@ -578,10 +578,14 @@ header .ui-language-link:hover,header .ui-language-link:focus{background-color:#
 header .ui-language-link:hover .langlist,header .ui-language-link:focus .langlist{opacity:1; -webkit-transition:opacity 0.2s linear; -o-transition:opacity 0.2s linear; -moz-transition:opacity 0.2s linear; transition:opacity 0.2s linear;z-index: 2}
 header .langlist{font-family:'IRANSans','Roboto Slab',sans-serif;font-size:.5em;position:absolute;z-index:-1;top:100%;right:0;min-width:15em;-webkit-transition:all .1s; -moz-transition:all .1s; -o-transition:all .1s; transition:all .1s;opacity:0; background-color:#fff;box-shadow:0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23)}
 .rtl header .langlist{right:auto;left:0}
-header .langlist a{display:block;padding:1em;-webkit-transition:.3s;-o-transition:.3s;-moz-transition:.3s;transition:.3s;color:#7f7f7f;    line-height: initial;
-    font-weight: normal;}
+
+header .langlist a,
+header .langlist span{font-weight:normal;line-height:initial;display:block;padding:1em;-webkit-transition:.3s;-moz-transition:.3s;-o-transition:.3s;transition:.3s;color:#7f7f7f}
+
+header .langlist span,header .langlist span:hover{cursor:default}
+header .langlist span.is-active{background-color:#00667a;color:#f4f4f4}
+
 header .langlist a:hover,.langlist a:focus,.langlist a:active{background-color:#cecdcd;color:#000}
-header .langlist a.isActive{background-color:#00667a;color:#f4f4f4}
 
 
 /************************************************************** header profile */
