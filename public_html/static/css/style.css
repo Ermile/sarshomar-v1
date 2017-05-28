@@ -2468,3 +2468,12 @@ body[data-page="gift"] .in div{text-align:center}
 .image.round.medium{border:.5em solid #fff}
 .image.round.low{border:.25em solid #fff}
 .image>img{display:block}
+
+
+/************************************************************** Blog */
+[data-page*="blog"] article{margin-bottom:7em}
+[data-page*="blog"] article:first-of-type{margin-top:7em}
+[data-page*="blog"] article h1{font-weight:700;color:#00667a}
+[data-page*="blog"] article h1 a{color:inherit}
+[data-page*="blog"] p{padding:1em}
+[data-page*="blog"] article img{display:block;max-width:100%;max-height:30em;margin:0 auto;padding:1em}
