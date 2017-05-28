@@ -17,9 +17,9 @@
 {%block header%}
 <header class="flex justify-between s-column s-align-center">
  {%if site.currentlang == 'en'%}
-  <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-en.svg"></a>
+  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-en.svg"></a>
  {%else%}
-  <a href="{{url.base}}" class="logo"><img src="{{url.static}}images/logo/logo-fa.svg"></a>
+  <a href="{{url.base}}" class="logo" data-direct><img src="{{url.static}}images/logo/logo-fa.svg"></a>
  {%endif%}
 
  <nav class="flex align-center">
