@@ -328,12 +328,12 @@ private function transtext()
 	echo T_("Exit");                                                                  // Line 40
 	echo T_("Register");                                                              // Line 48
 	echo T_("Enter");                                                                 // Line 50
-	echo T_("Cost");                                                                  // Line 74
-	echo T_("Tomans");                                                                // Line 74
-	echo T_("Total cash");                                                            // Line 79
-	echo T_("Real");                                                                  // Line 87
-	echo T_("Gift");                                                                  // Line 95
-	echo T_("Transfer");                                                              // Line 103
+	echo T_("Cost");                                                                  // Line 80
+	echo T_("Tomans");                                                                // Line 80
+	echo T_("Total cash");                                                            // Line 85
+	echo T_("Real");                                                                  // Line 93
+	echo T_("Gift");                                                                  // Line 101
+	echo T_("Transfer");                                                              // Line 109
 	echo T_("Prize");                                                                 // Line 82
 
 	//-----------------------------------------------content\template\inestimable.html
