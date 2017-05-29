@@ -30,11 +30,15 @@
       <div class="l1">
         <p>{%trans "Copy your personal referral link and share it with your friends and followers."%}</p>
         <p>{%include template.share%}</p>
+
         <div class="element no-pad ltr-element">
          <label class="title large" for="referral_link">{%trans "Short URL"%}</label>
-         <input class="input" type="text" id="referral_link" value='{{url.base}}?ref={{login.id | shortURL("encode")}}' readonly maxlength="50">
-         <button class="btn" data-copy='#referral_link'><span class="icon-link"></span></button>
+         <div class="element-in">
+          <input class="input" type="text" id="referral_link" value='{{url.base}}?ref={{login.id | shortURL("encode")}}' readonly maxlength="50">
+          <button class="btn" data-copy='#referral_link'><span class="icon-link"></span></button>
+         </div>
         </div>
+
       </div>
 
 
@@ -43,26 +47,26 @@
       <div>
 
       </div>
-      <div class="tbl">
+
+     <div class="ref-tbl">
       <div class="f">
-        <span class="c3">{%trans "CLICKS"%}</span>
-        <span class="c8">{%trans "Number of times your link has been clicked."%}</span>
-        <span class="c1">{{ click | number_format | fitNumber}}</span>
+        <span class="c3 s12">{%trans "CLICKS"%}</span>
+        <span class="c8 s12">{%trans "Number of times your link has been clicked."%}</span>
+        <span class="c1 s12">{{ click | number_format | fitNumber}}</span>
       </div>
 
       <div class="f">
-        <span class="c3">{%trans "REFERRALS"%}</span>
-        <span class="c8">{%trans "People who enter to Sarshomar using your link."%}</span>
-        <span class="c1">{{ signup | number_format | fitNumber}}</span>
+        <span class="c3 s12">{%trans "REFERRALS"%}</span>
+        <span class="c8 s12">{%trans "People who enter to Sarshomar using your link."%}</span>
+        <span class="c1 s12">{{ signup | number_format | fitNumber}}</span>
       </div>
 
       <div class="f">
-        <span class="c3">{%trans "Complete Profile"%}</span>
-        <span class="c8">{%trans "People who complete profile after enter"%}</span>
-        <span class="c1">{{ profile | fitNumber}}</span>
+        <span class="c3 s12">{%trans "Complete Profile"%}</span>
+        <span class="c8 s12">{%trans "People who complete profile after enter"%}</span>
+        <span class="c1 s12">{{ profile | fitNumber}}</span>
       </div>
-
-      </div>
+     </div>
 {%else%}
      <p class="em">{%trans "Enter to get a unique referral link."%}</a><br/>
       <a href='{{url.base}}/logo'>{%trans "Use our logo to help spread the word."%}</a><br/><br/>

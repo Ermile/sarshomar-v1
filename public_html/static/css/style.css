@@ -2473,6 +2473,10 @@ body[data-page="gift"] .in div{text-align:center}
 .image.round.low{border:.25em solid #fff}
 .image>img{display:block}
 
+/************************************************************** Ref */
+.ref-tbl{margin-bottom:5em}
+.ref-tbl>.f>[class*='c']{font-size:1.2em;padding:1rem}
+.ref-tbl>.f>.c3,.ref-tbl>.f>.c1{font-weight:700}
 
 /************************************************************** Blog */
 [data-page*="blog"] article{margin-bottom:7em}
