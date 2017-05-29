@@ -509,6 +509,7 @@ nav.breadcrumb{display:none}
 .s-align-content-stretch{-webkit-align-content:stretch!important;-ms-flex-line-pack:stretch!important;align-content:stretch!important}
 .timeline-box{display:none}
 .special-heading.election-title{display:none}
+.changelog .tbl>.tbl-header{display:none}
 }
 
 
