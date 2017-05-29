@@ -16,6 +16,13 @@
         </div>
        </div>
 
+
+       {%if not login%}
+       <section class="in">
+        <div class="msg warning text-center">{%trans "To add a new question, please enter to Sarshomar."%}</div>
+       </section>
+       {%endif%}
+
        <div class="stepAdd">
         {%block step1%}1{%endblock%}
        </div>

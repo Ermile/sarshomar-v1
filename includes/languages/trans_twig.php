@@ -1206,9 +1206,10 @@ private function transtext()
 	//-------------------------------------------------------content_u\add\layout.html
 	echo T_("Synced");                                                                // Line 14
 	echo T_("Syncing");                                                               // Line 15
-	echo T_("Add Poll");                                                              // Line 46
-	echo T_("Save it");                                                               // Line 49
-	echo T_("Next Step");                                                             // Line 49
+	echo T_("To add a new question, please enter to Sarshomar.");                     // Line 22
+	echo T_("Add Poll");                                                              // Line 53
+	echo T_("Save it");                                                               // Line 56
+	echo T_("Next Step");                                                             // Line 56
 
 	//-----------------------------------------------------content_u\add\progress.html
 	echo T_("Add");                                                                   // Line 4
