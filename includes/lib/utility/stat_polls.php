@@ -123,8 +123,13 @@ class stat_polls
 			$file_time = \filemtime($url);
 			if((time() - $file_time) >  (60))
 			{
-				$result = self::get_count_answered();
-				\lib\utility\file::write($url, $result);
+				$result_exist = intval(\lib\utility\file::read($url));
+				$result       = self::get_count_answered();
+
+				if($result_exist != $result)
+				{
+					\lib\utility\file::write($url, $result);
+				}
 			}
 			else
 			{
