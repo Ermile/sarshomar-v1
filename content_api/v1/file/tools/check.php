@@ -58,7 +58,7 @@ trait check
 	 */
 	public static function remaining($_user_id)
 	{
-		$MB = 1 * 1000000 * 10; // 10 MB
+		$MB = 1 * 1000000; // 1 MB
 		$default_user_size = $MB * 10; // 10 MB for test
 
 		\lib\permission::$user_id = $_user_id;
