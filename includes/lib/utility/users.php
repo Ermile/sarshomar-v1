@@ -58,6 +58,59 @@ class users
 
 
 	/**
+	 * get count of users whitout guest user
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public static function user_count()
+	{
+		return \ilib\db\users::get_count('available');
+	}
+
+
+	/**
+	 * Gets the sarshomar total users.
+	 *
+	 * @return     integer  The sarshomar total users.
+	 */
+	public static function sarshomar_total_users()
+	{
+		$result = 0;
+		$url    = root. 'public_html/files/data/';
+		if(!\lib\utility\file::exists($url))
+		{
+			\lib\utility\file::makeDir($url, null, true);
+		}
+		$url .= 'total_user.txt';
+		if(!\lib\utility\file::exists($url))
+		{
+			$result = self::user_count();
+			\lib\utility\file::write($url, $result);
+		}
+		else
+		{
+			$file_time = \filemtime($url);
+			if((time() - $file_time) >  (60 * 10))
+			{
+				$result_exist = intval(\lib\utility\file::read($url));
+				$result       = self::user_count();
+
+				if($result_exist != $result)
+				{
+					\lib\utility\file::write($url, $result);
+				}
+			}
+			else
+			{
+				$result = \lib\utility\file::read($url);
+			}
+
+		}
+		return $result;
+	}
+
+
+	/**
 	 * { function_description }
 	 */
 	public static function signup($_args = [])

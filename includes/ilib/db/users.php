@@ -30,17 +30,17 @@ class users extends \lib\db\users
 		switch ($_type)
 		{
 			case 'all':
-				$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port  != 'site_guest' ";
+				$query = "SELECT COUNT(*) AS `count` FROM users WHERE user_port  != 'site_guest' ";
 				return \lib\db::get($query, 'count', true);
 				break;
 
 			case 'available':
-				$query = "SELECT COUNT(users.id) AS `count` FROM users WHERE user_port NOT LIKE '%guest%' ";
+				$query = "SELECT COUNT(*) AS `count` FROM users WHERE user_port NOT LIKE '%guest%' ";
 				return \lib\db::get($query, 'count', true);
 				break;
 
 			case 'port':
-				$query = "SELECT COUNT(users.id) AS `count`, `user_port` AS `port` FROM users GROUP BY user_port ";
+				$query = "SELECT COUNT(*) AS `count`, `user_port` AS `port` FROM users GROUP BY user_port ";
 				$result =  \lib\db::get($query, ['port', 'count']);
 				$temp = [];
 				foreach ($result as $key => $value)
