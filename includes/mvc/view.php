@@ -43,8 +43,8 @@ class view extends \lib\mvc\view
 			$this->data->stat = $total;
 
 			// get sarshomar total users
-			$total_users = \lib\utility\users::sarshomar_total_users();
-			$this->data->total_users = $total_users;
+			// $total_users = \lib\utility\users::sarshomar_total_users();
+			// $this->data->total_users = $total_users;
 
 			// enable heatmap to detect users action
 			if(\lib\utility::get('heatmap'))
