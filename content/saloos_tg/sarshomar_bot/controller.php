@@ -176,11 +176,17 @@ class controller extends \lib\mvc\controller
 		\lib\db\tg_session::$user_id = bot::$user_id;
 		if(!bot::$user_id)
 		{
+			$req = null;
+			// check apache request header and use if exist
+			if(function_exists('apache_request_headers'))
+			{
+				$req = apache_request_headers();
+			}
 
 			$log = [
 			'::ERROR::' => "---------------",
 			'request' => file_get_contents('php://input'),
-			'apache' => apache_request_headers(),
+			'apache' => $req,
 			'hook' => bot::$hook,
 			'debug' => \lib\debug::compile()
 			];
